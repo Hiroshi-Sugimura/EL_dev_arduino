@@ -85,7 +85,7 @@ public:
   void returner(void);
 
   // debug
-  void printNetData(const LCD *lcd = NULL); // lcdがあるときはそこにIP表示
+  void printNetData();
 
   // byte[] を安全にdeleteする
   void delPtr(byte ptr[]);

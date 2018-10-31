@@ -6,12 +6,10 @@
 #include <Wire.h>
 #include <Ethernet.h>
 #include <EthernetUdp.h>
-#include "LCD.h" // AQM0802A-RN-GBW
 #include <ELOBJ.h>
 #include <EL.h>
 
 EL echo(0x02, 0x90, 0x01); // General Lighting object code = 0290 01
-LCD lcd;                   // IP address
 
 // !!! please change the MAC address for your device !!!!!!!!!!!!!!!!!!!!!!!!!!!
 byte mac[] = {
@@ -26,14 +24,11 @@ int lightPin = 9; // LED pin for Netduino
 // initialize
 void setup()
 {
-  lcd.begin();
   pinMode(lightPin, OUTPUT); // lighting
 
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
   Serial.println("DHCP...");
-  lcd.setCursor(0, 0);
-  lcd.printStr("DHCP...");
 
   // start the Ethernet connection:
   while (1)
@@ -49,7 +44,6 @@ void setup()
     }
   }
 
-  echo.printNetData(&lcd); // print status
   echo.begin();            // ECHONET Lite start
 
   // initial INF packet

@@ -5,9 +5,8 @@
 #include <SPI.h>
 #include <Ethernet.h>
 #include <EthernetUdp.h>
-#include "ELOBJ.h"
-#include "LCD.h"
-#include "EL.h"
+#include <ELOBJ.h>
+#include <EL.h>
 
 // オブジェクトを一つだけサポートする。
 EL::EL(byte eoj0, byte eoj1, byte eoj2)
@@ -271,7 +270,7 @@ void EL::returner(void)
 }
 // EL処理ここまで
 
-void EL::printNetData(const LCD *lcd)
+void EL::printNetData()
 {
   char str[20];
   Serial.println("-----------------------------------");
@@ -289,18 +288,6 @@ void EL::printNetData(const LCD *lcd)
   IPAddress smip = Ethernet.subnetMask();
   Serial.print("SM  Address: ");
   Serial.println(smip);
-
-  if (lcd != NULL)
-  {
-    sprintf(str, "%d.%d", ip[0], ip[1]);
-    lcd->setCursor(0, 0);
-    lcd->printStr(str);
-
-    sprintf(str, "%d.%d", ip[2], ip[3]);
-    lcd->setCursor(0, 1);
-    lcd->printStr(str);
-  }
-
   Serial.println("-----------------------------------");
 }
 
