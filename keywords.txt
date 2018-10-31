@@ -1,0 +1,26 @@
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+EL	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+details	KEYWORD2
+_rBuffer	KEYWORD2
+update	KEYWORD2
+at	KEYWORD2
+send	KEYWORD2
+sendOPC1	KEYWORD2
+sendBroad	KEYWORD2
+sendMulti	KEYWORD2
+sendMultiOPC1	KEYWORD2
+parsePacket	KEYWORD2
+read	KEYWORD2
+remoteIP	KEYWORD2
+returner	KEYWORD2
+printNetData	KEYWORD2
+
+
