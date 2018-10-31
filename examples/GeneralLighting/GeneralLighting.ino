@@ -7,26 +7,27 @@
 #include <Ethernet.h>
 #include <EthernetUdp.h>
 #include "LCD.h" // AQM0802A-RN-GBW
-#include "ELOBJ.h"
-#include "EL.h"
+#include <ELOBJ.h>
+#include <EL.h>
 
-EL echo(0x02, 0x90, 0x01); // 一般照明 0290 01
-LCD lcd;                   // IPアドレス表示用
+EL echo(0x02, 0x90, 0x01); // General Lighting object code = 0290 01
+LCD lcd;                   // IP address
 
-// macアドレスは商品別で設定する必要がある。
+// !!! please change the MAC address for your device !!!!!!!!!!!!!!!!!!!!!!!!!!!
 byte mac[] = {
-    0x??, 0x??, 0x??, 0x??, 0x??, 0x??};
+  0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+};
 
-// 照明用設定
-// int lightPin = 13;   // 一般的には13 pinにLEDがついているが、
-int lightPin = 9; // Netduinoなど特殊な製品は 9 pinの場合がある。
+// settings for lighting
+// int lightPin = 13;   // generally LED pin
+int lightPin = 9; // LED pin for Netduino
 
 ////////////////////////////////////////////////////////////////////////////////
-// 初期化
+// initialize
 void setup()
 {
   lcd.begin();
-  pinMode(lightPin, OUTPUT); // 出力制御
+  pinMode(lightPin, OUTPUT); // lighting
 
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
@@ -48,106 +49,104 @@ void setup()
     }
   }
 
-  echo.printNetData(&lcd); // 現在の状態表示
-  echo.begin();            // EL 起動シーケンス
+  echo.printNetData(&lcd); // print status
+  echo.begin();            // ECHONET Lite start
 
-  // 一般照明の状態，繋がった宣言として立ち上がったことをコントローラに知らせるINFを飛ばす
+  // initial INF packet
   const byte deoj[] = {0x05, 0xff, 0x01};
   const byte edt[] = {0x01, 0x30};
   echo.sendMultiOPC1(deoj, INF, 0x80, edt);
 
-  // 機器状態
+  // device status, light on
   digitalWrite(lightPin, HIGH);
 }
 
-int packetSize = 0;     // 受信データ量
-byte *pdcedt = nullptr; // テンポラリ
+int packetSize = 0;     // receive data size
+byte *pdcedt = nullptr; // temp
 
 ////////////////////////////////////////////////////////////////////////////////
 // main
 void loop()
 {
-  // パケット貰ったらやる
+  // receive data
   packetSize = 0;
   pdcedt = nullptr;
 
   if (packetSize = echo.read())
-  { // 受け取った内容読み取り，あったら中へ
-
+  {
     // -----------------------------------
-    // ESVがSETとかGETとかで動作をかえる
+    // ESV is SET, GET, etc ?
     switch (echo._rBuffer[ESV])
     {
 
-    // -----------------------------------
-    // 動作状態の変更 Set対応
-    case SETI:
-    case SETC:
-      switch (echo._rBuffer[EPC])
-      {
-      case 0x80: // 電源
-        if (echo._rBuffer[EDT] == 0x30)
-        { // ON
-          digitalWrite(lightPin, HIGH);
-          pdcedt = new byte[2]{0x01, 0x30};        // ECHONET Liteの状態を変更（ライブラリに教えておく）
-          echo.update(echo._rBuffer[EPC], pdcedt); // ECHONET Liteの状態を変更
+      // -----------------------------------
+      // change status, Set
+      case SETI:
+      case SETC:
+        switch (echo._rBuffer[EPC])
+        {
+          case 0x80: // power
+            if (echo._rBuffer[EDT] == 0x30)
+            { // ON
+              digitalWrite(lightPin, HIGH);
+              pdcedt = new byte[2] {0x01, 0x30};       // change status
+              echo.update(echo._rBuffer[EPC], pdcedt); // and status update
+            }
+            else if (echo._rBuffer[EDT] == 0x31)
+            { // OFF
+              digitalWrite(lightPin, LOW);
+              pdcedt = new byte[2] {0x01, 0x31};       // change status
+              echo.update(echo._rBuffer[EPC], pdcedt); // and status update
+            }
+            break;
+
+          default: // unknown EPC
+            Serial.print("??? packet esv, epc, edt is : ");
+            // set
+            // ESV, EPC, EDT
+            Serial.print(echo._rBuffer[ESV], HEX);
+            Serial.print(" ");
+            Serial.print(echo._rBuffer[EPC], HEX);
+            Serial.print(" ");
+            Serial.println(echo._rBuffer[EDT], HEX);
+            break;
         }
-        else if (echo._rBuffer[EDT] == 0x31)
-        { // OFF
-          digitalWrite(lightPin, LOW);
-          pdcedt = new byte[2]{0x01, 0x31};        // ECHONET Liteの状態を変更
-          echo.update(echo._rBuffer[EPC], pdcedt); // ECHONET Liteの状態を変更
+
+        // clear if use pdcedt
+        if (pdcedt != nullptr)
+        {
+          delete[] pdcedt;
+          pdcedt = nullptr;
         }
-        break;
 
-      default: // 不明なEPC
-        Serial.print("??? packet esv, epc, edt is : ");
-        // set
-        // ESV, EPC, EDT
-        Serial.print(echo._rBuffer[ESV], HEX);
-        Serial.print(" ");
-        Serial.print(echo._rBuffer[EPC], HEX);
-        Serial.print(" ");
-        Serial.println(echo._rBuffer[EDT], HEX);
-        break;
-      }
+        if (echo._rBuffer[ESV] == SETC)
+        { // SETC is no responce
+          echo.returner();
+        }
+        break; // SETI, SETC
 
-      // pdcedtを使ったらクリア
-      if (pdcedt != nullptr)
-      {
-        delete[] pdcedt;
-        pdcedt = nullptr;
-      }
-
-      if (echo._rBuffer[ESV] == SETC)
-      { // SETCなら返信必要
+      // -----------------------------------
+      // Get,INF_REQ
+      case GET:
+      case INF_REQ:
+        // auto reply for device status if change status by using update function
         echo.returner();
-      }
-      break; // SETI, SETCここまで
+        break;
 
-    // -----------------------------------
-    // Get,INF_REQ対応
-    // SETの時にきちんとupdate関数でECHONET Liteの状態変更をライブラリに教えておけばここは簡素になる
-    case GET:
-    case INF_REQ:
-      // update関数でdetailsに状態が登録されていれば自動で返信する
-      echo.returner();
-      break; // GetとINF_REQここまで
+      case INF:
+        break;
 
-    case INF:
-      break;
-
-    default: // 解釈不可能なESV
-      Serial.print("error? ESV = ");
-      Serial.println(echo._rBuffer[ESV]);
-      break;
+      default: // unknown ESV
+        Serial.print("error? ESV = ");
+        Serial.println(echo._rBuffer[ESV]);
+        break;
     }
   }
-  // EL処理ここまで
+  // end EL process
   // -----------------------------------
-  // パケットなかったとき、ふつうは何もしなくてよい
+  // no receiving packet, no operations.
   // else {
-  //}
+  // }
 
   delay(200);
 }
