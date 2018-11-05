@@ -1,149 +1,162 @@
-////////////////////////////////////////////////////////////////////////////////
-// Arduino ECHONET Lite Sample
-// Copyright (C) Hiroshi SUGIMURA 2013.09.27
-////////////////////////////////////////////////////////////////////////////////
-#include <SPI.h>
-#include <Wire.h>
-#include <Ethernet.h>
-#include <EthernetUdp.h>
-#include <ELOBJ.h>
-#include <EL.h>
+#include <M5Stack.h>
+#include <WiFi.h>
+#include "EL.h"
 
-EL echo(0x02, 0x90, 0x01); // General Lighting object code = 0290 01
+#define WIFI_SSID "ssid"  // !!!! change
+#define WIFI_PASS "wifipassword" // !!!! change
 
-// !!! please change the MAC address for your device !!!!!!!!!!!!!!!!!!!!!!!!!!!
-byte mac[] = {
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-};
+WiFiClient client;
+WiFiUDP elUDP;
+EL echo(elUDP, 0x02, 0x90, 0x01 );
 
-// settings for lighting
-// int lightPin = 13;   // generally LED pin
-int lightPin = 9; // LED pin for Netduino
+void printNetData();
 
-////////////////////////////////////////////////////////////////////////////////
-// initialize
-void setup()
-{
-  pinMode(lightPin, OUTPUT); // lighting
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(115200);
+  Serial.println("");
+  M5.begin();
+  M5.Lcd.setTextSize(2);
+  M5.Lcd.println("wifi connect start");
 
-  // Open serial communications and wait for port to open:
-  Serial.begin(9600);
-  Serial.println("DHCP...");
-
-  // start the Ethernet connection:
-  while (1)
-  {
-    if (Ethernet.begin(mac) == 0)
-    {
-      Serial.println("Failed to configure Ethernet using DHCP");
-    }
-    else
-    {
-      Serial.println("DHCP ok!");
-      break;
-    }
+  WiFi.begin(WIFI_SSID, WIFI_PASS);
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.println("wait...");
+    delay(1000);
   }
+  M5.Lcd.println("wifi connect ok");
+  M5.update();
 
-  echo.begin();            // ECHONET Lite start
+  printNetData();
+  echo.begin();            // EL 起動シーケンス
 
-  // initial INF packet
+  // 一般照明の状態，繋がった宣言として立ち上がったことをコントローラに知らせるINFを飛ばす
   const byte deoj[] = {0x05, 0xff, 0x01};
   const byte edt[] = {0x01, 0x30};
-  echo.sendMultiOPC1(deoj, INF, 0x80, edt);
+  echo.sendMultiOPC1(deoj, EL_INF, 0x80, edt);
 
-  // device status, light on
-  digitalWrite(lightPin, HIGH);
+  M5.Lcd.fillScreen(BLACK);
+  M5.Lcd.setTextColor(WHITE);
+  M5.Lcd.setCursor(10, 10);
+  M5.Lcd.setTextSize(3);
+  M5.Lcd.setCursor(10, 10);
+  M5.Lcd.setTextSize(3);
 }
 
-int packetSize = 0;     // receive data size
-byte *pdcedt = nullptr; // temp
 
-////////////////////////////////////////////////////////////////////////////////
-// main
-void loop()
-{
-  // receive data
+int packetSize = 0;     // 受信データ量
+byte *pdcedt = nullptr; // テンポラリ
+
+
+
+void loop() {
+  M5.update();
+  delay(200);
+
+  // パケット貰ったらやる
   packetSize = 0;
   pdcedt = nullptr;
 
-  if (packetSize = echo.read())
-  {
+  if (0 != (packetSize = echo.read()) ) // 0!=はなくてもよいが，Warning出るのでつけとく
+  { // 受け取った内容読み取り，あったら中へ
+
     // -----------------------------------
-    // ESV is SET, GET, etc ?
-    switch (echo._rBuffer[ESV])
+    // ESVがSETとかGETとかで動作をかえる
+    switch (echo._rBuffer[EL_ESV])
     {
 
       // -----------------------------------
-      // change status, Set
-      case SETI:
-      case SETC:
-        switch (echo._rBuffer[EPC])
+      // 動作状態の変更 Set対応
+      case EL_SETI:
+      case EL_SETC:
+        switch (echo._rBuffer[EL_EPC])
         {
-          case 0x80: // power
-            if (echo._rBuffer[EDT] == 0x30)
+          case 0x80: // 電源
+            if (echo._rBuffer[EL_EDT] == 0x30)
             { // ON
-              digitalWrite(lightPin, HIGH);
-              pdcedt = new byte[2] {0x01, 0x30};       // change status
-              echo.update(echo._rBuffer[EPC], pdcedt); // and status update
+              M5.Lcd.fillCircle(160, 120, 80, WHITE);
+              pdcedt = new byte[2] {0x01, 0x30};       // ECHONET Liteの状態を変更（ライブラリに教えておく）
+              echo.update(echo._rBuffer[EL_EPC], pdcedt); // ECHONET Liteの状態を変更
             }
-            else if (echo._rBuffer[EDT] == 0x31)
+            else if (echo._rBuffer[EL_EDT] == 0x31)
             { // OFF
-              digitalWrite(lightPin, LOW);
-              pdcedt = new byte[2] {0x01, 0x31};       // change status
-              echo.update(echo._rBuffer[EPC], pdcedt); // and status update
+              M5.Lcd.fillCircle(160, 120, 80, BLACK);
+              pdcedt = new byte[2] {0x01, 0x31};       // ECHONET Liteの状態を変更
+              echo.update(echo._rBuffer[EL_EPC], pdcedt); // ECHONET Liteの状態を変更
             }
             break;
 
-          default: // unknown EPC
-            Serial.print("??? packet esv, epc, edt is : ");
+          default: // 不明なEPC
+            M5.Lcd.print("??? packet esv, epc, edt is : ");
             // set
             // ESV, EPC, EDT
-            Serial.print(echo._rBuffer[ESV], HEX);
-            Serial.print(" ");
-            Serial.print(echo._rBuffer[EPC], HEX);
-            Serial.print(" ");
-            Serial.println(echo._rBuffer[EDT], HEX);
+            M5.Lcd.print(echo._rBuffer[EL_ESV], HEX);
+            M5.Lcd.print(" ");
+            M5.Lcd.print(echo._rBuffer[EL_EPC], HEX);
+            M5.Lcd.print(" ");
+            M5.Lcd.println(echo._rBuffer[EL_EDT], HEX);
             break;
         }
 
-        // clear if use pdcedt
+        // pdcedtを使ったらクリア
         if (pdcedt != nullptr)
         {
           delete[] pdcedt;
           pdcedt = nullptr;
         }
 
-        if (echo._rBuffer[ESV] == SETC)
-        { // SETC is no responce
+        if (echo._rBuffer[EL_ESV] == EL_SETC)
+        { // SETCなら返信必要
           echo.returner();
         }
-        break; // SETI, SETC
+        break; // SETI, SETCここまで
 
       // -----------------------------------
-      // Get,INF_REQ
-      case GET:
-      case INF_REQ:
-        // auto reply for device status if change status by using update function
+      // Get,INF_REQ対応
+      // SETの時にきちんとupdate関数でECHONET Liteの状態変更をライブラリに教えておけばここは簡素になる
+      case EL_GET:
+      case EL_INF_REQ:
+        // update関数でdetailsに状態が登録されていれば自動で返信する
         echo.returner();
+        break; // GetとINF_REQここまで
+
+      case EL_INF:
         break;
 
-      case INF:
-        break;
-
-      default: // unknown ESV
-        Serial.print("error? ESV = ");
-        Serial.println(echo._rBuffer[ESV]);
+      default: // 解釈不可能なESV
+        M5.Lcd.print("error? ESV = ");
+        Serial.println(echo._rBuffer[EL_ESV]);
         break;
     }
   }
-  // end EL process
+  // EL処理ここまで
   // -----------------------------------
-  // no receiving packet, no operations.
+  // パケットなかったとき、ふつうは何もしなくてよい
   // else {
-  // }
+  //}
 
-  delay(200);
+  delay(500);
 }
-////////////////////////////////////////////////////////////////////////////////
-// EOF
-////////////////////////////////////////////////////////////////////////////////
+
+
+// debug
+void printNetData()
+{
+  Serial.println("-----------------------------------");
+
+  // IP
+  // print your WiFi shield's IP address:
+  IPAddress ip = WiFi.localIP();
+  Serial.print("IP  Address: ");
+  Serial.println(ip);
+
+  IPAddress dgwip = WiFi.gatewayIP();
+  Serial.print("DGW Address: ");
+  Serial.println(dgwip);
+
+  IPAddress smip = WiFi.subnetMask();
+  Serial.print("SM  Address: ");
+  Serial.println(smip);
+
+  Serial.println("-----------------------------------");
+}
