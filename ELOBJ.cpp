@@ -2,252 +2,207 @@
 // ECHONET Lite protocol object
 //  Copyright (C) Hiroshi SUGIMURA 2018.07.02
 ////////////////////////////////////////////////////////////////////////////////
-#include <new.h>
+// #include <iostream>
+// #include <memory>
+
+
 #include "ELOBJ.h"
+/*
+using std::cout;
+using std::endl;
+using std::hex;
+using std::move;
+ */
+
 
 //////////////////////////////////////////////////////////////////////
-//	構築/消滅
+//	PDCEDT
 //////////////////////////////////////////////////////////////////////
-ELOBJ::ELOBJ(byte key, byte *dat, unsigned long dat_size)
-{
-  m_leftnode = NULL;
-  m_rightnode = NULL;
-  m_key = key;
-  m_data = NULL;
-  if (NULL != dat)
-  {
-    m_data = new byte[dat_size];
-    memcpy(m_data, dat, dat_size);
-  }
+PDCEDT::PDCEDT() {
+	m_pdcedt = nullptr;
+}
+PDCEDT::PDCEDT(const PDCEDT& val) {
+	m_pdcedt = new byte[ val[0]+1 ];
+	memcpy( m_pdcedt, val, val[0]+1 );
+}
+PDCEDT::PDCEDT(const byte*& val) {
+	m_pdcedt = new byte[ val[0]+1 ];
+	memcpy( m_pdcedt, val, val[0]+1 );
 }
 
-ELOBJ::~ELOBJ()
-{
-  if (NULL != this)
-  {
-    delete m_leftnode;
-    m_leftnode = NULL;
-
-    m_key = 0x00;
-
-    delete[] m_data;
-    m_data = NULL;
-
-    delete m_rightnode;
-    m_rightnode = NULL;
-  }
+PDCEDT::~PDCEDT() {
+	if(nullptr != m_pdcedt) {delete [] m_pdcedt; m_pdcedt = nullptr;}
 }
+
+const PDCEDT PDCEDT::operator=(const PDCEDT val) {
+	// cout << "ope = PDCEDT" << endl;
+	if(nullptr != m_pdcedt) {
+		// cout << "delete" << endl;
+		delete [] m_pdcedt; m_pdcedt = nullptr;
+	}
+	// cout << "new" << endl;
+
+	int size = val[0]+1;
+	// cout << size << endl;
+	m_pdcedt = new byte[ size ];
+	memcpy( m_pdcedt, val, size );
+	return *this;
+}
+
+const byte* PDCEDT::operator=(const byte* val) {
+	// cout << "ope = byte" << endl;
+	if(nullptr != m_pdcedt) {
+		// cout << "delete" << endl;
+		delete [] m_pdcedt; m_pdcedt = nullptr;
+	}
+	// cout << "new" << endl;
+
+	int size = val[0]+1;
+	// cout << size << endl;
+	m_pdcedt = new byte[ size ];
+	memcpy( m_pdcedt, val, size );
+
+	return m_pdcedt;
+}
+
+PDCEDT::operator byte*() const {
+	return m_pdcedt;
+}
+
+
+
+
+
 
 //////////////////////////////////////////////////////////////////////
-//	自身取得
-byte ELOBJ::GetKey(void) const
-{
-  return (m_key);
-}
+//	EOOBJ
+//////////////////////////////////////////////////////////////////////
+ELOBJ::ELOBJ() {}
 
-byte *ELOBJ::GetData(void) const
-{
-  return (m_data);
-}
+ELOBJ::~ELOBJ() {}
 
-ELOBJ *ELOBJ::GetLeftNode(void) const
-{
-  return (m_leftnode);
-}
-
-ELOBJ *ELOBJ::GetRightNode(void) const
-{
-  return (m_rightnode);
-}
 
 //////////////////////////////////////////////////////////////////////
-//	キー文字列、データ追加
-ELOBJ *&ELOBJ::SetKey(const byte key)
-{
-  ELOBJ *&returnal = Search(key);
-
-  if (NULL == returnal)
-  {
-    ELOBJ *tmp = new ELOBJ(key);
-    returnal = tmp;
-    return returnal;
-  }
-
-  return returnal;
-}
-
-//	データ更新
-ELOBJ *&ELOBJ::SetData(const byte key, byte *dat)
-{
-  unsigned long dat_size = dat[0] + 1; // PDC + 1
-  ELOBJ *&returnal = SetKey(key);
-
-  if (NULL != returnal->m_data)
-  {
-    delete[] returnal->m_data;
-  }
-
-  returnal->m_data = new byte[dat_size];
-  memcpy(returnal->m_data, dat, dat_size);
-
-  return (returnal);
-}
-
 //	キー文字列からデータ取得
-byte *ELOBJ::GetData(const byte key) const
+const PDCEDT ELOBJ::GetPDCEDT(const byte epc) const
 {
-  int cmp = 0;
-  //  文字列の一致、差分を確認
-  cmp = m_key - key;
-
-  if (0 == cmp)
-  {
-    //  発見
-    return (this->m_data);
-  }
-  else if (0 < cmp)
-  {
-    //  右ノードを検索
-    if (NULL == m_rightnode)
-    {
-      return (NULL);
-    }
-    else
-    {
-      return (m_rightnode->GetData(key));
-    }
-  }
-  else
-  {
-    //  左ノードを検索
-    if (NULL == m_leftnode)
-    {
-      return (NULL);
-    }
-    else
-    {
-      return (m_leftnode->GetData(key));
-    }
-  }
+	int key = epc - 0x80;
+	return m_pdcedt[key];
 }
 
-//////////////////////////////////////////////////////////////////////
-//	検索
-ELOBJ *&ELOBJ::Search(const byte key)
+//	データセット, 更新
+const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const PDCEDT pdcedt)
 {
-  int cmp = 0;
-  //	文字列の一致、差分を確認
-  cmp = m_key - key;
-
-  if (0 == cmp)
-  {
-    //	発見
-    return ((ELOBJ *&)*this);
-  }
-  else if (0 < cmp)
-  {
-    //	右ノードを検索
-    if (NULL == m_rightnode)
-    {
-      return (m_rightnode);
-    }
-    else
-    {
-      return (m_rightnode->Search(key));
-    }
-  }
-  else
-  {
-    //	左ノードを検索
-    if (NULL == m_leftnode)
-    {
-      return (m_leftnode);
-    }
-    else
-    {
-      return (m_leftnode->Search(key));
-    }
-  }
+	// cout << "Set PDCEDT" << endl;
+	int key = epc - 0x80;
+	m_pdcedt[key] = pdcedt;
+	return (m_pdcedt[key]);
 }
 
-//	配列らしいインターフェイス，左辺として使う用
-//  代入不可, 読み取り専用と書き込み専用の違いをarduinoでは作れない？
-// メモリリーク対策に，読み取り専用のみのインタフェースを公開
-byte *ELOBJ::operator[](const byte key)
+const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const byte* pdcedt)
 {
-  ELOBJ *&returnal = Search(key);
-
-  if (NULL == returnal)
-  { // NULLなら新規作成になる
-    ELOBJ *tmp = new ELOBJ(key);
-    returnal = tmp;
-  }
-
-  return (returnal->m_data);
+	// cout << "Set byte*" << endl;
+	int key = epc - 0x80;
+	m_pdcedt[key] = pdcedt;
+	return (m_pdcedt[key]);
 }
 
 /*
-  //	代入可だが，うまくやらないとメモリリークするので封印
-  byte*&	ELOBJ::operator[]( byte key )
-  {
-  ELOBJ*& returnal = Search(key);
+//	配列らしいインターフェイス，右辺値として使う用
+//  代入不可
+const byte* ELOBJ::operator[](const byte epc) const
+{
+	// ELOBJ *&returnal = Search(epc);
+	// return (returnal->m_pdcedt);
+	cout << "右辺" << endl;
+	return GetPDCEDT(epc);
+}
 
-  if ( NULL == returnal ) { // NULLなら新規作成になる
-    ELOBJ* tmp = new ELOBJ(key);
-    returnal = tmp;
-  }else{
-    delete[] returnal->m_data;
-  }
 
-  return (returnal->m_data);
-  }
-*/
+//	配列らしいインターフェイス，左辺値として使う用
+//	代入可
+byte*&	ELOBJ::operator[]( byte epc )
+{
+	cout << "左辺" << endl;
+	int key = epc - 0x80;
+
+	if( nullptr != m_pdcedt[key] ) {
+		delete [] m_pdcedt[key];
+		m_pdcedt[key] = nullptr;
+	}
+	return ( (byte*&)m_pdcedt[key]);
+}
+ */
+
+//	配列らしいインターフェイス，右辺値として使う用
+//  代入不可
+const PDCEDT ELOBJ::operator[](const byte epc) const // rvalue
+{
+	// ELOBJ *&returnal = Search(epc);
+	// return (returnal->m_pdcedt);
+	// cout << "右辺" << endl;
+	int key = epc - 0x80;
+	return ( (const PDCEDT)m_pdcedt[key]);
+}
+
+
+//	配列らしいインターフェイス，左辺値として使う用
+//	代入可
+PDCEDT&	ELOBJ::operator[]( const byte epc ) // lvalue
+{
+	// cout << "左辺1" << endl;
+	int key = epc - 0x80;
+	return ( (PDCEDT&)m_pdcedt[key]);
+}
+
+/*
+const PDCEDT ELOBJ::operator[](const byte epc) && // rvalue
+{
+	// ELOBJ *&returnal = Search(epc);
+	// return (returnal->m_pdcedt);
+	cout << "右辺2" << endl;
+	int key = epc - 0x80;
+	return ( (const PDCEDT&)m_pdcedt[key]);
+}
+ */
+
+
 
 // 状態表示系
-void ELOBJ::edt_print(const byte *edt)
+void ELOBJ::pdcedt_print(const byte* edt)
 {
-  const byte *tmp = edt;
-  Serial.print((int)tmp[0]);
-  for (byte i = 1; i <= tmp[0]; i += 1)
-  {
-    Serial.print(", ");
-    Serial.print((int)tmp[i]);
-  }
-  Serial.print("\n");
+	Serial.print((int)edt[0]);
+	// cout << hex << (int)edt[0];
+
+	for (byte i = 1; i <= edt[0]; i += 1)
+	{
+		Serial.print(", ");
+		Serial.print((int)edt[i], HEX);
+		// cout << ", " << hex << (int)edt[i];
+	}
+	Serial.print("\n");
+	// cout << endl;
 }
 
-void ELOBJ::print() const
+void ELOBJ::pdcedt_print(const PDCEDT edt)
 {
-  if (m_key == 0x00)
-  {
-    return;
-  }
-  Serial.print((int)m_key);
-  Serial.print(": ");
-  Serial.print((int)m_data[0]);
-  for (byte i = 1; i <= m_data[0]; i += 1)
-  {
-    Serial.print(", ");
-    Serial.print((int)m_data[i]);
-  }
-  Serial.print("\n");
+	pdcedt_print( (byte*)(edt) );
 }
 
+// null以外全部出力
 void ELOBJ::printAll() const
 {
-  //  右ノードがあればそれも表示
-  if (NULL != m_rightnode)
-  {
-    m_rightnode->printAll();
-  }
+	for( int i=0; i<PDC_MAX; i+=1 ) {
 
-  print();
+		if( nullptr != m_pdcedt[i] ) {
+			/// cout << hex << i + 0x80 << ": ";
+			Serial.print("EPC: ");
+			Serial.print( i+0x80, HEX);
+			Serial.print(": ");
+			ELOBJ::pdcedt_print( m_pdcedt[i] );
+		}
 
-  //  左ノードがあればそれも表示
-  if (NULL != m_leftnode)
-  {
-    m_leftnode->printAll();
-  }
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
