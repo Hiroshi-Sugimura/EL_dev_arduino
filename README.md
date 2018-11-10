@@ -1,21 +1,53 @@
-# EL_dev_arduino
-Library and Sample of ECHONET Lite for Arduino
+# Overview (EL\_dev\_arduino)
 
-# What is this?
+このモジュールはArduinoの**ECHONET Liteプロトコル**をサポートします．
+ECHONET Liteプロトコルはスマートハウス機器の通信プロトコルです．
+M5Stackでテストしています。
 
-This is the ECHONET Lite protocol library for arduino and a sample.
+
+This module provides **ECHONET Lite protocol** for Arduino.
+The ECHONET Lite protocol is a communication protocol for smart home devices.
 It is comfirmed with M5stack.
+
+
+## Install
+
+ArduinoIDEのライブラリマネージャからモジュールをインストールできます．
+ECHONETでフィルタしてください。
+
+```
+1. ArduinoIDEを起動する
+2. メニューのスケッチ
+3. ライブラリをインクルード
+4. ライブラリを管理
+5. ECHONETでフィルタ
+6. EL_dev_arduinoをインストール
+```
+
+You can install the module by using Library Manager of ArduinoIDE as following.
+
+```
+1. Start ArduinoIDE
+2. Menu > Sketch
+3. Include Library
+4. Library Manager
+5. Filter [ECHONET]
+6. Install EL_dev_arduino
+```
+
 
 # How to use (for Mac)
 
 1. Install the Arduino
-2. Download or clone this (https://github.com/Hiroshi-Sugimura/EL_dev_arduino)
+2. Download or clone this (https://github.com/Hiroshi-Sugimura/EL\_dev\_arduino)
 3. put EL_dev_arduino into ~/Documents/Arduino/libraries
 4. Open example GeneralLighting by arduino IDE
 5. Attach the M5stack
 6. Run
 
-# example
+
+
+# Example (General Lighting)
 
 
 ```
@@ -184,6 +216,95 @@ void printNetData()
 ```
 
 
+# Classes
+
+## EL (for user)
+
+ELクラスはWiFiのUDP（受信は3610，送信は適当）とECHONET Liteプロトコルをサポートします。ECHONET Liteネットワークにデバイスを参加させるためには専門のオブジェクトコードが必要です。オブジェクトコードはECHONET規格書に書かれているものを参照してください（https://echonet.jp/spec_g/#standard-01）。サンプルとして一般照明（0x029001）をM5Stackで実装した例を示しています。
+
+EL class manages WiFiUDP (recv is 3610 port, sned is any port) and ECHONET Lite protocol.
+To join ECHONET Lite network, the device needs ECHONET Lite object code.
+ECHONET Lite object code is defined in the specifications. (see https://echonet.jp/spec-en/#standard-01)
+In this example, we deals with M5stack as a general lighting (0x029001).
+
+
+```C++
+EL echo(elUDP, 0x02, 0x90, 0x01 );
+```
+
+## ELOBJ (inner class)
+
+
+
+## APIs of EL class
+
+
+### Initialize（初期化）
+
+- EL( WiFiUDP& udp, byte eoj0, byte eoj1, byte eoj2);
+
+constructor
+
+- void begin(void);
+
+beggining ECHONET Lite protocol.
+
+```
+EL echo(elUDP, 0x02, 0x90, 0x01 );
+
+void setup() {
+  echo.begin();
+}
+
+```
+
+### Sender（送信）
+
+- void send(IPAddress toip, byte sBuffer[], int size);
+- void sendOPC1(const IPAddress toip, const byte *deoj, const byte esv, const byte epc, const byte *edt);
+- void sendBroad(byte sBuffer[], int size);
+- void sendMulti(byte sBuffer[], int size);
+- void sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const byte *edt);
+
+
+### Receiver（受信）
+
+- int read();
+
+受信データを読む。割り込みやコールバックではなくポーリングで実装してください。
+
+- IPAddress remoteIP(void);
+
+受信データの送信元のIPアドレスを取得する。
+
+- void returner(void);
+
+update関数でdetailsに状態が登録されていれば自動で返信する。
+
+- byte \_rBuffer[EL\_BUFFER\_SIZE]; // receive buffer
+
+Received data.
+受信したデータ
+
+
+```
+void loop() {
+  if (0 != echo.read()) )  {    switch (echo._rBuffer[EL_ESV])    {      // -----------------------------------      // 動作状態の変更 Set対応      case EL_SETI:      case EL_SETC:        break; // SETI, SETCここまで      // -----------------------------------      // Get,INF_REQ      case EL_GET:      case EL_INF_REQ:        echo.returner();        break;      case EL_INF:
+        break;      default: // 解釈不可能なESV    }  }}
+```
+
+### Update EDT（EDT:機器データの更新）
+
+- void update(const byte epc, byte pdcedt[]);
+
+### Confirm EDT（機器データの確認）
+
+- byte *at(const byte epc);
+
+### Device Data（機器データ）
+
+- ELOBJ details;
+
 
 # Files
 
@@ -192,9 +313,20 @@ void printNetData()
 - ELOBJ.h, ELOBJ.cpp: ECHONET Lite object manager class. It is required by EL.h
 
 
-# version
+# Limitations
 
+本モジュールの制限として気がついた点を下記に示します。
+
+- 機器オブジェクトは1つだけしか持てない。
+
+
+
+
+# Version
+
+- 1.2.0 Readme, keywords, library.json, library.properties
 - 1.1.0 organized for m5stack
+- 1.0.0 M5Stack
 - 0.10 commit and publish
 
 
@@ -202,4 +334,13 @@ void printNetData()
 
 MIT
 
+## Author
 
+神奈川工科大学  創造工学部  ホームエレクトロニクス開発学科
+
+Dept. of Home Electronics, Faculty of Creative Engineering, Kanagawa Institute of Technology.
+
+
+杉村　博
+
+SUGIMURA, Hiroshi

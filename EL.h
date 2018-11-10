@@ -52,6 +52,9 @@ private:
 	byte _sBuffer[EL_BUFFER_SIZE]; // send buffer
 	WiFiUDP* _udp;
 
+protected:
+	int parsePacket(void);
+
 public:
 	ELOBJ details;
 	byte _rBuffer[EL_BUFFER_SIZE]; // receive buffer
@@ -71,13 +74,9 @@ public:
 	void sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const byte *edt);
 
 	// reseiver
-	int parsePacket(void);
 	int read();
 	IPAddress remoteIP(void);
 	void returner(void);
-
-	// debug
-	void printNetData(); // lcdがあるときはそこにIP表示
 
 	// byte[] を安全にdeleteする
 	void delPtr(byte ptr[]);

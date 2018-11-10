@@ -17,10 +17,7 @@ sendOPC1	KEYWORD2
 sendBroad	KEYWORD2
 sendMulti	KEYWORD2
 sendMultiOPC1	KEYWORD2
-parsePacket	KEYWORD2
 read	KEYWORD2
 remoteIP	KEYWORD2
 returner	KEYWORD2
-printNetData	KEYWORD2
-
 
