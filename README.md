@@ -324,6 +324,7 @@ void loop() {
 
 # Version
 
+- 1.2.1 EL Object code defines
 - 1.2.0 Readme, keywords, library.json, library.properties
 - 1.1.0 organized for m5stack
 - 1.0.0 M5Stack
