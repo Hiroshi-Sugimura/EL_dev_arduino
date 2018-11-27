@@ -5,6 +5,9 @@
 #ifndef __EL_H__
 #define __EL_H__
 #pragma once
+
+// #defile EL_DEBUG
+
 #include <Arduino.h>
 #include <WiFi.h>
 #include <WiFiUDP.h>

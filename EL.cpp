@@ -37,8 +37,6 @@ void EL::begin(void)
 		Serial.println("Reseiver udp.begin failed."); // localPort
 	}
 
-	// IPAddress _multi(224,0,23,0);
-
 
 	if (_udp->beginMulticast( _multi, EL_PORT) )
 	{
@@ -50,17 +48,19 @@ void EL::begin(void)
 	}
 
 	details[ 0x80 ] = new byte[2] {0x01, 0x30}; // power
-	details[ 0x82 ] = new byte[5] {0x04, 0x01, 0x0a, 0x01, 0x00}; // version 1.01
-	details[ 0x83 ] = new byte[19] {0x12, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; //
+	details[ 0x81 ] = new byte[5] {0x01, 0x00}; // position
+	details[ 0x82 ] = new byte[5] {0x04, 0x00, 0x00, 0x4b, 0x00}; // release K
+	details[ 0x83 ] = new byte[19]{0x12, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // identification number
+	details[ 0x88 ] = new byte[4] {0x01, 0x42}; // error status
 	details[ 0x8a ] = new byte[4] {0x03, 0x00, 0x00, 0x77}; // maker KAIT
 	details[ 0x9d ] = new byte[4] {0x03, 0x02, 0x80, 0xd6}; // inf p map
 	details[ 0x9e ] = new byte[2] {0x01, 0x80}; // set p map
-	details[ 0x9f ] = new byte[11] {0x0a, 0x09, 0x80, 0x82, 0x83, 0x8a, 0xd3, 0xd4, 0xd5, 0xd6, 0xd7}; // get p map
-	details[ 0xd3 ] = new byte[4] {0x03, 0x00, 0x00, 0x01}; //
-	details[ 0xd4 ] = new byte[3] {0x02, 0x00, 0x02}; //
-	details[ 0xd5 ] = new byte[4] {0x01, _eoj[0], _eoj[1], _eoj[2]}; // obj list
-	details[ 0xd6 ] = new byte[4] {0x01, _eoj[0], _eoj[1], _eoj[2]}; // obj list
-	details[ 0xd7 ] = new byte[3] {0x01, _eoj[0], _eoj[1]}; // class list
+	details[ 0x9f ] = new byte[12]{0x0b, 0x0a, 0x80, 0x81, 0x82, 0x83, 0x8a, 0xd3, 0xd4, 0xd5, 0xd6, 0xd7}; // get p map
+	details[ 0xd3 ] = new byte[4] {0x03, 0x00, 0x00, 0x01}; // total instance number
+	details[ 0xd4 ] = new byte[3] {0x02, 0x00, 0x02}; // total class number
+	details[ 0xd5 ] = new byte[5] {0x04, 0x01, _eoj[0], _eoj[1], _eoj[2]}; // obj list
+	details[ 0xd6 ] = new byte[5] {0x04, 0x01, _eoj[0], _eoj[1], _eoj[2]}; // obj list
+	details[ 0xd7 ] = new byte[4] {0x03, 0x01, _eoj[0], _eoj[1]}; // class list
 
 	details.printAll();
 
@@ -193,6 +193,14 @@ void EL::sendOPC1(const IPAddress toip, const byte *deoj, const byte esv, const 
 	memcpy(&_sBuffer[EL_PDC], pdcedt, pdcedt[0] + 1); // size = pcd + edt
 	_sendPacketSize = EL_EDT + pdcedt[0];
 	send(toip, _sBuffer, _sendPacketSize);
+
+#ifdef EL_DEBUG
+	Serial.print("sendOPC1 packet: ");
+	for( int i=0; i<_sendPacketSize; i+=1) {
+		Serial.print(_sBuffer[i], HEX );
+		Serial.print( " " );
+	}
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -237,12 +245,8 @@ void EL::returner(void)
 		// SETC, Get, INF_REQ は返信処理がある
 	case EL_SETC:
 	case EL_GET:
-		Serial.print("get: ");
-		Serial.print(epc, HEX);
-		Serial.print(", ");
-		Serial.print(pdcedt[0], HEX);
-		Serial.print(", ");
-		Serial.println(pdcedt[1], HEX);
+		Serial.print("SETC or GET: ");
+		Serial.println(epc, HEX);
 
 		if (pdcedt)
 		{ // そのEPCがある場合
@@ -257,6 +261,8 @@ void EL::returner(void)
 
 		// ユニキャストへの返信ここまで，INFはマルチキャスト
 	case EL_INF_REQ:
+		Serial.print("INF_REQ: ");
+		Serial.println(epc, HEX);
 		if (pdcedt)
 		{ // そのEPCがある場合、マルチキャスト
 			sendMultiOPC1(deoj, (esv + 0x10), epc, pdcedt);
