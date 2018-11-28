@@ -289,21 +289,45 @@ Received data.
 
 ```
 void loop() {
-  if (0 != echo.read()) )  {    switch (echo._rBuffer[EL_ESV])    {      // -----------------------------------      // 動作状態の変更 Set対応      case EL_SETI:      case EL_SETC:        break; // SETI, SETCここまで      // -----------------------------------      // Get,INF_REQ      case EL_GET:      case EL_INF_REQ:        echo.returner();        break;      case EL_INF:
-        break;      default: // 解釈不可能なESV    }  }}
+  if (0 != echo.read()) )
+  {
+    switch (echo._rBuffer[EL_ESV])
+    {
+      // -----------------------------------
+      // 動作状態の変更 Set対応
+      case EL_SETI:
+      case EL_SETC:
+        break; // SETI, SETCここまで
+
+      // -----------------------------------
+      // Get,INF_REQ
+      case EL_GET:
+      case EL_INF_REQ:
+        echo.returner();
+        break;
+
+      case EL_INF:
+        break;
+      default: // 解釈不可能なESV
+    }
+  }
+}
 ```
 
 ### Update EDT（EDT:機器データの更新）
 
 - void update(const byte epc, byte pdcedt[]);
 
+
 ### Confirm EDT（機器データの確認）
 
 - byte *at(const byte epc);
 
+
 ### Device Data（機器データ）
 
-- ELOBJ details;
+- ELOBJ profile; // node profile object (PDC and EDT list)
+- ELOBJ details; // device object (PDC and EDT list)
 
 
 # Defines
@@ -450,13 +474,11 @@ void loop() {
 本モジュールの制限として気がついた点を下記に示します。
 
 - 機器オブジェクトは1つだけしか持てない。
-- プロファイルオブジェクトを完全に無視してる。
 
 
 Limitations of this module is following.
 
 - This module can only have one device object.
-- No profile object.
 
 
 # Know-how
@@ -480,6 +502,7 @@ Limitations of this module is following.
 
 # Version
 
+- 1.3.0 deal with Node profile object, error case EPC, be searched and debug mode define.
 - 1.2.2 details bug fix
 - 1.2.1 EL Object code defines
 - 1.2.0 Readme, keywords, library.json, library.properties
