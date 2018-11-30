@@ -332,6 +332,7 @@ void loop() {
 
 # Defines
 
+```C++:EL.h
 #define EL_PORT		3610
 #define EL_EHD1		0
 #define EL_EHD2		1
@@ -460,7 +461,7 @@ void loop() {
 // AV関連機器
 #define	EL_Display	0x06, 0x01	//	ディスプレー
 #define	EL_Television	0x06, 0x02	//	テレビ
-
+```
 
 # Files
 
