@@ -479,7 +479,7 @@ void loop() {
 
 Limitations of this module is following.
 
-- This module can only have one device object.
+- This module can have only a device object.
 
 
 # Know-how
