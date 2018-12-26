@@ -128,13 +128,13 @@ void loop() {
             if (echo._rBuffer[EL_EDT] == 0x30)
             { // ON
               M5.Lcd.fillCircle(160, 120, 80, WHITE);
-              pdcedt = new byte[2] {0x01, 0x30};       // ECHONET Liteの状態を変更（ライブラリに教えておく）
+              pdcedt = (byte[]){0x01, 0x30};       // ECHONET Liteの状態を変更（ライブラリに教えておく）
               echo.update(echo._rBuffer[EL_EPC], pdcedt); // ECHONET Liteの状態を変更
             }
             else if (echo._rBuffer[EL_EDT] == 0x31)
             { // OFF
               M5.Lcd.fillCircle(160, 120, 80, BLACK);
-              pdcedt = new byte[2] {0x01, 0x31};       // ECHONET Liteの状態を変更
+              pdcedt = (byte[]){0x01, 0x31};       // ECHONET Liteの状態を変更
               echo.update(echo._rBuffer[EL_EPC], pdcedt); // ECHONET Liteの状態を変更
             }
             break;
@@ -489,7 +489,7 @@ Limitations of this module is following.
  - 対応するEDTを下記のように設定してください。
 
 ```
- details[ 0xE0 ] = new byte[2] {0x01, soundNumber}; // power
+ details[ 0xE0 ] = (byte[]){0x01, soundNumber}; // power
 ```
 
 
@@ -497,12 +497,13 @@ Limitations of this module is following.
  - Please set details (EDT) as following.
 
 ```
- details[ 0xE0 ] = new byte[2] {0x01, soundNumber}; // power
+ details[ 0xE0 ] = (byte[]){0x01, soundNumber}; // power
 ```
 
 
 # Version
 
+- 2.0.0 change memory management, cope with memory leak.
 - 1.3.0 deal with Node profile object, error case EPC, be searched and debug mode define.
 - 1.2.2 details bug fix
 - 1.2.1 EL Object code defines
