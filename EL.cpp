@@ -142,12 +142,12 @@ void EL::sendMulti(byte sBuffer[], int size)
 }
 
 // OPC一個用のマルチキャスト関数（変なミスが少なくなるはず）
-void EL::sendMultiOPC1(const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
+void EL::sendMultiOPC1(const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	_sBuffer[EL_EHD1]		= 0x10;
 	_sBuffer[EL_EHD2]		= 0x81;
-	_sBuffer[EL_TID]		= 0x00;
-	_sBuffer[EL_TID + 1]	= 0x00;
+	_sBuffer[EL_TID]		= tid[0];
+	_sBuffer[EL_TID + 1]	= tid[1];
 	_sBuffer[EL_SEOJ]		= seoj[0];
 	_sBuffer[EL_SEOJ + 1]	= seoj[1];
 	_sBuffer[EL_SEOJ + 2]	= seoj[2];
@@ -177,41 +177,18 @@ void EL::sendMultiOPC1(const byte *seoj, const byte *deoj, const byte esv, const
 #endif
 }
 
+// OPC一個用のマルチキャスト関数（変なミスが少なくなるはず）
+void EL::sendMultiOPC1(const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
+{
+	const byte tid[] = {0x00, 0x00};
+	sendMultiOPC1(seoj, tid, deoj, esv, epc, pdcedt);
+}
 
 // OPC一個用のマルチキャスト関数（変なミスが少なくなるはず）
 void EL::sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
-	_sBuffer[EL_EHD1]		= 0x10;
-	_sBuffer[EL_EHD2]		= 0x81;
-	_sBuffer[EL_TID]		= 0x00;
-	_sBuffer[EL_TID + 1]	= 0x00;
-	_sBuffer[EL_SEOJ]		= _eoj[0];
-	_sBuffer[EL_SEOJ + 1]	= _eoj[1];
-	_sBuffer[EL_SEOJ + 2]	= _eoj[2];
-	_sBuffer[EL_DEOJ]		= deoj[0];
-	_sBuffer[EL_DEOJ + 1]	= deoj[1];
-	_sBuffer[EL_DEOJ + 2]	= deoj[2];
-	_sBuffer[EL_ESV]		= esv;
-	_sBuffer[EL_OPC]		= 0x01;
-	_sBuffer[EL_EPC]		= epc;
-
-	if( pdcedt != nullptr ) {
-		memcpy(&_sBuffer[EL_PDC], pdcedt, pdcedt[0] + 1); // size = pcd + edt
-		_sendPacketSize = EL_EDT + pdcedt[0];
-	}else{
-		_sBuffer[EL_PDC] = 0x00;
-		_sendPacketSize = EL_PDC +1;
-	}
-	sendMulti(_sBuffer, _sendPacketSize);
-
-#ifdef EL_DEBUG
-	Serial.print("sendMultiOPC1 packet: ");
-	for( int i=0; i<_sendPacketSize; i+=1) {
-		Serial.print(_sBuffer[i], HEX );
-		Serial.print( " " );
-	}
-	Serial.println( "." );
-#endif
+	const byte tid[] = {0x00, 0x00};
+	sendMultiOPC1(_eoj, tid, deoj, esv, epc, pdcedt);
 }
 
 // IP指定による送信
@@ -239,12 +216,12 @@ void EL::send(IPAddress toip, byte sBuffer[], int size)
 }
 
 // OPC1指定による送信(SEOJも指定する，ほぼ内部関数)
-void EL::sendOPC1(const IPAddress toip, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
+void EL::sendOPC1(const IPAddress toip, const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	_sBuffer[EL_EHD1]		= 0x10;
 	_sBuffer[EL_EHD2]		= 0x81;
-	_sBuffer[EL_TID]		= 0x00;
-	_sBuffer[EL_TID + 1]	= 0x00;
+	_sBuffer[EL_TID]		= tid[0];
+	_sBuffer[EL_TID + 1]	= tid[1];
 	_sBuffer[EL_SEOJ]		= seoj[0];
 	_sBuffer[EL_SEOJ + 1]	= seoj[1];
 	_sBuffer[EL_SEOJ + 2]	= seoj[2];
@@ -274,40 +251,19 @@ void EL::sendOPC1(const IPAddress toip, const byte *seoj, const byte *deoj, cons
 #endif
 }
 
+// OPC1指定による送信(SEOJも指定する，ほぼ内部関数)
+void EL::sendOPC1(const IPAddress toip, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
+{
+	const byte tid[] = {0x00, 0x00};
+	sendOPC1(toip, tid, seoj, deoj, esv, epc, pdcedt);
+}
+
 
 // OPC1指定による送信(SEOJは初期化時に指定したものを使う)
 void EL::sendOPC1(const IPAddress toip, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
-	_sBuffer[EL_EHD1]		= 0x10;
-	_sBuffer[EL_EHD2]		= 0x81;
-	_sBuffer[EL_TID]		= 0x00;
-	_sBuffer[EL_TID + 1]	= 0x00;
-	_sBuffer[EL_SEOJ]		= _eoj[0];
-	_sBuffer[EL_SEOJ + 1]	= _eoj[1];
-	_sBuffer[EL_SEOJ + 2]	= _eoj[2];
-	_sBuffer[EL_DEOJ]		= deoj[0];
-	_sBuffer[EL_DEOJ + 1]	= deoj[1];
-	_sBuffer[EL_DEOJ + 2]	= deoj[2];
-	_sBuffer[EL_ESV]		= esv;
-	_sBuffer[EL_OPC]		= 0x01;
-	_sBuffer[EL_EPC]		= epc;
-	if( pdcedt != nullptr ) {
-		memcpy(&_sBuffer[EL_PDC], pdcedt, pdcedt[0] + 1); // size = pcd + edt
-		_sendPacketSize = EL_EDT + pdcedt[0];
-	}else{
-		_sBuffer[EL_PDC] = 0x00;
-		_sendPacketSize = EL_PDC +1;
-	}
-	send(toip, _sBuffer, _sendPacketSize);
-
-#ifdef EL_DEBUG
-	Serial.print("sendOPC1 packet: ");
-	for( int i=0; i<_sendPacketSize; i+=1) {
-		Serial.print(_sBuffer[i], HEX );
-		Serial.print( " " );
-	}
-	Serial.println( "." );
-#endif
+	const byte tid[] = {0x00, 0x00};
+	sendOPC1(toip, tid, _eoj, deoj, esv, epc, pdcedt);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -339,6 +295,7 @@ void EL::returner(void)
 	///////////////////////////////////////////////////////////////////
 	// 動作状態の変更
 	IPAddress remIP = remoteIP();
+	byte tid[] 	   = {_rBuffer[EL_TID], _rBuffer[EL_TID + 1]};
 	byte seoj[]    = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]};
 	byte deoj[]    = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]};
 	const byte esv = _rBuffer[EL_ESV];
@@ -370,12 +327,12 @@ void EL::returner(void)
 		if (pdcedt)
 		{ // そのEPCがある場合
 			// Serial.println("There is pdcedt.");
-			sendOPC1(remIP, deoj, seoj, (esv + 0x10), epc, pdcedt);
+			sendOPC1(remIP, tid, deoj, seoj, (esv + 0x10), epc, pdcedt);
 		}
 		else
 		{
 			// Serial.println("No pdcedt.");
-			sendOPC1(remIP, deoj, seoj, (esv - 0x10), epc, nullptr );
+			sendOPC1(remIP, tid, deoj, seoj, (esv - 0x10), epc, nullptr );
 		}
 		break;
 
@@ -385,12 +342,12 @@ void EL::returner(void)
 		Serial.println(epc, HEX);
 		if (pdcedt)
 		{ // そのEPCがある場合、マルチキャスト
-			sendMultiOPC1(deoj, seoj, (esv + 0x10), epc, pdcedt);
+			sendMultiOPC1(tid, deoj, seoj, (esv + 0x10), epc, pdcedt);
 		}
 		else
 		{ // ない場合はエラーなのでユニキャストで返信
 			pdcedt[0] = 0x00;
-			sendOPC1(remIP, deoj, seoj, (esv - 0x10), epc, nullptr );
+			sendOPC1(remIP, tid, deoj, seoj, (esv - 0x10), epc, nullptr );
 		}
 		break;
 		//  INF_REQここまで

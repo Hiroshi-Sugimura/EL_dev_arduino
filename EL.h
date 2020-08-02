@@ -173,10 +173,12 @@ public:
 
 	// sender
 	void send(IPAddress toip, byte sBuffer[], int size);
+	void sendOPC1(const IPAddress toip, const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
 	void sendOPC1(const IPAddress toip, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
 	void sendOPC1(const IPAddress toip, const byte *deoj, const byte esv, const byte epc, const byte *edt);
 	void sendBroad(byte sBuffer[], int size);
 	void sendMulti(byte sBuffer[], int size);
+	void sendMultiOPC1(const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
 	void sendMultiOPC1(const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
 	void sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const byte *edt);
 
