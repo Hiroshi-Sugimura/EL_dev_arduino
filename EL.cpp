@@ -174,14 +174,14 @@ void EL::sendMultiOPC1(const byte *tid, const byte *seoj, const byte *deoj, cons
 void EL::sendMultiOPC1(const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	const byte tid[] = {0x00, 0x00};
-	sendMultiOPC1(seoj, tid, deoj, esv, epc, pdcedt);
+	sendMultiOPC1(tid, seoj, deoj, esv, epc, pdcedt);
 }
 
 // OPC一個用のマルチキャスト関数（変なミスが少なくなるはず）
 void EL::sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	const byte tid[] = {0x00, 0x00};
-	sendMultiOPC1(_eoj, tid, deoj, esv, epc, pdcedt);
+	sendMultiOPC1(tid, _eoj, deoj, esv, epc, pdcedt);
 }
 
 // IP指定による送信
