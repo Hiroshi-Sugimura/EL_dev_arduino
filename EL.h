@@ -151,10 +151,12 @@ private:
 	IPAddress _multi;
 	byte _broad[4];
 	byte _eoj[3];
-	int _sendPacketSize = 0;
-	int _readPacketSize = 0;
+    byte* _eojs;
+    int _sendPacketSize = 0;
+    int _readPacketSize = 0;
 	byte _sBuffer[EL_BUFFER_SIZE]; // send buffer
 	WiFiUDP* _udp;
+    int deviceCount;
 
 protected:
 	int parsePacket(void);
@@ -162,29 +164,35 @@ protected:
 public:
 	ELOBJ profile; // profile object (for specialist)
 	ELOBJ details; // device object (for light user)
+    ELOBJ *devices;
 	byte _rBuffer[EL_BUFFER_SIZE]; // receive buffer
 
-	EL( WiFiUDP& udp, byte eoj0, byte eoj1, byte eoj2);
-	void begin(void);
+    EL(WiFiUDP &udp, byte eoj0, byte eoj1, byte eoj2);
+    EL(WiFiUDP &udp, byte [][3], int count);
+    void begin(void);
 
-	// details change
+    // details change
 	void update(const byte epc, byte pdcedt[]);
 	byte *at(const byte epc);
+	void update(const int devId, const byte epc, byte pdcedt[]);
+	byte *at(const int devId, const byte epc);
 
 	// sender
 	void send(IPAddress toip, byte sBuffer[], int size);
 	void sendOPC1(const IPAddress toip, const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
 	void sendOPC1(const IPAddress toip, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
 	void sendOPC1(const IPAddress toip, const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	void sendBroad(byte sBuffer[], int size);
-	void sendMulti(byte sBuffer[], int size);
+    void sendOPC1(const IPAddress toip, const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt);
+    void sendBroad(byte sBuffer[], int size);
+    void sendMulti(byte sBuffer[], int size);
 	void sendMultiOPC1(const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
 	void sendMultiOPC1(const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
 	void sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const byte *edt);
+    void sendMultiOPC1(const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt);
 
-	// reseiver
-	int read();
-	IPAddress remoteIP(void);
+    // reseiver
+    int read();
+    IPAddress remoteIP(void);
 	void returner(void);
 
 	// byte[] を安全にdeleteする
