@@ -505,6 +505,7 @@ Limitations of this module is following.
 
 # Version
 
+- 2.2.0 bug fix, support multi device
 - 2.1.0 considering TID
 - 2.0.0 change memory management, cope with memory leak.
 - 1.3.0 deal with Node profile object, error case EPC, be searched and debug mode define.
