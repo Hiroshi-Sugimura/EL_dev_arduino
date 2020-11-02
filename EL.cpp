@@ -25,6 +25,7 @@ EL::EL(WiFiUDP& udp, byte eoj0, byte eoj1, byte eoj2)
 	_broad[3] = 255;
 
     deviceCount = 1;
+    devices = new ELOBJ[deviceCount];
     _eojs = new byte[deviceCount * sizeof(byte[3])];
     _eojs[0] = eoj0;
     _eojs[1] = eoj1;
