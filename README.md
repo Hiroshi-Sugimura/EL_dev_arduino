@@ -128,13 +128,13 @@ void loop() {
             if (echo._rBuffer[EL_EDT] == 0x30)
             { // ON
               M5.Lcd.fillCircle(160, 120, 80, WHITE);
-              pdcedt = (byte[]){0x01, 0x30};       // ECHONET Liteの状態を変更（ライブラリに教えておく）
+              pdcedt = new byte[2]{0x01, 0x30};       // ECHONET Liteの状態を変更（ライブラリに教えておく）
               echo.update(echo._rBuffer[EL_EPC], pdcedt); // ECHONET Liteの状態を変更
             }
             else if (echo._rBuffer[EL_EDT] == 0x31)
             { // OFF
               M5.Lcd.fillCircle(160, 120, 80, BLACK);
-              pdcedt = (byte[]){0x01, 0x31};       // ECHONET Liteの状態を変更
+              pdcedt = new byte[2]{0x01, 0x31};       // ECHONET Liteの状態を変更
               echo.update(echo._rBuffer[EL_EPC], pdcedt); // ECHONET Liteの状態を変更
             }
             break;
