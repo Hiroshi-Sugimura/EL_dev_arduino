@@ -505,6 +505,7 @@ Limitations of this module is following.
 
 # Version
 
+- 2.2.1 bug fix, support multi device (pull request from katsumin)
 - 2.2.0 bug fix, support multi device
 - 2.1.0 considering TID
 - 2.0.0 change memory management, cope with memory leak.
