@@ -5,7 +5,16 @@
 #include "ELOBJ.h"
 #include "EL.h"
 
-// オブジェクトを一つだけサポートする。
+////////////////////////////////////////////////////
+/// @fn
+/// @brief オブジェクトを一つだけサポートする場合のコンストラクタ
+/// @param WiFiUDP&
+/// @param byte eoj0
+/// @param byte eoj1
+/// @param byte eoj2
+/// @return void
+/// @detail eoj0, eoj1, eoj2で一つのオブジェクト
+////////////////////////////////////////////////////
 EL::EL(WiFiUDP& udp, byte eoj0, byte eoj1, byte eoj2)
 {
 	_udp = &udp;
