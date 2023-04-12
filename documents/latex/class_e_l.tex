@@ -1,0 +1,98 @@
+\hypertarget{class_e_l}{}\doxysection{EL クラス}
+\label{class_e_l}\index{EL@{EL}}
+\doxysubsection*{公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_e_l_ae18a4b309a644bc25d05c6c85f00f009}\label{class_e_l_ae18a4b309a644bc25d05c6c85f00f009}} 
+{\bfseries EL} (Wi\+Fi\+UDP \&udp, byte eoj0, byte eoj1, byte eoj2)
+\item 
+\mbox{\Hypertarget{class_e_l_af3e715203f9da944ebe49d0fa6b909c3}\label{class_e_l_af3e715203f9da944ebe49d0fa6b909c3}} 
+{\bfseries EL} (Wi\+Fi\+UDP \&udp, byte\mbox{[}$\,$\mbox{]}\mbox{[}3\mbox{]}, int count)
+\item 
+\mbox{\Hypertarget{class_e_l_a200545322f36c5ac01ec517269c93014}\label{class_e_l_a200545322f36c5ac01ec517269c93014}} 
+void {\bfseries begin} (void)
+\item 
+\mbox{\Hypertarget{class_e_l_a0f235980e2cdae6da6ca84c8098d49cb}\label{class_e_l_a0f235980e2cdae6da6ca84c8098d49cb}} 
+void {\bfseries update} (const byte epc, byte pdcedt\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\Hypertarget{class_e_l_a986d605da832524b0f80f8330df1a1da}\label{class_e_l_a986d605da832524b0f80f8330df1a1da}} 
+byte $\ast$ {\bfseries at} (const byte epc)
+\item 
+\mbox{\Hypertarget{class_e_l_a989732eaa75eba55e3a569a0e4a3b6ec}\label{class_e_l_a989732eaa75eba55e3a569a0e4a3b6ec}} 
+void {\bfseries update} (const int dev\+Id, const byte epc, byte pdcedt\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\Hypertarget{class_e_l_a05a173c299c1feb5c03fa0771a9eff9a}\label{class_e_l_a05a173c299c1feb5c03fa0771a9eff9a}} 
+byte $\ast$ {\bfseries at} (const int dev\+Id, const byte epc)
+\item 
+\mbox{\Hypertarget{class_e_l_a58b950847b38135814429193175b9b72}\label{class_e_l_a58b950847b38135814429193175b9b72}} 
+void {\bfseries send} (IPAddress toip, byte s\+Buffer\mbox{[}$\,$\mbox{]}, int size)
+\item 
+\mbox{\Hypertarget{class_e_l_abcd52c423f1cc2e8bf0cedcf2542747a}\label{class_e_l_abcd52c423f1cc2e8bf0cedcf2542747a}} 
+void {\bfseries send\+OPC1} (const IPAddress toip, const byte $\ast$tid, const byte $\ast$seoj, const byte $\ast$deoj, const byte esv, const byte epc, const byte $\ast$edt)
+\item 
+\mbox{\Hypertarget{class_e_l_a11eef040ec7e7a75756369707e7d8fa4}\label{class_e_l_a11eef040ec7e7a75756369707e7d8fa4}} 
+void {\bfseries send\+OPC1} (const IPAddress toip, const byte $\ast$seoj, const byte $\ast$deoj, const byte esv, const byte epc, const byte $\ast$edt)
+\item 
+\mbox{\Hypertarget{class_e_l_a9f061058d9570abc31c4e9a210bcb6fa}\label{class_e_l_a9f061058d9570abc31c4e9a210bcb6fa}} 
+void {\bfseries send\+OPC1} (const IPAddress toip, const byte $\ast$deoj, const byte esv, const byte epc, const byte $\ast$edt)
+\item 
+\mbox{\Hypertarget{class_e_l_a8742b331509a1c89a6147b53202a6f37}\label{class_e_l_a8742b331509a1c89a6147b53202a6f37}} 
+void {\bfseries send\+OPC1} (const IPAddress toip, const int dev\+Id, const byte $\ast$deoj, const byte esv, const byte epc, const byte $\ast$pdcedt)
+\item 
+\mbox{\Hypertarget{class_e_l_af296f88ac8aa0c0a1f233f4884d294f5}\label{class_e_l_af296f88ac8aa0c0a1f233f4884d294f5}} 
+void {\bfseries send\+Broad} (byte s\+Buffer\mbox{[}$\,$\mbox{]}, int size)
+\item 
+\mbox{\Hypertarget{class_e_l_a401f22b7f82d6dbb832bd1589a276720}\label{class_e_l_a401f22b7f82d6dbb832bd1589a276720}} 
+void {\bfseries send\+Multi} (byte s\+Buffer\mbox{[}$\,$\mbox{]}, int size)
+\item 
+\mbox{\Hypertarget{class_e_l_a8551857c372d8e40ddc60e3801ef3aec}\label{class_e_l_a8551857c372d8e40ddc60e3801ef3aec}} 
+void {\bfseries send\+Multi\+OPC1} (const byte $\ast$tid, const byte $\ast$seoj, const byte $\ast$deoj, const byte esv, const byte epc, const byte $\ast$edt)
+\item 
+\mbox{\Hypertarget{class_e_l_aee174fdf4b60605fd2c68367013ea196}\label{class_e_l_aee174fdf4b60605fd2c68367013ea196}} 
+void {\bfseries send\+Multi\+OPC1} (const byte $\ast$seoj, const byte $\ast$deoj, const byte esv, const byte epc, const byte $\ast$edt)
+\item 
+\mbox{\Hypertarget{class_e_l_a4f4b7425b41d24589265e6465d74b743}\label{class_e_l_a4f4b7425b41d24589265e6465d74b743}} 
+void {\bfseries send\+Multi\+OPC1} (const byte $\ast$deoj, const byte esv, const byte epc, const byte $\ast$edt)
+\item 
+\mbox{\Hypertarget{class_e_l_a021da4579877b93bf7e19e857d25f3db}\label{class_e_l_a021da4579877b93bf7e19e857d25f3db}} 
+void {\bfseries send\+Multi\+OPC1} (const int dev\+Id, const byte $\ast$deoj, const byte esv, const byte epc, const byte $\ast$pdcedt)
+\item 
+\mbox{\Hypertarget{class_e_l_adb5539d23d71d5dc1b708868c241875a}\label{class_e_l_adb5539d23d71d5dc1b708868c241875a}} 
+int {\bfseries read} ()
+\item 
+\mbox{\Hypertarget{class_e_l_afb8d61da0fa657758fb4231f061337fc}\label{class_e_l_afb8d61da0fa657758fb4231f061337fc}} 
+IPAddress {\bfseries remote\+IP} (void)
+\item 
+\mbox{\Hypertarget{class_e_l_a54d6de75eb5743e2d80dbe81c93993ed}\label{class_e_l_a54d6de75eb5743e2d80dbe81c93993ed}} 
+void {\bfseries returner} (void)
+\item 
+\mbox{\Hypertarget{class_e_l_a32fec56a37593e47544d0ec554fcc23f}\label{class_e_l_a32fec56a37593e47544d0ec554fcc23f}} 
+void {\bfseries del\+Ptr} (byte ptr\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{公開変数類}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_e_l_a7416d9b7c5b7cede6626287126a00921}\label{class_e_l_a7416d9b7c5b7cede6626287126a00921}} 
+\mbox{\hyperlink{class_e_l_o_b_j}{ELOBJ}} {\bfseries profile}
+\item 
+\mbox{\Hypertarget{class_e_l_a9c057b75a048ecb3aa719a6cd9a507a0}\label{class_e_l_a9c057b75a048ecb3aa719a6cd9a507a0}} 
+\mbox{\hyperlink{class_e_l_o_b_j}{ELOBJ}} {\bfseries details}
+\item 
+\mbox{\Hypertarget{class_e_l_aae50a51ece45a6a803341159f68a1285}\label{class_e_l_aae50a51ece45a6a803341159f68a1285}} 
+\mbox{\hyperlink{class_e_l_o_b_j}{ELOBJ}} $\ast$ {\bfseries devices}
+\item 
+\mbox{\Hypertarget{class_e_l_a8ee13278563e4abf7d6b1bf0d2ec9fd0}\label{class_e_l_a8ee13278563e4abf7d6b1bf0d2ec9fd0}} 
+byte {\bfseries \+\_\+r\+Buffer} \mbox{[}EL\+\_\+\+BUFFER\+\_\+\+SIZE\mbox{]}
+\end{DoxyCompactItemize}
+\doxysubsection*{限定公開メンバ関数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_e_l_a4706069c6c704f074a811b49d9bfd337}\label{class_e_l_a4706069c6c704f074a811b49d9bfd337}} 
+int {\bfseries parse\+Packet} (void)
+\end{DoxyCompactItemize}
+
+
+このクラス詳解は次のファイルから抽出されました\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/sugimura/\+EL\+\_\+dev\+\_\+arduino/EL.\+h\item 
+/\+Users/sugimura/\+EL\+\_\+dev\+\_\+arduino/EL.\+cpp\end{DoxyCompactItemize}

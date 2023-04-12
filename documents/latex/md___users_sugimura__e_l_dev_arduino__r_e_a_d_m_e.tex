@@ -1,0 +1,528 @@
+このモジュールは\+Arduinoの$\ast$$\ast$\+ECHONET Liteプロトコル$\ast$$\ast$をサポートします． ECHONET Liteプロトコルはスマートハウス機器の通信プロトコルです． M5\+Stackでテストしています。
+
+This module provides {\bfseries{ECHONET Lite protocol}} for Arduino. The ECHONET Lite protocol is a communication protocol for smart home devices. It is comfirmed with M5stack.\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md1}{}\doxysection{Install}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md1}
+Arduino\+IDEのライブラリマネージャからモジュールをインストールできます． ECHONETでフィルタしてください。
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1.\ ArduinoIDEを起動する}
+\DoxyCodeLine{2.\ メニューのスケッチ}
+\DoxyCodeLine{3.\ ライブラリをインクルード}
+\DoxyCodeLine{4.\ ライブラリを管理}
+\DoxyCodeLine{5.\ ECHONETでフィルタ}
+\DoxyCodeLine{6.\ EL\_dev\_arduinoをインストール}
+
+\end{DoxyCode}
+
+
+You can install the module by using Library Manager of Arduino\+IDE as following.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1.\ Start\ ArduinoIDE}
+\DoxyCodeLine{2.\ Menu\ >\ Sketch}
+\DoxyCodeLine{3.\ Include\ Library}
+\DoxyCodeLine{4.\ Library\ Manager}
+\DoxyCodeLine{5.\ Filter\ [ECHONET]}
+\DoxyCodeLine{6.\ Install\ EL\_dev\_arduino}
+
+\end{DoxyCode}
+\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md2}{}\doxysection{How to use (for Mac)}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md2}
+
+\begin{DoxyEnumerate}
+\item Install the Arduino
+\item Download or clone this (\href{https://github.com/Hiroshi-Sugimura/EL_dev_arduino}{\texttt{ https\+://github.\+com/\+Hiroshi-\/\+Sugimura/\+EL\+\_\+dev\+\_\+arduino}})
+\item put EL\+\_\+dev\+\_\+arduino into $\sim$/\+Documents/\+Arduino/libraries
+\item Open example General\+Lighting by arduino IDE
+\item Attach the M5stack
+\item Run
+\end{DoxyEnumerate}\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md3}{}\doxysection{Example (\+General Lighting)}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md3}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#include\ <M5Stack.h>}
+\DoxyCodeLine{\#include\ <WiFi.h>}
+\DoxyCodeLine{\#include\ "{}EL.h"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#define\ WIFI\_SSID\ "{}change\ your\ wifi\ ssid"{}}
+\DoxyCodeLine{\#define\ WIFI\_PASS\ "{}change\ your\ wifi\ password"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{WiFiClient\ client;}
+\DoxyCodeLine{WiFiUDP\ elUDP;}
+\DoxyCodeLine{EL\ echo(elUDP,\ 0x02,\ 0x90,\ 0x01\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{void\ printNetData();}
+\DoxyCodeLine{}
+\DoxyCodeLine{void\ setup()\ \{}
+\DoxyCodeLine{\ \ //\ put\ your\ setup\ code\ here,\ to\ run\ once:}
+\DoxyCodeLine{\ \ Serial.begin(115200);}
+\DoxyCodeLine{\ \ Serial.println("{}"{});}
+\DoxyCodeLine{\ \ M5.begin();}
+\DoxyCodeLine{\ \ M5.Lcd.setTextSize(2);}
+\DoxyCodeLine{\ \ M5.Lcd.println("{}wifi\ connect\ start"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ WiFi.begin(WIFI\_SSID,\ WIFI\_PASS);}
+\DoxyCodeLine{\ \ while\ (WiFi.status()\ !=\ WL\_CONNECTED)\ \{}
+\DoxyCodeLine{\ \ \ \ Serial.println("{}wait..."{});}
+\DoxyCodeLine{\ \ \ \ delay(1000);}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ M5.Lcd.println("{}wifi\ connect\ ok"{});}
+\DoxyCodeLine{\ \ M5.update();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ printNetData();}
+\DoxyCodeLine{\ \ echo.begin();\ \ \ \ \ \ \ \ \ \ \ \ //\ EL\ 起動シーケンス}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ 一般照明の状態，繋がった宣言として立ち上がったことをコントローラに知らせるINFを飛ばす}
+\DoxyCodeLine{\ \ const\ byte\ deoj[]\ =\ \{0x05,\ 0xff,\ 0x01\};}
+\DoxyCodeLine{\ \ const\ byte\ edt[]\ =\ \{0x01,\ 0x30\};}
+\DoxyCodeLine{\ \ echo.sendMultiOPC1(deoj,\ EL\_INF,\ 0x80,\ edt);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ M5.Lcd.fillScreen(BLACK);}
+\DoxyCodeLine{\ \ M5.Lcd.setTextColor(WHITE);}
+\DoxyCodeLine{\ \ M5.Lcd.setCursor(10,\ 10);}
+\DoxyCodeLine{\ \ M5.Lcd.setTextSize(3);}
+\DoxyCodeLine{\ \ M5.Lcd.setCursor(10,\ 10);}
+\DoxyCodeLine{\ \ M5.Lcd.setTextSize(3);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{int\ packetSize\ =\ 0;\ \ \ \ \ //\ 受信データ量}
+\DoxyCodeLine{byte\ *pdcedt\ =\ nullptr;\ //\ テンポラリ}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{void\ loop()\ \{}
+\DoxyCodeLine{\ \ M5.update();}
+\DoxyCodeLine{\ \ delay(200);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ パケット貰ったらやる}
+\DoxyCodeLine{\ \ packetSize\ =\ 0;}
+\DoxyCodeLine{\ \ pdcedt\ =\ nullptr;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ if\ (0\ !=\ (packetSize\ =\ echo.read())\ )\ //\ 0!=はなくてもよいが，Warning出るのでつけとく}
+\DoxyCodeLine{\ \ \{\ //\ 受け取った内容読み取り，あったら中へ}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\ \ \ \ //\ ESVがSETとかGETとかで動作をかえる}
+\DoxyCodeLine{\ \ \ \ switch\ (echo.\_rBuffer[EL\_ESV])}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\ \ \ \ \ \ //\ 動作状態の変更\ Set対応}
+\DoxyCodeLine{\ \ \ \ \ \ case\ EL\_SETI:}
+\DoxyCodeLine{\ \ \ \ \ \ case\ EL\_SETC:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ switch\ (echo.\_rBuffer[EL\_EPC])}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ case\ 0x80:\ //\ 電源}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (echo.\_rBuffer[EL\_EDT]\ ==\ 0x30)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ //\ ON}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ M5.Lcd.fillCircle(160,\ 120,\ 80,\ WHITE);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ pdcedt\ =\ new\ byte[2]\{0x01,\ 0x30\};\ \ \ \ \ \ \ //\ ECHONET\ Liteの状態を変更（ライブラリに教えておく）}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ echo.update(echo.\_rBuffer[EL\_EPC],\ pdcedt);\ //\ ECHONET\ Liteの状態を変更}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ else\ if\ (echo.\_rBuffer[EL\_EDT]\ ==\ 0x31)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ //\ OFF}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ M5.Lcd.fillCircle(160,\ 120,\ 80,\ BLACK);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ pdcedt\ =\ new\ byte[2]\{0x01,\ 0x31\};\ \ \ \ \ \ \ //\ ECHONET\ Liteの状態を変更}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ echo.update(echo.\_rBuffer[EL\_EPC],\ pdcedt);\ //\ ECHONET\ Liteの状態を変更}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ break;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ default:\ //\ 不明なEPC}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ M5.Lcd.print("{}???\ packet\ esv,\ epc,\ edt\ is\ :\ "{});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //\ set}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //\ ESV,\ EPC,\ EDT}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ M5.Lcd.print(echo.\_rBuffer[EL\_ESV],\ HEX);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ M5.Lcd.print("{}\ "{});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ M5.Lcd.print(echo.\_rBuffer[EL\_EPC],\ HEX);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ M5.Lcd.print("{}\ "{});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ M5.Lcd.println(echo.\_rBuffer[EL\_EDT],\ HEX);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ break;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ pdcedtを使ったらクリア}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (pdcedt\ !=\ nullptr)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ delete[]\ pdcedt;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ pdcedt\ =\ nullptr;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (echo.\_rBuffer[EL\_ESV]\ ==\ EL\_SETC)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ //\ SETCなら返信必要}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ echo.returner();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ break;\ //\ SETI,\ SETCここまで}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Get,INF\_REQ対応}
+\DoxyCodeLine{\ \ \ \ \ \ //\ SETの時にきちんとupdate関数でECHONET\ Liteの状態変更をライブラリに教えておけばここは簡素になる}
+\DoxyCodeLine{\ \ \ \ \ \ case\ EL\_GET:}
+\DoxyCodeLine{\ \ \ \ \ \ case\ EL\_INF\_REQ:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ update関数でdetailsに状態が登録されていれば自動で返信する}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ echo.returner();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ break;\ //\ GetとINF\_REQここまで}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ case\ EL\_INF:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ break;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ default:\ //\ 解釈不可能なESV}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ M5.Lcd.print("{}error?\ ESV\ =\ "{});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Serial.println(echo.\_rBuffer[EL\_ESV]);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ break;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ //\ EL処理ここまで}
+\DoxyCodeLine{\ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\ \ //\ パケットなかったとき、ふつうは何もしなくてよい}
+\DoxyCodeLine{\ \ //\ else\ \{}
+\DoxyCodeLine{\ \ //\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ delay(500);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ debug}
+\DoxyCodeLine{void\ printNetData()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ Serial.println("{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ IP}
+\DoxyCodeLine{\ \ //\ print\ your\ WiFi\ shield's\ IP\ address:}
+\DoxyCodeLine{\ \ IPAddress\ ip\ =\ WiFi.localIP();}
+\DoxyCodeLine{\ \ Serial.print("{}IP\ \ Address:\ "{});}
+\DoxyCodeLine{\ \ Serial.println(ip);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ IPAddress\ dgwip\ =\ WiFi.gatewayIP();}
+\DoxyCodeLine{\ \ Serial.print("{}DGW\ Address:\ "{});}
+\DoxyCodeLine{\ \ Serial.println(dgwip);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ IPAddress\ smip\ =\ WiFi.subnetMask();}
+\DoxyCodeLine{\ \ Serial.print("{}SM\ \ Address:\ "{});}
+\DoxyCodeLine{\ \ Serial.println(smip);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ Serial.println("{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md4}{}\doxysection{Classes}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md4}
+\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{EL (for user)}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md5}
+ELクラスは\+Wi\+Fiの\+UDP（受信は3610，送信は適当）と\+ECHONET Liteプロトコルをサポートします。\+ECHONET Liteネットワークにデバイスを参加させるためには専門のオブジェクトコードが必要です。オブジェクトコードは\+ECHONET規格書に書かれているものを参照してください（https\+://echonet.jp/spec\+\_\+g/\#standard-\/01）。サンプルとして一般照明（0x029001）を\+M5\+Stackで実装した例を示しています。
+
+\mbox{\hyperlink{class_e_l}{EL}} class manages Wi\+Fi\+UDP (recv is 3610 port, sned is any port) and ECHONET Lite protocol. To join ECHONET Lite network, the device needs ECHONET Lite object code. ECHONET Lite object code is defined in the specifications. (see \href{https://echonet.jp/spec-en/\#standard-01}{\texttt{ https\+://echonet.\+jp/spec-\/en/\#standard-\/01}}) In this example, we deals with M5stack as a general lighting (0x029001).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \{C++\}}
+\DoxyCodeLine{EL\ echo(elUDP,\ 0x02,\ 0x90,\ 0x01\ );}
+
+\end{DoxyCode}
+\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{ELOBJ (inner class)}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md6}
+\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md7}{}\doxysubsection{APIs of EL class}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md7}
+\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md8}{}\doxysubsubsection{Initialize（初期化）}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md8}
+
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{class_e_l}{EL( Wi\+Fi\+UDP\& udp, byte eoj0, byte eoj1, byte eoj2)}};
+\end{DoxyItemize}
+
+constructor
+
+
+\begin{DoxyItemize}
+\item void begin(void);
+\end{DoxyItemize}
+
+beggining ECHONET Lite protocol.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{EL\ echo(elUDP,\ 0x02,\ 0x90,\ 0x01\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{void\ setup()\ \{}
+\DoxyCodeLine{\ \ echo.begin();}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md9}{}\doxysubsubsection{Sender（送信）}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md9}
+
+\begin{DoxyItemize}
+\item void send(\+IPAddress toip, byte s\+Buffer\mbox{[}$\,$\mbox{]}, int size);
+\item void send\+OPC1(const IPAddress toip, const byte $\ast$deoj, const byte esv, const byte epc, const byte $\ast$edt);
+\item void send\+OPC1(const IPAddress toip, const byte $\ast$tid, const byte $\ast$seoj, const byte $\ast$deoj, const byte esv, const byte epc, const byte $\ast$edt);
+\item void send\+Broad(byte s\+Buffer\mbox{[}$\,$\mbox{]}, int size);
+\item void send\+Multi(byte s\+Buffer\mbox{[}$\,$\mbox{]}, int size);
+\item void send\+Multi\+OPC1(const byte $\ast$deoj, const byte esv, const byte epc, const byte $\ast$edt);
+\item void send\+Multi\+OPC1(const byte $\ast$tid, const byte $\ast$seoj, const byte $\ast$deoj, const byte esv, const byte epc, const byte $\ast$edt);
+\end{DoxyItemize}\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md10}{}\doxysubsubsection{Receiver（受信）}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md10}
+
+\begin{DoxyItemize}
+\item int read();
+\end{DoxyItemize}
+
+受信データを読む。割り込みやコールバックではなくポーリングで実装してください。
+
+
+\begin{DoxyItemize}
+\item IPAddress remote\+IP(void);
+\end{DoxyItemize}
+
+受信データの送信元の\+IPアドレスを取得する。
+
+
+\begin{DoxyItemize}
+\item void returner(void);
+\end{DoxyItemize}
+
+update関数でdetailsに状態が登録されていれば自動で返信する。
+
+
+\begin{DoxyItemize}
+\item byte \+\_\+r\+Buffer\mbox{[}EL\+\_\+\+BUFFER\+\_\+\+SIZE\mbox{]}; // receive buffer
+\end{DoxyItemize}
+
+Received data. 受信したデータ
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{void\ loop()\ \{}
+\DoxyCodeLine{\ \ if\ (0\ !=\ echo.read())\ )}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ switch\ (echo.\_rBuffer[EL\_ESV])}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\ \ \ \ \ \ //\ 動作状態の変更\ Set対応}
+\DoxyCodeLine{\ \ \ \ \ \ case\ EL\_SETI:}
+\DoxyCodeLine{\ \ \ \ \ \ case\ EL\_SETC:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ break;\ //\ SETI,\ SETCここまで}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Get,INF\_REQ}
+\DoxyCodeLine{\ \ \ \ \ \ case\ EL\_GET:}
+\DoxyCodeLine{\ \ \ \ \ \ case\ EL\_INF\_REQ:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ echo.returner();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ break;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ case\ EL\_INF:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ break;}
+\DoxyCodeLine{\ \ \ \ \ \ default:\ //\ 解釈不可能なESV}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md11}{}\doxysubsubsection{Update EDT（\+EDT\+:機器データの更新）}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md11}
+
+\begin{DoxyItemize}
+\item void update(const byte epc, byte pdcedt\mbox{[}$\,$\mbox{]});
+\end{DoxyItemize}\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md12}{}\doxysubsubsection{Confirm EDT（機器データの確認）}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md12}
+
+\begin{DoxyItemize}
+\item byte $\ast$at(const byte epc);
+\end{DoxyItemize}\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md13}{}\doxysubsubsection{Device Data（機器データ）}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md13}
+
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{class_e_l_o_b_j}{ELOBJ}} profile; // node profile object (PDC and EDT list)
+\item \mbox{\hyperlink{class_e_l_o_b_j}{ELOBJ}} details; // device object (PDC and EDT list)
+\end{DoxyItemize}\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md14}{}\doxysection{Defines}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md14}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \{C++:EL.h\}}
+\DoxyCodeLine{\#define\ EL\_PORT\ \ \ \ \ 3610}
+\DoxyCodeLine{\#define\ EL\_EHD1\ \ \ \ \ 0}
+\DoxyCodeLine{\#define\ EL\_EHD2\ \ \ \ \ 1}
+\DoxyCodeLine{\#define\ EL\_TID\ \ \ \ \ \ 2}
+\DoxyCodeLine{\#define\ EL\_SEOJ\ \ \ \ \ 4}
+\DoxyCodeLine{\#define\ EL\_DEOJ\ \ \ \ \ 7}
+\DoxyCodeLine{\#define\ EL\_ESV\ \ \ \ \ \ 10}
+\DoxyCodeLine{\#define\ EL\_OPC\ \ \ \ \ \ 11}
+\DoxyCodeLine{\#define\ EL\_EPC\ \ \ \ \ \ 12}
+\DoxyCodeLine{\#define\ EL\_PDC\ \ \ \ \ \ 13}
+\DoxyCodeLine{\#define\ EL\_EDT\ \ \ \ \ \ 14}
+\DoxyCodeLine{\#define\ EL\_SETI\_SNA\ 0x50}
+\DoxyCodeLine{\#define\ EL\_SETC\_SNA\ 0x51}
+\DoxyCodeLine{\#define\ EL\_GET\_SNA\ \ 0x52}
+\DoxyCodeLine{\#define\ EL\_INF\_SNA\ \ 0x53}
+\DoxyCodeLine{\#define\ EL\_SETGET\_SNA\ 0x5e}
+\DoxyCodeLine{\#define\ EL\_SETI\ \ \ \ \ 0x60}
+\DoxyCodeLine{\#define\ EL\_SETC\ \ \ \ \ 0x61}
+\DoxyCodeLine{\#define\ EL\_GET\ \ \ \ \ \ 0x62}
+\DoxyCodeLine{\#define\ EL\_INF\_REQ\ \ 0x63}
+\DoxyCodeLine{\#define\ EL\_SETGET\ \ \ 0x6e}
+\DoxyCodeLine{\#define\ EL\_SET\_RES\ \ 0x71}
+\DoxyCodeLine{\#define\ EL\_GET\_RES\ \ 0x72}
+\DoxyCodeLine{\#define\ EL\_INF\ \ \ \ \ \ 0x73}
+\DoxyCodeLine{\#define\ EL\_INFC\ \ \ \ \ 0x74}
+\DoxyCodeLine{\#define\ EL\_INFC\_RES\ 0x7a}
+\DoxyCodeLine{\#define\ EL\_SETGET\_RES\ 0x7e}
+\DoxyCodeLine{\#define\ EL\_BUFFER\_SIZE\ 256}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Device\ Object}
+\DoxyCodeLine{//\ センサ関連機器}
+\DoxyCodeLine{\#define\ EL\_GasLeakSensor\ \ \ \ 0x00,\ 0x01\ \ //\ \ ガス漏れセンサ}
+\DoxyCodeLine{\#define\ EL\_CrimePreventionSensor\ \ \ \ 0x00,\ 0x02\ \ //\ \ 防犯センサ}
+\DoxyCodeLine{\#define\ EL\_EmergencyButton\ \ 0x00,\ 0x03\ \ //\ \ 非常ボタン}
+\DoxyCodeLine{\#define\ EL\_FirstAidSensor\ \ \ 0x00,\ 0x04\ \ //\ \ 救急用センサ}
+\DoxyCodeLine{\#define\ EL\_EarthquakeSensor\ 0x00,\ 0x05\ \ //\ \ 地震センサ}
+\DoxyCodeLine{\#define\ EL\_ElectricLeakSensor\ \ \ 0x00,\ 0x06\ \ //\ \ 漏電センサ}
+\DoxyCodeLine{\#define\ EL\_HumanDetectionSensor\ 0x00,\ 0x07\ \ //\ \ 人体検知センサ}
+\DoxyCodeLine{\#define\ EL\_VisitorSensor\ \ \ \ 0x00,\ 0x08\ \ //\ \ 来客センサ}
+\DoxyCodeLine{\#define\ EL\_CallSensor\ \ \ 0x00,\ 0x09\ \ //\ \ 呼び出しセンサ}
+\DoxyCodeLine{\#define\ EL\_CondensationSensor\ \ \ 0x00,\ 0x0A\ \ //\ \ 結露センサ}
+\DoxyCodeLine{\#define\ EL\_AirPollutionSensor\ \ \ 0x00,\ 0x0B\ \ //\ \ 空気汚染センサ}
+\DoxyCodeLine{\#define\ EL\_OxygenSensor\ 0x00,\ 0x0C\ \ //\ \ 酸素センサ}
+\DoxyCodeLine{\#define\ EL\_IlluminanceSensor\ \ \ \ 0x00,\ 0x0D\ \ //\ \ 照度センサ}
+\DoxyCodeLine{\#define\ EL\_SoundSensor\ \ 0x00,\ 0x0E\ \ //\ \ 音センサ}
+\DoxyCodeLine{\#define\ EL\_MailingSensor\ \ \ \ 0x00,\ 0x0F\ \ //\ \ 投函センサ}
+\DoxyCodeLine{\#define\ EL\_WeightSensor\ 0x00,\ 0x10\ \ //\ \ 重荷センサ}
+\DoxyCodeLine{\#define\ EL\_TemperatureSensor\ \ \ \ 0x00,\ 0x11\ \ //\ \ 温度センサ}
+\DoxyCodeLine{\#define\ EL\_HumiditySensor\ \ \ 0x00,\ 0x12\ \ //\ \ 湿度センサ}
+\DoxyCodeLine{\#define\ EL\_RainSensor\ \ \ 0x00,\ 0x13\ \ //\ \ 雨センサ}
+\DoxyCodeLine{\#define\ EL\_WaterLevelSensor\ 0x00,\ 0x14\ \ //\ \ 水位センサ}
+\DoxyCodeLine{\#define\ EL\_BathWaterLevelSensor\ 0x00,\ 0x15\ \ //\ \ 風呂水位センサ}
+\DoxyCodeLine{\#define\ EL\_BathHeatingStatusSensor\ \ 0x00,\ 0x16\ \ //\ \ 風呂沸き上がりセンサ}
+\DoxyCodeLine{\#define\ EL\_WaterLeakSensor\ \ 0x00,\ 0x17\ \ //\ \ 水漏れセンサ}
+\DoxyCodeLine{\#define\ EL\_WaterOverflowSensor\ \ 0x00,\ 0x18\ \ //\ \ 水あふれセンサ}
+\DoxyCodeLine{\#define\ EL\_FireSensor\ \ \ 0x00,\ 0x19\ \ //\ \ 火災センサ}
+\DoxyCodeLine{\#define\ EL\_CigaretteSmokeSensor\ 0x00,\ 0x1A\ \ //\ \ タバコ煙センサ}
+\DoxyCodeLine{\#define\ EL\_CO2Sensor\ \ \ \ 0x00,\ 0x1B\ \ //\ \ CO2センサ}
+\DoxyCodeLine{\#define\ EL\_GasSensor\ \ \ \ 0x00,\ 0x1C\ \ //\ \ ガスセンサ}
+\DoxyCodeLine{\#define\ EL\_VOCSensor\ \ \ \ 0x00,\ 0x1D\ \ //\ \ VOCセンサ}
+\DoxyCodeLine{\#define\ EL\_DifferentialPressureSensor\ \ \ 0x00,\ 0x1E\ \ //\ \ 差圧センサ}
+\DoxyCodeLine{\#define\ EL\_AirSpeedSensor\ \ \ 0x00,\ 0x1F\ \ //\ \ 風速センサ}
+\DoxyCodeLine{\#define\ EL\_OdorSensor\ \ \ 0x00,\ 0x20\ \ //\ \ 臭いセンサ}
+\DoxyCodeLine{\#define\ EL\_FlameSensor\ \ 0x00,\ 0x21\ \ //\ \ 炎センサ}
+\DoxyCodeLine{\#define\ EL\_ElectricEnergySensor\ 0x00,\ 0x22\ \ //\ \ 電力量センサ}
+\DoxyCodeLine{\#define\ EL\_CurrentValueSensor\ \ \ 0x00,\ 0x23\ \ //\ \ 電流値センサ}
+\DoxyCodeLine{\#define\ EL\_WaterFlowRateSensor\ \ 0x00,\ 0x25\ \ //\ \ 水流量センサ}
+\DoxyCodeLine{\#define\ EL\_MicromotionSensor\ \ \ \ 0x00,\ 0x26\ \ //\ \ 微動センサ}
+\DoxyCodeLine{\#define\ EL\_PassageSensor\ \ \ \ 0x00,\ 0x27\ \ //\ \ 通過センサ}
+\DoxyCodeLine{\#define\ EL\_BedPresenceSensor\ \ \ \ 0x00,\ 0x28\ \ //\ \ 在床センサ}
+\DoxyCodeLine{\#define\ EL\_OpenCloseSensor\ \ 0x00,\ 0x29\ \ //\ \ 開閉センサ}
+\DoxyCodeLine{\#define\ EL\_ActivityAmountSensor\ 0x00,\ 0x2A\ \ //\ \ 活動量センサ}
+\DoxyCodeLine{\#define\ EL\_HumanBodyLocationSensor\ \ 0x00,\ 0x2B\ \ //\ \ 人体位置センサ}
+\DoxyCodeLine{\#define\ EL\_SnowSensor\ \ \ 0x00,\ 0x2C\ \ //\ \ 雪センサ}
+\DoxyCodeLine{//\ 空調関連機器}
+\DoxyCodeLine{\#define\ EL\_HomeAirConditioner\ \ \ 0x01,\ 0x30\ \ //\ \ 家庭用エアコン}
+\DoxyCodeLine{\#define\ EL\_VentilationFan\ \ \ 0x01,\ 0x32\ \ //\ \ 換気扇}
+\DoxyCodeLine{\#define\ EL\_AirConditionerVentilationFan\ 0x01,\ 0x34\ \ //\ \ 空調換気扇}
+\DoxyCodeLine{\#define\ EL\_AirCleaner\ \ \ 0x01,\ 0x35\ \ //\ \ 空気清浄器}
+\DoxyCodeLine{\#define\ EL\_Humidifier\ \ \ 0x01,\ 0x39\ \ //\ \ 加湿器}
+\DoxyCodeLine{\#define\ EL\_ElectricHeater\ \ \ 0x01,\ 0x42\ \ //\ \ 電気暖房機}
+\DoxyCodeLine{\#define\ EL\_FanHeater\ \ \ \ 0x01,\ 0x43\ \ //\ \ ファンヒータ}
+\DoxyCodeLine{\#define\ EL\_PackageTypeCommercialAirConditionerIndoorUnit\ \ \ \ 0x01,\ 0x56\ \ //\ \ 業務用パッケージエアコン室内機}
+\DoxyCodeLine{\#define\ EL\_PackageTypeCommercialAirConditionerOutdoorUnit\ \ \ 0x01,\ 0x57\ \ //\ \ 業務用パッケージエアコン室外機}
+\DoxyCodeLine{//\ 住宅・設備関連機器}
+\DoxyCodeLine{\#define\ EL\_ElectricallyOperatedShade\ \ \ \ 0x02,\ 0x60\ \ //\ \ 電動ブラインド・日よけ}
+\DoxyCodeLine{\#define\ EL\_ElectricShutter\ \ 0x02,\ 0x61\ \ //\ \ 電動シャッター}
+\DoxyCodeLine{\#define\ EL\_ElectricStormWindow\ \ 0x02,\ 0x63\ \ //\ \ 電動雨戸・シャッター}
+\DoxyCodeLine{\#define\ EL\_Sprinkler\ \ \ \ 0x02,\ 0x67\ \ //\ \ 散水器(庭用)}
+\DoxyCodeLine{\#define\ EL\_ElectricWaterHeater\ \ 0x02,\ 0x6B\ \ //\ \ 電気温水器}
+\DoxyCodeLine{\#define\ EL\_ElectricToiletSeat\ \ \ 0x02,\ 0x6E\ \ //\ \ 電気便座(温水洗浄便座・暖房便座など)}
+\DoxyCodeLine{\#define\ EL\_ElectricLock\ 0x02,\ 0x6F\ \ //\ \ 電気錠}
+\DoxyCodeLine{\#define\ EL\_InstantaneousWaterHeater\ 0x02,\ 0x72\ \ //\ \ 瞬間式給湯機}
+\DoxyCodeLine{\#define\ EL\_BathroomHeaterAndDryer\ \ \ 0x02,\ 0x73\ \ //\ \ 浴室暖房乾燥機}
+\DoxyCodeLine{\#define\ EL\_HouseholdSolarPowerGeneration\ \ \ \ 0x02,\ 0x79\ \ //\ \ 住宅用太陽光発電}
+\DoxyCodeLine{\#define\ EL\_ColdOrHotWaterHeatSourceEquipment\ \ \ \ 0x02,\ 0x7A\ \ //\ \ 冷温水熱源機}
+\DoxyCodeLine{\#define\ EL\_FloorHeater\ \ 0x02,\ 0x7B\ \ //\ \ 床暖房}
+\DoxyCodeLine{\#define\ EL\_FuelCell\ 0x02,\ 0x7C\ \ //\ \ 燃料電池}
+\DoxyCodeLine{\#define\ EL\_Battery\ \ 0x02,\ 0x7D\ \ //\ \ 蓄電池}
+\DoxyCodeLine{\#define\ EL\_ElectricVehicle\ \ 0x02,\ 0x7E\ \ //\ \ 電気自動車充放電器}
+\DoxyCodeLine{\#define\ EL\_EngineCogeneration\ \ \ 0x02,\ 0x7F\ \ //\ \ エンジンコージェネレーション}
+\DoxyCodeLine{\#define\ EL\_WattHourMeter\ \ \ \ 0x02,\ 0x80\ \ //\ \ 電力量メータ}
+\DoxyCodeLine{\#define\ EL\_WaterFlowmeter\ \ \ 0x02,\ 0x81\ \ //\ \ 水流量メータ}
+\DoxyCodeLine{\#define\ EL\_GasMeter\ 0x02,\ 0x82\ \ //\ \ ガスメータ}
+\DoxyCodeLine{\#define\ EL\_LPGasMeter\ \ \ 0x02,\ 0x83\ \ //\ \ LPガスメータ}
+\DoxyCodeLine{\#define\ EL\_PowerDistributionBoardMetering\ \ \ 0x02,\ 0x87\ \ //\ \ 分電盤メータリング}
+\DoxyCodeLine{\#define\ EL\_SmartElectricEnergyMeter\ 0x02,\ 0x88\ \ //\ \ スマート電力量メータ}
+\DoxyCodeLine{\#define\ EL\_SmartGasMeter\ \ \ \ 0x02,\ 0x89\ \ //\ \ スマートガスメータ}
+\DoxyCodeLine{\#define\ EL\_GeneralLighting\ \ 0x02,\ 0x90\ \ //\ \ 一般照明}
+\DoxyCodeLine{\#define\ EL\_Buzzer\ \ \ 0x02,\ 0xA0\ \ //\ \ ブザー}
+\DoxyCodeLine{//\ 調理・家事関連機器}
+\DoxyCodeLine{\#define\ EL\_ElectricHotWaterPot\ \ 0x03,\ 0xB2\ \ //\ \ 電気ポット}
+\DoxyCodeLine{\#define\ EL\_Refrigerator\ 0x03,\ 0xB7\ \ //\ \ 冷凍冷蔵庫}
+\DoxyCodeLine{\#define\ EL\_CombinationMicrowaveOven\ 0x03,\ 0xB8\ \ //\ \ オーブンレンジ}
+\DoxyCodeLine{\#define\ EL\_CookingHeater\ \ \ \ 0x03,\ 0xB9\ \ //\ \ クッキングヒータ}
+\DoxyCodeLine{\#define\ EL\_RiceCooker\ \ \ 0x03,\ 0xBB\ \ //\ \ 炊飯器}
+\DoxyCodeLine{\#define\ EL\_WashingMachine\ \ \ 0x03,\ 0xC5\ \ //\ \ 洗濯機}
+\DoxyCodeLine{\#define\ EL\_ClothesDryer\ 0x03,\ 0xC6\ \ //\ \ 衣類乾燥機}
+\DoxyCodeLine{\#define\ EL\_WasherAndDryer\ \ \ 0x03,\ 0xD3\ \ //\ \ 洗濯乾燥機}
+\DoxyCodeLine{//\ 健康関連機器}
+\DoxyCodeLine{\#define\ EL\_Weighing\ 0x04,\ 0x01\ \ //\ \ 体重計}
+\DoxyCodeLine{//\ 管理・操作関連機器}
+\DoxyCodeLine{\#define\ EL\_Switch\ \ \ 0x05,\ 0xFD\ \ //\ \ スイッチ(JEM-\/A/HA端子対応)}
+\DoxyCodeLine{\#define\ EL\_Controller\ \ \ 0x05,\ 0xFF\ \ //\ \ コントローラ}
+\DoxyCodeLine{//\ AV関連機器}
+\DoxyCodeLine{\#define\ EL\_Display\ \ 0x06,\ 0x01\ \ //\ \ ディスプレー}
+\DoxyCodeLine{\#define\ EL\_Television\ \ \ 0x06,\ 0x02\ \ //\ \ テレビ}
+
+\end{DoxyCode}
+\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md15}{}\doxysection{Files}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md15}
+
+\begin{DoxyItemize}
+\item examples/\+General\+Lighting/\+General\+Lighting.\+ino\+: sample program
+\item \mbox{\hyperlink{_e_l_8h_source}{EL.\+h}}, EL.\+cpp\+: ECHONET Lite protocol class
+\item \mbox{\hyperlink{_e_l_o_b_j_8h_source}{ELOBJ.\+h}}, ELOBJ.\+cpp\+: ECHONET Lite object manager class. It is required by \mbox{\hyperlink{_e_l_8h_source}{EL.\+h}}
+\end{DoxyItemize}\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md16}{}\doxysection{Limitations}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md16}
+本モジュールの制限として気がついた点を下記に示します。
+
+
+\begin{DoxyItemize}
+\item 機器オブジェクトは1つだけしか持てない。
+\end{DoxyItemize}
+
+Limitations of this module is following.
+
+
+\begin{DoxyItemize}
+\item This module can have only a device object.
+\end{DoxyItemize}\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md17}{}\doxysection{Know-\/how}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md17}
+
+\begin{DoxyItemize}
+\item もし\+ESVが\+SETCのパケットを受信したときに再起動するなら，\+EL.\+returner関数でエラーが発生していると思われる。
+\begin{DoxyItemize}
+\item 対応する\+EDTを下記のように設定してください。
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{details[\ 0xE0\ ]\ =\ (byte[])\{0x01,\ soundNumber\};\ //\ power}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item If occuring reboot when receiving a packet (ESV is SETC), it seems that EL.\+returner function occurs an error probably.
+\begin{DoxyItemize}
+\item Please set details (EDT) as following.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{details[\ 0xE0\ ]\ =\ (byte[])\{0x01,\ soundNumber\};\ //\ power}
+
+\end{DoxyCode}
+\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md18}{}\doxysection{Version}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md18}
+
+\begin{DoxyItemize}
+\item 2.\+2.\+1 bug fix, support multi device (pull request from katsumin)
+\item 2.\+2.\+0 bug fix, support multi device
+\item 2.\+1.\+0 considering TID
+\item 2.\+0.\+0 change memory management, cope with memory leak.
+\item 1.\+3.\+0 deal with Node profile object, error case EPC, be searched and debug mode define.
+\item 1.\+2.\+2 details bug fix
+\item 1.\+2.\+1 \mbox{\hyperlink{class_e_l}{EL}} Object code defines
+\item 1.\+2.\+0 Readme, keywords, library.\+json, library.\+properties
+\item 1.\+1.\+0 organized for m5stack
+\item 1.\+0.\+0 M5\+Stack
+\item 0.\+10 commit and publish
+\end{DoxyItemize}\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md19}{}\doxysection{License}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md19}
+MIT\hypertarget{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md20}{}\doxysubsection{Author}\label{md___users_sugimura__e_l_dev_arduino__r_e_a_d_m_e_autotoc_md20}
+神奈川工科大学 創造工学部 ホームエレクトロニクス開発学科
+
+Dept. of Home Electronics, Faculty of Creative Engineering, Kanagawa Institute of Technology.
+
+杉村　博
+
+SUGIMURA, Hiroshi 
