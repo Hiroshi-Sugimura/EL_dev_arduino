@@ -172,12 +172,6 @@ public:
 	byte _rBuffer[EL_BUFFER_SIZE]; ///< receive buffer
 
 	////////////////////////////////////////////////////
-	/// @brief オブジェクトを一つだけサポートする場合のコンストラクタ
-	/// @param WiFiUDP&
-	/// @param byte eoj0: class group code
-	/// @param byte eoj1: class code
-	/// @param byte eoj2: instance code
-	/// @detail eoj0, eoj1, eoj2で一つのオブジェクト
 	EL(WiFiUDP &udp, byte eoj0, byte eoj1, byte eoj2);
 	EL(WiFiUDP &udp, byte[][3], int count);
 	void begin(void);
