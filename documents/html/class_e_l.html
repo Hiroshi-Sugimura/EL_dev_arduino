@@ -73,104 +73,1552 @@ $(function() {
 <a href="#pub-methods">公開メンバ関数</a> &#124;
 <a href="#pub-attribs">公開変数類</a> &#124;
 <a href="#pro-methods">限定公開メンバ関数</a> &#124;
+<a href="#pri-attribs">非公開変数類</a> &#124;
 <a href="class_e_l-members.html">全メンバ一覧</a>  </div>
   <div class="headertitle"><div class="title">EL クラス</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Main class for <a class="el" href="class_e_l.html" title="Main class for EL">EL</a>  
+ <a href="class_e_l.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_e_l_8h_source.html">EL.h</a>&gt;</code></p>
+<div class="dynheader">
+EL 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l__coll__graph.png" border="0" usemap="#a_e_l_coll__map" alt="Collaboration graph"/></div>
+<map name="a_e_l_coll__map" id="a_e_l_coll__map">
+<area shape="rect" title="Main class for EL" alt="" coords="25,211,64,236"/>
+<area shape="rect" href="class_e_l_o_b_j.html" title="EL Object" alt="" coords="13,93,77,119"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html" title="PDC and EDT" alt="" coords="5,5,84,31"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
-<tr class="memitem:ae18a4b309a644bc25d05c6c85f00f009"><td class="memItemLeft" align="right" valign="top"><a id="ae18a4b309a644bc25d05c6c85f00f009" name="ae18a4b309a644bc25d05c6c85f00f009"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>EL</b> (WiFiUDP &amp;udp, byte eoj0, byte eoj1, byte eoj2)</td></tr>
+<tr class="memitem:ae18a4b309a644bc25d05c6c85f00f009"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#ae18a4b309a644bc25d05c6c85f00f009">EL</a> (WiFiUDP &amp;udp, <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> eoj0, <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> eoj1, <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> eoj2)</td></tr>
+<tr class="memdesc:ae18a4b309a644bc25d05c6c85f00f009"><td class="mdescLeft">&#160;</td><td class="mdescRight">オブジェクトを一つだけサポートする場合のコンストラクタ  <br /></td></tr>
 <tr class="separator:ae18a4b309a644bc25d05c6c85f00f009"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3e715203f9da944ebe49d0fa6b909c3"><td class="memItemLeft" align="right" valign="top"><a id="af3e715203f9da944ebe49d0fa6b909c3" name="af3e715203f9da944ebe49d0fa6b909c3"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>EL</b> (WiFiUDP &amp;udp, byte[][3], int count)</td></tr>
+<tr class="memitem:af3e715203f9da944ebe49d0fa6b909c3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#af3e715203f9da944ebe49d0fa6b909c3">EL</a> (WiFiUDP &amp;udp, <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>[][3], int count)</td></tr>
 <tr class="separator:af3e715203f9da944ebe49d0fa6b909c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a200545322f36c5ac01ec517269c93014"><td class="memItemLeft" align="right" valign="top"><a id="a200545322f36c5ac01ec517269c93014" name="a200545322f36c5ac01ec517269c93014"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> (void)</td></tr>
+<tr class="memitem:a200545322f36c5ac01ec517269c93014"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a200545322f36c5ac01ec517269c93014">begin</a> (void)</td></tr>
 <tr class="separator:a200545322f36c5ac01ec517269c93014"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f235980e2cdae6da6ca84c8098d49cb"><td class="memItemLeft" align="right" valign="top"><a id="a0f235980e2cdae6da6ca84c8098d49cb" name="a0f235980e2cdae6da6ca84c8098d49cb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (const byte epc, byte pdcedt[])</td></tr>
+<tr class="memitem:a0f235980e2cdae6da6ca84c8098d49cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a0f235980e2cdae6da6ca84c8098d49cb">update</a> (const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> epc, <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> <a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>[])</td></tr>
 <tr class="separator:a0f235980e2cdae6da6ca84c8098d49cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a986d605da832524b0f80f8330df1a1da"><td class="memItemLeft" align="right" valign="top"><a id="a986d605da832524b0f80f8330df1a1da" name="a986d605da832524b0f80f8330df1a1da"></a>
-byte *&#160;</td><td class="memItemRight" valign="bottom"><b>at</b> (const byte epc)</td></tr>
+<tr class="memitem:a986d605da832524b0f80f8330df1a1da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a986d605da832524b0f80f8330df1a1da">at</a> (const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> epc)</td></tr>
 <tr class="separator:a986d605da832524b0f80f8330df1a1da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a989732eaa75eba55e3a569a0e4a3b6ec"><td class="memItemLeft" align="right" valign="top"><a id="a989732eaa75eba55e3a569a0e4a3b6ec" name="a989732eaa75eba55e3a569a0e4a3b6ec"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> (const int devId, const byte epc, byte pdcedt[])</td></tr>
+<tr class="memitem:a989732eaa75eba55e3a569a0e4a3b6ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a989732eaa75eba55e3a569a0e4a3b6ec">update</a> (const int devId, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> epc, <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> <a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>[])</td></tr>
 <tr class="separator:a989732eaa75eba55e3a569a0e4a3b6ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05a173c299c1feb5c03fa0771a9eff9a"><td class="memItemLeft" align="right" valign="top"><a id="a05a173c299c1feb5c03fa0771a9eff9a" name="a05a173c299c1feb5c03fa0771a9eff9a"></a>
-byte *&#160;</td><td class="memItemRight" valign="bottom"><b>at</b> (const int devId, const byte epc)</td></tr>
+<tr class="memitem:a05a173c299c1feb5c03fa0771a9eff9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a05a173c299c1feb5c03fa0771a9eff9a">at</a> (const int devId, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> epc)</td></tr>
 <tr class="separator:a05a173c299c1feb5c03fa0771a9eff9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58b950847b38135814429193175b9b72"><td class="memItemLeft" align="right" valign="top"><a id="a58b950847b38135814429193175b9b72" name="a58b950847b38135814429193175b9b72"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>send</b> (IPAddress toip, byte sBuffer[], int size)</td></tr>
+<tr class="memitem:a58b950847b38135814429193175b9b72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a58b950847b38135814429193175b9b72">send</a> (IPAddress toip, <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> sBuffer[], int size)</td></tr>
 <tr class="separator:a58b950847b38135814429193175b9b72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcd52c423f1cc2e8bf0cedcf2542747a"><td class="memItemLeft" align="right" valign="top"><a id="abcd52c423f1cc2e8bf0cedcf2542747a" name="abcd52c423f1cc2e8bf0cedcf2542747a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendOPC1</b> (const IPAddress toip, const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt)</td></tr>
+<tr class="memitem:abcd52c423f1cc2e8bf0cedcf2542747a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#abcd52c423f1cc2e8bf0cedcf2542747a">sendOPC1</a> (const IPAddress toip, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *tid, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *seoj, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *deoj, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> esv, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> epc, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *edt)</td></tr>
 <tr class="separator:abcd52c423f1cc2e8bf0cedcf2542747a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11eef040ec7e7a75756369707e7d8fa4"><td class="memItemLeft" align="right" valign="top"><a id="a11eef040ec7e7a75756369707e7d8fa4" name="a11eef040ec7e7a75756369707e7d8fa4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendOPC1</b> (const IPAddress toip, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt)</td></tr>
+<tr class="memitem:a11eef040ec7e7a75756369707e7d8fa4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a11eef040ec7e7a75756369707e7d8fa4">sendOPC1</a> (const IPAddress toip, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *seoj, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *deoj, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> esv, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> epc, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *edt)</td></tr>
 <tr class="separator:a11eef040ec7e7a75756369707e7d8fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f061058d9570abc31c4e9a210bcb6fa"><td class="memItemLeft" align="right" valign="top"><a id="a9f061058d9570abc31c4e9a210bcb6fa" name="a9f061058d9570abc31c4e9a210bcb6fa"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendOPC1</b> (const IPAddress toip, const byte *deoj, const byte esv, const byte epc, const byte *edt)</td></tr>
+<tr class="memitem:a9f061058d9570abc31c4e9a210bcb6fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a9f061058d9570abc31c4e9a210bcb6fa">sendOPC1</a> (const IPAddress toip, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *deoj, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> esv, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> epc, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *edt)</td></tr>
 <tr class="separator:a9f061058d9570abc31c4e9a210bcb6fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8742b331509a1c89a6147b53202a6f37"><td class="memItemLeft" align="right" valign="top"><a id="a8742b331509a1c89a6147b53202a6f37" name="a8742b331509a1c89a6147b53202a6f37"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendOPC1</b> (const IPAddress toip, const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)</td></tr>
+<tr class="memitem:a8742b331509a1c89a6147b53202a6f37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a8742b331509a1c89a6147b53202a6f37">sendOPC1</a> (const IPAddress toip, const int devId, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *deoj, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> esv, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> epc, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *<a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>)</td></tr>
 <tr class="separator:a8742b331509a1c89a6147b53202a6f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af296f88ac8aa0c0a1f233f4884d294f5"><td class="memItemLeft" align="right" valign="top"><a id="af296f88ac8aa0c0a1f233f4884d294f5" name="af296f88ac8aa0c0a1f233f4884d294f5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendBroad</b> (byte sBuffer[], int size)</td></tr>
+<tr class="memitem:af296f88ac8aa0c0a1f233f4884d294f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#af296f88ac8aa0c0a1f233f4884d294f5">sendBroad</a> (<a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> sBuffer[], int size)</td></tr>
 <tr class="separator:af296f88ac8aa0c0a1f233f4884d294f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a401f22b7f82d6dbb832bd1589a276720"><td class="memItemLeft" align="right" valign="top"><a id="a401f22b7f82d6dbb832bd1589a276720" name="a401f22b7f82d6dbb832bd1589a276720"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMulti</b> (byte sBuffer[], int size)</td></tr>
+<tr class="memitem:a401f22b7f82d6dbb832bd1589a276720"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720">sendMulti</a> (<a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> sBuffer[], int size)</td></tr>
 <tr class="separator:a401f22b7f82d6dbb832bd1589a276720"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8551857c372d8e40ddc60e3801ef3aec"><td class="memItemLeft" align="right" valign="top"><a id="a8551857c372d8e40ddc60e3801ef3aec" name="a8551857c372d8e40ddc60e3801ef3aec"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMultiOPC1</b> (const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt)</td></tr>
+<tr class="memitem:a8551857c372d8e40ddc60e3801ef3aec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a8551857c372d8e40ddc60e3801ef3aec">sendMultiOPC1</a> (const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *tid, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *seoj, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *deoj, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> esv, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> epc, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *edt)</td></tr>
 <tr class="separator:a8551857c372d8e40ddc60e3801ef3aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee174fdf4b60605fd2c68367013ea196"><td class="memItemLeft" align="right" valign="top"><a id="aee174fdf4b60605fd2c68367013ea196" name="aee174fdf4b60605fd2c68367013ea196"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMultiOPC1</b> (const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt)</td></tr>
+<tr class="memitem:aee174fdf4b60605fd2c68367013ea196"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#aee174fdf4b60605fd2c68367013ea196">sendMultiOPC1</a> (const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *seoj, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *deoj, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> esv, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> epc, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *edt)</td></tr>
 <tr class="separator:aee174fdf4b60605fd2c68367013ea196"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f4b7425b41d24589265e6465d74b743"><td class="memItemLeft" align="right" valign="top"><a id="a4f4b7425b41d24589265e6465d74b743" name="a4f4b7425b41d24589265e6465d74b743"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMultiOPC1</b> (const byte *deoj, const byte esv, const byte epc, const byte *edt)</td></tr>
+<tr class="memitem:a4f4b7425b41d24589265e6465d74b743"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a4f4b7425b41d24589265e6465d74b743">sendMultiOPC1</a> (const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *deoj, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> esv, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> epc, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *edt)</td></tr>
 <tr class="separator:a4f4b7425b41d24589265e6465d74b743"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a021da4579877b93bf7e19e857d25f3db"><td class="memItemLeft" align="right" valign="top"><a id="a021da4579877b93bf7e19e857d25f3db" name="a021da4579877b93bf7e19e857d25f3db"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>sendMultiOPC1</b> (const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)</td></tr>
+<tr class="memitem:a021da4579877b93bf7e19e857d25f3db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a021da4579877b93bf7e19e857d25f3db">sendMultiOPC1</a> (const int devId, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *deoj, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> esv, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> epc, const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *<a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>)</td></tr>
 <tr class="separator:a021da4579877b93bf7e19e857d25f3db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb5539d23d71d5dc1b708868c241875a"><td class="memItemLeft" align="right" valign="top"><a id="adb5539d23d71d5dc1b708868c241875a" name="adb5539d23d71d5dc1b708868c241875a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> ()</td></tr>
+<tr class="memitem:adb5539d23d71d5dc1b708868c241875a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#adb5539d23d71d5dc1b708868c241875a">read</a> ()</td></tr>
 <tr class="separator:adb5539d23d71d5dc1b708868c241875a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb8d61da0fa657758fb4231f061337fc"><td class="memItemLeft" align="right" valign="top"><a id="afb8d61da0fa657758fb4231f061337fc" name="afb8d61da0fa657758fb4231f061337fc"></a>
-IPAddress&#160;</td><td class="memItemRight" valign="bottom"><b>remoteIP</b> (void)</td></tr>
+<tr class="memitem:afb8d61da0fa657758fb4231f061337fc"><td class="memItemLeft" align="right" valign="top">IPAddress&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#afb8d61da0fa657758fb4231f061337fc">remoteIP</a> (void)</td></tr>
 <tr class="separator:afb8d61da0fa657758fb4231f061337fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54d6de75eb5743e2d80dbe81c93993ed"><td class="memItemLeft" align="right" valign="top"><a id="a54d6de75eb5743e2d80dbe81c93993ed" name="a54d6de75eb5743e2d80dbe81c93993ed"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>returner</b> (void)</td></tr>
+<tr class="memitem:a54d6de75eb5743e2d80dbe81c93993ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed">returner</a> (void)</td></tr>
 <tr class="separator:a54d6de75eb5743e2d80dbe81c93993ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32fec56a37593e47544d0ec554fcc23f"><td class="memItemLeft" align="right" valign="top"><a id="a32fec56a37593e47544d0ec554fcc23f" name="a32fec56a37593e47544d0ec554fcc23f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>delPtr</b> (byte ptr[])</td></tr>
+<tr class="memitem:a32fec56a37593e47544d0ec554fcc23f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a32fec56a37593e47544d0ec554fcc23f">delPtr</a> (<a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> ptr[])</td></tr>
 <tr class="separator:a32fec56a37593e47544d0ec554fcc23f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 公開変数類</h2></td></tr>
-<tr class="memitem:a7416d9b7c5b7cede6626287126a00921"><td class="memItemLeft" align="right" valign="top"><a id="a7416d9b7c5b7cede6626287126a00921" name="a7416d9b7c5b7cede6626287126a00921"></a>
-<a class="el" href="class_e_l_o_b_j.html">ELOBJ</a>&#160;</td><td class="memItemRight" valign="bottom"><b>profile</b></td></tr>
+<tr class="memitem:a7416d9b7c5b7cede6626287126a00921"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_l_o_b_j.html">ELOBJ</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a7416d9b7c5b7cede6626287126a00921">profile</a></td></tr>
+<tr class="memdesc:a7416d9b7c5b7cede6626287126a00921"><td class="mdescLeft">&#160;</td><td class="mdescRight">profile object (for specialist)  <br /></td></tr>
 <tr class="separator:a7416d9b7c5b7cede6626287126a00921"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c057b75a048ecb3aa719a6cd9a507a0"><td class="memItemLeft" align="right" valign="top"><a id="a9c057b75a048ecb3aa719a6cd9a507a0" name="a9c057b75a048ecb3aa719a6cd9a507a0"></a>
-<a class="el" href="class_e_l_o_b_j.html">ELOBJ</a>&#160;</td><td class="memItemRight" valign="bottom"><b>details</b></td></tr>
+<tr class="memitem:a9c057b75a048ecb3aa719a6cd9a507a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_l_o_b_j.html">ELOBJ</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a9c057b75a048ecb3aa719a6cd9a507a0">details</a></td></tr>
+<tr class="memdesc:a9c057b75a048ecb3aa719a6cd9a507a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">device object (for simple eoj)  <br /></td></tr>
 <tr class="separator:a9c057b75a048ecb3aa719a6cd9a507a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae50a51ece45a6a803341159f68a1285"><td class="memItemLeft" align="right" valign="top"><a id="aae50a51ece45a6a803341159f68a1285" name="aae50a51ece45a6a803341159f68a1285"></a>
-<a class="el" href="class_e_l_o_b_j.html">ELOBJ</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>devices</b></td></tr>
+<tr class="memitem:aae50a51ece45a6a803341159f68a1285"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_l_o_b_j.html">ELOBJ</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#aae50a51ece45a6a803341159f68a1285">devices</a></td></tr>
+<tr class="memdesc:aae50a51ece45a6a803341159f68a1285"><td class="mdescLeft">&#160;</td><td class="mdescRight">device objects (for multi eoj)  <br /></td></tr>
 <tr class="separator:aae50a51ece45a6a803341159f68a1285"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ee13278563e4abf7d6b1bf0d2ec9fd0"><td class="memItemLeft" align="right" valign="top"><a id="a8ee13278563e4abf7d6b1bf0d2ec9fd0" name="a8ee13278563e4abf7d6b1bf0d2ec9fd0"></a>
-byte&#160;</td><td class="memItemRight" valign="bottom"><b>_rBuffer</b> [EL_BUFFER_SIZE]</td></tr>
+<tr class="memitem:a8ee13278563e4abf7d6b1bf0d2ec9fd0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a8ee13278563e4abf7d6b1bf0d2ec9fd0">_rBuffer</a> [<a class="el" href="_e_l_8h.html#a01f8b3aac63d16c12240173b35a354d1">EL_BUFFER_SIZE</a>]</td></tr>
+<tr class="memdesc:a8ee13278563e4abf7d6b1bf0d2ec9fd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">receive buffer  <br /></td></tr>
 <tr class="separator:a8ee13278563e4abf7d6b1bf0d2ec9fd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 限定公開メンバ関数</h2></td></tr>
-<tr class="memitem:a4706069c6c704f074a811b49d9bfd337"><td class="memItemLeft" align="right" valign="top"><a id="a4706069c6c704f074a811b49d9bfd337" name="a4706069c6c704f074a811b49d9bfd337"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>parsePacket</b> (void)</td></tr>
+<tr class="memitem:a4706069c6c704f074a811b49d9bfd337"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a4706069c6c704f074a811b49d9bfd337">parsePacket</a> (void)</td></tr>
 <tr class="separator:a4706069c6c704f074a811b49d9bfd337"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+非公開変数類</h2></td></tr>
+<tr class="memitem:acbad57e6cc8fc8f1ae7c061326904660"><td class="memItemLeft" align="right" valign="top">IPAddress&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#acbad57e6cc8fc8f1ae7c061326904660">ip</a></td></tr>
+<tr class="memdesc:acbad57e6cc8fc8f1ae7c061326904660"><td class="mdescLeft">&#160;</td><td class="mdescRight">my ipaddress  <br /></td></tr>
+<tr class="separator:acbad57e6cc8fc8f1ae7c061326904660"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af31c7e669bbbe064952dc8406c818f0b"><td class="memItemLeft" align="right" valign="top">IPAddress&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#af31c7e669bbbe064952dc8406c818f0b">_multi</a></td></tr>
+<tr class="memdesc:af31c7e669bbbe064952dc8406c818f0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">multicast address  <br /></td></tr>
+<tr class="separator:af31c7e669bbbe064952dc8406c818f0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92c33bf7ecc00ab7f2f76310f2e78705"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a92c33bf7ecc00ab7f2f76310f2e78705">_broad</a> [4]</td></tr>
+<tr class="memdesc:a92c33bf7ecc00ab7f2f76310f2e78705"><td class="mdescLeft">&#160;</td><td class="mdescRight">broadcast address  <br /></td></tr>
+<tr class="separator:a92c33bf7ecc00ab7f2f76310f2e78705"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7bfd74750835112c7191c51ecad8c6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#af7bfd74750835112c7191c51ecad8c6b">_eoj</a> [3]</td></tr>
+<tr class="memdesc:af7bfd74750835112c7191c51ecad8c6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">for simple eoj obj  <br /></td></tr>
+<tr class="separator:af7bfd74750835112c7191c51ecad8c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3359f8b7ac224ae13208a9d1e78b6d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#aa3359f8b7ac224ae13208a9d1e78b6d6">_eojs</a></td></tr>
+<tr class="memdesc:aa3359f8b7ac224ae13208a9d1e78b6d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">for multi eojs obj  <br /></td></tr>
+<tr class="separator:aa3359f8b7ac224ae13208a9d1e78b6d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57cef033d3e749262eea34b9a07161e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a57cef033d3e749262eea34b9a07161e8">_sendPacketSize</a> = 0</td></tr>
+<tr class="separator:a57cef033d3e749262eea34b9a07161e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1c6b980139bc749aa2085503040464a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#ac1c6b980139bc749aa2085503040464a">_readPacketSize</a> = 0</td></tr>
+<tr class="separator:ac1c6b980139bc749aa2085503040464a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa30edfecc931af454996610eb109215f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#aa30edfecc931af454996610eb109215f">_sBuffer</a> [<a class="el" href="_e_l_8h.html#a01f8b3aac63d16c12240173b35a354d1">EL_BUFFER_SIZE</a>]</td></tr>
+<tr class="memdesc:aa30edfecc931af454996610eb109215f"><td class="mdescLeft">&#160;</td><td class="mdescRight">send buffer  <br /></td></tr>
+<tr class="separator:aa30edfecc931af454996610eb109215f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cdc3ef249fc7168086a0cf3a831cf0f"><td class="memItemLeft" align="right" valign="top">WiFiUDP *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a0cdc3ef249fc7168086a0cf3a831cf0f">_udp</a></td></tr>
+<tr class="separator:a0cdc3ef249fc7168086a0cf3a831cf0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae286d9d4bfebade85614d329e566fcfe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#ae286d9d4bfebade85614d329e566fcfe">deviceCount</a></td></tr>
+<tr class="separator:ae286d9d4bfebade85614d329e566fcfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>Main class for <a class="el" href="class_e_l.html" title="Main class for EL">EL</a> </p>
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00151">151</a> 行目に定義があります。</p>
+</div><h2 class="groupheader">構築子と解体子</h2>
+<a id="ae18a4b309a644bc25d05c6c85f00f009" name="ae18a4b309a644bc25d05c6c85f00f009"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae18a4b309a644bc25d05c6c85f00f009">&#9670;&#160;</a></span>EL() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EL::EL </td>
+          <td>(</td>
+          <td class="paramtype">WiFiUDP &amp;&#160;</td>
+          <td class="paramname"><em>udp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>eoj0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>eoj1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>eoj2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>オブジェクトを一つだけサポートする場合のコンストラクタ </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">WiFiUDP&amp;</td><td></td></tr>
+    <tr><td class="paramname">byte</td><td>eoj0: class group code </td></tr>
+    <tr><td class="paramname">byte</td><td>eoj1: class code </td></tr>
+    <tr><td class="paramname">byte</td><td>eoj2: instance code @detail eoj0, eoj1, eoj2で一つのオブジェクト </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00012">12</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="af3e715203f9da944ebe49d0fa6b909c3" name="af3e715203f9da944ebe49d0fa6b909c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3e715203f9da944ebe49d0fa6b909c3">&#9670;&#160;</a></span>EL() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EL::EL </td>
+          <td>(</td>
+          <td class="paramtype">WiFiUDP &amp;&#160;</td>
+          <td class="paramname"><em>udp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>eoj</em>[][3], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00039">39</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a986d605da832524b0f80f8330df1a1da" name="a986d605da832524b0f80f8330df1a1da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a986d605da832524b0f80f8330df1a1da">&#9670;&#160;</a></span>at() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> * EL::at </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00136">136</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a986d605da832524b0f80f8330df1a1da_cgraph.png" border="0" usemap="#aclass_e_l_a986d605da832524b0f80f8330df1a1da_cgraph" alt=""/></div>
+<map name="aclass_e_l_a986d605da832524b0f80f8330df1a1da_cgraph" id="aclass_e_l_a986d605da832524b0f80f8330df1a1da_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,63,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#af550cffbae7818d5eb873e0446b96aff" title=" " alt="" coords="111,5,260,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a05a173c299c1feb5c03fa0771a9eff9a" name="a05a173c299c1feb5c03fa0771a9eff9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05a173c299c1feb5c03fa0771a9eff9a">&#9670;&#160;</a></span>at() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> * EL::at </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>devId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00147">147</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a05a173c299c1feb5c03fa0771a9eff9a_cgraph.png" border="0" usemap="#aclass_e_l_a05a173c299c1feb5c03fa0771a9eff9a_cgraph" alt=""/></div>
+<map name="aclass_e_l_a05a173c299c1feb5c03fa0771a9eff9a_cgraph" id="aclass_e_l_a05a173c299c1feb5c03fa0771a9eff9a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,63,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#af550cffbae7818d5eb873e0446b96aff" title=" " alt="" coords="111,5,260,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a200545322f36c5ac01ec517269c93014" name="a200545322f36c5ac01ec517269c93014"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a200545322f36c5ac01ec517269c93014">&#9670;&#160;</a></span>begin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::begin </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00064">64</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a200545322f36c5ac01ec517269c93014_cgraph.png" border="0" usemap="#aclass_e_l_a200545322f36c5ac01ec517269c93014_cgraph" alt=""/></div>
+<map name="aclass_e_l_a200545322f36c5ac01ec517269c93014_cgraph" id="aclass_e_l_a200545322f36c5ac01ec517269c93014_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,83,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3" title=" " alt="" coords="131,5,243,31"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title=" " alt="" coords="291,5,400,31"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a200545322f36c5ac01ec517269c93014_icgraph.png" border="0" usemap="#aclass_e_l_a200545322f36c5ac01ec517269c93014_icgraph" alt=""/></div>
+<map name="aclass_e_l_a200545322f36c5ac01ec517269c93014_icgraph" id="aclass_e_l_a200545322f36c5ac01ec517269c93014_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,185,31"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,60,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a32fec56a37593e47544d0ec554fcc23f" name="a32fec56a37593e47544d0ec554fcc23f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32fec56a37593e47544d0ec554fcc23f">&#9670;&#160;</a></span>delPtr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::delPtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>ptr</em>[]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00459">459</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a4706069c6c704f074a811b49d9bfd337" name="a4706069c6c704f074a811b49d9bfd337"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4706069c6c704f074a811b49d9bfd337">&#9670;&#160;</a></span>parsePacket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int EL::parsePacket </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00349">349</a> 行目に定義があります。</p>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a4706069c6c704f074a811b49d9bfd337_icgraph.png" border="0" usemap="#aclass_e_l_a4706069c6c704f074a811b49d9bfd337_icgraph" alt=""/></div>
+<map name="aclass_e_l_a4706069c6c704f074a811b49d9bfd337_icgraph" id="aclass_e_l_a4706069c6c704f074a811b49d9bfd337_icgraph">
+<area shape="rect" title=" " alt="" coords="219,5,337,31"/>
+<area shape="rect" href="class_e_l.html#adb5539d23d71d5dc1b708868c241875a" title=" " alt="" coords="100,5,171,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adb5539d23d71d5dc1b708868c241875a" name="adb5539d23d71d5dc1b708868c241875a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb5539d23d71d5dc1b708868c241875a">&#9670;&#160;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int EL::read </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00359">359</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_adb5539d23d71d5dc1b708868c241875a_cgraph.png" border="0" usemap="#aclass_e_l_adb5539d23d71d5dc1b708868c241875a_cgraph" alt=""/></div>
+<map name="aclass_e_l_adb5539d23d71d5dc1b708868c241875a_cgraph" id="aclass_e_l_adb5539d23d71d5dc1b708868c241875a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,76,31"/>
+<area shape="rect" href="class_e_l.html#a4706069c6c704f074a811b49d9bfd337" title=" " alt="" coords="124,5,243,31"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_adb5539d23d71d5dc1b708868c241875a_icgraph.png" border="0" usemap="#aclass_e_l_adb5539d23d71d5dc1b708868c241875a_icgraph" alt=""/></div>
+<map name="aclass_e_l_adb5539d23d71d5dc1b708868c241875a_icgraph" id="aclass_e_l_adb5539d23d71d5dc1b708868c241875a_icgraph">
+<area shape="rect" title=" " alt="" coords="100,5,171,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="afb8d61da0fa657758fb4231f061337fc" name="afb8d61da0fa657758fb4231f061337fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb8d61da0fa657758fb4231f061337fc">&#9670;&#160;</a></span>remoteIP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPAddress EL::remoteIP </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00354">354</a> 行目に定義があります。</p>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_afb8d61da0fa657758fb4231f061337fc_icgraph.png" border="0" usemap="#aclass_e_l_afb8d61da0fa657758fb4231f061337fc_icgraph" alt=""/></div>
+<map name="aclass_e_l_afb8d61da0fa657758fb4231f061337fc_icgraph" id="aclass_e_l_afb8d61da0fa657758fb4231f061337fc_icgraph">
+<area shape="rect" title=" " alt="" coords="239,5,337,31"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,5,191,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a54d6de75eb5743e2d80dbe81c93993ed" name="a54d6de75eb5743e2d80dbe81c93993ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54d6de75eb5743e2d80dbe81c93993ed">&#9670;&#160;</a></span>returner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::returner </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00371">371</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a54d6de75eb5743e2d80dbe81c93993ed_cgraph.png" border="0" usemap="#aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_cgraph" alt=""/></div>
+<map name="aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_cgraph" id="aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_cgraph">
+<area shape="rect" title=" " alt="" coords="5,55,96,80"/>
+<area shape="rect" href="class_e_l.html#afb8d61da0fa657758fb4231f061337fc" title=" " alt="" coords="164,5,263,31"/>
+<area shape="rect" href="class_e_l.html#a8551857c372d8e40ddc60e3801ef3aec" title=" " alt="" coords="144,55,283,80"/>
+<area shape="rect" href="class_e_l.html#abcd52c423f1cc2e8bf0cedcf2542747a" title=" " alt="" coords="158,104,269,129"/>
+<area shape="rect" href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title=" " alt="" coords="331,55,433,80"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title=" " alt="" coords="345,104,419,129"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a54d6de75eb5743e2d80dbe81c93993ed_icgraph.png" border="0" usemap="#aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_icgraph" alt=""/></div>
+<map name="aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_icgraph" id="aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_icgraph">
+<area shape="rect" title=" " alt="" coords="100,5,191,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a58b950847b38135814429193175b9b72" name="a58b950847b38135814429193175b9b72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58b950847b38135814429193175b9b72">&#9670;&#160;</a></span>send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::send </td>
+          <td>(</td>
+          <td class="paramtype">IPAddress&#160;</td>
+          <td class="paramname"><em>toip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>sBuffer</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00263">263</a> 行目に定義があります。</p>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a58b950847b38135814429193175b9b72_icgraph.png" border="0" usemap="#aclass_e_l_a58b950847b38135814429193175b9b72_icgraph" alt=""/></div>
+<map name="aclass_e_l_a58b950847b38135814429193175b9b72_icgraph" id="aclass_e_l_a58b950847b38135814429193175b9b72_icgraph">
+<area shape="rect" title=" " alt="" coords="417,31,492,56"/>
+<area shape="rect" href="class_e_l.html#abcd52c423f1cc2e8bf0cedcf2542747a" title=" " alt="" coords="259,31,369,56"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="110,5,201,31"/>
+<area shape="rect" href="class_e_l.html#a11eef040ec7e7a75756369707e7d8fa4" title=" " alt="" coords="100,55,211,80"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af296f88ac8aa0c0a1f233f4884d294f5" name="af296f88ac8aa0c0a1f233f4884d294f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af296f88ac8aa0c0a1f233f4884d294f5">&#9670;&#160;</a></span>sendBroad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::sendBroad </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>sBuffer</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00159">159</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a401f22b7f82d6dbb832bd1589a276720" name="a401f22b7f82d6dbb832bd1589a276720"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a401f22b7f82d6dbb832bd1589a276720">&#9670;&#160;</a></span>sendMulti()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::sendMulti </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>sBuffer</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00179">179</a> 行目に定義があります。</p>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a401f22b7f82d6dbb832bd1589a276720_icgraph.png" border="0" usemap="#aclass_e_l_a401f22b7f82d6dbb832bd1589a276720_icgraph" alt=""/></div>
+<map name="aclass_e_l_a401f22b7f82d6dbb832bd1589a276720_icgraph" id="aclass_e_l_a401f22b7f82d6dbb832bd1589a276720_icgraph">
+<area shape="rect" title=" " alt="" coords="473,55,576,80"/>
+<area shape="rect" href="class_e_l.html#a8551857c372d8e40ddc60e3801ef3aec" title=" " alt="" coords="287,29,425,55"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="329,79,383,104"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="124,5,215,31"/>
+<area shape="rect" href="class_e_l.html#aee174fdf4b60605fd2c68367013ea196" title=" " alt="" coords="100,55,239,80"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4f4b7425b41d24589265e6465d74b743" name="a4f4b7425b41d24589265e6465d74b743"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f4b7425b41d24589265e6465d74b743">&#9670;&#160;</a></span>sendMultiOPC1() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::sendMultiOPC1 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>deoj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>esv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>edt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00244">244</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a4f4b7425b41d24589265e6465d74b743_cgraph.png" border="0" usemap="#aclass_e_l_a4f4b7425b41d24589265e6465d74b743_cgraph" alt=""/></div>
+<map name="aclass_e_l_a4f4b7425b41d24589265e6465d74b743_cgraph" id="aclass_e_l_a4f4b7425b41d24589265e6465d74b743_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,144,31"/>
+<area shape="rect" href="class_e_l.html#a8551857c372d8e40ddc60e3801ef3aec" title=" " alt="" coords="192,5,331,31"/>
+<area shape="rect" href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title=" " alt="" coords="379,5,481,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aee174fdf4b60605fd2c68367013ea196" name="aee174fdf4b60605fd2c68367013ea196"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee174fdf4b60605fd2c68367013ea196">&#9670;&#160;</a></span>sendMultiOPC1() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::sendMultiOPC1 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>seoj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>deoj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>esv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>edt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00237">237</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_aee174fdf4b60605fd2c68367013ea196_cgraph.png" border="0" usemap="#aclass_e_l_aee174fdf4b60605fd2c68367013ea196_cgraph" alt=""/></div>
+<map name="aclass_e_l_aee174fdf4b60605fd2c68367013ea196_cgraph" id="aclass_e_l_aee174fdf4b60605fd2c68367013ea196_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,144,31"/>
+<area shape="rect" href="class_e_l.html#a8551857c372d8e40ddc60e3801ef3aec" title=" " alt="" coords="192,5,331,31"/>
+<area shape="rect" href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title=" " alt="" coords="379,5,481,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8551857c372d8e40ddc60e3801ef3aec" name="a8551857c372d8e40ddc60e3801ef3aec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8551857c372d8e40ddc60e3801ef3aec">&#9670;&#160;</a></span>sendMultiOPC1() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::sendMultiOPC1 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>tid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>seoj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>deoj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>esv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>edt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00201">201</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a8551857c372d8e40ddc60e3801ef3aec_cgraph.png" border="0" usemap="#aclass_e_l_a8551857c372d8e40ddc60e3801ef3aec_cgraph" alt=""/></div>
+<map name="aclass_e_l_a8551857c372d8e40ddc60e3801ef3aec_cgraph" id="aclass_e_l_a8551857c372d8e40ddc60e3801ef3aec_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,144,31"/>
+<area shape="rect" href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title=" " alt="" coords="192,5,295,31"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a8551857c372d8e40ddc60e3801ef3aec_icgraph.png" border="0" usemap="#aclass_e_l_a8551857c372d8e40ddc60e3801ef3aec_icgraph" alt=""/></div>
+<map name="aclass_e_l_a8551857c372d8e40ddc60e3801ef3aec_icgraph" id="aclass_e_l_a8551857c372d8e40ddc60e3801ef3aec_icgraph">
+<area shape="rect" title=" " alt="" coords="287,31,425,56"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="124,5,215,31"/>
+<area shape="rect" href="class_e_l.html#aee174fdf4b60605fd2c68367013ea196" title=" " alt="" coords="100,55,239,80"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a021da4579877b93bf7e19e857d25f3db" name="a021da4579877b93bf7e19e857d25f3db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a021da4579877b93bf7e19e857d25f3db">&#9670;&#160;</a></span>sendMultiOPC1() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::sendMultiOPC1 </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>devId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>deoj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>esv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>pdcedt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00249">249</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a021da4579877b93bf7e19e857d25f3db_cgraph.png" border="0" usemap="#aclass_e_l_a021da4579877b93bf7e19e857d25f3db_cgraph" alt=""/></div>
+<map name="aclass_e_l_a021da4579877b93bf7e19e857d25f3db_cgraph" id="aclass_e_l_a021da4579877b93bf7e19e857d25f3db_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,144,31"/>
+<area shape="rect" href="class_e_l.html#a8551857c372d8e40ddc60e3801ef3aec" title=" " alt="" coords="192,5,331,31"/>
+<area shape="rect" href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title=" " alt="" coords="379,5,481,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9f061058d9570abc31c4e9a210bcb6fa" name="a9f061058d9570abc31c4e9a210bcb6fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f061058d9570abc31c4e9a210bcb6fa">&#9670;&#160;</a></span>sendOPC1() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::sendOPC1 </td>
+          <td>(</td>
+          <td class="paramtype">const IPAddress&#160;</td>
+          <td class="paramname"><em>toip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>deoj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>esv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>edt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00331">331</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a9f061058d9570abc31c4e9a210bcb6fa_cgraph.png" border="0" usemap="#aclass_e_l_a9f061058d9570abc31c4e9a210bcb6fa_cgraph" alt=""/></div>
+<map name="aclass_e_l_a9f061058d9570abc31c4e9a210bcb6fa_cgraph" id="aclass_e_l_a9f061058d9570abc31c4e9a210bcb6fa_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,116,31"/>
+<area shape="rect" href="class_e_l.html#abcd52c423f1cc2e8bf0cedcf2542747a" title=" " alt="" coords="164,5,275,31"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title=" " alt="" coords="323,5,397,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a11eef040ec7e7a75756369707e7d8fa4" name="a11eef040ec7e7a75756369707e7d8fa4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11eef040ec7e7a75756369707e7d8fa4">&#9670;&#160;</a></span>sendOPC1() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::sendOPC1 </td>
+          <td>(</td>
+          <td class="paramtype">const IPAddress&#160;</td>
+          <td class="paramname"><em>toip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>seoj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>deoj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>esv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>edt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00323">323</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a11eef040ec7e7a75756369707e7d8fa4_cgraph.png" border="0" usemap="#aclass_e_l_a11eef040ec7e7a75756369707e7d8fa4_cgraph" alt=""/></div>
+<map name="aclass_e_l_a11eef040ec7e7a75756369707e7d8fa4_cgraph" id="aclass_e_l_a11eef040ec7e7a75756369707e7d8fa4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,116,31"/>
+<area shape="rect" href="class_e_l.html#abcd52c423f1cc2e8bf0cedcf2542747a" title=" " alt="" coords="164,5,275,31"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title=" " alt="" coords="323,5,397,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abcd52c423f1cc2e8bf0cedcf2542747a" name="abcd52c423f1cc2e8bf0cedcf2542747a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcd52c423f1cc2e8bf0cedcf2542747a">&#9670;&#160;</a></span>sendOPC1() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::sendOPC1 </td>
+          <td>(</td>
+          <td class="paramtype">const IPAddress&#160;</td>
+          <td class="paramname"><em>toip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>tid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>seoj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>deoj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>esv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>edt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00287">287</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_abcd52c423f1cc2e8bf0cedcf2542747a_cgraph.png" border="0" usemap="#aclass_e_l_abcd52c423f1cc2e8bf0cedcf2542747a_cgraph" alt=""/></div>
+<map name="aclass_e_l_abcd52c423f1cc2e8bf0cedcf2542747a_cgraph" id="aclass_e_l_abcd52c423f1cc2e8bf0cedcf2542747a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,116,31"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title=" " alt="" coords="164,5,239,31"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_abcd52c423f1cc2e8bf0cedcf2542747a_icgraph.png" border="0" usemap="#aclass_e_l_abcd52c423f1cc2e8bf0cedcf2542747a_icgraph" alt=""/></div>
+<map name="aclass_e_l_abcd52c423f1cc2e8bf0cedcf2542747a_icgraph" id="aclass_e_l_abcd52c423f1cc2e8bf0cedcf2542747a_icgraph">
+<area shape="rect" title=" " alt="" coords="259,31,369,56"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="110,5,201,31"/>
+<area shape="rect" href="class_e_l.html#a11eef040ec7e7a75756369707e7d8fa4" title=" " alt="" coords="100,55,211,80"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8742b331509a1c89a6147b53202a6f37" name="a8742b331509a1c89a6147b53202a6f37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8742b331509a1c89a6147b53202a6f37">&#9670;&#160;</a></span>sendOPC1() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::sendOPC1 </td>
+          <td>(</td>
+          <td class="paramtype">const IPAddress&#160;</td>
+          <td class="paramname"><em>toip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>devId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>deoj</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>esv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td>
+          <td class="paramname"><em>pdcedt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00336">336</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a8742b331509a1c89a6147b53202a6f37_cgraph.png" border="0" usemap="#aclass_e_l_a8742b331509a1c89a6147b53202a6f37_cgraph" alt=""/></div>
+<map name="aclass_e_l_a8742b331509a1c89a6147b53202a6f37_cgraph" id="aclass_e_l_a8742b331509a1c89a6147b53202a6f37_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,116,31"/>
+<area shape="rect" href="class_e_l.html#abcd52c423f1cc2e8bf0cedcf2542747a" title=" " alt="" coords="164,5,275,31"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title=" " alt="" coords="323,5,397,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0f235980e2cdae6da6ca84c8098d49cb" name="a0f235980e2cdae6da6ca84c8098d49cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f235980e2cdae6da6ca84c8098d49cb">&#9670;&#160;</a></span>update() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::update </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>pdcedt</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00131">131</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a0f235980e2cdae6da6ca84c8098d49cb_cgraph.png" border="0" usemap="#aclass_e_l_a0f235980e2cdae6da6ca84c8098d49cb_cgraph" alt=""/></div>
+<map name="aclass_e_l_a0f235980e2cdae6da6ca84c8098d49cb_cgraph" id="aclass_e_l_a0f235980e2cdae6da6ca84c8098d49cb_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,91,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a215e34be020dd6dc5d63d677a3f858b2" title=" " alt="" coords="139,5,287,31"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a0f235980e2cdae6da6ca84c8098d49cb_icgraph.png" border="0" usemap="#aclass_e_l_a0f235980e2cdae6da6ca84c8098d49cb_icgraph" alt=""/></div>
+<map name="aclass_e_l_a0f235980e2cdae6da6ca84c8098d49cb_icgraph" id="aclass_e_l_a0f235980e2cdae6da6ca84c8098d49cb_icgraph">
+<area shape="rect" title=" " alt="" coords="100,5,185,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a989732eaa75eba55e3a569a0e4a3b6ec" name="a989732eaa75eba55e3a569a0e4a3b6ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a989732eaa75eba55e3a569a0e4a3b6ec">&#9670;&#160;</a></span>update() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::update </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>devId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>pdcedt</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8cpp_source.html">EL.cpp</a> の <a class="el" href="_e_l_8cpp_source.html#l00141">141</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a989732eaa75eba55e3a569a0e4a3b6ec_cgraph.png" border="0" usemap="#aclass_e_l_a989732eaa75eba55e3a569a0e4a3b6ec_cgraph" alt=""/></div>
+<map name="aclass_e_l_a989732eaa75eba55e3a569a0e4a3b6ec_cgraph" id="aclass_e_l_a989732eaa75eba55e3a569a0e4a3b6ec_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,91,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a215e34be020dd6dc5d63d677a3f858b2" title=" " alt="" coords="139,5,287,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">メンバ詳解</h2>
+<a id="a92c33bf7ecc00ab7f2f76310f2e78705" name="a92c33bf7ecc00ab7f2f76310f2e78705"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92c33bf7ecc00ab7f2f76310f2e78705">&#9670;&#160;</a></span>_broad</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> EL::_broad[4]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>broadcast address </p>
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00156">156</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="af7bfd74750835112c7191c51ecad8c6b" name="af7bfd74750835112c7191c51ecad8c6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7bfd74750835112c7191c51ecad8c6b">&#9670;&#160;</a></span>_eoj</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> EL::_eoj[3]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>for simple eoj obj </p>
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00157">157</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aa3359f8b7ac224ae13208a9d1e78b6d6" name="aa3359f8b7ac224ae13208a9d1e78b6d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3359f8b7ac224ae13208a9d1e78b6d6">&#9670;&#160;</a></span>_eojs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>* EL::_eojs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>for multi eojs obj </p>
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00158">158</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="af31c7e669bbbe064952dc8406c818f0b" name="af31c7e669bbbe064952dc8406c818f0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af31c7e669bbbe064952dc8406c818f0b">&#9670;&#160;</a></span>_multi</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPAddress EL::_multi</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>multicast address </p>
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00155">155</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a8ee13278563e4abf7d6b1bf0d2ec9fd0" name="a8ee13278563e4abf7d6b1bf0d2ec9fd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ee13278563e4abf7d6b1bf0d2ec9fd0">&#9670;&#160;</a></span>_rBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> EL::_rBuffer[<a class="el" href="_e_l_8h.html#a01f8b3aac63d16c12240173b35a354d1">EL_BUFFER_SIZE</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>receive buffer </p>
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00172">172</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ac1c6b980139bc749aa2085503040464a" name="ac1c6b980139bc749aa2085503040464a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1c6b980139bc749aa2085503040464a">&#9670;&#160;</a></span>_readPacketSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int EL::_readPacketSize = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00160">160</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aa30edfecc931af454996610eb109215f" name="aa30edfecc931af454996610eb109215f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa30edfecc931af454996610eb109215f">&#9670;&#160;</a></span>_sBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> EL::_sBuffer[<a class="el" href="_e_l_8h.html#a01f8b3aac63d16c12240173b35a354d1">EL_BUFFER_SIZE</a>]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>send buffer </p>
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00161">161</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a57cef033d3e749262eea34b9a07161e8" name="a57cef033d3e749262eea34b9a07161e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57cef033d3e749262eea34b9a07161e8">&#9670;&#160;</a></span>_sendPacketSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int EL::_sendPacketSize = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00159">159</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a0cdc3ef249fc7168086a0cf3a831cf0f" name="a0cdc3ef249fc7168086a0cf3a831cf0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cdc3ef249fc7168086a0cf3a831cf0f">&#9670;&#160;</a></span>_udp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WiFiUDP* EL::_udp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00162">162</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a9c057b75a048ecb3aa719a6cd9a507a0" name="a9c057b75a048ecb3aa719a6cd9a507a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c057b75a048ecb3aa719a6cd9a507a0">&#9670;&#160;</a></span>details</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_l_o_b_j.html">ELOBJ</a> EL::details</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>device object (for simple eoj) </p>
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00170">170</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ae286d9d4bfebade85614d329e566fcfe" name="ae286d9d4bfebade85614d329e566fcfe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae286d9d4bfebade85614d329e566fcfe">&#9670;&#160;</a></span>deviceCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int EL::deviceCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00163">163</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aae50a51ece45a6a803341159f68a1285" name="aae50a51ece45a6a803341159f68a1285"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae50a51ece45a6a803341159f68a1285">&#9670;&#160;</a></span>devices</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_l_o_b_j.html">ELOBJ</a>* EL::devices</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>device objects (for multi eoj) </p>
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00171">171</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="acbad57e6cc8fc8f1ae7c061326904660" name="acbad57e6cc8fc8f1ae7c061326904660"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbad57e6cc8fc8f1ae7c061326904660">&#9670;&#160;</a></span>ip</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IPAddress EL::ip</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>my ipaddress </p>
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00154">154</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a7416d9b7c5b7cede6626287126a00921" name="a7416d9b7c5b7cede6626287126a00921"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7416d9b7c5b7cede6626287126a00921">&#9670;&#160;</a></span>profile</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_l_o_b_j.html">ELOBJ</a> EL::profile</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>profile object (for specialist) </p>
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00169">169</a> 行目に定義があります。</p>
+
+</div>
+</div>
 <hr/>このクラス詳解は次のファイルから抽出されました:<ul>
 <li>/Users/sugimura/EL_dev_arduino/<a class="el" href="_e_l_8h_source.html">EL.h</a></li>
-<li>/Users/sugimura/EL_dev_arduino/EL.cpp</li>
+<li>/Users/sugimura/EL_dev_arduino/<a class="el" href="_e_l_8cpp_source.html">EL.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -269,7 +269,7 @@ Classes</h1>
 <h2><a class="anchor" id="autotoc_md5"></a>
 EL (for user)</h2>
 <p>ELクラスはWiFiのUDP（受信は3610，送信は適当）とECHONET Liteプロトコルをサポートします。ECHONET Liteネットワークにデバイスを参加させるためには専門のオブジェクトコードが必要です。オブジェクトコードはECHONET規格書に書かれているものを参照してください（https://echonet.jp/spec_g/#standard-01）。サンプルとして一般照明（0x029001）をM5Stackで実装した例を示しています。</p>
-<p><a class="el" href="class_e_l.html">EL</a> class manages WiFiUDP (recv is 3610 port, sned is any port) and ECHONET Lite protocol. To join ECHONET Lite network, the device needs ECHONET Lite object code. ECHONET Lite object code is defined in the specifications. (see <a href="https://echonet.jp/spec-en/#standard-01">https://echonet.jp/spec-en/#standard-01</a>) In this example, we deals with M5stack as a general lighting (0x029001).</p>
+<p><a class="el" href="class_e_l.html" title="Main class for EL">EL</a> class manages WiFiUDP (recv is 3610 port, sned is any port) and ECHONET Lite protocol. To join ECHONET Lite network, the device needs ECHONET Lite object code. ECHONET Lite object code is defined in the specifications. (see <a href="https://echonet.jp/spec-en/#standard-01">https://echonet.jp/spec-en/#standard-01</a>) In this example, we deals with M5stack as a general lighting (0x029001).</p>
 <div class="fragment"><div class="line"> {C++}</div>
 <div class="line">EL echo(elUDP, 0x02, 0x90, 0x01 );</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md6"></a>
@@ -279,7 +279,7 @@ APIs of EL class</h2>
 <h3><a class="anchor" id="autotoc_md8"></a>
 Initialize（初期化）</h3>
 <ul>
-<li><a class="el" href="class_e_l.html">EL( WiFiUDP&amp; udp, byte eoj0, byte eoj1, byte eoj2)</a>;</li>
+<li><a class="el" href="class_e_l.html" title="Main class for EL">EL( WiFiUDP&amp; udp, byte eoj0, byte eoj1, byte eoj2)</a>;</li>
 </ul>
 <p>constructor</p>
 <ul>
@@ -357,8 +357,8 @@ Confirm EDT（機器データの確認）</h3>
 <h3><a class="anchor" id="autotoc_md13"></a>
 Device Data（機器データ）</h3>
 <ul>
-<li><a class="el" href="class_e_l_o_b_j.html">ELOBJ</a> profile; // node profile object (PDC and EDT list)</li>
-<li><a class="el" href="class_e_l_o_b_j.html">ELOBJ</a> details; // device object (PDC and EDT list)</li>
+<li><a class="el" href="class_e_l_o_b_j.html" title="EL Object">ELOBJ</a> profile; // node profile object (PDC and EDT list)</li>
+<li><a class="el" href="class_e_l_o_b_j.html" title="EL Object">ELOBJ</a> details; // device object (PDC and EDT list)</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md14"></a>
 Defines</h1>
@@ -495,8 +495,8 @@ Defines</h1>
 Files</h1>
 <ul>
 <li>examples/GeneralLighting/GeneralLighting.ino: sample program</li>
-<li><a class="el" href="_e_l_8h_source.html">EL.h</a>, EL.cpp: ECHONET Lite protocol class</li>
-<li><a class="el" href="_e_l_o_b_j_8h_source.html">ELOBJ.h</a>, ELOBJ.cpp: ECHONET Lite object manager class. It is required by <a class="el" href="_e_l_8h_source.html">EL.h</a></li>
+<li><a class="el" href="_e_l_8h.html" title="ECHONET Lite protocol for Arduino">EL.h</a>, <a class="el" href="_e_l_8cpp.html" title="ECHONET Lite protocol for Arduino">EL.cpp</a>: ECHONET Lite protocol class</li>
+<li><a class="el" href="_e_l_o_b_j_8h.html" title="Subclasses for ECHONET Lite protocol">ELOBJ.h</a>, <a class="el" href="_e_l_o_b_j_8cpp.html" title="Subclasses for ECHONET Lite protocol">ELOBJ.cpp</a>: ECHONET Lite object manager class. It is required by <a class="el" href="_e_l_8h.html" title="ECHONET Lite protocol for Arduino">EL.h</a></li>
 </ul>
 <h1><a class="anchor" id="autotoc_md16"></a>
 Limitations</h1>
@@ -518,7 +518,7 @@ Know-how</h1>
 </ul>
 <div class="fragment"><div class="line">details[ 0xE0 ] = (byte[]){0x01, soundNumber}; // power</div>
 </div><!-- fragment --><ul>
-<li>If occuring reboot when receiving a packet (ESV is SETC), it seems that EL.returner function occurs an error probably.<ul>
+<li>If occuring reboot when receiving a packet (ESV is SETC), it seems that <a class="el" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed">EL.returner</a> function occurs an error probably.<ul>
 <li>Please set details (EDT) as following.</li>
 </ul>
 </li>
@@ -533,7 +533,7 @@ Version</h1>
 <li>2.0.0 change memory management, cope with memory leak.</li>
 <li>1.3.0 deal with Node profile object, error case EPC, be searched and debug mode define.</li>
 <li>1.2.2 details bug fix</li>
-<li>1.2.1 <a class="el" href="class_e_l.html">EL</a> Object code defines</li>
+<li>1.2.1 <a class="el" href="class_e_l.html" title="Main class for EL">EL</a> Object code defines</li>
 <li>1.2.0 Readme, keywords, library.json, library.properties</li>
 <li>1.1.0 organized for m5stack</li>
 <li>1.0.0 M5Stack</li>

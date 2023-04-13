@@ -1,0 +1,2264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.6"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>EL_dev_arduino: /Users/sugimura/EL_dev_arduino/EL.h ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">EL_dev_arduino<span id="projectnumber">&#160;2.2.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.6 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">クラス</a> &#124;
+<a href="#define-members">マクロ定義</a>  </div>
+  <div class="headertitle"><div class="title">/Users/sugimura/EL_dev_arduino/EL.h ファイル</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>ECHONET Lite protocol for Arduino  
+<a href="#details">[詳解]</a></p>
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &lt;WiFi.h&gt;</code><br />
+<code>#include &lt;WiFiUDP.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="_e_l_o_b_j_8h_source.html">ELOBJ.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+EL.h の依存先関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="_e_l_8h__incl.png" border="0" usemap="#a_2_users_2sugimura_2_e_l__dev__arduino_2_e_l_8h" alt=""/></div>
+<map name="a_2_users_2sugimura_2_e_l__dev__arduino_2_e_l_8h" id="a_2_users_2sugimura_2_e_l__dev__arduino_2_e_l_8h">
+<area shape="rect" title="ECHONET Lite protocol for Arduino" alt="" coords="31,5,169,45"/>
+<area shape="rect" title=" " alt="" coords="32,167,109,192"/>
+<area shape="rect" title=" " alt="" coords="22,93,82,119"/>
+<area shape="rect" title=" " alt="" coords="106,93,193,119"/>
+<area shape="rect" href="_e_l_o_b_j_8h.html" title="Subclasses for ECHONET Lite protocol" alt="" coords="217,93,292,119"/>
+<area shape="rect" title=" " alt="" coords="219,167,291,192"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+被依存関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="_e_l_8h__dep__incl.png" border="0" usemap="#a_2_users_2sugimura_2_e_l__dev__arduino_2_e_l_8hdep" alt=""/></div>
+<map name="a_2_users_2sugimura_2_e_l__dev__arduino_2_e_l_8hdep" id="a_2_users_2sugimura_2_e_l__dev__arduino_2_e_l_8hdep">
+<area shape="rect" title="ECHONET Lite protocol for Arduino" alt="" coords="96,5,235,45"/>
+<area shape="rect" href="_e_l_8cpp.html" title="ECHONET Lite protocol for Arduino" alt="" coords="5,101,149,141"/>
+<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="174,93,333,148"/>
+</map>
+</div>
+</div>
+<p><a href="_e_l_8h_source.html">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+クラス</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html">EL</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main class for <a class="el" href="class_e_l.html" title="Main class for EL">EL</a>  <a href="class_e_l.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+マクロ定義</h2></td></tr>
+<tr class="memitem:ae902eadd93f0e35053ae7ca5a81cfa89"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ae902eadd93f0e35053ae7ca5a81cfa89">EL_PORT</a>&#160;&#160;&#160;3610</td></tr>
+<tr class="memdesc:ae902eadd93f0e35053ae7ca5a81cfa89"><td class="mdescLeft">&#160;</td><td class="mdescRight">ECHONET Lite port  <br /></td></tr>
+<tr class="separator:ae902eadd93f0e35053ae7ca5a81cfa89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f8e49058669d7cbd394bf6fb1e94b5a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a1f8e49058669d7cbd394bf6fb1e94b5a">EL_EHD1</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a1f8e49058669d7cbd394bf6fb1e94b5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee7649b1fe84e37e666f07b54a84cbb2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#aee7649b1fe84e37e666f07b54a84cbb2">EL_EHD2</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:aee7649b1fe84e37e666f07b54a84cbb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d25d4edd535b15b5cd9ca4c3a93b39b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a5d25d4edd535b15b5cd9ca4c3a93b39b">EL_TID</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a5d25d4edd535b15b5cd9ca4c3a93b39b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80145ed735dde460381a33897aab1f49"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a80145ed735dde460381a33897aab1f49">EL_SEOJ</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a80145ed735dde460381a33897aab1f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a327ff2b55665c27e0b5613fb00b29a07"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a327ff2b55665c27e0b5613fb00b29a07">EL_DEOJ</a>&#160;&#160;&#160;7</td></tr>
+<tr class="separator:a327ff2b55665c27e0b5613fb00b29a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad29cb137ee0069ea9cc3b963fa0b482"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#aad29cb137ee0069ea9cc3b963fa0b482">EL_ESV</a>&#160;&#160;&#160;10</td></tr>
+<tr class="separator:aad29cb137ee0069ea9cc3b963fa0b482"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ba6f4a08a78f08513faf6e32e203156"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a2ba6f4a08a78f08513faf6e32e203156">EL_OPC</a>&#160;&#160;&#160;11</td></tr>
+<tr class="separator:a2ba6f4a08a78f08513faf6e32e203156"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae63a0a5f8dc037c6eaf663de947c9920"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ae63a0a5f8dc037c6eaf663de947c9920">EL_EPC</a>&#160;&#160;&#160;12</td></tr>
+<tr class="separator:ae63a0a5f8dc037c6eaf663de947c9920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a493c1ee1967c7878e66f62fea995708d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a493c1ee1967c7878e66f62fea995708d">EL_PDC</a>&#160;&#160;&#160;13</td></tr>
+<tr class="separator:a493c1ee1967c7878e66f62fea995708d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8c5ea9d70b811aaee912df4e1f276e8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#af8c5ea9d70b811aaee912df4e1f276e8">EL_EDT</a>&#160;&#160;&#160;14</td></tr>
+<tr class="separator:af8c5ea9d70b811aaee912df4e1f276e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eb66c4d908168287a40d3a0f8012895"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a9eb66c4d908168287a40d3a0f8012895">EL_SETI_SNA</a>&#160;&#160;&#160;0x50</td></tr>
+<tr class="separator:a9eb66c4d908168287a40d3a0f8012895"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49a652db5cf846e914b54ee4dad7f9c2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a49a652db5cf846e914b54ee4dad7f9c2">EL_SETC_SNA</a>&#160;&#160;&#160;0x51</td></tr>
+<tr class="separator:a49a652db5cf846e914b54ee4dad7f9c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab671f4e61aeb3570bf50fe82253a88ff"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ab671f4e61aeb3570bf50fe82253a88ff">EL_GET_SNA</a>&#160;&#160;&#160;0x52</td></tr>
+<tr class="separator:ab671f4e61aeb3570bf50fe82253a88ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8137e3013f6aaf6d511c82b8026fc2d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a8137e3013f6aaf6d511c82b8026fc2d5">EL_INF_SNA</a>&#160;&#160;&#160;0x53</td></tr>
+<tr class="separator:a8137e3013f6aaf6d511c82b8026fc2d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15fb8bb20dee7a34ab23652cf774f025"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a15fb8bb20dee7a34ab23652cf774f025">EL_SETGET_SNA</a>&#160;&#160;&#160;0x5e</td></tr>
+<tr class="separator:a15fb8bb20dee7a34ab23652cf774f025"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d5bc2dec72038fae017d2cee9fd98e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ab8d5bc2dec72038fae017d2cee9fd98e">EL_SETI</a>&#160;&#160;&#160;0x60</td></tr>
+<tr class="separator:ab8d5bc2dec72038fae017d2cee9fd98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66c95a66020ac347d93790db1d19ca35"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a66c95a66020ac347d93790db1d19ca35">EL_SETC</a>&#160;&#160;&#160;0x61</td></tr>
+<tr class="separator:a66c95a66020ac347d93790db1d19ca35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8039f476040ad279236aaf3d9cbc7b8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#aa8039f476040ad279236aaf3d9cbc7b8">EL_GET</a>&#160;&#160;&#160;0x62</td></tr>
+<tr class="separator:aa8039f476040ad279236aaf3d9cbc7b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6ad1ae3707ec7dc2443a5136843fa64"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ab6ad1ae3707ec7dc2443a5136843fa64">EL_INF_REQ</a>&#160;&#160;&#160;0x63</td></tr>
+<tr class="separator:ab6ad1ae3707ec7dc2443a5136843fa64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ac36c812239fdbce383d1b2cd344558"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a2ac36c812239fdbce383d1b2cd344558">EL_SETGET</a>&#160;&#160;&#160;0x6e</td></tr>
+<tr class="separator:a2ac36c812239fdbce383d1b2cd344558"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a989d41cd6db0d1fe96e15bbc6d16d3e3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a989d41cd6db0d1fe96e15bbc6d16d3e3">EL_SET_RES</a>&#160;&#160;&#160;0x71</td></tr>
+<tr class="separator:a989d41cd6db0d1fe96e15bbc6d16d3e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f3ada3f4eb76851ad2c6f3b3c00d4cf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a8f3ada3f4eb76851ad2c6f3b3c00d4cf">EL_GET_RES</a>&#160;&#160;&#160;0x72</td></tr>
+<tr class="separator:a8f3ada3f4eb76851ad2c6f3b3c00d4cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac54a2da91228b7619235eb91519c1491"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ac54a2da91228b7619235eb91519c1491">EL_INF</a>&#160;&#160;&#160;0x73</td></tr>
+<tr class="separator:ac54a2da91228b7619235eb91519c1491"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cc7c29618b0523aa1ebcece26c30a50"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a7cc7c29618b0523aa1ebcece26c30a50">EL_INFC</a>&#160;&#160;&#160;0x74</td></tr>
+<tr class="separator:a7cc7c29618b0523aa1ebcece26c30a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7a132789c6d2d4fafefa9d14bf89fa7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ad7a132789c6d2d4fafefa9d14bf89fa7">EL_INFC_RES</a>&#160;&#160;&#160;0x7a</td></tr>
+<tr class="separator:ad7a132789c6d2d4fafefa9d14bf89fa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa998bf6ad00ce30a7fe638c5c317891b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#aa998bf6ad00ce30a7fe638c5c317891b">EL_SETGET_RES</a>&#160;&#160;&#160;0x7e</td></tr>
+<tr class="separator:aa998bf6ad00ce30a7fe638c5c317891b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01f8b3aac63d16c12240173b35a354d1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a01f8b3aac63d16c12240173b35a354d1">EL_BUFFER_SIZE</a>&#160;&#160;&#160;256</td></tr>
+<tr class="separator:a01f8b3aac63d16c12240173b35a354d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d5ddb646e6f3ea314b09fb7e397467f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a4d5ddb646e6f3ea314b09fb7e397467f">EL_GasLeakSensor</a>&#160;&#160;&#160;0x00, 0x01</td></tr>
+<tr class="memdesc:a4d5ddb646e6f3ea314b09fb7e397467f"><td class="mdescLeft">&#160;</td><td class="mdescRight">ガス漏れセンサ  <br /></td></tr>
+<tr class="separator:a4d5ddb646e6f3ea314b09fb7e397467f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdef54c8a5ca8f4bcca0258afc916280"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#acdef54c8a5ca8f4bcca0258afc916280">EL_CrimePreventionSensor</a>&#160;&#160;&#160;0x00, 0x02</td></tr>
+<tr class="separator:acdef54c8a5ca8f4bcca0258afc916280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa38f3df5f34327f21c152ffebc47ae77"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#aa38f3df5f34327f21c152ffebc47ae77">EL_EmergencyButton</a>&#160;&#160;&#160;0x00, 0x03</td></tr>
+<tr class="separator:aa38f3df5f34327f21c152ffebc47ae77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16d47097c63806de9db8659d99cf5cde"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a16d47097c63806de9db8659d99cf5cde">EL_FirstAidSensor</a>&#160;&#160;&#160;0x00, 0x04</td></tr>
+<tr class="separator:a16d47097c63806de9db8659d99cf5cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2118bbf40d190473311ee5d609485ccc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a2118bbf40d190473311ee5d609485ccc">EL_EarthquakeSensor</a>&#160;&#160;&#160;0x00, 0x05</td></tr>
+<tr class="separator:a2118bbf40d190473311ee5d609485ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1e236b36f48040f8a841253e4e8ac17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#aa1e236b36f48040f8a841253e4e8ac17">EL_ElectricLeakSensor</a>&#160;&#160;&#160;0x00, 0x06</td></tr>
+<tr class="separator:aa1e236b36f48040f8a841253e4e8ac17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd0c9c4d588a99d8368731b079ce59a5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#afd0c9c4d588a99d8368731b079ce59a5">EL_HumanDetectionSensor</a>&#160;&#160;&#160;0x00, 0x07</td></tr>
+<tr class="separator:afd0c9c4d588a99d8368731b079ce59a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a329ebc0d742e9093bcce68fd85a0bb9b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a329ebc0d742e9093bcce68fd85a0bb9b">EL_VisitorSensor</a>&#160;&#160;&#160;0x00, 0x08</td></tr>
+<tr class="separator:a329ebc0d742e9093bcce68fd85a0bb9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc11b21bad1ed5296109bc791558ece8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#afc11b21bad1ed5296109bc791558ece8">EL_CallSensor</a>&#160;&#160;&#160;0x00, 0x09</td></tr>
+<tr class="separator:afc11b21bad1ed5296109bc791558ece8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fd039b998fa747004f6081cf29727cd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a4fd039b998fa747004f6081cf29727cd">EL_CondensationSensor</a>&#160;&#160;&#160;0x00, 0x0A</td></tr>
+<tr class="separator:a4fd039b998fa747004f6081cf29727cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae19c7dd59de4572e26b1ed9c1469d870"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ae19c7dd59de4572e26b1ed9c1469d870">EL_AirPollutionSensor</a>&#160;&#160;&#160;0x00, 0x0B</td></tr>
+<tr class="separator:ae19c7dd59de4572e26b1ed9c1469d870"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa22b401051d619a84185faf21b3aea67"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#aa22b401051d619a84185faf21b3aea67">EL_OxygenSensor</a>&#160;&#160;&#160;0x00, 0x0C</td></tr>
+<tr class="separator:aa22b401051d619a84185faf21b3aea67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1eb6a3af7b9e1b3d398b65d9e6a2ab5f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a1eb6a3af7b9e1b3d398b65d9e6a2ab5f">EL_IlluminanceSensor</a>&#160;&#160;&#160;0x00, 0x0D</td></tr>
+<tr class="separator:a1eb6a3af7b9e1b3d398b65d9e6a2ab5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a0a9a7763f1dc7d2a7ff233126e11b3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a5a0a9a7763f1dc7d2a7ff233126e11b3">EL_SoundSensor</a>&#160;&#160;&#160;0x00, 0x0E</td></tr>
+<tr class="separator:a5a0a9a7763f1dc7d2a7ff233126e11b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81f2db1ce125ffc224a47b765589ea76"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a81f2db1ce125ffc224a47b765589ea76">EL_MailingSensor</a>&#160;&#160;&#160;0x00, 0x0F</td></tr>
+<tr class="separator:a81f2db1ce125ffc224a47b765589ea76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c46f550ed98013d588644fba5038725"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a9c46f550ed98013d588644fba5038725">EL_WeightSensor</a>&#160;&#160;&#160;0x00, 0x10</td></tr>
+<tr class="separator:a9c46f550ed98013d588644fba5038725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee773fa9798169e87d377279b4cef06f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#aee773fa9798169e87d377279b4cef06f">EL_TemperatureSensor</a>&#160;&#160;&#160;0x00, 0x11</td></tr>
+<tr class="separator:aee773fa9798169e87d377279b4cef06f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44b5b946a7dc3f7d47ebb7d68508d60c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a44b5b946a7dc3f7d47ebb7d68508d60c">EL_HumiditySensor</a>&#160;&#160;&#160;0x00, 0x12</td></tr>
+<tr class="separator:a44b5b946a7dc3f7d47ebb7d68508d60c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7662a58a702f78f2f2bbbc7a41a0e527"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a7662a58a702f78f2f2bbbc7a41a0e527">EL_RainSensor</a>&#160;&#160;&#160;0x00, 0x13</td></tr>
+<tr class="separator:a7662a58a702f78f2f2bbbc7a41a0e527"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2b629da2dea6c704a2db10f3891de1d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ab2b629da2dea6c704a2db10f3891de1d">EL_WaterLevelSensor</a>&#160;&#160;&#160;0x00, 0x14</td></tr>
+<tr class="separator:ab2b629da2dea6c704a2db10f3891de1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3042f02289c9ebee755179b429e436ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a3042f02289c9ebee755179b429e436ab">EL_BathWaterLevelSensor</a>&#160;&#160;&#160;0x00, 0x15</td></tr>
+<tr class="separator:a3042f02289c9ebee755179b429e436ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4b63dd3d696fc0e4a932d0dfbf106cd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#af4b63dd3d696fc0e4a932d0dfbf106cd">EL_BathHeatingStatusSensor</a>&#160;&#160;&#160;0x00, 0x16</td></tr>
+<tr class="separator:af4b63dd3d696fc0e4a932d0dfbf106cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fe28fa41dd74c43fa30a2cb325a82b4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a0fe28fa41dd74c43fa30a2cb325a82b4">EL_WaterLeakSensor</a>&#160;&#160;&#160;0x00, 0x17</td></tr>
+<tr class="separator:a0fe28fa41dd74c43fa30a2cb325a82b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac623513663bc3db5a752f6323d0a653f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ac623513663bc3db5a752f6323d0a653f">EL_WaterOverflowSensor</a>&#160;&#160;&#160;0x00, 0x18</td></tr>
+<tr class="separator:ac623513663bc3db5a752f6323d0a653f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a252e17aa7e3ab6cd872c1eecc2288a4c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a252e17aa7e3ab6cd872c1eecc2288a4c">EL_FireSensor</a>&#160;&#160;&#160;0x00, 0x19</td></tr>
+<tr class="separator:a252e17aa7e3ab6cd872c1eecc2288a4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0176a6e564976beba95b01f559eb2933"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a0176a6e564976beba95b01f559eb2933">EL_CigaretteSmokeSensor</a>&#160;&#160;&#160;0x00, 0x1A</td></tr>
+<tr class="separator:a0176a6e564976beba95b01f559eb2933"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7beb800f32be7b1410d4687829f94ec"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ad7beb800f32be7b1410d4687829f94ec">EL_CO2Sensor</a>&#160;&#160;&#160;0x00, 0x1B</td></tr>
+<tr class="separator:ad7beb800f32be7b1410d4687829f94ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af88f3c282ca4e09553790be179c2cffc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#af88f3c282ca4e09553790be179c2cffc">EL_GasSensor</a>&#160;&#160;&#160;0x00, 0x1C</td></tr>
+<tr class="separator:af88f3c282ca4e09553790be179c2cffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad077caf7d61ecb3f4dcb5230f68bd16d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ad077caf7d61ecb3f4dcb5230f68bd16d">EL_VOCSensor</a>&#160;&#160;&#160;0x00, 0x1D</td></tr>
+<tr class="separator:ad077caf7d61ecb3f4dcb5230f68bd16d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d2e58a1cbd61e7203ed40785dbf2da6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a7d2e58a1cbd61e7203ed40785dbf2da6">EL_DifferentialPressureSensor</a>&#160;&#160;&#160;0x00, 0x1E</td></tr>
+<tr class="separator:a7d2e58a1cbd61e7203ed40785dbf2da6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf731d2c770ff39c6f6ebbb463778bcd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#aaf731d2c770ff39c6f6ebbb463778bcd">EL_AirSpeedSensor</a>&#160;&#160;&#160;0x00, 0x1F</td></tr>
+<tr class="separator:aaf731d2c770ff39c6f6ebbb463778bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93868d816ef4c143ed6774b4e359d4fe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a93868d816ef4c143ed6774b4e359d4fe">EL_OdorSensor</a>&#160;&#160;&#160;0x00, 0x20</td></tr>
+<tr class="separator:a93868d816ef4c143ed6774b4e359d4fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3c3af791fab970aafb0ef9ab67a08dd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ad3c3af791fab970aafb0ef9ab67a08dd">EL_FlameSensor</a>&#160;&#160;&#160;0x00, 0x21</td></tr>
+<tr class="separator:ad3c3af791fab970aafb0ef9ab67a08dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0096b0239a6071b0c91921e683f9e911"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a0096b0239a6071b0c91921e683f9e911">EL_ElectricEnergySensor</a>&#160;&#160;&#160;0x00, 0x22</td></tr>
+<tr class="separator:a0096b0239a6071b0c91921e683f9e911"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18dd33a2dc2b02f83cf0fe2387dc3942"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a18dd33a2dc2b02f83cf0fe2387dc3942">EL_CurrentValueSensor</a>&#160;&#160;&#160;0x00, 0x23</td></tr>
+<tr class="separator:a18dd33a2dc2b02f83cf0fe2387dc3942"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71916f636320e55724447bc84f6b7e51"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a71916f636320e55724447bc84f6b7e51">EL_WaterFlowRateSensor</a>&#160;&#160;&#160;0x00, 0x25</td></tr>
+<tr class="separator:a71916f636320e55724447bc84f6b7e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0479635460a4e3c917272220bf5cb325"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a0479635460a4e3c917272220bf5cb325">EL_MicromotionSensor</a>&#160;&#160;&#160;0x00, 0x26</td></tr>
+<tr class="separator:a0479635460a4e3c917272220bf5cb325"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47b027f5ef72982dd056a774c675fd3f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a47b027f5ef72982dd056a774c675fd3f">EL_PassageSensor</a>&#160;&#160;&#160;0x00, 0x27</td></tr>
+<tr class="separator:a47b027f5ef72982dd056a774c675fd3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19360a54a918232016ece35cf06a34c7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a19360a54a918232016ece35cf06a34c7">EL_BedPresenceSensor</a>&#160;&#160;&#160;0x00, 0x28</td></tr>
+<tr class="separator:a19360a54a918232016ece35cf06a34c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a442cf01c155df093ce80bfa1ad709909"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a442cf01c155df093ce80bfa1ad709909">EL_OpenCloseSensor</a>&#160;&#160;&#160;0x00, 0x29</td></tr>
+<tr class="separator:a442cf01c155df093ce80bfa1ad709909"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a166fbc0e4e3d86c35e0cbc07bce52bf7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a166fbc0e4e3d86c35e0cbc07bce52bf7">EL_ActivityAmountSensor</a>&#160;&#160;&#160;0x00, 0x2A</td></tr>
+<tr class="separator:a166fbc0e4e3d86c35e0cbc07bce52bf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf6cbf8b76186ca0bdc4c549a2c016a4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#adf6cbf8b76186ca0bdc4c549a2c016a4">EL_HumanBodyLocationSensor</a>&#160;&#160;&#160;0x00, 0x2B</td></tr>
+<tr class="separator:adf6cbf8b76186ca0bdc4c549a2c016a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1967364990f25e2741611e0eb0a5269d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a1967364990f25e2741611e0eb0a5269d">EL_SnowSensor</a>&#160;&#160;&#160;0x00, 0x2C</td></tr>
+<tr class="separator:a1967364990f25e2741611e0eb0a5269d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a35b4d401ac89ea910f8db572e5bb42"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a6a35b4d401ac89ea910f8db572e5bb42">EL_HomeAirConditioner</a>&#160;&#160;&#160;0x01, 0x30</td></tr>
+<tr class="separator:a6a35b4d401ac89ea910f8db572e5bb42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1a9c99dcf8f0e067275b6064ca384bb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#aa1a9c99dcf8f0e067275b6064ca384bb">EL_VentilationFan</a>&#160;&#160;&#160;0x01, 0x32</td></tr>
+<tr class="separator:aa1a9c99dcf8f0e067275b6064ca384bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e70902a6a39d7c085ad2be68b0c315a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a9e70902a6a39d7c085ad2be68b0c315a">EL_AirConditionerVentilationFan</a>&#160;&#160;&#160;0x01, 0x34</td></tr>
+<tr class="separator:a9e70902a6a39d7c085ad2be68b0c315a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4754adbbf07bc086b5d8b9f964283ca5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a4754adbbf07bc086b5d8b9f964283ca5">EL_AirCleaner</a>&#160;&#160;&#160;0x01, 0x35</td></tr>
+<tr class="separator:a4754adbbf07bc086b5d8b9f964283ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c956881335a04206d7c6fc128a56efe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a0c956881335a04206d7c6fc128a56efe">EL_Humidifier</a>&#160;&#160;&#160;0x01, 0x39</td></tr>
+<tr class="separator:a0c956881335a04206d7c6fc128a56efe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1f5684d1a263fd45a9839c12044f840"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ad1f5684d1a263fd45a9839c12044f840">EL_ElectricHeater</a>&#160;&#160;&#160;0x01, 0x42</td></tr>
+<tr class="separator:ad1f5684d1a263fd45a9839c12044f840"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36f8f1cb3c144352d6a21cebcad81f6e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a36f8f1cb3c144352d6a21cebcad81f6e">EL_FanHeater</a>&#160;&#160;&#160;0x01, 0x43</td></tr>
+<tr class="separator:a36f8f1cb3c144352d6a21cebcad81f6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7af9428b1e34cf5ab051b3b19cde3dce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a7af9428b1e34cf5ab051b3b19cde3dce">EL_PackageTypeCommercialAirConditionerIndoorUnit</a>&#160;&#160;&#160;0x01, 0x56</td></tr>
+<tr class="separator:a7af9428b1e34cf5ab051b3b19cde3dce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f4584ad5b8268e5b74a4c5cf045ea60"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a2f4584ad5b8268e5b74a4c5cf045ea60">EL_PackageTypeCommercialAirConditionerOutdoorUnit</a>&#160;&#160;&#160;0x01, 0x57</td></tr>
+<tr class="separator:a2f4584ad5b8268e5b74a4c5cf045ea60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c42b877fcfe39ba1a5f1608a408293c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a0c42b877fcfe39ba1a5f1608a408293c">EL_ElectricallyOperatedShade</a>&#160;&#160;&#160;0x02, 0x60</td></tr>
+<tr class="separator:a0c42b877fcfe39ba1a5f1608a408293c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab25d552b528aae9368cdf2765e1ded12"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ab25d552b528aae9368cdf2765e1ded12">EL_ElectricShutter</a>&#160;&#160;&#160;0x02, 0x61</td></tr>
+<tr class="separator:ab25d552b528aae9368cdf2765e1ded12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2666fb88fd6f7b764ee09660abdd4e8e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a2666fb88fd6f7b764ee09660abdd4e8e">EL_ElectricStormWindow</a>&#160;&#160;&#160;0x02, 0x63</td></tr>
+<tr class="separator:a2666fb88fd6f7b764ee09660abdd4e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fb0e92bf4a6dbe384b21e36c643c71a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a1fb0e92bf4a6dbe384b21e36c643c71a">EL_Sprinkler</a>&#160;&#160;&#160;0x02, 0x67</td></tr>
+<tr class="separator:a1fb0e92bf4a6dbe384b21e36c643c71a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22d561215ac451fe8479389e3daa8123"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a22d561215ac451fe8479389e3daa8123">EL_ElectricWaterHeater</a>&#160;&#160;&#160;0x02, 0x6B</td></tr>
+<tr class="separator:a22d561215ac451fe8479389e3daa8123"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3414a62746522de28e78b9424581a06a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a3414a62746522de28e78b9424581a06a">EL_ElectricToiletSeat</a>&#160;&#160;&#160;0x02, 0x6E</td></tr>
+<tr class="separator:a3414a62746522de28e78b9424581a06a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae117e8c3ec41f1c98598e79cd0fef3f5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ae117e8c3ec41f1c98598e79cd0fef3f5">EL_ElectricLock</a>&#160;&#160;&#160;0x02, 0x6F</td></tr>
+<tr class="separator:ae117e8c3ec41f1c98598e79cd0fef3f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac402eb5c9363cb2424444e47f697e743"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ac402eb5c9363cb2424444e47f697e743">EL_InstantaneousWaterHeater</a>&#160;&#160;&#160;0x02, 0x72</td></tr>
+<tr class="separator:ac402eb5c9363cb2424444e47f697e743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae46f9839d2b9a7a2bf3e58f3e051ec5a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ae46f9839d2b9a7a2bf3e58f3e051ec5a">EL_BathroomHeaterAndDryer</a>&#160;&#160;&#160;0x02, 0x73</td></tr>
+<tr class="separator:ae46f9839d2b9a7a2bf3e58f3e051ec5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb600ea664f19e925e59195d555f4d7f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#acb600ea664f19e925e59195d555f4d7f">EL_HouseholdSolarPowerGeneration</a>&#160;&#160;&#160;0x02, 0x79</td></tr>
+<tr class="separator:acb600ea664f19e925e59195d555f4d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab67d44a55550a4ee0e7ea7e5d34172a5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ab67d44a55550a4ee0e7ea7e5d34172a5">EL_ColdOrHotWaterHeatSourceEquipment</a>&#160;&#160;&#160;0x02, 0x7A</td></tr>
+<tr class="separator:ab67d44a55550a4ee0e7ea7e5d34172a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b7c2aa0f11fa3ed7d34e06005ed5ef1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a7b7c2aa0f11fa3ed7d34e06005ed5ef1">EL_FloorHeater</a>&#160;&#160;&#160;0x02, 0x7B</td></tr>
+<tr class="separator:a7b7c2aa0f11fa3ed7d34e06005ed5ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a540d460898f833ee797e234118340f49"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a540d460898f833ee797e234118340f49">EL_FuelCell</a>&#160;&#160;&#160;0x02, 0x7C</td></tr>
+<tr class="separator:a540d460898f833ee797e234118340f49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd42f41f5f22b265969f9e0267413b04"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#acd42f41f5f22b265969f9e0267413b04">EL_Battery</a>&#160;&#160;&#160;0x02, 0x7D</td></tr>
+<tr class="separator:acd42f41f5f22b265969f9e0267413b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1de883f243fa0d39fc3fcfd19f062500"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a1de883f243fa0d39fc3fcfd19f062500">EL_ElectricVehicle</a>&#160;&#160;&#160;0x02, 0x7E</td></tr>
+<tr class="separator:a1de883f243fa0d39fc3fcfd19f062500"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee7c3a2d19d6887cba89b2148da8ed2c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#aee7c3a2d19d6887cba89b2148da8ed2c">EL_EngineCogeneration</a>&#160;&#160;&#160;0x02, 0x7F</td></tr>
+<tr class="separator:aee7c3a2d19d6887cba89b2148da8ed2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2c0c471877a8a906bdf3fe46bbab70b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ac2c0c471877a8a906bdf3fe46bbab70b">EL_WattHourMeter</a>&#160;&#160;&#160;0x02, 0x80</td></tr>
+<tr class="separator:ac2c0c471877a8a906bdf3fe46bbab70b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd4ae079c3839a89cb6de242dc31381f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#abd4ae079c3839a89cb6de242dc31381f">EL_WaterFlowmeter</a>&#160;&#160;&#160;0x02, 0x81</td></tr>
+<tr class="separator:abd4ae079c3839a89cb6de242dc31381f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8327eced8cb796435e7cd06a51af2f4f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a8327eced8cb796435e7cd06a51af2f4f">EL_GasMeter</a>&#160;&#160;&#160;0x02, 0x82</td></tr>
+<tr class="separator:a8327eced8cb796435e7cd06a51af2f4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9cc0b3d6bd4f92b3fd9836951e80b58"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ad9cc0b3d6bd4f92b3fd9836951e80b58">EL_LPGasMeter</a>&#160;&#160;&#160;0x02, 0x83</td></tr>
+<tr class="separator:ad9cc0b3d6bd4f92b3fd9836951e80b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92208101e10e5424e5e3c528a2fa233c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a92208101e10e5424e5e3c528a2fa233c">EL_PowerDistributionBoardMetering</a>&#160;&#160;&#160;0x02, 0x87</td></tr>
+<tr class="separator:a92208101e10e5424e5e3c528a2fa233c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a27199817b775f2f3ae883e9ce24cbd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a8a27199817b775f2f3ae883e9ce24cbd">EL_SmartElectricEnergyMeter</a>&#160;&#160;&#160;0x02, 0x88</td></tr>
+<tr class="separator:a8a27199817b775f2f3ae883e9ce24cbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65926e89051eaba52d361c5223126a60"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a65926e89051eaba52d361c5223126a60">EL_SmartGasMeter</a>&#160;&#160;&#160;0x02, 0x89</td></tr>
+<tr class="separator:a65926e89051eaba52d361c5223126a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ee846d24c7857b2d990c54564a8e82c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a9ee846d24c7857b2d990c54564a8e82c">EL_GeneralLighting</a>&#160;&#160;&#160;0x02, 0x90</td></tr>
+<tr class="separator:a9ee846d24c7857b2d990c54564a8e82c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac42410a24850aed845ef0e00292b25ce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ac42410a24850aed845ef0e00292b25ce">EL_Buzzer</a>&#160;&#160;&#160;0x02, 0xA0</td></tr>
+<tr class="separator:ac42410a24850aed845ef0e00292b25ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa92070e69405ea81d9c433eeb7acfca4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#aa92070e69405ea81d9c433eeb7acfca4">EL_ElectricHotWaterPot</a>&#160;&#160;&#160;0x03, 0xB2</td></tr>
+<tr class="separator:aa92070e69405ea81d9c433eeb7acfca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adacd33cd3c88dec3ab7d4c75d2e2a4c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#adacd33cd3c88dec3ab7d4c75d2e2a4c9">EL_Refrigerator</a>&#160;&#160;&#160;0x03, 0xB7</td></tr>
+<tr class="separator:adacd33cd3c88dec3ab7d4c75d2e2a4c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbe069157acb4d6b52a81d767b0b75ac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#adbe069157acb4d6b52a81d767b0b75ac">EL_CombinationMicrowaveOven</a>&#160;&#160;&#160;0x03, 0xB8</td></tr>
+<tr class="separator:adbe069157acb4d6b52a81d767b0b75ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72c8b5bf8c0c47dfeb373e5b5fd65bd4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a72c8b5bf8c0c47dfeb373e5b5fd65bd4">EL_CookingHeater</a>&#160;&#160;&#160;0x03, 0xB9</td></tr>
+<tr class="separator:a72c8b5bf8c0c47dfeb373e5b5fd65bd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd4e68c1ebc3c6a0e77c0bc8ef35ae17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#abd4e68c1ebc3c6a0e77c0bc8ef35ae17">EL_RiceCooker</a>&#160;&#160;&#160;0x03, 0xBB</td></tr>
+<tr class="separator:abd4e68c1ebc3c6a0e77c0bc8ef35ae17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bdd95b8b206008afb6054b531da3ee2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a6bdd95b8b206008afb6054b531da3ee2">EL_WashingMachine</a>&#160;&#160;&#160;0x03, 0xC5</td></tr>
+<tr class="separator:a6bdd95b8b206008afb6054b531da3ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab10564e2f7ebab24b24a3db6527bd67e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ab10564e2f7ebab24b24a3db6527bd67e">EL_ClothesDryer</a>&#160;&#160;&#160;0x03, 0xC6</td></tr>
+<tr class="separator:ab10564e2f7ebab24b24a3db6527bd67e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cecaac06c229b8001ffc9d5d625a376"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a1cecaac06c229b8001ffc9d5d625a376">EL_WasherAndDryer</a>&#160;&#160;&#160;0x03, 0xD3</td></tr>
+<tr class="separator:a1cecaac06c229b8001ffc9d5d625a376"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a77e6f10192d0ba6fe2ac585aa18b7e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a0a77e6f10192d0ba6fe2ac585aa18b7e">EL_Weighing</a>&#160;&#160;&#160;0x04, 0x01</td></tr>
+<tr class="separator:a0a77e6f10192d0ba6fe2ac585aa18b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5541e7a61b16be1d232270f4a4c76525"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a5541e7a61b16be1d232270f4a4c76525">EL_Switch</a>&#160;&#160;&#160;0x05, 0xFD</td></tr>
+<tr class="separator:a5541e7a61b16be1d232270f4a4c76525"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a71a5644b4b025e982fa8074a116e08"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#a3a71a5644b4b025e982fa8074a116e08">EL_Controller</a>&#160;&#160;&#160;0x05, 0xFF</td></tr>
+<tr class="separator:a3a71a5644b4b025e982fa8074a116e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae752e7056f66086474f29b991e69cf72"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ae752e7056f66086474f29b991e69cf72">EL_Display</a>&#160;&#160;&#160;0x06, 0x01</td></tr>
+<tr class="separator:ae752e7056f66086474f29b991e69cf72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab327a18432d3dd18b30fd7b0fda85d69"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_e_l_8h.html#ab327a18432d3dd18b30fd7b0fda85d69">EL_Television</a>&#160;&#160;&#160;0x06, 0x02</td></tr>
+<tr class="separator:ab327a18432d3dd18b30fd7b0fda85d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>ECHONET Lite protocol for Arduino </p>
+<dl class="section author"><dt>著者</dt><dd>SUGIMURA Hiroshi </dd></dl>
+<dl class="section date"><dt>日付</dt><dd>2013.09.27</dd></dl>
+<p><a href="https://github.com/Hiroshi-Sugimura/EL_dev_arduino">https://github.com/Hiroshi-Sugimura/EL_dev_arduino</a> </p>
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> に定義があります。</p>
+</div><h2 class="groupheader">マクロ定義詳解</h2>
+<a id="a166fbc0e4e3d86c35e0cbc07bce52bf7" name="a166fbc0e4e3d86c35e0cbc07bce52bf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a166fbc0e4e3d86c35e0cbc07bce52bf7">&#9670;&#160;</a></span>EL_ActivityAmountSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ActivityAmountSensor&#160;&#160;&#160;0x00, 0x2A</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00090">90</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a4754adbbf07bc086b5d8b9f964283ca5" name="a4754adbbf07bc086b5d8b9f964283ca5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4754adbbf07bc086b5d8b9f964283ca5">&#9670;&#160;</a></span>EL_AirCleaner</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_AirCleaner&#160;&#160;&#160;0x01, 0x35</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00097">97</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a9e70902a6a39d7c085ad2be68b0c315a" name="a9e70902a6a39d7c085ad2be68b0c315a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e70902a6a39d7c085ad2be68b0c315a">&#9670;&#160;</a></span>EL_AirConditionerVentilationFan</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_AirConditionerVentilationFan&#160;&#160;&#160;0x01, 0x34</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00096">96</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ae19c7dd59de4572e26b1ed9c1469d870" name="ae19c7dd59de4572e26b1ed9c1469d870"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae19c7dd59de4572e26b1ed9c1469d870">&#9670;&#160;</a></span>EL_AirPollutionSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_AirPollutionSensor&#160;&#160;&#160;0x00, 0x0B</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00060">60</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aaf731d2c770ff39c6f6ebbb463778bcd" name="aaf731d2c770ff39c6f6ebbb463778bcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf731d2c770ff39c6f6ebbb463778bcd">&#9670;&#160;</a></span>EL_AirSpeedSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_AirSpeedSensor&#160;&#160;&#160;0x00, 0x1F</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00080">80</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="af4b63dd3d696fc0e4a932d0dfbf106cd" name="af4b63dd3d696fc0e4a932d0dfbf106cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4b63dd3d696fc0e4a932d0dfbf106cd">&#9670;&#160;</a></span>EL_BathHeatingStatusSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_BathHeatingStatusSensor&#160;&#160;&#160;0x00, 0x16</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00071">71</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ae46f9839d2b9a7a2bf3e58f3e051ec5a" name="ae46f9839d2b9a7a2bf3e58f3e051ec5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae46f9839d2b9a7a2bf3e58f3e051ec5a">&#9670;&#160;</a></span>EL_BathroomHeaterAndDryer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_BathroomHeaterAndDryer&#160;&#160;&#160;0x02, 0x73</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00112">112</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a3042f02289c9ebee755179b429e436ab" name="a3042f02289c9ebee755179b429e436ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3042f02289c9ebee755179b429e436ab">&#9670;&#160;</a></span>EL_BathWaterLevelSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_BathWaterLevelSensor&#160;&#160;&#160;0x00, 0x15</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00070">70</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="acd42f41f5f22b265969f9e0267413b04" name="acd42f41f5f22b265969f9e0267413b04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd42f41f5f22b265969f9e0267413b04">&#9670;&#160;</a></span>EL_Battery</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_Battery&#160;&#160;&#160;0x02, 0x7D</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00117">117</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a19360a54a918232016ece35cf06a34c7" name="a19360a54a918232016ece35cf06a34c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19360a54a918232016ece35cf06a34c7">&#9670;&#160;</a></span>EL_BedPresenceSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_BedPresenceSensor&#160;&#160;&#160;0x00, 0x28</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00088">88</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a01f8b3aac63d16c12240173b35a354d1" name="a01f8b3aac63d16c12240173b35a354d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01f8b3aac63d16c12240173b35a354d1">&#9670;&#160;</a></span>EL_BUFFER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_BUFFER_SIZE&#160;&#160;&#160;256</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00046">46</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ac42410a24850aed845ef0e00292b25ce" name="ac42410a24850aed845ef0e00292b25ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac42410a24850aed845ef0e00292b25ce">&#9670;&#160;</a></span>EL_Buzzer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_Buzzer&#160;&#160;&#160;0x02, 0xA0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00128">128</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="afc11b21bad1ed5296109bc791558ece8" name="afc11b21bad1ed5296109bc791558ece8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc11b21bad1ed5296109bc791558ece8">&#9670;&#160;</a></span>EL_CallSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_CallSensor&#160;&#160;&#160;0x00, 0x09</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00058">58</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a0176a6e564976beba95b01f559eb2933" name="a0176a6e564976beba95b01f559eb2933"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0176a6e564976beba95b01f559eb2933">&#9670;&#160;</a></span>EL_CigaretteSmokeSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_CigaretteSmokeSensor&#160;&#160;&#160;0x00, 0x1A</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00075">75</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ab10564e2f7ebab24b24a3db6527bd67e" name="ab10564e2f7ebab24b24a3db6527bd67e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab10564e2f7ebab24b24a3db6527bd67e">&#9670;&#160;</a></span>EL_ClothesDryer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ClothesDryer&#160;&#160;&#160;0x03, 0xC6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00136">136</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ad7beb800f32be7b1410d4687829f94ec" name="ad7beb800f32be7b1410d4687829f94ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7beb800f32be7b1410d4687829f94ec">&#9670;&#160;</a></span>EL_CO2Sensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_CO2Sensor&#160;&#160;&#160;0x00, 0x1B</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00076">76</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ab67d44a55550a4ee0e7ea7e5d34172a5" name="ab67d44a55550a4ee0e7ea7e5d34172a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab67d44a55550a4ee0e7ea7e5d34172a5">&#9670;&#160;</a></span>EL_ColdOrHotWaterHeatSourceEquipment</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ColdOrHotWaterHeatSourceEquipment&#160;&#160;&#160;0x02, 0x7A</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00114">114</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="adbe069157acb4d6b52a81d767b0b75ac" name="adbe069157acb4d6b52a81d767b0b75ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbe069157acb4d6b52a81d767b0b75ac">&#9670;&#160;</a></span>EL_CombinationMicrowaveOven</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_CombinationMicrowaveOven&#160;&#160;&#160;0x03, 0xB8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00132">132</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a4fd039b998fa747004f6081cf29727cd" name="a4fd039b998fa747004f6081cf29727cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fd039b998fa747004f6081cf29727cd">&#9670;&#160;</a></span>EL_CondensationSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_CondensationSensor&#160;&#160;&#160;0x00, 0x0A</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00059">59</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a3a71a5644b4b025e982fa8074a116e08" name="a3a71a5644b4b025e982fa8074a116e08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a71a5644b4b025e982fa8074a116e08">&#9670;&#160;</a></span>EL_Controller</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_Controller&#160;&#160;&#160;0x05, 0xFF</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00142">142</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a72c8b5bf8c0c47dfeb373e5b5fd65bd4" name="a72c8b5bf8c0c47dfeb373e5b5fd65bd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72c8b5bf8c0c47dfeb373e5b5fd65bd4">&#9670;&#160;</a></span>EL_CookingHeater</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_CookingHeater&#160;&#160;&#160;0x03, 0xB9</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00133">133</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="acdef54c8a5ca8f4bcca0258afc916280" name="acdef54c8a5ca8f4bcca0258afc916280"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdef54c8a5ca8f4bcca0258afc916280">&#9670;&#160;</a></span>EL_CrimePreventionSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_CrimePreventionSensor&#160;&#160;&#160;0x00, 0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00051">51</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a18dd33a2dc2b02f83cf0fe2387dc3942" name="a18dd33a2dc2b02f83cf0fe2387dc3942"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18dd33a2dc2b02f83cf0fe2387dc3942">&#9670;&#160;</a></span>EL_CurrentValueSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_CurrentValueSensor&#160;&#160;&#160;0x00, 0x23</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00084">84</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a327ff2b55665c27e0b5613fb00b29a07" name="a327ff2b55665c27e0b5613fb00b29a07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a327ff2b55665c27e0b5613fb00b29a07">&#9670;&#160;</a></span>EL_DEOJ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_DEOJ&#160;&#160;&#160;7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00024">24</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a7d2e58a1cbd61e7203ed40785dbf2da6" name="a7d2e58a1cbd61e7203ed40785dbf2da6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d2e58a1cbd61e7203ed40785dbf2da6">&#9670;&#160;</a></span>EL_DifferentialPressureSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_DifferentialPressureSensor&#160;&#160;&#160;0x00, 0x1E</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00079">79</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ae752e7056f66086474f29b991e69cf72" name="ae752e7056f66086474f29b991e69cf72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae752e7056f66086474f29b991e69cf72">&#9670;&#160;</a></span>EL_Display</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_Display&#160;&#160;&#160;0x06, 0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00144">144</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a2118bbf40d190473311ee5d609485ccc" name="a2118bbf40d190473311ee5d609485ccc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2118bbf40d190473311ee5d609485ccc">&#9670;&#160;</a></span>EL_EarthquakeSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_EarthquakeSensor&#160;&#160;&#160;0x00, 0x05</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00054">54</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="af8c5ea9d70b811aaee912df4e1f276e8" name="af8c5ea9d70b811aaee912df4e1f276e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8c5ea9d70b811aaee912df4e1f276e8">&#9670;&#160;</a></span>EL_EDT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_EDT&#160;&#160;&#160;14</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00029">29</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a1f8e49058669d7cbd394bf6fb1e94b5a" name="a1f8e49058669d7cbd394bf6fb1e94b5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f8e49058669d7cbd394bf6fb1e94b5a">&#9670;&#160;</a></span>EL_EHD1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_EHD1&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00020">20</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aee7649b1fe84e37e666f07b54a84cbb2" name="aee7649b1fe84e37e666f07b54a84cbb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee7649b1fe84e37e666f07b54a84cbb2">&#9670;&#160;</a></span>EL_EHD2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_EHD2&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00021">21</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a0c42b877fcfe39ba1a5f1608a408293c" name="a0c42b877fcfe39ba1a5f1608a408293c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c42b877fcfe39ba1a5f1608a408293c">&#9670;&#160;</a></span>EL_ElectricallyOperatedShade</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ElectricallyOperatedShade&#160;&#160;&#160;0x02, 0x60</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00104">104</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a0096b0239a6071b0c91921e683f9e911" name="a0096b0239a6071b0c91921e683f9e911"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0096b0239a6071b0c91921e683f9e911">&#9670;&#160;</a></span>EL_ElectricEnergySensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ElectricEnergySensor&#160;&#160;&#160;0x00, 0x22</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00083">83</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ad1f5684d1a263fd45a9839c12044f840" name="ad1f5684d1a263fd45a9839c12044f840"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1f5684d1a263fd45a9839c12044f840">&#9670;&#160;</a></span>EL_ElectricHeater</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ElectricHeater&#160;&#160;&#160;0x01, 0x42</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00099">99</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aa92070e69405ea81d9c433eeb7acfca4" name="aa92070e69405ea81d9c433eeb7acfca4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa92070e69405ea81d9c433eeb7acfca4">&#9670;&#160;</a></span>EL_ElectricHotWaterPot</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ElectricHotWaterPot&#160;&#160;&#160;0x03, 0xB2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00130">130</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aa1e236b36f48040f8a841253e4e8ac17" name="aa1e236b36f48040f8a841253e4e8ac17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1e236b36f48040f8a841253e4e8ac17">&#9670;&#160;</a></span>EL_ElectricLeakSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ElectricLeakSensor&#160;&#160;&#160;0x00, 0x06</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00055">55</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ae117e8c3ec41f1c98598e79cd0fef3f5" name="ae117e8c3ec41f1c98598e79cd0fef3f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae117e8c3ec41f1c98598e79cd0fef3f5">&#9670;&#160;</a></span>EL_ElectricLock</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ElectricLock&#160;&#160;&#160;0x02, 0x6F</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00110">110</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ab25d552b528aae9368cdf2765e1ded12" name="ab25d552b528aae9368cdf2765e1ded12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab25d552b528aae9368cdf2765e1ded12">&#9670;&#160;</a></span>EL_ElectricShutter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ElectricShutter&#160;&#160;&#160;0x02, 0x61</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00105">105</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a2666fb88fd6f7b764ee09660abdd4e8e" name="a2666fb88fd6f7b764ee09660abdd4e8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2666fb88fd6f7b764ee09660abdd4e8e">&#9670;&#160;</a></span>EL_ElectricStormWindow</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ElectricStormWindow&#160;&#160;&#160;0x02, 0x63</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00106">106</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a3414a62746522de28e78b9424581a06a" name="a3414a62746522de28e78b9424581a06a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3414a62746522de28e78b9424581a06a">&#9670;&#160;</a></span>EL_ElectricToiletSeat</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ElectricToiletSeat&#160;&#160;&#160;0x02, 0x6E</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00109">109</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a1de883f243fa0d39fc3fcfd19f062500" name="a1de883f243fa0d39fc3fcfd19f062500"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1de883f243fa0d39fc3fcfd19f062500">&#9670;&#160;</a></span>EL_ElectricVehicle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ElectricVehicle&#160;&#160;&#160;0x02, 0x7E</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00118">118</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a22d561215ac451fe8479389e3daa8123" name="a22d561215ac451fe8479389e3daa8123"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22d561215ac451fe8479389e3daa8123">&#9670;&#160;</a></span>EL_ElectricWaterHeater</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ElectricWaterHeater&#160;&#160;&#160;0x02, 0x6B</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00108">108</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aa38f3df5f34327f21c152ffebc47ae77" name="aa38f3df5f34327f21c152ffebc47ae77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa38f3df5f34327f21c152ffebc47ae77">&#9670;&#160;</a></span>EL_EmergencyButton</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_EmergencyButton&#160;&#160;&#160;0x00, 0x03</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00052">52</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aee7c3a2d19d6887cba89b2148da8ed2c" name="aee7c3a2d19d6887cba89b2148da8ed2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee7c3a2d19d6887cba89b2148da8ed2c">&#9670;&#160;</a></span>EL_EngineCogeneration</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_EngineCogeneration&#160;&#160;&#160;0x02, 0x7F</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00119">119</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ae63a0a5f8dc037c6eaf663de947c9920" name="ae63a0a5f8dc037c6eaf663de947c9920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae63a0a5f8dc037c6eaf663de947c9920">&#9670;&#160;</a></span>EL_EPC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_EPC&#160;&#160;&#160;12</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00027">27</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aad29cb137ee0069ea9cc3b963fa0b482" name="aad29cb137ee0069ea9cc3b963fa0b482"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad29cb137ee0069ea9cc3b963fa0b482">&#9670;&#160;</a></span>EL_ESV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_ESV&#160;&#160;&#160;10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00025">25</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a36f8f1cb3c144352d6a21cebcad81f6e" name="a36f8f1cb3c144352d6a21cebcad81f6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36f8f1cb3c144352d6a21cebcad81f6e">&#9670;&#160;</a></span>EL_FanHeater</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_FanHeater&#160;&#160;&#160;0x01, 0x43</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00100">100</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a252e17aa7e3ab6cd872c1eecc2288a4c" name="a252e17aa7e3ab6cd872c1eecc2288a4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a252e17aa7e3ab6cd872c1eecc2288a4c">&#9670;&#160;</a></span>EL_FireSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_FireSensor&#160;&#160;&#160;0x00, 0x19</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00074">74</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a16d47097c63806de9db8659d99cf5cde" name="a16d47097c63806de9db8659d99cf5cde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16d47097c63806de9db8659d99cf5cde">&#9670;&#160;</a></span>EL_FirstAidSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_FirstAidSensor&#160;&#160;&#160;0x00, 0x04</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00053">53</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ad3c3af791fab970aafb0ef9ab67a08dd" name="ad3c3af791fab970aafb0ef9ab67a08dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3c3af791fab970aafb0ef9ab67a08dd">&#9670;&#160;</a></span>EL_FlameSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_FlameSensor&#160;&#160;&#160;0x00, 0x21</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00082">82</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a7b7c2aa0f11fa3ed7d34e06005ed5ef1" name="a7b7c2aa0f11fa3ed7d34e06005ed5ef1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b7c2aa0f11fa3ed7d34e06005ed5ef1">&#9670;&#160;</a></span>EL_FloorHeater</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_FloorHeater&#160;&#160;&#160;0x02, 0x7B</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00115">115</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a540d460898f833ee797e234118340f49" name="a540d460898f833ee797e234118340f49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a540d460898f833ee797e234118340f49">&#9670;&#160;</a></span>EL_FuelCell</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_FuelCell&#160;&#160;&#160;0x02, 0x7C</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00116">116</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a4d5ddb646e6f3ea314b09fb7e397467f" name="a4d5ddb646e6f3ea314b09fb7e397467f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d5ddb646e6f3ea314b09fb7e397467f">&#9670;&#160;</a></span>EL_GasLeakSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_GasLeakSensor&#160;&#160;&#160;0x00, 0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ガス漏れセンサ </p>
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00050">50</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a8327eced8cb796435e7cd06a51af2f4f" name="a8327eced8cb796435e7cd06a51af2f4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8327eced8cb796435e7cd06a51af2f4f">&#9670;&#160;</a></span>EL_GasMeter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_GasMeter&#160;&#160;&#160;0x02, 0x82</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00122">122</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="af88f3c282ca4e09553790be179c2cffc" name="af88f3c282ca4e09553790be179c2cffc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af88f3c282ca4e09553790be179c2cffc">&#9670;&#160;</a></span>EL_GasSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_GasSensor&#160;&#160;&#160;0x00, 0x1C</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00077">77</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a9ee846d24c7857b2d990c54564a8e82c" name="a9ee846d24c7857b2d990c54564a8e82c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ee846d24c7857b2d990c54564a8e82c">&#9670;&#160;</a></span>EL_GeneralLighting</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_GeneralLighting&#160;&#160;&#160;0x02, 0x90</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00127">127</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aa8039f476040ad279236aaf3d9cbc7b8" name="aa8039f476040ad279236aaf3d9cbc7b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8039f476040ad279236aaf3d9cbc7b8">&#9670;&#160;</a></span>EL_GET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_GET&#160;&#160;&#160;0x62</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00037">37</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a8f3ada3f4eb76851ad2c6f3b3c00d4cf" name="a8f3ada3f4eb76851ad2c6f3b3c00d4cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f3ada3f4eb76851ad2c6f3b3c00d4cf">&#9670;&#160;</a></span>EL_GET_RES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_GET_RES&#160;&#160;&#160;0x72</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00041">41</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ab671f4e61aeb3570bf50fe82253a88ff" name="ab671f4e61aeb3570bf50fe82253a88ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab671f4e61aeb3570bf50fe82253a88ff">&#9670;&#160;</a></span>EL_GET_SNA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_GET_SNA&#160;&#160;&#160;0x52</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00032">32</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a6a35b4d401ac89ea910f8db572e5bb42" name="a6a35b4d401ac89ea910f8db572e5bb42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a35b4d401ac89ea910f8db572e5bb42">&#9670;&#160;</a></span>EL_HomeAirConditioner</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_HomeAirConditioner&#160;&#160;&#160;0x01, 0x30</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00094">94</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="acb600ea664f19e925e59195d555f4d7f" name="acb600ea664f19e925e59195d555f4d7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb600ea664f19e925e59195d555f4d7f">&#9670;&#160;</a></span>EL_HouseholdSolarPowerGeneration</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_HouseholdSolarPowerGeneration&#160;&#160;&#160;0x02, 0x79</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00113">113</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="adf6cbf8b76186ca0bdc4c549a2c016a4" name="adf6cbf8b76186ca0bdc4c549a2c016a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf6cbf8b76186ca0bdc4c549a2c016a4">&#9670;&#160;</a></span>EL_HumanBodyLocationSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_HumanBodyLocationSensor&#160;&#160;&#160;0x00, 0x2B</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00091">91</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="afd0c9c4d588a99d8368731b079ce59a5" name="afd0c9c4d588a99d8368731b079ce59a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd0c9c4d588a99d8368731b079ce59a5">&#9670;&#160;</a></span>EL_HumanDetectionSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_HumanDetectionSensor&#160;&#160;&#160;0x00, 0x07</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00056">56</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a0c956881335a04206d7c6fc128a56efe" name="a0c956881335a04206d7c6fc128a56efe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c956881335a04206d7c6fc128a56efe">&#9670;&#160;</a></span>EL_Humidifier</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_Humidifier&#160;&#160;&#160;0x01, 0x39</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00098">98</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a44b5b946a7dc3f7d47ebb7d68508d60c" name="a44b5b946a7dc3f7d47ebb7d68508d60c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44b5b946a7dc3f7d47ebb7d68508d60c">&#9670;&#160;</a></span>EL_HumiditySensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_HumiditySensor&#160;&#160;&#160;0x00, 0x12</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00067">67</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a1eb6a3af7b9e1b3d398b65d9e6a2ab5f" name="a1eb6a3af7b9e1b3d398b65d9e6a2ab5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1eb6a3af7b9e1b3d398b65d9e6a2ab5f">&#9670;&#160;</a></span>EL_IlluminanceSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_IlluminanceSensor&#160;&#160;&#160;0x00, 0x0D</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00062">62</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ac54a2da91228b7619235eb91519c1491" name="ac54a2da91228b7619235eb91519c1491"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac54a2da91228b7619235eb91519c1491">&#9670;&#160;</a></span>EL_INF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_INF&#160;&#160;&#160;0x73</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00042">42</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ab6ad1ae3707ec7dc2443a5136843fa64" name="ab6ad1ae3707ec7dc2443a5136843fa64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6ad1ae3707ec7dc2443a5136843fa64">&#9670;&#160;</a></span>EL_INF_REQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_INF_REQ&#160;&#160;&#160;0x63</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00038">38</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a8137e3013f6aaf6d511c82b8026fc2d5" name="a8137e3013f6aaf6d511c82b8026fc2d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8137e3013f6aaf6d511c82b8026fc2d5">&#9670;&#160;</a></span>EL_INF_SNA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_INF_SNA&#160;&#160;&#160;0x53</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00033">33</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a7cc7c29618b0523aa1ebcece26c30a50" name="a7cc7c29618b0523aa1ebcece26c30a50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cc7c29618b0523aa1ebcece26c30a50">&#9670;&#160;</a></span>EL_INFC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_INFC&#160;&#160;&#160;0x74</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00043">43</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ad7a132789c6d2d4fafefa9d14bf89fa7" name="ad7a132789c6d2d4fafefa9d14bf89fa7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7a132789c6d2d4fafefa9d14bf89fa7">&#9670;&#160;</a></span>EL_INFC_RES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_INFC_RES&#160;&#160;&#160;0x7a</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00044">44</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ac402eb5c9363cb2424444e47f697e743" name="ac402eb5c9363cb2424444e47f697e743"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac402eb5c9363cb2424444e47f697e743">&#9670;&#160;</a></span>EL_InstantaneousWaterHeater</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_InstantaneousWaterHeater&#160;&#160;&#160;0x02, 0x72</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00111">111</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ad9cc0b3d6bd4f92b3fd9836951e80b58" name="ad9cc0b3d6bd4f92b3fd9836951e80b58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9cc0b3d6bd4f92b3fd9836951e80b58">&#9670;&#160;</a></span>EL_LPGasMeter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_LPGasMeter&#160;&#160;&#160;0x02, 0x83</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00123">123</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a81f2db1ce125ffc224a47b765589ea76" name="a81f2db1ce125ffc224a47b765589ea76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81f2db1ce125ffc224a47b765589ea76">&#9670;&#160;</a></span>EL_MailingSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_MailingSensor&#160;&#160;&#160;0x00, 0x0F</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00064">64</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a0479635460a4e3c917272220bf5cb325" name="a0479635460a4e3c917272220bf5cb325"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0479635460a4e3c917272220bf5cb325">&#9670;&#160;</a></span>EL_MicromotionSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_MicromotionSensor&#160;&#160;&#160;0x00, 0x26</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00086">86</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a93868d816ef4c143ed6774b4e359d4fe" name="a93868d816ef4c143ed6774b4e359d4fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93868d816ef4c143ed6774b4e359d4fe">&#9670;&#160;</a></span>EL_OdorSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_OdorSensor&#160;&#160;&#160;0x00, 0x20</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00081">81</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a2ba6f4a08a78f08513faf6e32e203156" name="a2ba6f4a08a78f08513faf6e32e203156"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ba6f4a08a78f08513faf6e32e203156">&#9670;&#160;</a></span>EL_OPC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_OPC&#160;&#160;&#160;11</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00026">26</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a442cf01c155df093ce80bfa1ad709909" name="a442cf01c155df093ce80bfa1ad709909"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a442cf01c155df093ce80bfa1ad709909">&#9670;&#160;</a></span>EL_OpenCloseSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_OpenCloseSensor&#160;&#160;&#160;0x00, 0x29</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00089">89</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aa22b401051d619a84185faf21b3aea67" name="aa22b401051d619a84185faf21b3aea67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa22b401051d619a84185faf21b3aea67">&#9670;&#160;</a></span>EL_OxygenSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_OxygenSensor&#160;&#160;&#160;0x00, 0x0C</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00061">61</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a7af9428b1e34cf5ab051b3b19cde3dce" name="a7af9428b1e34cf5ab051b3b19cde3dce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7af9428b1e34cf5ab051b3b19cde3dce">&#9670;&#160;</a></span>EL_PackageTypeCommercialAirConditionerIndoorUnit</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_PackageTypeCommercialAirConditionerIndoorUnit&#160;&#160;&#160;0x01, 0x56</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00101">101</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a2f4584ad5b8268e5b74a4c5cf045ea60" name="a2f4584ad5b8268e5b74a4c5cf045ea60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f4584ad5b8268e5b74a4c5cf045ea60">&#9670;&#160;</a></span>EL_PackageTypeCommercialAirConditionerOutdoorUnit</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_PackageTypeCommercialAirConditionerOutdoorUnit&#160;&#160;&#160;0x01, 0x57</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00102">102</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a47b027f5ef72982dd056a774c675fd3f" name="a47b027f5ef72982dd056a774c675fd3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47b027f5ef72982dd056a774c675fd3f">&#9670;&#160;</a></span>EL_PassageSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_PassageSensor&#160;&#160;&#160;0x00, 0x27</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00087">87</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a493c1ee1967c7878e66f62fea995708d" name="a493c1ee1967c7878e66f62fea995708d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a493c1ee1967c7878e66f62fea995708d">&#9670;&#160;</a></span>EL_PDC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_PDC&#160;&#160;&#160;13</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00028">28</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ae902eadd93f0e35053ae7ca5a81cfa89" name="ae902eadd93f0e35053ae7ca5a81cfa89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae902eadd93f0e35053ae7ca5a81cfa89">&#9670;&#160;</a></span>EL_PORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_PORT&#160;&#160;&#160;3610</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ECHONET Lite port </p>
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00019">19</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a92208101e10e5424e5e3c528a2fa233c" name="a92208101e10e5424e5e3c528a2fa233c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92208101e10e5424e5e3c528a2fa233c">&#9670;&#160;</a></span>EL_PowerDistributionBoardMetering</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_PowerDistributionBoardMetering&#160;&#160;&#160;0x02, 0x87</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00124">124</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a7662a58a702f78f2f2bbbc7a41a0e527" name="a7662a58a702f78f2f2bbbc7a41a0e527"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7662a58a702f78f2f2bbbc7a41a0e527">&#9670;&#160;</a></span>EL_RainSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_RainSensor&#160;&#160;&#160;0x00, 0x13</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00068">68</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="adacd33cd3c88dec3ab7d4c75d2e2a4c9" name="adacd33cd3c88dec3ab7d4c75d2e2a4c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adacd33cd3c88dec3ab7d4c75d2e2a4c9">&#9670;&#160;</a></span>EL_Refrigerator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_Refrigerator&#160;&#160;&#160;0x03, 0xB7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00131">131</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="abd4e68c1ebc3c6a0e77c0bc8ef35ae17" name="abd4e68c1ebc3c6a0e77c0bc8ef35ae17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd4e68c1ebc3c6a0e77c0bc8ef35ae17">&#9670;&#160;</a></span>EL_RiceCooker</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_RiceCooker&#160;&#160;&#160;0x03, 0xBB</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00134">134</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a80145ed735dde460381a33897aab1f49" name="a80145ed735dde460381a33897aab1f49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80145ed735dde460381a33897aab1f49">&#9670;&#160;</a></span>EL_SEOJ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_SEOJ&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00023">23</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a989d41cd6db0d1fe96e15bbc6d16d3e3" name="a989d41cd6db0d1fe96e15bbc6d16d3e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a989d41cd6db0d1fe96e15bbc6d16d3e3">&#9670;&#160;</a></span>EL_SET_RES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_SET_RES&#160;&#160;&#160;0x71</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00040">40</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a66c95a66020ac347d93790db1d19ca35" name="a66c95a66020ac347d93790db1d19ca35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66c95a66020ac347d93790db1d19ca35">&#9670;&#160;</a></span>EL_SETC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_SETC&#160;&#160;&#160;0x61</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00036">36</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a49a652db5cf846e914b54ee4dad7f9c2" name="a49a652db5cf846e914b54ee4dad7f9c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49a652db5cf846e914b54ee4dad7f9c2">&#9670;&#160;</a></span>EL_SETC_SNA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_SETC_SNA&#160;&#160;&#160;0x51</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00031">31</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a2ac36c812239fdbce383d1b2cd344558" name="a2ac36c812239fdbce383d1b2cd344558"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ac36c812239fdbce383d1b2cd344558">&#9670;&#160;</a></span>EL_SETGET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_SETGET&#160;&#160;&#160;0x6e</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00039">39</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aa998bf6ad00ce30a7fe638c5c317891b" name="aa998bf6ad00ce30a7fe638c5c317891b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa998bf6ad00ce30a7fe638c5c317891b">&#9670;&#160;</a></span>EL_SETGET_RES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_SETGET_RES&#160;&#160;&#160;0x7e</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00045">45</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a15fb8bb20dee7a34ab23652cf774f025" name="a15fb8bb20dee7a34ab23652cf774f025"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15fb8bb20dee7a34ab23652cf774f025">&#9670;&#160;</a></span>EL_SETGET_SNA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_SETGET_SNA&#160;&#160;&#160;0x5e</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00034">34</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ab8d5bc2dec72038fae017d2cee9fd98e" name="ab8d5bc2dec72038fae017d2cee9fd98e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8d5bc2dec72038fae017d2cee9fd98e">&#9670;&#160;</a></span>EL_SETI</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_SETI&#160;&#160;&#160;0x60</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00035">35</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a9eb66c4d908168287a40d3a0f8012895" name="a9eb66c4d908168287a40d3a0f8012895"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eb66c4d908168287a40d3a0f8012895">&#9670;&#160;</a></span>EL_SETI_SNA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_SETI_SNA&#160;&#160;&#160;0x50</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00030">30</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a8a27199817b775f2f3ae883e9ce24cbd" name="a8a27199817b775f2f3ae883e9ce24cbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a27199817b775f2f3ae883e9ce24cbd">&#9670;&#160;</a></span>EL_SmartElectricEnergyMeter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_SmartElectricEnergyMeter&#160;&#160;&#160;0x02, 0x88</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00125">125</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a65926e89051eaba52d361c5223126a60" name="a65926e89051eaba52d361c5223126a60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65926e89051eaba52d361c5223126a60">&#9670;&#160;</a></span>EL_SmartGasMeter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_SmartGasMeter&#160;&#160;&#160;0x02, 0x89</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00126">126</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a1967364990f25e2741611e0eb0a5269d" name="a1967364990f25e2741611e0eb0a5269d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1967364990f25e2741611e0eb0a5269d">&#9670;&#160;</a></span>EL_SnowSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_SnowSensor&#160;&#160;&#160;0x00, 0x2C</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00092">92</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a5a0a9a7763f1dc7d2a7ff233126e11b3" name="a5a0a9a7763f1dc7d2a7ff233126e11b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a0a9a7763f1dc7d2a7ff233126e11b3">&#9670;&#160;</a></span>EL_SoundSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_SoundSensor&#160;&#160;&#160;0x00, 0x0E</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00063">63</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a1fb0e92bf4a6dbe384b21e36c643c71a" name="a1fb0e92bf4a6dbe384b21e36c643c71a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fb0e92bf4a6dbe384b21e36c643c71a">&#9670;&#160;</a></span>EL_Sprinkler</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_Sprinkler&#160;&#160;&#160;0x02, 0x67</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00107">107</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a5541e7a61b16be1d232270f4a4c76525" name="a5541e7a61b16be1d232270f4a4c76525"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5541e7a61b16be1d232270f4a4c76525">&#9670;&#160;</a></span>EL_Switch</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_Switch&#160;&#160;&#160;0x05, 0xFD</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00141">141</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ab327a18432d3dd18b30fd7b0fda85d69" name="ab327a18432d3dd18b30fd7b0fda85d69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab327a18432d3dd18b30fd7b0fda85d69">&#9670;&#160;</a></span>EL_Television</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_Television&#160;&#160;&#160;0x06, 0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00145">145</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aee773fa9798169e87d377279b4cef06f" name="aee773fa9798169e87d377279b4cef06f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee773fa9798169e87d377279b4cef06f">&#9670;&#160;</a></span>EL_TemperatureSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_TemperatureSensor&#160;&#160;&#160;0x00, 0x11</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00066">66</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a5d25d4edd535b15b5cd9ca4c3a93b39b" name="a5d25d4edd535b15b5cd9ca4c3a93b39b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d25d4edd535b15b5cd9ca4c3a93b39b">&#9670;&#160;</a></span>EL_TID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_TID&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00022">22</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="aa1a9c99dcf8f0e067275b6064ca384bb" name="aa1a9c99dcf8f0e067275b6064ca384bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1a9c99dcf8f0e067275b6064ca384bb">&#9670;&#160;</a></span>EL_VentilationFan</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_VentilationFan&#160;&#160;&#160;0x01, 0x32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00095">95</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a329ebc0d742e9093bcce68fd85a0bb9b" name="a329ebc0d742e9093bcce68fd85a0bb9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a329ebc0d742e9093bcce68fd85a0bb9b">&#9670;&#160;</a></span>EL_VisitorSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_VisitorSensor&#160;&#160;&#160;0x00, 0x08</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00057">57</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ad077caf7d61ecb3f4dcb5230f68bd16d" name="ad077caf7d61ecb3f4dcb5230f68bd16d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad077caf7d61ecb3f4dcb5230f68bd16d">&#9670;&#160;</a></span>EL_VOCSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_VOCSensor&#160;&#160;&#160;0x00, 0x1D</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00078">78</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a1cecaac06c229b8001ffc9d5d625a376" name="a1cecaac06c229b8001ffc9d5d625a376"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cecaac06c229b8001ffc9d5d625a376">&#9670;&#160;</a></span>EL_WasherAndDryer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_WasherAndDryer&#160;&#160;&#160;0x03, 0xD3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00137">137</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a6bdd95b8b206008afb6054b531da3ee2" name="a6bdd95b8b206008afb6054b531da3ee2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bdd95b8b206008afb6054b531da3ee2">&#9670;&#160;</a></span>EL_WashingMachine</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_WashingMachine&#160;&#160;&#160;0x03, 0xC5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00135">135</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="abd4ae079c3839a89cb6de242dc31381f" name="abd4ae079c3839a89cb6de242dc31381f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd4ae079c3839a89cb6de242dc31381f">&#9670;&#160;</a></span>EL_WaterFlowmeter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_WaterFlowmeter&#160;&#160;&#160;0x02, 0x81</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00121">121</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a71916f636320e55724447bc84f6b7e51" name="a71916f636320e55724447bc84f6b7e51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71916f636320e55724447bc84f6b7e51">&#9670;&#160;</a></span>EL_WaterFlowRateSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_WaterFlowRateSensor&#160;&#160;&#160;0x00, 0x25</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00085">85</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a0fe28fa41dd74c43fa30a2cb325a82b4" name="a0fe28fa41dd74c43fa30a2cb325a82b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fe28fa41dd74c43fa30a2cb325a82b4">&#9670;&#160;</a></span>EL_WaterLeakSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_WaterLeakSensor&#160;&#160;&#160;0x00, 0x17</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00072">72</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ab2b629da2dea6c704a2db10f3891de1d" name="ab2b629da2dea6c704a2db10f3891de1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2b629da2dea6c704a2db10f3891de1d">&#9670;&#160;</a></span>EL_WaterLevelSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_WaterLevelSensor&#160;&#160;&#160;0x00, 0x14</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00069">69</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ac623513663bc3db5a752f6323d0a653f" name="ac623513663bc3db5a752f6323d0a653f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac623513663bc3db5a752f6323d0a653f">&#9670;&#160;</a></span>EL_WaterOverflowSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_WaterOverflowSensor&#160;&#160;&#160;0x00, 0x18</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00073">73</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ac2c0c471877a8a906bdf3fe46bbab70b" name="ac2c0c471877a8a906bdf3fe46bbab70b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2c0c471877a8a906bdf3fe46bbab70b">&#9670;&#160;</a></span>EL_WattHourMeter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_WattHourMeter&#160;&#160;&#160;0x02, 0x80</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00120">120</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a0a77e6f10192d0ba6fe2ac585aa18b7e" name="a0a77e6f10192d0ba6fe2ac585aa18b7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a77e6f10192d0ba6fe2ac585aa18b7e">&#9670;&#160;</a></span>EL_Weighing</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_Weighing&#160;&#160;&#160;0x04, 0x01</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00139">139</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a9c46f550ed98013d588644fba5038725" name="a9c46f550ed98013d588644fba5038725"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c46f550ed98013d588644fba5038725">&#9670;&#160;</a></span>EL_WeightSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EL_WeightSensor&#160;&#160;&#160;0x00, 0x10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="_e_l_8h_source.html">EL.h</a> の <a class="el" href="_e_l_8h_source.html#l00065">65</a> 行目に定義があります。</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
+</small></address>
+</body>
+</html>

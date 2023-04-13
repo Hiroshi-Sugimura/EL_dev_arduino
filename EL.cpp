@@ -1,19 +1,13 @@
 //////////////////////////////////////////////////////////////////////
-// ECHONET Lite protocol
-//	Copyright (C) Hiroshi SUGIMURA 2013.09.27
+/// @file EL.cpp
+/// @brief ECHONET Lite protocol for Arduino
+/// @author SUGIMURA Hiroshi
+/// @date 2013.09.27
+/// @details https://github.com/Hiroshi-Sugimura/EL_dev_arduino
 //////////////////////////////////////////////////////////////////////
 #include "ELOBJ.h"
 #include "EL.h"
 
-////////////////////////////////////////////////////
-/// @fn
-/// @brief オブジェクトを一つだけサポートする場合のコンストラクタ
-/// @param WiFiUDP&
-/// @param byte eoj0
-/// @param byte eoj1
-/// @param byte eoj2
-/// @return void
-/// @detail eoj0, eoj1, eoj2で一つのオブジェクト
 ////////////////////////////////////////////////////
 EL::EL(WiFiUDP& udp, byte eoj0, byte eoj1, byte eoj2)
 {

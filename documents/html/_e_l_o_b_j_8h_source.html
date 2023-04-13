@@ -72,75 +72,88 @@ $(function() {
   <div class="headertitle"><div class="title">/Users/sugimura/EL_dev_arduino/ELOBJ.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// ECHONET Lite protocol object</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Copyright (C) Hiroshi SUGIMURA 2013.09.27</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"></span><span class="preprocessor">#ifndef __ELOBJ_H__</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define __ELOBJ_H__</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// configure</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
+<a href="_e_l_o_b_j_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#ifndef __ELOBJ_H__</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#define __ELOBJ_H__</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// auto config</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef Arduino_h</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define byte unsigned char</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">using </span>std::cout;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">using </span>std::dec;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">using </span>std::endl;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">using </span>std::hex;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">using </span>std::move;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">//  クラスの定義</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_p_d_c_e_d_t.html">   24</a></span><span class="keyword">class </span><a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keywordtype">byte</span> *m_pdcedt; <span class="comment">//    データ</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordtype">byte</span> length;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a>();</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a>&amp; val);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a>(<span class="keyword">const</span> <span class="keywordtype">byte</span>* val);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">virtual</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">~PDCEDT</a>();</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> operator=(<span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> val);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keyword">const</span> <span class="keywordtype">byte</span>* operator=(<span class="keyword">const</span> <span class="keywordtype">byte</span>* val);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">operator</span> <span class="keywordtype">byte</span>* () <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordtype">void</span> print(<span class="keywordtype">void</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="class_e_l_o_b_j.html">   41</a></span><span class="keyword">class </span><a class="code hl_class" href="class_e_l_o_b_j.html">ELOBJ</a></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="comment">//    メンバ変数定義</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keyword">const</span> <span class="keyword">static</span> <span class="keywordtype">byte</span> PDC_MAX = 0x80; <span class="comment">// 0xFF - 0x79</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// configure</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// auto config</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifndef Arduino_h</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">   16</a></span><span class="preprocessor">#define byte unsigned char</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">using </span>std::cout;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">using </span>std::dec;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">using </span>std::endl;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">using </span>std::hex;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">using </span>std::move;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_p_d_c_e_d_t.html">   30</a></span><span class="keyword">class </span><a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_p_d_c_e_d_t.html#a98d3f7001e2b1c3a57bd36fe5333476e">   33</a></span>  <span class="keywordtype">byte</span> *<a class="code hl_variable" href="class_p_d_c_e_d_t.html#a98d3f7001e2b1c3a57bd36fe5333476e">m_pdcedt</a>; <span class="comment">//    データ</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_p_d_c_e_d_t.html#aa72377fceac908c5d18e96ad741524ed">   34</a></span>  <span class="keywordtype">byte</span> <a class="code hl_variable" href="class_p_d_c_e_d_t.html#aa72377fceac908c5d18e96ad741524ed">length</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <a class="code hl_function" href="class_p_d_c_e_d_t.html#aa3016d266477d31c2840f31c5cad0bbe">PDCEDT</a>();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <a class="code hl_function" href="class_p_d_c_e_d_t.html#aa3016d266477d31c2840f31c5cad0bbe">PDCEDT</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a>&amp; val);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <a class="code hl_function" href="class_p_d_c_e_d_t.html#aa3016d266477d31c2840f31c5cad0bbe">PDCEDT</a>(<span class="keyword">const</span> <span class="keywordtype">byte</span>* val);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keyword">virtual</span> <a class="code hl_function" href="class_p_d_c_e_d_t.html#a0b241a8f35801c08eb7726b15c354701">~PDCEDT</a>();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> <a class="code hl_function" href="class_p_d_c_e_d_t.html#a5c15769ce86b77e85a4c205e04ebd692">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> val);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">const</span> <span class="keywordtype">byte</span>* <a class="code hl_function" href="class_p_d_c_e_d_t.html#a5c15769ce86b77e85a4c205e04ebd692">operator=</a>(<span class="keyword">const</span> <span class="keywordtype">byte</span>* val);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keyword">operator</span> <span class="keywordtype">byte</span>* () <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f">print</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> m_pdcedt[PDC_MAX]; <span class="comment">//  データ</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="comment">// member function</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <a class="code hl_class" href="class_e_l_o_b_j.html">ELOBJ</a>();          <span class="comment">//  構築</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keyword">virtual</span> <a class="code hl_class" href="class_e_l_o_b_j.html">~ELOBJ</a>(); <span class="comment">//  消滅</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="comment">//    データ取得</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> GetPDCEDT(<span class="keyword">const</span> <span class="keywordtype">byte</span> epc) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> SetPDCEDT(<span class="keyword">const</span> <span class="keywordtype">byte</span> epc, <span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> pdcedt);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> SetPDCEDT(<span class="keyword">const</span> <span class="keywordtype">byte</span> epc, <span class="keyword">const</span> <span class="keywordtype">byte</span>*&amp;&amp; pdcedt);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="class_e_l_o_b_j.html">   51</a></span><span class="keyword">class </span><a class="code hl_class" href="class_e_l_o_b_j.html">ELOBJ</a></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>{</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="comment">//    メンバ変数定義</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="class_e_l_o_b_j.html#ae18274b5af9ed651242f22b4f43727ff">   55</a></span>  <span class="keyword">const</span> <span class="keyword">static</span> <span class="keywordtype">byte</span> <a class="code hl_variable" href="class_e_l_o_b_j.html#ae18274b5af9ed651242f22b4f43727ff">PDC_MAX</a> = 0x80; <span class="comment">// 0xFF - 0x79</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="class_e_l_o_b_j.html#aa22be2c3e4e7584f4bae0d2e060e1fd6">   58</a></span>  <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> <a class="code hl_variable" href="class_e_l_o_b_j.html#aa22be2c3e4e7584f4bae0d2e060e1fd6">m_pdcedt</a>[<a class="code hl_variable" href="class_e_l_o_b_j.html#ae18274b5af9ed651242f22b4f43727ff">PDC_MAX</a>]; <span class="comment">//  データ</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="comment">//    配列らしいインターフェイス</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> operator[](<span class="keyword">const</span> <span class="keywordtype">byte</span> epc) <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a>&amp; operator[](<span class="keyword">const</span> <span class="keywordtype">byte</span> epc);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="comment">// 状態表示系</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keywordtype">void</span> printAll() <span class="keyword">const</span>; <span class="comment">// all print edt</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>};</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">// EOF</span></div>
-<div class="ttc" id="aclass_e_l_o_b_j_html"><div class="ttname"><a href="class_e_l_o_b_j.html">ELOBJ</a></div><div class="ttdef"><b>Definition:</b> ELOBJ.h:42</div></div>
-<div class="ttc" id="aclass_p_d_c_e_d_t_html"><div class="ttname"><a href="class_p_d_c_e_d_t.html">PDCEDT</a></div><div class="ttdef"><b>Definition:</b> ELOBJ.h:25</div></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="comment">// member function</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <a class="code hl_function" href="class_e_l_o_b_j.html#a56a646559173a3b9c5ab1454720052cd">ELOBJ</a>();          <span class="comment">//  構築</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keyword">virtual</span> <a class="code hl_function" href="class_e_l_o_b_j.html#a4e781409b4bf824727d2a458a1e80c90">~ELOBJ</a>(); <span class="comment">//  消滅</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="comment">//    データ取得</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> <a class="code hl_function" href="class_e_l_o_b_j.html#af550cffbae7818d5eb873e0446b96aff">GetPDCEDT</a>(<span class="keyword">const</span> <span class="keywordtype">byte</span> epc) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> <a class="code hl_function" href="class_e_l_o_b_j.html#a215e34be020dd6dc5d63d677a3f858b2">SetPDCEDT</a>(<span class="keyword">const</span> <span class="keywordtype">byte</span> epc, <span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> <a class="code hl_variable" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> <a class="code hl_function" href="class_e_l_o_b_j.html#a215e34be020dd6dc5d63d677a3f858b2">SetPDCEDT</a>(<span class="keyword">const</span> <span class="keywordtype">byte</span> epc, <span class="keyword">const</span> <span class="keywordtype">byte</span>*&amp;&amp; <a class="code hl_variable" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="comment">//    配列らしいインターフェイス</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keyword">const</span> <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a> <a class="code hl_function" href="class_e_l_o_b_j.html#addd51aa06cc437431b1adc29c8d48bda">operator[]</a>(<span class="keyword">const</span> <span class="keywordtype">byte</span> epc) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <a class="code hl_class" href="class_p_d_c_e_d_t.html">PDCEDT</a>&amp; <a class="code hl_function" href="class_e_l_o_b_j.html#addd51aa06cc437431b1adc29c8d48bda">operator[]</a>(<span class="keyword">const</span> <span class="keywordtype">byte</span> epc);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="comment">// 状態表示系</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3">printAll</a>() <span class="keyword">const</span>; <span class="comment">// all print edt</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>};</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">// EOF</span></div>
+<div class="ttc" id="aclass_e_l_o_b_j_html"><div class="ttname"><a href="class_e_l_o_b_j.html">ELOBJ</a></div><div class="ttdoc">EL Object</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8h_source.html#l00051">ELOBJ.h:52</a></div></div>
+<div class="ttc" id="aclass_e_l_o_b_j_html_a215e34be020dd6dc5d63d677a3f858b2"><div class="ttname"><a href="class_e_l_o_b_j.html#a215e34be020dd6dc5d63d677a3f858b2">ELOBJ::SetPDCEDT</a></div><div class="ttdeci">const PDCEDT SetPDCEDT(const byte epc, const PDCEDT pdcedt)</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8cpp_source.html#l00136">ELOBJ.cpp:136</a></div></div>
+<div class="ttc" id="aclass_e_l_o_b_j_html_a262bfd0930406b6833070140721d70d3"><div class="ttname"><a href="class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3">ELOBJ::printAll</a></div><div class="ttdeci">void printAll() const</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8cpp_source.html#l00169">ELOBJ.cpp:169</a></div></div>
+<div class="ttc" id="aclass_e_l_o_b_j_html_a4e781409b4bf824727d2a458a1e80c90"><div class="ttname"><a href="class_e_l_o_b_j.html#a4e781409b4bf824727d2a458a1e80c90">ELOBJ::~ELOBJ</a></div><div class="ttdeci">virtual ~ELOBJ()</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8cpp_source.html#l00125">ELOBJ.cpp:125</a></div></div>
+<div class="ttc" id="aclass_e_l_o_b_j_html_a56a646559173a3b9c5ab1454720052cd"><div class="ttname"><a href="class_e_l_o_b_j.html#a56a646559173a3b9c5ab1454720052cd">ELOBJ::ELOBJ</a></div><div class="ttdeci">ELOBJ()</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8cpp_source.html#l00121">ELOBJ.cpp:121</a></div></div>
+<div class="ttc" id="aclass_e_l_o_b_j_html_aa22be2c3e4e7584f4bae0d2e060e1fd6"><div class="ttname"><a href="class_e_l_o_b_j.html#aa22be2c3e4e7584f4bae0d2e060e1fd6">ELOBJ::m_pdcedt</a></div><div class="ttdeci">PDCEDT m_pdcedt[PDC_MAX]</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8h_source.html#l00058">ELOBJ.h:58</a></div></div>
+<div class="ttc" id="aclass_e_l_o_b_j_html_addd51aa06cc437431b1adc29c8d48bda"><div class="ttname"><a href="class_e_l_o_b_j.html#addd51aa06cc437431b1adc29c8d48bda">ELOBJ::operator[]</a></div><div class="ttdeci">const PDCEDT operator[](const byte epc) const</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8cpp_source.html#l00153">ELOBJ.cpp:153</a></div></div>
+<div class="ttc" id="aclass_e_l_o_b_j_html_ae18274b5af9ed651242f22b4f43727ff"><div class="ttname"><a href="class_e_l_o_b_j.html#ae18274b5af9ed651242f22b4f43727ff">ELOBJ::PDC_MAX</a></div><div class="ttdeci">static const byte PDC_MAX</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8h_source.html#l00055">ELOBJ.h:55</a></div></div>
+<div class="ttc" id="aclass_e_l_o_b_j_html_af550cffbae7818d5eb873e0446b96aff"><div class="ttname"><a href="class_e_l_o_b_j.html#af550cffbae7818d5eb873e0446b96aff">ELOBJ::GetPDCEDT</a></div><div class="ttdeci">const PDCEDT GetPDCEDT(const byte epc) const</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8cpp_source.html#l00129">ELOBJ.cpp:129</a></div></div>
+<div class="ttc" id="aclass_p_d_c_e_d_t_html"><div class="ttname"><a href="class_p_d_c_e_d_t.html">PDCEDT</a></div><div class="ttdoc">PDC and EDT</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8h_source.html#l00030">ELOBJ.h:31</a></div></div>
+<div class="ttc" id="aclass_p_d_c_e_d_t_html_a0b241a8f35801c08eb7726b15c354701"><div class="ttname"><a href="class_p_d_c_e_d_t.html#a0b241a8f35801c08eb7726b15c354701">PDCEDT::~PDCEDT</a></div><div class="ttdeci">virtual ~PDCEDT()</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8cpp_source.html#l00033">ELOBJ.cpp:33</a></div></div>
+<div class="ttc" id="aclass_p_d_c_e_d_t_html_a2fedd0a51fc970f57b19fa2d1e7b8c7f"><div class="ttname"><a href="class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f">PDCEDT::print</a></div><div class="ttdeci">void print(void) const</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8cpp_source.html#l00085">ELOBJ.cpp:85</a></div></div>
+<div class="ttc" id="aclass_p_d_c_e_d_t_html_a5c15769ce86b77e85a4c205e04ebd692"><div class="ttname"><a href="class_p_d_c_e_d_t.html#a5c15769ce86b77e85a4c205e04ebd692">PDCEDT::operator=</a></div><div class="ttdeci">const PDCEDT operator=(const PDCEDT val)</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8cpp_source.html#l00043">ELOBJ.cpp:43</a></div></div>
+<div class="ttc" id="aclass_p_d_c_e_d_t_html_a98d3f7001e2b1c3a57bd36fe5333476e"><div class="ttname"><a href="class_p_d_c_e_d_t.html#a98d3f7001e2b1c3a57bd36fe5333476e">PDCEDT::m_pdcedt</a></div><div class="ttdeci">byte * m_pdcedt</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8h_source.html#l00033">ELOBJ.h:33</a></div></div>
+<div class="ttc" id="aclass_p_d_c_e_d_t_html_aa3016d266477d31c2840f31c5cad0bbe"><div class="ttname"><a href="class_p_d_c_e_d_t.html#aa3016d266477d31c2840f31c5cad0bbe">PDCEDT::PDCEDT</a></div><div class="ttdeci">PDCEDT()</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8cpp_source.html#l00014">ELOBJ.cpp:14</a></div></div>
+<div class="ttc" id="aclass_p_d_c_e_d_t_html_aa72377fceac908c5d18e96ad741524ed"><div class="ttname"><a href="class_p_d_c_e_d_t.html#aa72377fceac908c5d18e96ad741524ed">PDCEDT::length</a></div><div class="ttdeci">byte length</div><div class="ttdef"><b>Definition:</b> <a href="_e_l_o_b_j_8h_source.html#l00034">ELOBJ.h:34</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a2e455e89ae2e545c32f8a4594dec003c"><div class="ttname"><a href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a></div><div class="ttdeci">byte * pdcedt</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00056">main.cpp:56</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

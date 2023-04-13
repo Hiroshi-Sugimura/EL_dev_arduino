@@ -1,0 +1,502 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.6"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>EL_dev_arduino: /Users/sugimura/EL_dev_arduino/examples/exhaustfan/main.cpp ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">EL_dev_arduino<span id="projectnumber">&#160;2.2.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.6 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d28a4824dc47e487b107a5db32ef43c4.html">examples</a></li><li class="navelem"><a class="el" href="dir_2366ecea278de0256f6335d5ccc084f4.html">exhaustfan</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">マクロ定義</a> &#124;
+<a href="#func-members">関数</a> &#124;
+<a href="#var-members">変数</a>  </div>
+  <div class="headertitle"><div class="title">main.cpp ファイル</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;M5Atom.h&quot;</code><br />
+<code>#include &lt;WiFi.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="_e_l_8h_source.html">EL.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+main.cpp の依存先関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8cpp__incl.png" border="0" usemap="#a_2_users_2sugimura_2_e_l__dev__arduino_2examples_2exhaustfan_2main_8cpp" alt=""/></div>
+<map name="a_2_users_2sugimura_2_e_l__dev__arduino_2examples_2exhaustfan_2main_8cpp" id="a_2_users_2sugimura_2_e_l__dev__arduino_2examples_2exhaustfan_2main_8cpp">
+<area shape="rect" title=" " alt="" coords="46,5,205,60"/>
+<area shape="rect" title=" " alt="" coords="5,108,88,133"/>
+<area shape="rect" title=" " alt="" coords="93,181,153,207"/>
+<area shape="rect" href="_e_l_8h.html" title="ECHONET Lite protocol for Arduino" alt="" coords="166,108,215,133"/>
+<area shape="rect" title=" " alt="" coords="196,255,273,280"/>
+<area shape="rect" title=" " alt="" coords="229,181,315,207"/>
+<area shape="rect" href="_e_l_o_b_j_8h.html" title="Subclasses for ECHONET Lite protocol" alt="" coords="340,181,415,207"/>
+<area shape="rect" title=" " alt="" coords="341,255,413,280"/>
+</map>
+</div>
+</div>
+<p><a href="main_8cpp_source.html">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+マクロ定義</h2></td></tr>
+<tr class="memitem:a586542b79d00e4db7e1d5a667ae83a2b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a586542b79d00e4db7e1d5a667ae83a2b">WIFI_SSID</a>&#160;&#160;&#160;&quot;YOUR_SSID&quot;</td></tr>
+<tr class="separator:a586542b79d00e4db7e1d5a667ae83a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c95561b03d0fcf9048b231ae2ba90fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a3c95561b03d0fcf9048b231ae2ba90fb">WIFI_PASS</a>&#160;&#160;&#160;&quot;YOUR_PASS&quot;</td></tr>
+<tr class="separator:a3c95561b03d0fcf9048b231ae2ba90fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:ad50656629e0cea352b791f61f64b2dfa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ad50656629e0cea352b791f61f64b2dfa">printNetData</a> ()</td></tr>
+<tr class="separator:ad50656629e0cea352b791f61f64b2dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a73893acf365847dffd3362e856af22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a7a73893acf365847dffd3362e856af22">toggleSwicth</a> ()</td></tr>
+<tr class="separator:a7a73893acf365847dffd3362e856af22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b943d707d0f55c5750bbc6c5fcf858f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a1b943d707d0f55c5750bbc6c5fcf858f">changeMode</a> (int mode)</td></tr>
+<tr class="separator:a1b943d707d0f55c5750bbc6c5fcf858f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
+<tr class="separator:a4fc01d736fe50cf5b977f755b675f11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
+<tr class="separator:afe461d27b9c48d5921c00d521181f12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+変数</h2></td></tr>
+<tr class="memitem:a323dfc205549b3c13f0a25c1b670708a"><td class="memItemLeft" align="right" valign="top">WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a323dfc205549b3c13f0a25c1b670708a">client</a></td></tr>
+<tr class="separator:a323dfc205549b3c13f0a25c1b670708a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acff5de1f75149984fcc9a8373f2fdc85"><td class="memItemLeft" align="right" valign="top">WiFiUDP&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#acff5de1f75149984fcc9a8373f2fdc85">elUDP</a></td></tr>
+<tr class="separator:acff5de1f75149984fcc9a8373f2fdc85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9832d0cef2337732f35ecc4df039197"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_e_l.html">EL</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ac9832d0cef2337732f35ecc4df039197">echo</a> (<a class="el" href="main_8cpp.html#acff5de1f75149984fcc9a8373f2fdc85">elUDP</a>, 0x01, 0x33, 0x01)</td></tr>
+<tr class="separator:ac9832d0cef2337732f35ecc4df039197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b57aa10271a66f3dc936bba1d2f3830"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0b57aa10271a66f3dc936bba1d2f3830">state</a> = 0</td></tr>
+<tr class="separator:a0b57aa10271a66f3dc936bba1d2f3830"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac62178e438ea0b7e006c7b5f73f82d22"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ac62178e438ea0b7e006c7b5f73f82d22">FSM</a> = 0</td></tr>
+<tr class="separator:ac62178e438ea0b7e006c7b5f73f82d22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dac34f5f7e3562351f976003b1aa55a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a8dac34f5f7e3562351f976003b1aa55a">packetSize</a> = 0</td></tr>
+<tr class="separator:a8dac34f5f7e3562351f976003b1aa55a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e455e89ae2e545c32f8a4594dec003c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a> = nullptr</td></tr>
+<tr class="separator:a2e455e89ae2e545c32f8a4594dec003c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e76f5cdb8e59fbd4bc0130350acdbfa"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a1e76f5cdb8e59fbd4bc0130350acdbfa">pressed</a> = 0</td></tr>
+<tr class="separator:a1e76f5cdb8e59fbd4bc0130350acdbfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">マクロ定義詳解</h2>
+<a id="a3c95561b03d0fcf9048b231ae2ba90fb" name="a3c95561b03d0fcf9048b231ae2ba90fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c95561b03d0fcf9048b231ae2ba90fb">&#9670;&#160;</a></span>WIFI_PASS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define WIFI_PASS&#160;&#160;&#160;&quot;YOUR_PASS&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="main_8cpp_source.html">main.cpp</a> の <a class="el" href="main_8cpp_source.html#l00006">6</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a586542b79d00e4db7e1d5a667ae83a2b" name="a586542b79d00e4db7e1d5a667ae83a2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a586542b79d00e4db7e1d5a667ae83a2b">&#9670;&#160;</a></span>WIFI_SSID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define WIFI_SSID&#160;&#160;&#160;&quot;YOUR_SSID&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="main_8cpp_source.html">main.cpp</a> の <a class="el" href="main_8cpp_source.html#l00005">5</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a1b943d707d0f55c5750bbc6c5fcf858f" name="a1b943d707d0f55c5750bbc6c5fcf858f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b943d707d0f55c5750bbc6c5fcf858f">&#9670;&#160;</a></span>changeMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void changeMode </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="main_8cpp_source.html">main.cpp</a> の <a class="el" href="main_8cpp_source.html#l00142">142</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8cpp_a1b943d707d0f55c5750bbc6c5fcf858f_cgraph.png" border="0" usemap="#amain_8cpp_a1b943d707d0f55c5750bbc6c5fcf858f_cgraph" alt=""/></div>
+<map name="amain_8cpp_a1b943d707d0f55c5750bbc6c5fcf858f_cgraph" id="amain_8cpp_a1b943d707d0f55c5750bbc6c5fcf858f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,101,31"/>
+<area shape="rect" href="main_8cpp.html#a7a73893acf365847dffd3362e856af22" title=" " alt="" coords="149,5,247,31"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8cpp_a1b943d707d0f55c5750bbc6c5fcf858f_icgraph.png" border="0" usemap="#amain_8cpp_a1b943d707d0f55c5750bbc6c5fcf858f_icgraph" alt=""/></div>
+<map name="amain_8cpp_a1b943d707d0f55c5750bbc6c5fcf858f_icgraph" id="amain_8cpp_a1b943d707d0f55c5750bbc6c5fcf858f_icgraph">
+<area shape="rect" title=" " alt="" coords="100,5,196,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="afe461d27b9c48d5921c00d521181f12f" name="afe461d27b9c48d5921c00d521181f12f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe461d27b9c48d5921c00d521181f12f">&#9670;&#160;</a></span>loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void loop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="main_8cpp_source.html">main.cpp</a> の <a class="el" href="main_8cpp_source.html#l00060">60</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8cpp_afe461d27b9c48d5921c00d521181f12f_cgraph.png" border="0" usemap="#amain_8cpp_afe461d27b9c48d5921c00d521181f12f_cgraph" alt=""/></div>
+<map name="amain_8cpp_afe461d27b9c48d5921c00d521181f12f_cgraph" id="amain_8cpp_afe461d27b9c48d5921c00d521181f12f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,105,52,131"/>
+<area shape="rect" href="main_8cpp.html#a1b943d707d0f55c5750bbc6c5fcf858f" title=" " alt="" coords="100,12,196,37"/>
+<area shape="rect" href="class_e_l.html#adb5539d23d71d5dc1b708868c241875a" title=" " alt="" coords="113,68,183,93"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="103,129,193,155"/>
+<area shape="rect" href="class_e_l.html#a0f235980e2cdae6da6ca84c8098d49cb" title=" " alt="" coords="105,203,191,228"/>
+<area shape="rect" href="main_8cpp.html#a7a73893acf365847dffd3362e856af22" title=" " alt="" coords="269,5,367,31"/>
+<area shape="rect" href="class_e_l.html#a4706069c6c704f074a811b49d9bfd337" title=" " alt="" coords="259,55,377,80"/>
+<area shape="rect" href="class_e_l.html#afb8d61da0fa657758fb4231f061337fc" title=" " alt="" coords="269,104,367,129"/>
+<area shape="rect" href="class_e_l.html#a8551857c372d8e40ddc60e3801ef3aec" title=" " alt="" coords="249,153,387,179"/>
+<area shape="rect" href="class_e_l.html#abcd52c423f1cc2e8bf0cedcf2542747a" title=" " alt="" coords="263,203,373,228"/>
+<area shape="rect" href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title=" " alt="" coords="440,153,543,179"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title=" " alt="" coords="454,203,529,228"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a215e34be020dd6dc5d63d677a3f858b2" title=" " alt="" coords="244,252,392,277"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad50656629e0cea352b791f61f64b2dfa" name="ad50656629e0cea352b791f61f64b2dfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad50656629e0cea352b791f61f64b2dfa">&#9670;&#160;</a></span>printNetData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printNetData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="main_8cpp_source.html">main.cpp</a> の <a class="el" href="main_8cpp_source.html#l00190">190</a> 行目に定義があります。</p>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8cpp_ad50656629e0cea352b791f61f64b2dfa_icgraph.png" border="0" usemap="#amain_8cpp_ad50656629e0cea352b791f61f64b2dfa_icgraph" alt=""/></div>
+<map name="amain_8cpp_ad50656629e0cea352b791f61f64b2dfa_icgraph" id="amain_8cpp_ad50656629e0cea352b791f61f64b2dfa_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,204,31"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,60,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4fc01d736fe50cf5b977f755b675f11d" name="a4fc01d736fe50cf5b977f755b675f11d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fc01d736fe50cf5b977f755b675f11d">&#9670;&#160;</a></span>setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setup </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="main_8cpp_source.html">main.cpp</a> の <a class="el" href="main_8cpp_source.html#l00018">18</a> 行目に定義があります。</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8cpp_a4fc01d736fe50cf5b977f755b675f11d_cgraph.png" border="0" usemap="#amain_8cpp_a4fc01d736fe50cf5b977f755b675f11d_cgraph" alt=""/></div>
+<map name="amain_8cpp_a4fc01d736fe50cf5b977f755b675f11d_cgraph" id="amain_8cpp_a4fc01d736fe50cf5b977f755b675f11d_cgraph">
+<area shape="rect" title=" " alt="" coords="5,55,60,80"/>
+<area shape="rect" href="class_e_l.html#a200545322f36c5ac01ec517269c93014" title=" " alt="" coords="121,5,198,31"/>
+<area shape="rect" href="main_8cpp.html#ad50656629e0cea352b791f61f64b2dfa" title=" " alt="" coords="111,55,207,80"/>
+<area shape="rect" href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title=" " alt="" coords="108,104,211,129"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3" title=" " alt="" coords="259,5,371,31"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title=" " alt="" coords="419,5,528,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7a73893acf365847dffd3362e856af22" name="a7a73893acf365847dffd3362e856af22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a73893acf365847dffd3362e856af22">&#9670;&#160;</a></span>toggleSwicth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void toggleSwicth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="main_8cpp_source.html">main.cpp</a> の <a class="el" href="main_8cpp_source.html#l00182">182</a> 行目に定義があります。</p>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8cpp_a7a73893acf365847dffd3362e856af22_icgraph.png" border="0" usemap="#amain_8cpp_a7a73893acf365847dffd3362e856af22_icgraph" alt=""/></div>
+<map name="amain_8cpp_a7a73893acf365847dffd3362e856af22_icgraph" id="amain_8cpp_a7a73893acf365847dffd3362e856af22_icgraph">
+<area shape="rect" title=" " alt="" coords="244,5,341,31"/>
+<area shape="rect" href="main_8cpp.html#a1b943d707d0f55c5750bbc6c5fcf858f" title=" " alt="" coords="100,5,196,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">変数詳解</h2>
+<a id="a323dfc205549b3c13f0a25c1b670708a" name="a323dfc205549b3c13f0a25c1b670708a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a323dfc205549b3c13f0a25c1b670708a">&#9670;&#160;</a></span>client</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">WiFiClient client</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="main_8cpp_source.html">main.cpp</a> の <a class="el" href="main_8cpp_source.html#l00008">8</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ac9832d0cef2337732f35ecc4df039197" name="ac9832d0cef2337732f35ecc4df039197"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9832d0cef2337732f35ecc4df039197">&#9670;&#160;</a></span>echo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_e_l.html">EL</a> echo(<a class="el" href="main_8cpp.html#acff5de1f75149984fcc9a8373f2fdc85">elUDP</a>, 0x01, 0x33, 0x01) </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="main_8cpp.html#acff5de1f75149984fcc9a8373f2fdc85">elUDP</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">0x01&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">0x33&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">0x01&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acff5de1f75149984fcc9a8373f2fdc85" name="acff5de1f75149984fcc9a8373f2fdc85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acff5de1f75149984fcc9a8373f2fdc85">&#9670;&#160;</a></span>elUDP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">WiFiUDP elUDP</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="main_8cpp_source.html">main.cpp</a> の <a class="el" href="main_8cpp_source.html#l00009">9</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="ac62178e438ea0b7e006c7b5f73f82d22" name="ac62178e438ea0b7e006c7b5f73f82d22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac62178e438ea0b7e006c7b5f73f82d22">&#9670;&#160;</a></span>FSM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t FSM = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="main_8cpp_source.html">main.cpp</a> の <a class="el" href="main_8cpp_source.html#l00053">53</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a8dac34f5f7e3562351f976003b1aa55a" name="a8dac34f5f7e3562351f976003b1aa55a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dac34f5f7e3562351f976003b1aa55a">&#9670;&#160;</a></span>packetSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int packetSize = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="main_8cpp_source.html">main.cpp</a> の <a class="el" href="main_8cpp_source.html#l00055">55</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a2e455e89ae2e545c32f8a4594dec003c" name="a2e455e89ae2e545c32f8a4594dec003c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e455e89ae2e545c32f8a4594dec003c">&#9670;&#160;</a></span>pdcedt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>* pdcedt = nullptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="main_8cpp_source.html">main.cpp</a> の <a class="el" href="main_8cpp_source.html#l00056">56</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a1e76f5cdb8e59fbd4bc0130350acdbfa" name="a1e76f5cdb8e59fbd4bc0130350acdbfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e76f5cdb8e59fbd4bc0130350acdbfa">&#9670;&#160;</a></span>pressed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t pressed = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="main_8cpp_source.html">main.cpp</a> の <a class="el" href="main_8cpp_source.html#l00058">58</a> 行目に定義があります。</p>
+
+</div>
+</div>
+<a id="a0b57aa10271a66f3dc936bba1d2f3830" name="a0b57aa10271a66f3dc936bba1d2f3830"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b57aa10271a66f3dc936bba1d2f3830">&#9670;&#160;</a></span>state</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t state = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition"> <a class="el" href="main_8cpp_source.html">main.cpp</a> の <a class="el" href="main_8cpp_source.html#l00012">12</a> 行目に定義があります。</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
+</small></address>
+</body>
+</html>
