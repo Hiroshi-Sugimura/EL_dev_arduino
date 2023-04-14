@@ -7,6 +7,7 @@
 //////////////////////////////////////////////////////////////////////
 #ifndef __ELOBJ_H__
 #define __ELOBJ_H__
+#pragma once
 
 // configure
 #include <Arduino.h>
@@ -25,13 +26,13 @@ using std::move;
 
 //////////////////////////////////////////////////////////////////////
 /// @class PDCEDT
-/// @brief PDC and EDT
+/// @brief PDC and EDT in ELOBJ
 //////////////////////////////////////////////////////////////////////
 class PDCEDT
 {
 protected:
-  byte *m_pdcedt; //	データ
-  byte length;
+  byte *m_pdcedt; ///< PDC[1] EDT[n]
+  byte length;    ///< length for m_pdcedt
 
 public:
   PDCEDT();
@@ -52,10 +53,10 @@ class ELOBJ
 {
   //	メンバ変数定義
 public:
-  const static byte PDC_MAX = 0x80; // 0xFF - 0x79
+  const static byte PDC_MAX = 0x80; ///< PDC_MAX 0xFF - 0x79
 
 protected:
-  PDCEDT m_pdcedt[PDC_MAX]; //	データ
+  PDCEDT m_pdcedt[PDC_MAX]; ///<	データ
 
   // member function
 public:
