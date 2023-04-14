@@ -16,7 +16,7 @@
 /// @param byte eoj2: instance code
 /// @return none
 /// @note eoj0, eoj1, eoj2で一つのオブジェクト
- // 一般照明の例
+/// 一般照明の例
 /// ex. EL(udp, 0x02, 0x90, 0x01);
 EL::EL(WiFiUDP &udp, byte eoj0, byte eoj1, byte eoj2)
 {
