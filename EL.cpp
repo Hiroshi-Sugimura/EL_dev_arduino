@@ -44,6 +44,10 @@ EL::EL(WiFiUDP &udp, byte eoj0, byte eoj1, byte eoj2)
 	_eojs[2] = eoj2;
 }
 
+/// @param WiFiUDP&
+/// @param byte eoj[][3]
+/// @param int count
+/// @return none
 // 複数のオブジェクトをサポートする。
 EL::EL(WiFiUDP &udp, byte eoj[][3], int count)
 {
@@ -101,20 +105,20 @@ void EL::begin(void)
 	}
 
 	// profile object
-	profile[0x80] = new byte[2]{0x01, 0x30};																								  // power
-	profile[0x81] = new byte[2]{0x01, 0x00};																								  // position
-	profile[0x82] = new byte[5]{0x04, 0x01, 0x0a, 0x01, 0x00};																				  // Ver 1.10 (type 1)
-	profile[0x83] = new byte[19]{0x12, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // identification number
-	profile[0x88] = new byte[4]{0x01, 0x42};																								  // error status
-	profile[0x8a] = new byte[4]{0x03, 0x00, 0x00, 0x77};																					  // maker KAIT
-	profile[0x9d] = new byte[3]{0x02, 0x01, 0x80};																							  // inf property map
-	profile[0x9e] = new byte[3]{0x02, 0x01, 0x80};																							  // set property map
-	profile[0x9f] = new byte[16]{0x0f, 0x0e, 0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f, 0xd3, 0xd4, 0xd5, 0xd6, 0xd7};			  // get property map
-	profile[0xd3] = new byte[4]{0x03, 0x00, 0x00, byte(deviceCount)};																		  // total instance number
-	profile[0xd4] = new byte[3]{0x02, 0x00, byte(deviceCount + 1)};																			  // total class number
-	profile[0xd5] = new byte[2 + deviceCount * sizeof(byte[3])]{byte(1 + deviceCount * 3), byte(deviceCount)};								  // obj list
-	profile[0xd6] = new byte[2 + deviceCount * sizeof(byte[3])]{byte(1 + deviceCount * 3), byte(deviceCount)};								  // obj list
-	profile[0xd7] = new byte[2 + deviceCount * sizeof(byte[2])]{byte(1 + deviceCount * 2), byte(deviceCount)};								  // class list
+	profile[0x80] = new byte[2]{0x01, 0x30};																								  ///< power
+	profile[0x81] = new byte[2]{0x01, 0x00};																								  ///< osition
+	profile[0x82] = new byte[5]{0x04, 0x01, 0x0a, 0x01, 0x00};																				  ///< Ver 1.10 (type 1)
+	profile[0x83] = new byte[19]{0x12, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; ///< identification number
+	profile[0x88] = new byte[4]{0x01, 0x42};																								  ///< error status
+	profile[0x8a] = new byte[4]{0x03, 0x00, 0x00, 0x77};																					  ///< maker KAIT
+	profile[0x9d] = new byte[3]{0x02, 0x01, 0x80};																							  ///< inf property map
+	profile[0x9e] = new byte[3]{0x02, 0x01, 0x80};																							  ///< set property map
+	profile[0x9f] = new byte[16]{0x0f, 0x0e, 0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f, 0xd3, 0xd4, 0xd5, 0xd6, 0xd7};			  ///< get property map
+	profile[0xd3] = new byte[4]{0x03, 0x00, 0x00, byte(deviceCount)};																		  ///< total instance number
+	profile[0xd4] = new byte[3]{0x02, 0x00, byte(deviceCount + 1)};																			  ///< total class number
+	profile[0xd5] = new byte[2 + deviceCount * sizeof(byte[3])]{byte(1 + deviceCount * 3), byte(deviceCount)};								  ///< obj list
+	profile[0xd6] = new byte[2 + deviceCount * sizeof(byte[3])]{byte(1 + deviceCount * 3), byte(deviceCount)};								  ///< obj list
+	profile[0xd7] = new byte[2 + deviceCount * sizeof(byte[2])]{byte(1 + deviceCount * 2), byte(deviceCount)};								  ///< class list
 	for (int i = 0; i < deviceCount; i++)
 	{
 		memcpy(&profile[0xd5][2 + i * sizeof(byte[3])], &_eojs[i * sizeof(byte[3])], sizeof(byte[3]));
@@ -123,37 +127,50 @@ void EL::begin(void)
 	}
 
 	// device object
-	details[0x80] = new byte[2]{0x01, 0x30};																								  // power
-	details[0x81] = new byte[2]{0x01, 0x00};																								  // position
-	details[0x82] = new byte[5]{0x04, 0x00, 0x00, 0x4b, 0x00};																				  // release K
-	details[0x83] = new byte[19]{0x12, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // identification number
-	details[0x88] = new byte[4]{0x01, 0x42};																								  // error status
-	details[0x8a] = new byte[4]{0x03, 0x00, 0x00, 0x77};																					  // maker KAIT
-	details[0x9d] = new byte[4]{0x03, 0x02, 0x80, 0xd6};																					  // inf property map
-	details[0x9e] = new byte[3]{0x02, 0x01, 0xe0};																							  // set property map
-	details[0x9f] = new byte[11]{0x0a, 0x09, 0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f};											  // get property map
+	details[0x80] = new byte[2]{0x01, 0x30};																								  ///< power
+	details[0x81] = new byte[2]{0x01, 0x00};																								  ///< position
+	details[0x82] = new byte[5]{0x04, 0x00, 0x00, 0x4b, 0x00};																				  ///< release K
+	details[0x83] = new byte[19]{0x12, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; ///< identification number
+	details[0x88] = new byte[4]{0x01, 0x42};																								  ///< error status
+	details[0x8a] = new byte[4]{0x03, 0x00, 0x00, 0x77};																					  ///< maker KAIT
+	details[0x9d] = new byte[4]{0x03, 0x02, 0x80, 0xd6};																					  ///< inf property map
+	details[0x9e] = new byte[3]{0x02, 0x01, 0xe0};																							  ///< set property map
+	details[0x9f] = new byte[11]{0x0a, 0x09, 0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f};											  ///< get property map
 
 	details.printAll();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // details change
+
+/// @param const byte epc
+/// @param byte pdcedt[]
+/// @return none
 void EL::update(const byte epc, byte pdcedt[])
 {
 	details.SetPDCEDT(epc, pdcedt); // power
 }
 
+/// @param const byte epc
+/// @return none
 byte *EL::at(const byte epc)
 {
 	return details.GetPDCEDT(epc);
 }
 
+/// @param const int devId
+/// @param const byte epc
+/// @param byte pdcedt[]
+/// @return none
 void EL::update(const int devId, const byte epc, byte pdcedt[])
 {
 	if (devId < deviceCount)
 		devices[devId].SetPDCEDT(epc, pdcedt); // power
 }
 
+/// @param const int devId
+/// @param const byte epc
+/// @return none
 byte *EL::at(const int devId, const byte epc)
 {
 	if (devId < deviceCount)
@@ -166,6 +183,9 @@ byte *EL::at(const int devId, const byte epc)
 // sender
 
 // ブロードキャストによる送信
+/// @param byte sBuffer[]
+/// @param int size
+/// @return none
 void EL::sendBroad(byte sBuffer[], int size)
 {
 	if (_udp->beginPacket(_broad, EL_PORT))
@@ -186,6 +206,9 @@ void EL::sendBroad(byte sBuffer[], int size)
 
 // マルチと見せかけてブロードキャストによる送信
 // このようにしておくとArduinoがマルチ対応したときに互換性を保てるハズ
+/// @param byte sBuffer[]
+/// @param int size
+/// @return none
 void EL::sendMulti(byte sBuffer[], int size)
 {
 	// sendBroad(sBuffer, size);
@@ -207,6 +230,13 @@ void EL::sendMulti(byte sBuffer[], int size)
 }
 
 // OPC一個用のマルチキャスト関数（変なミスが少なくなるはず）
+/// @param const byte *tid
+/// @param const byte *seoj
+/// @param const byte *deoj
+/// @param const byte esv
+/// @param const byte epc
+/// @param const byte *pdcedt
+/// @return none
 void EL::sendMultiOPC1(const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	_sBuffer[EL_EHD1] = 0x10;
@@ -247,6 +277,12 @@ void EL::sendMultiOPC1(const byte *tid, const byte *seoj, const byte *deoj, cons
 }
 
 // OPC一個用のマルチキャスト関数（変なミスが少なくなるはず）
+/// @param const byte *seoj
+/// @param const byte *deoj
+/// @param const byte esv
+/// @param const byte epc
+/// @param const byte *pdcedt
+/// @return none
 void EL::sendMultiOPC1(const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	const byte tid[] = {0x00, 0x00};
@@ -254,11 +290,23 @@ void EL::sendMultiOPC1(const byte *seoj, const byte *deoj, const byte esv, const
 }
 
 // OPC一個用のマルチキャスト関数（変なミスが少なくなるはず）
+/// @param const byte *deoj
+/// @param const byte esv
+/// @param const byte epc
+/// @param const byte *pdcedt
+/// @return none
 void EL::sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	const byte tid[] = {0x00, 0x00};
 	sendMultiOPC1(tid, _eoj, deoj, esv, epc, pdcedt);
 }
+
+/// @param const byte int devId
+/// @param const byte *deoj
+/// @param const byte esv
+/// @param const byte epc
+/// @param const byte *pdcedt
+/// @return none
 void EL::sendMultiOPC1(const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	if (devId < deviceCount)
@@ -274,6 +322,9 @@ void EL::sendMultiOPC1(const int devId, const byte *deoj, const byte esv, const 
 }
 
 // IP指定による送信
+/// @param IPAddress toip
+/// @param byte sBuffer[]
+/// @param int size
 void EL::send(IPAddress toip, byte sBuffer[], int size)
 {
 
