@@ -44,11 +44,13 @@ EL::EL(WiFiUDP &udp, byte eoj0, byte eoj1, byte eoj2)
 	_eojs[2] = eoj2;
 }
 
+////////////////////////////////////////////////////
+/// @brief オブジェクトを複数サポートする場合のコンストラクタ
 /// @param WiFiUDP&
 /// @param byte eoj[][3]
 /// @param int count
 /// @return none
-// 複数のオブジェクトをサポートする。
+/// @note
 EL::EL(WiFiUDP &udp, byte eoj[][3], int count)
 {
 	_udp = &udp;
@@ -75,6 +77,11 @@ EL::EL(WiFiUDP &udp, byte eoj[][3], int count)
 	_broad[3] = 255;
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 void EL::begin(void)
 {
 	Serial.printf("deviceCount: %d", deviceCount);
@@ -142,7 +149,6 @@ void EL::begin(void)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // details change
-
 /// @param const byte epc
 /// @param byte pdcedt[]
 /// @return none
@@ -348,6 +354,11 @@ void EL::send(IPAddress toip, byte sBuffer[], int size)
 	}
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 // OPC1指定による送信(SEOJも指定する，ほぼ内部関数)
 void EL::sendOPC1(const IPAddress toip, const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
@@ -388,6 +399,11 @@ void EL::sendOPC1(const IPAddress toip, const byte *tid, const byte *seoj, const
 #endif
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 // OPC1指定による送信(SEOJも指定する，ほぼ内部関数)
 void EL::sendOPC1(const IPAddress toip, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
@@ -395,12 +411,24 @@ void EL::sendOPC1(const IPAddress toip, const byte *seoj, const byte *deoj, cons
 	sendOPC1(toip, tid, seoj, deoj, esv, epc, pdcedt);
 }
 
+
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 // OPC1指定による送信(SEOJは初期化時に指定したものを使う)
 void EL::sendOPC1(const IPAddress toip, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	const byte tid[] = {0x00, 0x00};
 	sendOPC1(toip, tid, _eoj, deoj, esv, epc, pdcedt);
 }
+
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 void EL::sendOPC1(const IPAddress toip, const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	const byte tid[] = {0x00, 0x00};
@@ -414,6 +442,12 @@ void EL::sendOPC1(const IPAddress toip, const int devId, const byte *deoj, const
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // reseiver
+
+////////////////////////////////////////////////////
+/// @brief reseiver
+/// @param 
+/// @return none
+/// @note
 int EL::parsePacket(void)
 {
 	return _udp->parsePacket();
@@ -435,6 +469,11 @@ int EL::read(void)
 	return _readPacketSize;
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 // details
 void EL::returner(void)
 {
@@ -527,6 +566,11 @@ void EL::returner(void)
 }
 // EL処理ここまで
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 // byte[] を安全にdeleteする
 inline void EL::delPtr(byte ptr[])
 {

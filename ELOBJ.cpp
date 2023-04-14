@@ -17,6 +17,12 @@ PDCEDT::PDCEDT()
     m_pdcedt = nullptr;
     length = 0;
 }
+
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 PDCEDT::PDCEDT(const PDCEDT& val) // copy constractor
 {
     length = val[0] + 1;
@@ -24,6 +30,11 @@ PDCEDT::PDCEDT(const PDCEDT& val) // copy constractor
     memcpy(m_pdcedt, val, length);
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 PDCEDT::PDCEDT(const byte* val)
 {
     length = val[0] + 1;
@@ -31,6 +42,11 @@ PDCEDT::PDCEDT(const byte* val)
     memcpy(m_pdcedt, val, length);
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 PDCEDT::~PDCEDT()
 {
     if (nullptr != m_pdcedt)
@@ -41,6 +57,11 @@ PDCEDT::~PDCEDT()
     }
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 const PDCEDT PDCEDT::operator=(const PDCEDT val)
 {
     // cout << "ope = PDCEDT" << endl;
@@ -59,6 +80,11 @@ const PDCEDT PDCEDT::operator=(const PDCEDT val)
     return *this;
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 const byte* PDCEDT::operator=(const byte* val)
 {
     // cout << "ope = byte" << endl;
@@ -78,11 +104,21 @@ const byte* PDCEDT::operator=(const byte* val)
     return m_pdcedt;
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 PDCEDT::operator byte* () const
 {
     return m_pdcedt;
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 void PDCEDT::print(void) const
 {
 
@@ -119,20 +155,40 @@ void PDCEDT::print(void) const
 //////////////////////////////////////////////////////////////////////
 //	EOOBJ
 //////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 ELOBJ::ELOBJ()
 {
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 ELOBJ::~ELOBJ() {}
 
 //////////////////////////////////////////////////////////////////////
 //	キー文字列からデータ取得
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 const PDCEDT ELOBJ::GetPDCEDT(const byte epc) const
 {
     int key = epc - 0x80;
     return m_pdcedt[key];
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 //	データセット, 更新
 const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const PDCEDT pdcedt)
 {
@@ -142,6 +198,11 @@ const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const PDCEDT pdcedt)
     return (m_pdcedt[key]);
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const byte*&& pdcedt)
 {
     // cout << "Set byte*" << endl;
@@ -150,6 +211,11 @@ const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const byte*&& pdcedt)
     return (m_pdcedt[key]);
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 //	配列らしいインターフェイス，const this
 const PDCEDT ELOBJ::operator[](const byte epc) const
 {
@@ -157,6 +223,11 @@ const PDCEDT ELOBJ::operator[](const byte epc) const
     return ((const PDCEDT)m_pdcedt[key]);
 }
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 //	配列らしいインターフェイス，not const this
 PDCEDT &ELOBJ::operator[](const byte epc)
 {
@@ -166,6 +237,11 @@ PDCEDT &ELOBJ::operator[](const byte epc)
 
 // 状態表示系
 
+////////////////////////////////////////////////////
+/// @brief 
+/// @param 
+/// @return none
+/// @note
 // null以外全部出力
 void ELOBJ::printAll() const
 {
