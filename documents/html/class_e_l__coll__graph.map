@@ -1,5 +1,5 @@
 <map id="EL" name="EL">
-<area shape="rect" id="node1" title="Main class for EL" alt="" coords="25,211,64,236"/>
-<area shape="rect" id="node2" href="$class_e_l_o_b_j.html" title="EL Object" alt="" coords="13,93,77,119"/>
-<area shape="rect" id="node3" href="$class_p_d_c_e_d_t.html" title="PDC and EDT" alt="" coords="5,5,84,31"/>
+<area shape="rect" id="node1" title="Main class for EL" alt="" coords="23,211,62,236"/>
+<area shape="rect" id="node2" href="$class_e_l_o_b_j.html" title="EL Object" alt="" coords="11,93,74,119"/>
+<area shape="rect" id="node3" href="$class_p_d_c_e_d_t.html" title="PDC and EDT in ELOBJ" alt="" coords="5,5,80,31"/>
 </map>
