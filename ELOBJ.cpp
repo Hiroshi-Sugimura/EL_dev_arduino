@@ -20,7 +20,7 @@ PDCEDT::PDCEDT()
 
 ////////////////////////////////////////////////////
 /// @brief コピーコンストラクタ
-/// @param PDCEDT& コピー元
+/// @param val const PDCEDT& コピー元
 /// @return none
 /// @note
 PDCEDT::PDCEDT(const PDCEDT& val) // copy constractor
@@ -31,8 +31,8 @@ PDCEDT::PDCEDT(const PDCEDT& val) // copy constractor
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param vol
+/// @brief 初期化コンストラクタ
+/// @param val const byte*
 /// @return none
 /// @note
 PDCEDT::PDCEDT(const byte* val)
@@ -154,9 +154,9 @@ void PDCEDT::print(void) const
 //////////////////////////////////////////////////////////////////////
 //	EOOBJ
 //////////////////////////////////////////////////////////////////////
+
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief コンストラクタ
 /// @return none
 /// @note
 ELOBJ::ELOBJ()
@@ -164,17 +164,16 @@ ELOBJ::ELOBJ()
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief デストラクタ
 /// @return none
 /// @note
 ELOBJ::~ELOBJ() {}
 
-//////////////////////////////////////////////////////////////////////
-//	キー文字列からデータ取得
+
+
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief キー文字列からデータ取得
+/// @param epc const byte
 /// @return none
 /// @note
 const PDCEDT ELOBJ::GetPDCEDT(const byte epc) const
@@ -183,12 +182,13 @@ const PDCEDT ELOBJ::GetPDCEDT(const byte epc) const
     return m_pdcedt[key];
 }
 
+
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief EPCに対して、PDCEDTのを結びつける（セットと更新）
+/// @param epc
+/// @param pdcedt
 /// @return none
-/// @note
-//	データセット, 更新
+/// @note pdcedtがPDCEDT型のときに呼ばれる
 const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const PDCEDT pdcedt)
 {
     // cout << "Set PDCEDT" << endl;
@@ -198,10 +198,11 @@ const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const PDCEDT pdcedt)
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief EPCに対して、PDCEDTのを結びつける（セットと更新）
+/// @param epc
+/// @param pdcedt
 /// @return none
-/// @note
+/// @note pdcedtがconst byte*型のときに呼ばれる
 const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const byte*&& pdcedt)
 {
     // cout << "Set byte*" << endl;
@@ -211,11 +212,10 @@ const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const byte*&& pdcedt)
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief 配列らしいインターフェイス，const this
+/// @param epc const byte
 /// @return none
 /// @note
-//	配列らしいインターフェイス，const this
 const PDCEDT ELOBJ::operator[](const byte epc) const
 {
     int key = epc - 0x80;
@@ -223,25 +223,21 @@ const PDCEDT ELOBJ::operator[](const byte epc) const
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief 配列らしいインターフェイス，not const this
+/// @param epc const byte
 /// @return none
 /// @note
-//	配列らしいインターフェイス，not const this
 PDCEDT &ELOBJ::operator[](const byte epc)
 {
     int key = epc - 0x80;
     return ((PDCEDT &)m_pdcedt[key]);
 }
 
-// 状態表示系
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief null以外のEPCを全部出力
 /// @return none
 /// @note
-// null以外全部出力
 void ELOBJ::printAll() const
 {
     for (int i = 0; i < PDC_MAX; i += 1)

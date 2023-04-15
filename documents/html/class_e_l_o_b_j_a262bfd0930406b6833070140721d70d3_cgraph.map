@@ -1,4 +1,4 @@
 <map id="ELOBJ::printAll" name="ELOBJ::printAll">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,117,31"/>
-<area shape="rect" id="node2" href="$class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title=" " alt="" coords="165,5,275,31"/>
+<area shape="rect" id="node1" title="null以外のEPCを全部出力" alt="" coords="5,5,117,31"/>
+<area shape="rect" id="node2" href="$class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title="デバグ用の標準出力" alt="" coords="165,5,275,31"/>
 </map>
