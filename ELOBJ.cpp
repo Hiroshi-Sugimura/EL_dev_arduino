@@ -19,8 +19,8 @@ PDCEDT::PDCEDT()
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief コピーコンストラクタ
+/// @param PDCEDT& コピー元
 /// @return none
 /// @note
 PDCEDT::PDCEDT(const PDCEDT& val) // copy constractor
@@ -32,7 +32,7 @@ PDCEDT::PDCEDT(const PDCEDT& val) // copy constractor
 
 ////////////////////////////////////////////////////
 /// @brief 
-/// @param 
+/// @param vol
 /// @return none
 /// @note
 PDCEDT::PDCEDT(const byte* val)
@@ -43,8 +43,7 @@ PDCEDT::PDCEDT(const byte* val)
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief デストラクタ
 /// @return none
 /// @note
 PDCEDT::~PDCEDT()
@@ -58,10 +57,10 @@ PDCEDT::~PDCEDT()
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
-/// @return none
-/// @note
+/// @brief operator=
+/// @param PDCEDT val
+/// @return PDCEDT
+/// @note PDCEDT型
 const PDCEDT PDCEDT::operator=(const PDCEDT val)
 {
     // cout << "ope = PDCEDT" << endl;
@@ -81,9 +80,9 @@ const PDCEDT PDCEDT::operator=(const PDCEDT val)
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
-/// @return none
+/// @brief operator=
+/// @param const byte* val
+/// @return const byte*
 /// @note
 const byte* PDCEDT::operator=(const byte* val)
 {
@@ -105,9 +104,9 @@ const byte* PDCEDT::operator=(const byte* val)
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
-/// @return none
+/// @brief operator byte*
+/// @param none
+/// @return byte*
 /// @note
 PDCEDT::operator byte* () const
 {
@@ -115,9 +114,9 @@ PDCEDT::operator byte* () const
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
-/// @return none
+/// @brief デバグ用の標準出力
+/// @param void
+/// @return void
 /// @note
 void PDCEDT::print(void) const
 {
