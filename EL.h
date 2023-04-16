@@ -16,7 +16,7 @@
 #include "ELOBJ.h"
 
 // defined
-#define EL_PORT 3610   ///< ECHONET Lite port
+#define EL_PORT 3610 ///< ECHONET Lite port
 #define EL_EHD1 0
 #define EL_EHD2 1
 #define EL_TID 2
@@ -101,7 +101,7 @@
 #define EL_PackageTypeCommercialAirConditionerIndoorUnit 0x01, 0x56	 ///< 業務用パッケージエアコン室内機
 #define EL_PackageTypeCommercialAirConditionerOutdoorUnit 0x01, 0x57 ///< 業務用パッケージエアコン室外機
 // 住宅・設備関連機器
-#define EL_ElectricallyOperatedShade 0x02, 0x60		    ///< 電動ブラインド・日よけ
+#define EL_ElectricallyOperatedShade 0x02, 0x60			///< 電動ブラインド・日よけ
 #define EL_ElectricShutter 0x02, 0x61					///< 電動シャッター
 #define EL_ElectricStormWindow 0x02, 0x63				///< 電動雨戸・シャッター
 #define EL_Sprinkler 0x02, 0x67							///< 散水器(庭用)
@@ -136,7 +136,7 @@
 #define EL_ClothesDryer 0x03, 0xC6			   ///< 衣類乾燥機
 #define EL_WasherAndDryer 0x03, 0xD3		   ///< 洗濯乾燥機
 // 健康関連機器
-#define EL_Weighing 0x04, 0x01   ///< 体重計
+#define EL_Weighing 0x04, 0x01 ///< 体重計
 // 管理・操作関連機器
 #define EL_Switch 0x05, 0xFD	 ///< スイッチ(JEM-A/HA端子対応)
 #define EL_Controller 0x05, 0xFF ///< コントローラ
@@ -166,9 +166,9 @@ protected:
 	int parsePacket(void);
 
 public:
-	ELOBJ profile; ///< profile object (for specialist)
-	ELOBJ details; ///< device object (for simple eoj)
-	ELOBJ *devices;  ///< device objects (for multi eoj)
+	ELOBJ profile;				   ///< profile object (for specialist)
+	ELOBJ details;				   ///< device object (for simple eoj)
+	ELOBJ *devices;				   ///< device objects (for multi eoj)
 	byte _rBuffer[EL_BUFFER_SIZE]; ///< receive buffer
 
 	////////////////////////////////////////////////////
@@ -194,6 +194,15 @@ public:
 	void sendMultiOPC1(const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
 	void sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const byte *edt);
 	void sendMultiOPC1(const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt);
+	// multi opc
+	void sendDetails(const IPAddress toip, const byte *seoj, const byte *deoj, const byte esv, const PDCEDT[] pdcedts);
+	void sendELDATA(const IPAddress toip, const byte *eldata);
+	// return
+	void replyOPC1(const IPAddress toip, const unsigned short tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
+	void replyGetDetail(const IPAddress toip, const byte *eoj, const byte epc);
+	void replyGetDetail_sub(const byte *eoj, const byte epc);
+	void replySetDetail(const IPAddress toip, const byte *eoj, const byte epc);
+	void replySetDetail_sub(const IPAddress toip, const byte *eoj, const byte epc);
 
 	// reseiver
 	int read();

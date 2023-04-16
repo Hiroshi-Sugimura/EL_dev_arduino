@@ -440,24 +440,83 @@ void EL::sendOPC1(const IPAddress toip, const int devId, const byte *deoj, const
 	sendOPC1(toip, tid, seoj, deoj, esv, epc, pdcedt);
 }
 
+// 複数のEPCで送信する
+// TID自動インクリメント
+// seoj, deoj, esvはbyteでもstringでも受け付ける
+// DETAILsは下記のオブジェクトか、配列をとる。配列の場合は順序が守られる
+// DETAILs = {epc: edt, epc: edt, ...}
+// DETAILs = [{epc: edt}, {epc: edt}, ...]
+// ex. {'80':'31', '8a':'000077'}
+void EL::sendDetails(const IPAddress toip, const byte* seoj, const byte* deoj, const byte esv, const PDCEDT[] pdcedts) {}
+
+
+// 省略したELDATAの形式で指定して送信する
+// ELDATA {
+//   TID : String(4),      // 省略すると自動
+//   SEOJ : String(6),
+//   DEOJ : String(6),
+//   ESV : String(2),
+//   DETAILs: Object
+// }
+// ex.
+// ELDATA {
+//   TID : '0001',      // 省略すると自動
+//   SEOJ : '0ef001',
+//   DEOJ : '029001',
+//   ESV : '61',
+//   DETAILs:  {'80':'31', '8a':'000077'}
+// }
+void EL::sendELDATA(const IPAddress toip, const byte* eldata) {}
+
+// ELの返信用、典型的なOPC一個でやる．TIDを併せて返信しないといけないため
+void EL::replyOPC1(const IPAddress toip, const unsigned short tid, const byte* seoj, const byte* deoj, const byte esv, const byte epc, const byte* edt) {}
+
+// dev_detailのGetに対して複数OPCにも対応して返答する
+void EL::replyGetDetail(const IPAddress toip, const byte* eoj, const byte epc) {}
+
+// 上記のサブルーチン
+void EL::replyGetDetail_sub( const byte* eoj, const byte epc ) {}
+
+// dev_detailのSetに対して複数OPCにも対応して返答する
+// ただしEPC毎の設定値に関して基本はノーチェックなので注意すべし
+// EPC毎の設定値チェックや、INF処理に関しては下記の replySetDetail_sub にて実施
+// SET_RESはEDT入ってない
+void EL::replySetDetail(const IPAddress toip, const byte* eoj, const byte epc) {}
+
+// 上記のサブルーチン
+void EL::replySetDetail_sub(const IPAddress toip, const byte* eoj, const byte epc) {}
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // reseiver
 
 ////////////////////////////////////////////////////
-/// @brief reseiver
-/// @param 
-/// @return none
+/// @brief 受信データをELにパースする
+/// @param void
+/// @return int
 /// @note
 int EL::parsePacket(void)
 {
 	return _udp->parsePacket();
 }
 
+////////////////////////////////////////////////////
+/// @brief 受信データの送信元を取得する
+/// @param void
+/// @return 受信データの送信元IPアドレス : IPAddress
+/// @note
 IPAddress EL::remoteIP(void)
 {
 	return _udp->remoteIP();
 }
 
+
+////////////////////////////////////////////////////
+/// @brief 受信データを受け取る
+/// @param void
+/// @return 受信データサイズ : int
+/// @note
 int EL::read(void)
 {
 	_readPacketSize = parsePacket();
@@ -567,11 +626,10 @@ void EL::returner(void)
 // EL処理ここまで
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief byte[] を安全にdeleteするinline関数
+/// @param ptr byte[]
 /// @return none
 /// @note
-// byte[] を安全にdeleteする
 inline void EL::delPtr(byte ptr[])
 {
 	if (ptr != nullptr)
