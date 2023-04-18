@@ -1,7 +1,8 @@
-#include <Arduino.h>
+
+//#include <Arduino.h>
+#include <M5Core2.h>
 #include <WiFi.h>
 #include "EL.h"
-
 
 void setup() {
   Serial.begin(115200);
