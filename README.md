@@ -45,6 +45,9 @@ You can install the module by using Library Manager of ArduinoIDE as following.
 5. Attach the M5stack
 6. Run
 
+# API manual
+
+[Manual (Github)](https://hiroshi-sugimura.github.io/EL_dev_arduino/documents/html/index.html)
 
 
 # Example (General Lighting)
@@ -214,6 +217,10 @@ void printNetData()
   Serial.println("-----------------------------------");
 }
 ```
+
+# API manual
+
+[Manual (Github)](https://hiroshi-sugimura.github.io/EL_dev_arduino/documents/html/index.html)
 
 
 # Classes

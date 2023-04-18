@@ -195,14 +195,14 @@ public:
 	void sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const byte *edt);
 	void sendMultiOPC1(const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt);
 	// multi opc
-	void sendDetails(const IPAddress toip, const byte *seoj, const byte *deoj, const byte esv, const PDCEDT[] pdcedts);
-	void sendELDATA(const IPAddress toip, const byte *eldata);
+	// void sendDetails(const IPAddress toip, const byte *seoj, const byte *deoj, const byte esv, const PDCEDT[] pdcedts);
+	// void sendELDATA(const IPAddress toip, const byte *eldata);
 	// return
-	void replyOPC1(const IPAddress toip, const unsigned short tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	void replyGetDetail(const IPAddress toip, const byte *eoj, const byte epc);
-	void replyGetDetail_sub(const byte *eoj, const byte epc);
-	void replySetDetail(const IPAddress toip, const byte *eoj, const byte epc);
-	void replySetDetail_sub(const IPAddress toip, const byte *eoj, const byte epc);
+	// void replyOPC1(const IPAddress toip, const unsigned short tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
+	// void replyGetDetail(const IPAddress toip, const byte *eoj, const byte epc);
+	// void replyGetDetail_sub(const byte *eoj, const byte epc);
+	// void replySetDetail(const IPAddress toip, const byte *eoj, const byte epc);
+	// void replySetDetail_sub(const IPAddress toip, const byte *eoj, const byte epc);
 
 	// reseiver
 	int read();

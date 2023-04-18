@@ -78,8 +78,8 @@ EL::EL(WiFiUDP &udp, byte eoj[][3], int count)
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief
+/// @param
 /// @return none
 /// @note
 void EL::begin(void)
@@ -355,8 +355,8 @@ void EL::send(IPAddress toip, byte sBuffer[], int size)
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief
+/// @param
 /// @return none
 /// @note
 // OPC1指定による送信(SEOJも指定する，ほぼ内部関数)
@@ -400,8 +400,8 @@ void EL::sendOPC1(const IPAddress toip, const byte *tid, const byte *seoj, const
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief
+/// @param
 /// @return none
 /// @note
 // OPC1指定による送信(SEOJも指定する，ほぼ内部関数)
@@ -413,8 +413,8 @@ void EL::sendOPC1(const IPAddress toip, const byte *seoj, const byte *deoj, cons
 
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief
+/// @param
 /// @return none
 /// @note
 // OPC1指定による送信(SEOJは初期化時に指定したものを使う)
@@ -425,8 +425,8 @@ void EL::sendOPC1(const IPAddress toip, const byte *deoj, const byte esv, const 
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief
+/// @param
 /// @return none
 /// @note
 void EL::sendOPC1(const IPAddress toip, const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
@@ -447,7 +447,7 @@ void EL::sendOPC1(const IPAddress toip, const int devId, const byte *deoj, const
 // DETAILs = {epc: edt, epc: edt, ...}
 // DETAILs = [{epc: edt}, {epc: edt}, ...]
 // ex. {'80':'31', '8a':'000077'}
-void EL::sendDetails(const IPAddress toip, const byte* seoj, const byte* deoj, const byte esv, const PDCEDT[] pdcedts) {}
+// void EL::sendDetails(const IPAddress toip, const byte* seoj, const byte* deoj, const byte esv, const PDCEDT[] pdcedts) {}
 
 
 // 省略したELDATAの形式で指定して送信する
@@ -466,25 +466,25 @@ void EL::sendDetails(const IPAddress toip, const byte* seoj, const byte* deoj, c
 //   ESV : '61',
 //   DETAILs:  {'80':'31', '8a':'000077'}
 // }
-void EL::sendELDATA(const IPAddress toip, const byte* eldata) {}
+// void EL::sendELDATA(const IPAddress toip, const byte* eldata) {}
 
 // ELの返信用、典型的なOPC一個でやる．TIDを併せて返信しないといけないため
-void EL::replyOPC1(const IPAddress toip, const unsigned short tid, const byte* seoj, const byte* deoj, const byte esv, const byte epc, const byte* edt) {}
+// void EL::replyOPC1(const IPAddress toip, const unsigned short tid, const byte* seoj, const byte* deoj, const byte esv, const byte epc, const byte* edt) {}
 
 // dev_detailのGetに対して複数OPCにも対応して返答する
-void EL::replyGetDetail(const IPAddress toip, const byte* eoj, const byte epc) {}
+// void EL::replyGetDetail(const IPAddress toip, const byte* eoj, const byte epc) {}
 
 // 上記のサブルーチン
-void EL::replyGetDetail_sub( const byte* eoj, const byte epc ) {}
+// void EL::replyGetDetail_sub( const byte* eoj, const byte epc ) {}
 
 // dev_detailのSetに対して複数OPCにも対応して返答する
 // ただしEPC毎の設定値に関して基本はノーチェックなので注意すべし
 // EPC毎の設定値チェックや、INF処理に関しては下記の replySetDetail_sub にて実施
 // SET_RESはEDT入ってない
-void EL::replySetDetail(const IPAddress toip, const byte* eoj, const byte epc) {}
+// void EL::replySetDetail(const IPAddress toip, const byte* eoj, const byte epc) {}
 
 // 上記のサブルーチン
-void EL::replySetDetail_sub(const IPAddress toip, const byte* eoj, const byte epc) {}
+// void EL::replySetDetail_sub(const IPAddress toip, const byte* eoj, const byte epc) {}
 
 
 
@@ -529,8 +529,8 @@ int EL::read(void)
 }
 
 ////////////////////////////////////////////////////
-/// @brief 
-/// @param 
+/// @brief
+/// @param
 /// @return none
 /// @note
 // details
