@@ -154,33 +154,34 @@ private:
 	IPAddress ip;	  ///< my ipaddress
 	IPAddress _multi; ///< multicast address
 	byte _broad[4];	  ///< broadcast address
-	byte _eoj[3];	  ///< for simple eoj obj
-	byte *_eojs;	  ///< for multi eojs obj
+	byte* _eojs;	      ///< for eojs
 	int _sendPacketSize = 0;
 	int _readPacketSize = 0;
 	byte _sBuffer[EL_BUFFER_SIZE]; ///< send buffer
-	WiFiUDP *_udp;
+	WiFiUDP* _udp;
 	int deviceCount;
 
 protected:
 	int parsePacket(void);
+	void commonConstructor(WiFiUDP& udp, byte eojs[][3], int count);
+	void tidAutoIncrement(void);
 
 public:
-	ELOBJ profile;				   ///< profile object (for specialist)
-	ELOBJ details;				   ///< device object (for simple eoj)
-	ELOBJ *devices;				   ///< device objects (for multi eoj)
+	ELOBJ  profile;				   ///< profile object (for specialist)
+	ELOBJ* devices;				   ///< device objects (for multi eoj)
 	byte _rBuffer[EL_BUFFER_SIZE]; ///< receive buffer
+	byte _tid[2];                   ///< TID (semi-auto incremented)
 
 	////////////////////////////////////////////////////
-	EL(WiFiUDP &udp, byte eoj0, byte eoj1, byte eoj2);
-	EL(WiFiUDP &udp, byte[][3], int count);
+	EL(WiFiUDP& udp, byte classGroupCode, byte classCode, byte instanceNumber);
+	EL(WiFiUDP& udp, byte eojs[][3], int count);
 	void begin(void);
 
 	// details change
 	void update(const byte epc, byte pdcedt[]);
-	byte *at(const byte epc);
+	byte* at(const byte epc);
 	void update(const int devId, const byte epc, byte pdcedt[]);
-	byte *at(const int devId, const byte epc);
+	byte* at(const int devId, const byte epc);
 
 	// sender
 	void send(IPAddress toip, byte sBuffer[], int size);
