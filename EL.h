@@ -151,20 +151,21 @@
 class EL
 {
 private:
-	IPAddress ip;	  ///< my ipaddress
-	IPAddress _multi; ///< multicast address
-	byte _broad[4];	  ///< broadcast address
-	byte* _eojs;	      ///< for eojs
-	int _sendPacketSize = 0;
-	int _readPacketSize = 0;
-	byte _sBuffer[EL_BUFFER_SIZE]; ///< send buffer
-	WiFiUDP* _udp;
-	int deviceCount;
+	IPAddress ip;	  ///< my ipaddress: 自分のIPアドレス
+	IPAddress _multi; ///< multicast address:
+	byte _broad[4];	  ///< broadcast address:
+	byte* _eojs;	      ///< EOJ array: = _eojs[][3]の構造で管理
+	int deviceCount;   ///< Number of EOJ: _eojs[deviceCount][3]に相当
+	int _sendPacketSize = 0;  ///< recentry sended packet size: 直近の送信パケットサイズ
+	int _readPacketSize = 0;  /// < recentry readed packet size: 直近の受信・読込パケットサイズ
+	byte _sBuffer[EL_BUFFER_SIZE]; ///< send buffer: 直近の送信パケットデータ
+	WiFiUDP* _udp;  ///< WiFiのUDPソケット
+
 
 protected:
-	int parsePacket(void);
-	void commonConstructor(WiFiUDP& udp, byte eojs[][3], int count);
-	void tidAutoIncrement(void);
+	int parsePacket(void);   // 受信データを読む
+	void commonConstructor(WiFiUDP& udp, byte eojs[][3], int count);   // コンストラクタで共通にコールされる
+	void tidAutoIncrement(void);    // データ送信時にTIDを自動的にインクリメントの再計算する(シンプルに+1するとオーバーフローするのでこれ使う)
 
 public:
 	ELOBJ  profile;				   ///< profile object (for specialist)
@@ -210,8 +211,14 @@ public:
 	IPAddress remoteIP(void);
 	void returner(void);
 
+	// display, debug
+	void printAll(void);
+
+	////////////////////////////////////////////////////////////////////
+	// inline function
 	// byte[] を安全にdeleteする
 	void delPtr(byte ptr[]);
+
 };
 
 #endif

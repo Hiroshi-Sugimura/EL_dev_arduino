@@ -113,7 +113,7 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 
 
 ////////////////////////////////////////////////////
-/// @brief TIDの自動インクリメント
+/// @brief TIDの自動インクリメント、オーバーフロー対策
 /// @param none
 /// @return none
 /// @note
@@ -136,6 +136,7 @@ void EL::tidAutoIncrement(void)
 /// @note
 void EL::begin(void)
 {
+	Serial.println("=========== EL.begin");
 	Serial.printf("deviceCount: %d", deviceCount);
 	Serial.println();
 	for (int i = 0; i < deviceCount; i++)
@@ -526,7 +527,7 @@ void EL::sendOPC1(const IPAddress toip, const int devId, const byte *deoj, const
 // reseiver
 
 ////////////////////////////////////////////////////
-/// @brief 受信データをELにパースする
+/// @brief 受信データを読む
 /// @param void
 /// @return int
 /// @note
@@ -652,6 +653,32 @@ void EL::returner(void)
 }
 // EL処理ここまで
 ////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////
+/// @brief インスタンスの情報を表示
+/// @param none
+/// @return none
+/// @note
+void EL::printAll(void)
+{
+	Serial.println("===================");
+	Serial.println("Node profile object");
+	profile.printAll();
+
+	Serial.println("--------------");
+	Serial.print("Device object (deviceCount: ");
+	Serial.print(deviceCount);
+	Serial.println(")");
+
+	for( int i = 0; i < deviceCount; i += 1 ) {
+		Serial.print("-- devId: ");
+		Serial.print(i);
+		Serial.printf(" (%02X %02X %02X)\n",  _eojs[i * 3], _eojs[i * 3 + 1], _eojs[i * 3 + 2]);
+		devices[i].printAll();
+	}
+	Serial.println("===================");
+}
 
 
 

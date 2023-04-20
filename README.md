@@ -512,7 +512,7 @@ Limitations of this module is following.
 
 # Version
 
-- 2.2.2 bug fix and refactoring
+- 2.2.2 bug fix and refactoring, add serial print
 - 2.2.1 bug fix, support multi device (pull request from katsumin)
 - 2.2.0 bug fix, support multi device
 - 2.1.0 considering TID
