@@ -3,12 +3,13 @@
 //////////////////////////////////////////////////////////////////////
 
 // #include <M5Stack.h>
-#include <M5Core2.h>
+// #include <M5Core2.h>
+#include <Arduino.h>
 #include <WiFi.h>
 #include <EL.h>
 
-#define WIFI_SSID "sugilab"        // !!!! change
-#define WIFI_PASS "4428211065122"  // !!!! change
+#define WIFI_SSID "ssid"        // !!!! change
+#define WIFI_PASS "pass"  // !!!! change
 
 
 //////////////////////////////////////////////////////////////////////
@@ -31,24 +32,24 @@ EL echo(elUDP, EL_GeneralLighting, 0x01);  // Controller = 0x05, 0xFF
 //////////////////////////////////////////////////////////////////////
 // process
 void setup() {
-  M5.begin();
+  // M5.begin();
+  Serial.begin(115200);
   Serial.println("start");
 
-  M5.Lcd.setTextSize(2);
-  M5.Lcd.println("wifi connect start");
+  Serial.println("wifi connect start");
 
   WiFi.begin(WIFI_SSID, WIFI_PASS);
   while (WiFi.status() != WL_CONNECTED) {
-    M5.Lcd.print(".");
+    Serial.print(".");
     delay(1000);
   }
-  M5.Lcd.println("wifi connect ok");
-  M5.update();
+  Serial.println("wifi connect ok");
+  // M5.update();
 
   // print your WiFi IP address:
   IPAddress ip = WiFi.localIP();
-  M5.Lcd.print("IP Address:");
-  M5.Lcd.println(ip);
+  Serial.print("IP Address:");
+  Serial.println(ip);
 
   //////////////////////////////////////////////////////////////////
   // unit test
@@ -71,7 +72,7 @@ void setup() {
 }
 
 void loop() {
-  M5.update();
+  // M5.update();
   delay(200);
 }
 
