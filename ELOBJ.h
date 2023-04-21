@@ -31,7 +31,7 @@ using std::move;
 class PDCEDT
 {
 protected:
-  byte *m_pdcedt; ///< PDC[1] EDT[n]
+  byte *m_pdcedt; ///< PDC(1 Byte) + EDT(n Byte)
   byte length;    ///< length for m_pdcedt
 
 public:
@@ -56,7 +56,7 @@ public:
   const static byte PDC_MAX = 0x80; ///< PDC_MAX 0xFF - 0x79
 
 protected:
-  PDCEDT m_pdcedt[PDC_MAX]; ///<	データ
+  PDCEDT m_pdcedt[PDC_MAX]; ///< = m_pdcedt[EPC] (EPC mapped( EPC - 0x80 = 0.. 0xFF = 0x80 );
 
   // member function
 public:

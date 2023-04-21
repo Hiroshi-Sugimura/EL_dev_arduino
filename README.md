@@ -45,9 +45,6 @@ You can install the module by using Library Manager of ArduinoIDE as following.
 5. Attach the M5stack
 6. Run
 
-# API manual
-
-[Manual (Github)](https://hiroshi-sugimura.github.io/EL_dev_arduino/documents/html/index.html)
 
 
 # Example (General Lighting)
@@ -131,13 +128,13 @@ void loop() {
             if (echo._rBuffer[EL_EDT] == 0x30)
             { // ON
               M5.Lcd.fillCircle(160, 120, 80, WHITE);
-              pdcedt = new byte[2]{0x01, 0x30};       // ECHONET Liteの状態を変更（ライブラリに教えておく）
+              pdcedt = (byte[]){0x01, 0x30};       // ECHONET Liteの状態を変更（ライブラリに教えておく）
               echo.update(echo._rBuffer[EL_EPC], pdcedt); // ECHONET Liteの状態を変更
             }
             else if (echo._rBuffer[EL_EDT] == 0x31)
             { // OFF
               M5.Lcd.fillCircle(160, 120, 80, BLACK);
-              pdcedt = new byte[2]{0x01, 0x31};       // ECHONET Liteの状態を変更
+              pdcedt = (byte[]){0x01, 0x31};       // ECHONET Liteの状態を変更
               echo.update(echo._rBuffer[EL_EPC], pdcedt); // ECHONET Liteの状態を変更
             }
             break;
@@ -217,10 +214,6 @@ void printNetData()
   Serial.println("-----------------------------------");
 }
 ```
-
-# API manual
-
-[Manual (Github)](https://hiroshi-sugimura.github.io/EL_dev_arduino/documents/html/index.html)
 
 
 # Classes
@@ -512,7 +505,6 @@ Limitations of this module is following.
 
 # Version
 
-- 2.2.1 bug fix, support multi device (pull request from katsumin)
 - 2.2.0 bug fix, support multi device
 - 2.1.0 considering TID
 - 2.0.0 change memory management, cope with memory leak.

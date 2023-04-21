@@ -43,7 +43,7 @@
 #define EL_INFC 0x74
 #define EL_INFC_RES 0x7a
 #define EL_SETGET_RES 0x7e
-#define EL_BUFFER_SIZE 256
+#define EL_BUFFER_SIZE 1500
 
 // Device Object
 // センサ関連機器
@@ -151,57 +151,58 @@
 class EL
 {
 private:
-	IPAddress ip;	  ///< my ipaddress
-	IPAddress _multi; ///< multicast address
-	byte _broad[4];	  ///< broadcast address
-	byte _eoj[3];	  ///< for simple eoj obj
-	byte *_eojs;	  ///< for multi eojs obj
-	int _sendPacketSize = 0;
-	int _readPacketSize = 0;
-	byte _sBuffer[EL_BUFFER_SIZE]; ///< send buffer
-	WiFiUDP *_udp;
-	int deviceCount;
+	IPAddress ip;	  ///< my ipaddress: 自分のIPアドレス
+	IPAddress _multi; ///< multicast address:
+	IPAddress _broad;	  ///< broadcast address:
+	byte*     _eojs;	      ///< EOJ array: = _eojs[][3]の構造で管理
+	int       deviceCount;   ///< Number of EOJ: _eojs[deviceCount][3]に相当
+	int _sendPacketSize = 0;  ///< recentry sended packet size: 直近の送信パケットサイズ
+	int _readPacketSize = 0;  /// < recentry readed packet size: 直近の受信・読込パケットサイズ
+	byte _sBuffer[EL_BUFFER_SIZE]; ///< send buffer: 直近の送信パケットデータ
+	WiFiUDP* _udp;  ///< WiFiのUDPソケット
+
 
 protected:
-	int parsePacket(void);
+	int parsePacket(void);   // 受信データを読む
+	void commonConstructor(WiFiUDP& udp, byte eojs[][3], int count);   // コンストラクタで共通にコールされる
+	void tidAutoIncrement(void);    // データ送信時にTIDを自動的にインクリメントの再計算する(シンプルに+1するとオーバーフローするのでこれ使う)
 
 public:
-	ELOBJ profile;				   ///< profile object (for specialist)
-	ELOBJ details;				   ///< device object (for simple eoj)
-	ELOBJ *devices;				   ///< device objects (for multi eoj)
+	ELOBJ  profile;				   ///< profile object (for specialist)
+	ELOBJ* devices;				   ///< device objects (for multi eoj)
 	byte _rBuffer[EL_BUFFER_SIZE]; ///< receive buffer
+	byte _tid[2];                   ///< TID (semi-auto incremented)
 
 	////////////////////////////////////////////////////
-	EL(WiFiUDP &udp, byte eoj0, byte eoj1, byte eoj2);
-	EL(WiFiUDP &udp, byte[][3], int count);
+	EL(WiFiUDP& udp, byte classGroupCode, byte classCode, byte instanceNumber);
+	EL(WiFiUDP& udp, byte eojs[][3], int count);
 	void begin(void);
 
 	// details change
 	void update(const byte epc, byte pdcedt[]);
-	byte *at(const byte epc);
+	byte* at(const byte epc);
 	void update(const int devId, const byte epc, byte pdcedt[]);
-	byte *at(const int devId, const byte epc);
+	byte* at(const int devId, const byte epc);
 
 	// sender
 	void send(IPAddress toip, byte sBuffer[], int size);
-	void sendOPC1(const IPAddress toip, const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	void sendOPC1(const IPAddress toip, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	void sendOPC1(const IPAddress toip, const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	void sendOPC1(const IPAddress toip, const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt);
+	void sendOPC1(const IPAddress toip, const byte tid[], const byte seoj[], const byte* deoj, const byte esv, const byte epc, const byte edt[]);
+	void sendOPC1(const IPAddress toip, const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte edt[]);
+	void sendOPC1(const IPAddress toip, const byte deoj[], const byte esv, const byte epc, const byte* edt);
+	void sendOPC1(const IPAddress toip, const int devId, const byte deoj[], const byte esv, const byte epc, const byte* pdcedt);
 	void sendBroad(byte sBuffer[], int size);
 	void sendMulti(byte sBuffer[], int size);
-	void sendMultiOPC1(const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	void sendMultiOPC1(const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	void sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	void sendMultiOPC1(const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt);
+	void sendMultiOPC1(const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte edt[]);
+	void sendMultiOPC1(const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte edt[]);
+	void sendMultiOPC1(const byte deoj[], const byte esv, const byte epc, const byte edt[]);
+	void sendMultiOPC1(const int devId, const byte deoj[], const byte esv, const byte epc, const byte* pdcedt);
 	// multi opc
-	// void sendDetails(const IPAddress toip, const byte *seoj, const byte *deoj, const byte esv, const PDCEDT[] pdcedts);
-	// void sendELDATA(const IPAddress toip, const byte *eldata);
+	void sendDetails(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte opc, const byte detail[], const byte detailSize);
 	// return
-	// void replyOPC1(const IPAddress toip, const unsigned short tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	// void replyGetDetail(const IPAddress toip, const byte *eoj, const byte epc);
-	// void replyGetDetail_sub(const byte *eoj, const byte epc);
-	// void replySetDetail(const IPAddress toip, const byte *eoj, const byte epc);
+	// void replyOPC1(const IPAddress toip, const unsigned short tid, const byte *seoj, const byte* deoj, const byte esv, const byte epc, const byte* edt);
+	void replyGetDetail(const IPAddress toip);
+	boolean replyGetDetail_sub(const byte eoj[], const byte epc, byte& devId );
+	// void replySetDetail(const IPAddress toip, const byte* eoj, const byte epc);
 	// void replySetDetail_sub(const IPAddress toip, const byte *eoj, const byte epc);
 
 	// reseiver
@@ -209,8 +210,14 @@ public:
 	IPAddress remoteIP(void);
 	void returner(void);
 
+	// display, debug
+	void printAll(void);
+
+	////////////////////////////////////////////////////////////////////
+	// inline function
 	// byte[] を安全にdeleteする
 	void delPtr(byte ptr[]);
+
 };
 
 #endif

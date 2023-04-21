@@ -7,11 +7,17 @@ digraph "EL::returner"
   rankdir="LR";
   Node1 [label="EL::returner",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [color="steelblue1",style="solid"];
-  Node2 [label="EL::sendMultiOPC1",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l.html#a8551857c372d8e40ddc60e3801ef3aec",tooltip=" "];
-  Node2 -> Node3 [color="steelblue1",style="solid"];
-  Node3 [label="EL::sendMulti",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l.html#a401f22b7f82d6dbb832bd1589a276720",tooltip=" "];
-  Node1 -> Node4 [color="steelblue1",style="solid"];
-  Node4 [label="EL::sendOPC1",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l.html#abcd52c423f1cc2e8bf0cedcf2542747a",tooltip=" "];
-  Node4 -> Node5 [color="steelblue1",style="solid"];
-  Node5 [label="EL::send",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l.html#a58b950847b38135814429193175b9b72",tooltip=" "];
+  Node2 [label="EL::remoteIP",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l.html#afb8d61da0fa657758fb4231f061337fc",tooltip="受信データの送信元を取得する"];
+  Node1 -> Node3 [color="steelblue1",style="solid"];
+  Node3 [label="EL::replyGetDetail",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l.html#a7c323a2e5634104f38317521d4c0a239",tooltip="Getに対して複数OPCにも対応して返答する内部関数"];
+  Node3 -> Node4 [color="steelblue1",style="solid"];
+  Node4 [label="EL::replyGetDetail_sub",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l.html#a1d6a20d4d498936b3afe2bcfad10f268",tooltip="EOJとEPCを指定したとき、そのプロパティ（EDT）はあるかチェックする内部関数"];
+  Node3 -> Node5 [color="steelblue1",style="solid"];
+  Node5 [label="EL::sendDetails",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l.html#a558f0e1b780b266d05ad73a57f991029",tooltip="複数のEPCで送信する場合はこれを使う"];
+  Node5 -> Node6 [color="steelblue1",style="solid"];
+  Node6 [label="EL::send",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l.html#a58b950847b38135814429193175b9b72",tooltip="IP指定による送信"];
+  Node1 -> Node7 [color="steelblue1",style="solid"];
+  Node7 [label="EL::sendMultiOPC1",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l.html#a244aa53bae7709adcf29c631b7cabf55",tooltip=" "];
+  Node1 -> Node8 [color="steelblue1",style="solid"];
+  Node8 [label="EL::sendOPC1",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l.html#ac68ea0b0b0d356a1d6931aca75d1c65d",tooltip=" "];
 }
