@@ -43,7 +43,7 @@
 #define EL_INFC 0x74
 #define EL_INFC_RES 0x7a
 #define EL_SETGET_RES 0x7e
-#define EL_BUFFER_SIZE 256
+#define EL_BUFFER_SIZE 1500
 
 // Device Object
 // センサ関連機器
@@ -153,9 +153,9 @@ class EL
 private:
 	IPAddress ip;	  ///< my ipaddress: 自分のIPアドレス
 	IPAddress _multi; ///< multicast address:
-	byte _broad[4];	  ///< broadcast address:
-	byte* _eojs;	      ///< EOJ array: = _eojs[][3]の構造で管理
-	int deviceCount;   ///< Number of EOJ: _eojs[deviceCount][3]に相当
+	IPAddress _broad;	  ///< broadcast address:
+	byte*     _eojs;	      ///< EOJ array: = _eojs[][3]の構造で管理
+	int       deviceCount;   ///< Number of EOJ: _eojs[deviceCount][3]に相当
 	int _sendPacketSize = 0;  ///< recentry sended packet size: 直近の送信パケットサイズ
 	int _readPacketSize = 0;  /// < recentry readed packet size: 直近の受信・読込パケットサイズ
 	byte _sBuffer[EL_BUFFER_SIZE]; ///< send buffer: 直近の送信パケットデータ
@@ -186,24 +186,23 @@ public:
 
 	// sender
 	void send(IPAddress toip, byte sBuffer[], int size);
-	void sendOPC1(const IPAddress toip, const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	void sendOPC1(const IPAddress toip, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	void sendOPC1(const IPAddress toip, const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	void sendOPC1(const IPAddress toip, const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt);
+	void sendOPC1(const IPAddress toip, const byte tid[], const byte seoj[], const byte* deoj, const byte esv, const byte epc, const byte edt[]);
+	void sendOPC1(const IPAddress toip, const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte edt[]);
+	void sendOPC1(const IPAddress toip, const byte deoj[], const byte esv, const byte epc, const byte* edt);
+	void sendOPC1(const IPAddress toip, const int devId, const byte deoj[], const byte esv, const byte epc, const byte* pdcedt);
 	void sendBroad(byte sBuffer[], int size);
 	void sendMulti(byte sBuffer[], int size);
-	void sendMultiOPC1(const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	void sendMultiOPC1(const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	void sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	void sendMultiOPC1(const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt);
+	void sendMultiOPC1(const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte edt[]);
+	void sendMultiOPC1(const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte edt[]);
+	void sendMultiOPC1(const byte deoj[], const byte esv, const byte epc, const byte edt[]);
+	void sendMultiOPC1(const int devId, const byte deoj[], const byte esv, const byte epc, const byte* pdcedt);
 	// multi opc
-	// void sendDetails(const IPAddress toip, const byte *seoj, const byte *deoj, const byte esv, const PDCEDT[] pdcedts);
-	// void sendELDATA(const IPAddress toip, const byte *eldata);
+	void sendDetails(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte opc, const byte detail[], const byte detailSize);
 	// return
-	// void replyOPC1(const IPAddress toip, const unsigned short tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);
-	// void replyGetDetail(const IPAddress toip, const byte *eoj, const byte epc);
-	// void replyGetDetail_sub(const byte *eoj, const byte epc);
-	// void replySetDetail(const IPAddress toip, const byte *eoj, const byte epc);
+	// void replyOPC1(const IPAddress toip, const unsigned short tid, const byte *seoj, const byte* deoj, const byte esv, const byte epc, const byte* edt);
+	void replyGetDetail(const IPAddress toip);
+	boolean replyGetDetail_sub(const byte eoj[], const byte epc, byte& devId );
+	// void replySetDetail(const IPAddress toip, const byte* eoj, const byte epc);
 	// void replySetDetail_sub(const IPAddress toip, const byte *eoj, const byte epc);
 
 	// reseiver
