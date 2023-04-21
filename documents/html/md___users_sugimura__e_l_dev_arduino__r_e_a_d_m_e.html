@@ -179,13 +179,13 @@ Example (General Lighting)</h1>
 <div class="line">            if (echo._rBuffer[EL_EDT] == 0x30)</div>
 <div class="line">            { // ON</div>
 <div class="line">              M5.Lcd.fillCircle(160, 120, 80, WHITE);</div>
-<div class="line">              pdcedt = new byte[2]{0x01, 0x30};       // ECHONET Liteの状態を変更（ライブラリに教えておく）</div>
+<div class="line">              pdcedt = (byte[]){0x01, 0x30};       // ECHONET Liteの状態を変更（ライブラリに教えておく）</div>
 <div class="line">              echo.update(echo._rBuffer[EL_EPC], pdcedt); // ECHONET Liteの状態を変更</div>
 <div class="line">            }</div>
 <div class="line">            else if (echo._rBuffer[EL_EDT] == 0x31)</div>
 <div class="line">            { // OFF</div>
 <div class="line">              M5.Lcd.fillCircle(160, 120, 80, BLACK);</div>
-<div class="line">              pdcedt = new byte[2]{0x01, 0x31};       // ECHONET Liteの状態を変更</div>
+<div class="line">              pdcedt = (byte[]){0x01, 0x31};       // ECHONET Liteの状態を変更</div>
 <div class="line">              echo.update(echo._rBuffer[EL_EPC], pdcedt); // ECHONET Liteの状態を変更</div>
 <div class="line">            }</div>
 <div class="line">            break;</div>
@@ -527,7 +527,6 @@ Know-how</h1>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md18"></a>
 Version</h1>
 <ul>
-<li>2.2.1 bug fix, support multi device (pull request from katsumin)</li>
 <li>2.2.0 bug fix, support multi device</li>
 <li>2.1.0 considering TID</li>
 <li>2.0.0 change memory management, cope with memory leak.</li>

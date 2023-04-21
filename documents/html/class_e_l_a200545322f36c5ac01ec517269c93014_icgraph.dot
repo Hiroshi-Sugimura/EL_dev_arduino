@@ -1,11 +1,11 @@
-digraph "EL::sendMulti"
+digraph "EL::begin"
 {
  // LATEX_PDF_SIZE
   bgcolor="transparent";
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="RL";
-  Node1 [label="EL::sendMulti",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="マルチキャストによる送信(default: 192.168.1.255)"];
+  Node1 [label="EL::begin",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="通信の開始、受信開始"];
   Node1 -> Node2 [dir="back",color="steelblue1",style="solid"];
   Node2 [label="setup",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d",tooltip=" "];
 }

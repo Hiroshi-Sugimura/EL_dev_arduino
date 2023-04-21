@@ -1,0 +1,11 @@
+digraph "EL::read"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [label="EL::read",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="受信データを受け取る"];
+  Node1 -> Node2 [dir="back",color="steelblue1",style="solid"];
+  Node2 [label="loop",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f",tooltip=" "];
+}
