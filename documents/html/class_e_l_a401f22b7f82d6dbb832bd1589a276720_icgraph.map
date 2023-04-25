@@ -1,8 +1,4 @@
 <map id="EL::sendMulti" name="EL::sendMulti">
-<area shape="rect" id="node1" title=" " alt="" coords="473,55,576,80"/>
-<area shape="rect" id="node2" href="$class_e_l.html#a8551857c372d8e40ddc60e3801ef3aec" title=" " alt="" coords="287,29,425,55"/>
-<area shape="rect" id="node6" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="329,79,383,104"/>
-<area shape="rect" id="node3" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="124,5,215,31"/>
-<area shape="rect" id="node5" href="$class_e_l.html#aee174fdf4b60605fd2c68367013ea196" title=" " alt="" coords="100,55,239,80"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+<area shape="rect" id="node1" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="108,5,211,31"/>
+<area shape="rect" id="node2" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,60,31"/>
 </map>

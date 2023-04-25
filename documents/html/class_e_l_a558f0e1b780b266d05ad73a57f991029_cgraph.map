@@ -1,0 +1,4 @@
+<map id="EL::sendDetails" name="EL::sendDetails">
+<area shape="rect" id="node1" title="複数のEPCで送信する場合はこれを使う" alt="" coords="5,5,120,31"/>
+<area shape="rect" id="node2" href="$class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="168,5,243,31"/>
+</map>
