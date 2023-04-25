@@ -1,5 +1,5 @@
 <map id="EL::parsePacket" name="EL::parsePacket">
-<area shape="rect" id="node1" title="reseiver" alt="" coords="219,5,337,31"/>
-<area shape="rect" id="node2" href="$class_e_l.html#adb5539d23d71d5dc1b708868c241875a" title=" " alt="" coords="100,5,171,31"/>
+<area shape="rect" id="node1" title="受信データを読む" alt="" coords="219,5,337,31"/>
+<area shape="rect" id="node2" href="$class_e_l.html#adb5539d23d71d5dc1b708868c241875a" title="受信データを受け取る" alt="" coords="100,5,171,31"/>
 <area shape="rect" id="node3" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
 </map>

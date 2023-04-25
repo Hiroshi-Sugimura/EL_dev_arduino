@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EL_dev_arduino<span id="projectnumber">&#160;2.2.1</span>
+   <div id="projectname">EL_dev_arduino<span id="projectnumber">&#160;2.4.0</span>
    </div>
   </td>
  </tr>
@@ -87,9 +87,9 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l__coll__graph.png" border="0" usemap="#a_e_l_coll__map" alt="Collaboration graph"/></div>
 <map name="a_e_l_coll__map" id="a_e_l_coll__map">
-<area shape="rect" title="Main class for EL" alt="" coords="23,211,62,236"/>
-<area shape="rect" href="class_e_l_o_b_j.html" title="EL Object" alt="" coords="11,93,74,119"/>
-<area shape="rect" href="class_p_d_c_e_d_t.html" title="PDC and EDT in ELOBJ" alt="" coords="5,5,80,31"/>
+<area shape="rect" title="Main class for EL" alt="" coords="25,196,64,221"/>
+<area shape="rect" href="class_e_l_o_b_j.html" title="EL Object" alt="" coords="13,93,77,119"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html" title="PDC and EDT in ELOBJ" alt="" coords="5,5,84,31"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
 <table class="memberdecls">
@@ -148,8 +148,14 @@ EL 連携図</div>
 <tr class="memdesc:a7c323a2e5634104f38317521d4c0a239"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getに対して複数OPCにも対応して返答する内部関数  <br /></td></tr>
 <tr class="separator:a7c323a2e5634104f38317521d4c0a239"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d6a20d4d498936b3afe2bcfad10f268"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a1d6a20d4d498936b3afe2bcfad10f268">replyGetDetail_sub</a> (const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> eoj[], const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> epc, <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> &amp;devId)</td></tr>
-<tr class="memdesc:a1d6a20d4d498936b3afe2bcfad10f268"><td class="mdescLeft">&#160;</td><td class="mdescRight">EOJとEPCを指定したとき、そのプロパティ（EDT）はあるかチェックする内部関数  <br /></td></tr>
+<tr class="memdesc:a1d6a20d4d498936b3afe2bcfad10f268"><td class="mdescLeft">&#160;</td><td class="mdescRight">EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数  <br /></td></tr>
 <tr class="separator:a1d6a20d4d498936b3afe2bcfad10f268"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14175763153b18bcd3efa044e2e303ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a14175763153b18bcd3efa044e2e303ee">replySetDetail</a> (const IPAddress toip)</td></tr>
+<tr class="memdesc:a14175763153b18bcd3efa044e2e303ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setに対して複数OPCにも対応して返答する内部関数  <br /></td></tr>
+<tr class="separator:a14175763153b18bcd3efa044e2e303ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a090418c3fe0bac57f15a82bc206d69"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a1a090418c3fe0bac57f15a82bc206d69">replySetDetail_sub</a> (const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> eoj[], const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> epc, <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> &amp;devId)</td></tr>
+<tr class="memdesc:a1a090418c3fe0bac57f15a82bc206d69"><td class="mdescLeft">&#160;</td><td class="mdescRight">EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数  <br /></td></tr>
+<tr class="separator:a1a090418c3fe0bac57f15a82bc206d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb5539d23d71d5dc1b708868c241875a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#adb5539d23d71d5dc1b708868c241875a">read</a> ()</td></tr>
 <tr class="memdesc:adb5539d23d71d5dc1b708868c241875a"><td class="mdescLeft">&#160;</td><td class="mdescRight">受信データを受け取る  <br /></td></tr>
 <tr class="separator:adb5539d23d71d5dc1b708868c241875a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -249,6 +255,12 @@ EL 連携図</div>
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_aeea65419f3e4e45f6d10af3a01d50cbd_cgraph.png" border="0" usemap="#aclass_e_l_aeea65419f3e4e45f6d10af3a01d50cbd_cgraph" alt=""/></div>
+<map name="aclass_e_l_aeea65419f3e4e45f6d10af3a01d50cbd_cgraph" id="aclass_e_l_aeea65419f3e4e45f6d10af3a01d50cbd_cgraph">
+<area shape="rect" title="オブジェクトを一つだけサポートする場合のコンストラクタ" alt="" coords="5,5,68,31"/>
+<area shape="rect" href="class_e_l.html#ad38241dcaa4337cf959d85906773242f" title="コンストラクタ共通処理" alt="" coords="116,5,280,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3" title="null以外のEPCを全部出力" alt="" coords="328,5,440,31"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title="デバグ用の標準出力" alt="" coords="488,5,597,31"/>
+</map>
 </div>
 
 </div>
@@ -300,6 +312,12 @@ EL 連携図</div>
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a2a54d80256fe75d16e04f33eed327fdd_cgraph.png" border="0" usemap="#aclass_e_l_a2a54d80256fe75d16e04f33eed327fdd_cgraph" alt=""/></div>
+<map name="aclass_e_l_a2a54d80256fe75d16e04f33eed327fdd_cgraph" id="aclass_e_l_a2a54d80256fe75d16e04f33eed327fdd_cgraph">
+<area shape="rect" title="オブジェクトを複数サポートする場合のコンストラクタ" alt="" coords="5,5,68,31"/>
+<area shape="rect" href="class_e_l.html#ad38241dcaa4337cf959d85906773242f" title="コンストラクタ共通処理" alt="" coords="116,5,280,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3" title="null以外のEPCを全部出力" alt="" coords="328,5,440,31"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title="デバグ用の標準出力" alt="" coords="488,5,597,31"/>
+</map>
 </div>
 
 </div>
@@ -334,7 +352,7 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a986d605da832524b0f80f8330df1a1da_cgraph.png" border="0" usemap="#aclass_e_l_a986d605da832524b0f80f8330df1a1da_cgraph" alt=""/></div>
 <map name="aclass_e_l_a986d605da832524b0f80f8330df1a1da_cgraph" id="aclass_e_l_a986d605da832524b0f80f8330df1a1da_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,63,31"/>
+<area shape="rect" title="EPCの値を取得する, eojが1個の場合（複数の場合は0番に相当）" alt="" coords="5,5,63,31"/>
 <area shape="rect" href="class_e_l_o_b_j.html#af550cffbae7818d5eb873e0446b96aff" title="キー文字列からデータ取得" alt="" coords="111,5,260,31"/>
 </map>
 </div>
@@ -381,7 +399,7 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a05a173c299c1feb5c03fa0771a9eff9a_cgraph.png" border="0" usemap="#aclass_e_l_a05a173c299c1feb5c03fa0771a9eff9a_cgraph" alt=""/></div>
 <map name="aclass_e_l_a05a173c299c1feb5c03fa0771a9eff9a_cgraph" id="aclass_e_l_a05a173c299c1feb5c03fa0771a9eff9a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,63,31"/>
+<area shape="rect" title="EPCの値を取得する, 複数の場合" alt="" coords="5,5,63,31"/>
 <area shape="rect" href="class_e_l_o_b_j.html#af550cffbae7818d5eb873e0446b96aff" title="キー文字列からデータ取得" alt="" coords="111,5,260,31"/>
 </map>
 </div>
@@ -418,7 +436,7 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a200545322f36c5ac01ec517269c93014_icgraph.png" border="0" usemap="#aclass_e_l_a200545322f36c5ac01ec517269c93014_icgraph" alt=""/></div>
 <map name="aclass_e_l_a200545322f36c5ac01ec517269c93014_icgraph" id="aclass_e_l_a200545322f36c5ac01ec517269c93014_icgraph">
-<area shape="rect" title=" " alt="" coords="108,5,185,31"/>
+<area shape="rect" title="通信の開始、受信開始" alt="" coords="108,5,185,31"/>
 <area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,60,31"/>
 </map>
 </div>
@@ -480,11 +498,20 @@ EL 連携図</div>
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_ad38241dcaa4337cf959d85906773242f_cgraph.png" border="0" usemap="#aclass_e_l_ad38241dcaa4337cf959d85906773242f_cgraph" alt=""/></div>
+<map name="aclass_e_l_ad38241dcaa4337cf959d85906773242f_cgraph" id="aclass_e_l_ad38241dcaa4337cf959d85906773242f_cgraph">
+<area shape="rect" title="コンストラクタ共通処理" alt="" coords="5,5,169,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3" title="null以外のEPCを全部出力" alt="" coords="217,5,329,31"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title="デバグ用の標準出力" alt="" coords="377,5,487,31"/>
+</map>
 </div>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_ad38241dcaa4337cf959d85906773242f_icgraph.png" border="0" usemap="#aclass_e_l_ad38241dcaa4337cf959d85906773242f_icgraph" alt=""/></div>
+<map name="aclass_e_l_ad38241dcaa4337cf959d85906773242f_icgraph" id="aclass_e_l_ad38241dcaa4337cf959d85906773242f_icgraph">
+<area shape="rect" title="コンストラクタ共通処理" alt="" coords="116,5,280,31"/>
+<area shape="rect" href="class_e_l.html#aeea65419f3e4e45f6d10af3a01d50cbd" title="オブジェクトを一つだけサポートする場合のコンストラクタ" alt="" coords="5,5,68,31"/>
+</map>
 </div>
 
 </div>
@@ -563,8 +590,8 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a4706069c6c704f074a811b49d9bfd337_icgraph.png" border="0" usemap="#aclass_e_l_a4706069c6c704f074a811b49d9bfd337_icgraph" alt=""/></div>
 <map name="aclass_e_l_a4706069c6c704f074a811b49d9bfd337_icgraph" id="aclass_e_l_a4706069c6c704f074a811b49d9bfd337_icgraph">
-<area shape="rect" title="reseiver" alt="" coords="219,5,337,31"/>
-<area shape="rect" href="class_e_l.html#adb5539d23d71d5dc1b708868c241875a" title=" " alt="" coords="100,5,171,31"/>
+<area shape="rect" title="受信データを読む" alt="" coords="219,5,337,31"/>
+<area shape="rect" href="class_e_l.html#adb5539d23d71d5dc1b708868c241875a" title="受信データを受け取る" alt="" coords="100,5,171,31"/>
 <area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
 </map>
 </div>
@@ -600,6 +627,11 @@ EL 連携図</div>
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_aeabba38117ff155c9bee8ee963bf0eeb_cgraph.png" border="0" usemap="#aclass_e_l_aeabba38117ff155c9bee8ee963bf0eeb_cgraph" alt=""/></div>
+<map name="aclass_e_l_aeabba38117ff155c9bee8ee963bf0eeb_cgraph" id="aclass_e_l_aeabba38117ff155c9bee8ee963bf0eeb_cgraph">
+<area shape="rect" title="インスタンスの情報を表示" alt="" coords="5,5,92,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3" title="null以外のEPCを全部出力" alt="" coords="140,5,252,31"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title="デバグ用の標準出力" alt="" coords="300,5,409,31"/>
+</map>
 </div>
 
 </div>
@@ -634,8 +666,8 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_adb5539d23d71d5dc1b708868c241875a_cgraph.png" border="0" usemap="#aclass_e_l_adb5539d23d71d5dc1b708868c241875a_cgraph" alt=""/></div>
 <map name="aclass_e_l_adb5539d23d71d5dc1b708868c241875a_cgraph" id="aclass_e_l_adb5539d23d71d5dc1b708868c241875a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,76,31"/>
-<area shape="rect" href="class_e_l.html#a4706069c6c704f074a811b49d9bfd337" title="reseiver" alt="" coords="124,5,243,31"/>
+<area shape="rect" title="受信データを受け取る" alt="" coords="5,5,76,31"/>
+<area shape="rect" href="class_e_l.html#a4706069c6c704f074a811b49d9bfd337" title="受信データを読む" alt="" coords="124,5,243,31"/>
 </map>
 </div>
 <div class="dynheader">
@@ -643,7 +675,7 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_adb5539d23d71d5dc1b708868c241875a_icgraph.png" border="0" usemap="#aclass_e_l_adb5539d23d71d5dc1b708868c241875a_icgraph" alt=""/></div>
 <map name="aclass_e_l_adb5539d23d71d5dc1b708868c241875a_icgraph" id="aclass_e_l_adb5539d23d71d5dc1b708868c241875a_icgraph">
-<area shape="rect" title=" " alt="" coords="100,5,171,31"/>
+<area shape="rect" title="受信データを受け取る" alt="" coords="100,5,171,31"/>
 <area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
 </map>
 </div>
@@ -680,7 +712,7 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_afb8d61da0fa657758fb4231f061337fc_icgraph.png" border="0" usemap="#aclass_e_l_afb8d61da0fa657758fb4231f061337fc_icgraph" alt=""/></div>
 <map name="aclass_e_l_afb8d61da0fa657758fb4231f061337fc_icgraph" id="aclass_e_l_afb8d61da0fa657758fb4231f061337fc_icgraph">
-<area shape="rect" title=" " alt="" coords="239,5,337,31"/>
+<area shape="rect" title="受信データの送信元を取得する" alt="" coords="239,5,337,31"/>
 <area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,5,191,31"/>
 <area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
 </map>
@@ -717,11 +749,22 @@ EL 連携図</div>
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a7c323a2e5634104f38317521d4c0a239_cgraph.png" border="0" usemap="#aclass_e_l_a7c323a2e5634104f38317521d4c0a239_cgraph" alt=""/></div>
+<map name="aclass_e_l_a7c323a2e5634104f38317521d4c0a239_cgraph" id="aclass_e_l_a7c323a2e5634104f38317521d4c0a239_cgraph">
+<area shape="rect" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="5,31,135,56"/>
+<area shape="rect" href="class_e_l.html#a1d6a20d4d498936b3afe2bcfad10f268" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="183,5,340,31"/>
+<area shape="rect" href="class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="204,55,319,80"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="388,55,463,80"/>
+</map>
 </div>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a7c323a2e5634104f38317521d4c0a239_icgraph.png" border="0" usemap="#aclass_e_l_a7c323a2e5634104f38317521d4c0a239_icgraph" alt=""/></div>
+<map name="aclass_e_l_a7c323a2e5634104f38317521d4c0a239_icgraph" id="aclass_e_l_a7c323a2e5634104f38317521d4c0a239_icgraph">
+<area shape="rect" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,368,31"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,5,191,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
 </div>
 
 </div>
@@ -758,7 +801,7 @@ EL 連携図</div>
       </table>
 </div><div class="memdoc">
 
-<p>EOJとEPCを指定したとき、そのプロパティ（EDT）はあるかチェックする内部関数 </p>
+<p>EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数 </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
     <tr><td class="paramname">eoj</td><td>const byte[] </td></tr>
@@ -768,11 +811,123 @@ EL 連携図</div>
   </dd>
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>true:無し、false:あり </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd>replyGetDetailのサブルーチン </dd></dl>
+<dl class="section note"><dt>覚え書き</dt><dd>replyGetDetailのサブルーチン、GetPropertyMapを参照しなくても、基本的に持っているPeopertyはGet可能なのでMapチェックしなくてよい </dd></dl>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a1d6a20d4d498936b3afe2bcfad10f268_icgraph.png" border="0" usemap="#aclass_e_l_a1d6a20d4d498936b3afe2bcfad10f268_icgraph" alt=""/></div>
+<map name="aclass_e_l_a1d6a20d4d498936b3afe2bcfad10f268_icgraph" id="aclass_e_l_a1d6a20d4d498936b3afe2bcfad10f268_icgraph">
+<area shape="rect" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="416,5,573,31"/>
+<area shape="rect" href="class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,368,31"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,5,191,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a14175763153b18bcd3efa044e2e303ee" name="a14175763153b18bcd3efa044e2e303ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14175763153b18bcd3efa044e2e303ee">&#9670;&#160;</a></span>replySetDetail()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EL::replySetDetail </td>
+          <td>(</td>
+          <td class="paramtype">const IPAddress&#160;</td>
+          <td class="paramname"><em>toip</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setに対して複数OPCにも対応して返答する内部関数 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">toip</td><td>const IPAddress </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>void </dd></dl>
+<dl class="section note"><dt>覚え書き</dt><dd>EPC毎の設定値に関して基本はノーチェックなので注意すべし EPC毎の設定値チェックや、INF処理に関しては下記の replySetDetail_sub にて実施 SET_RESはEDT入ってない </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a14175763153b18bcd3efa044e2e303ee_cgraph.png" border="0" usemap="#aclass_e_l_a14175763153b18bcd3efa044e2e303ee_cgraph" alt=""/></div>
+<map name="aclass_e_l_a14175763153b18bcd3efa044e2e303ee_cgraph" id="aclass_e_l_a14175763153b18bcd3efa044e2e303ee_cgraph">
+<area shape="rect" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="5,31,133,56"/>
+<area shape="rect" href="class_e_l.html#a1a090418c3fe0bac57f15a82bc206d69" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="181,5,337,31"/>
+<area shape="rect" href="class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="202,55,317,80"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="385,55,460,80"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a14175763153b18bcd3efa044e2e303ee_icgraph.png" border="0" usemap="#aclass_e_l_a14175763153b18bcd3efa044e2e303ee_icgraph" alt=""/></div>
+<map name="aclass_e_l_a14175763153b18bcd3efa044e2e303ee_icgraph" id="aclass_e_l_a14175763153b18bcd3efa044e2e303ee_icgraph">
+<area shape="rect" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,367,31"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,5,191,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1a090418c3fe0bac57f15a82bc206d69" name="a1a090418c3fe0bac57f15a82bc206d69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a090418c3fe0bac57f15a82bc206d69">&#9670;&#160;</a></span>replySetDetail_sub()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean EL::replySetDetail_sub </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>eoj</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a>&#160;</td>
+          <td class="paramname"><em>epc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_e_l_o_b_j_8h.html#a71809484a26cd96c6abe839a0a8a289d">byte</a> &amp;&#160;</td>
+          <td class="paramname"><em>devId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eoj</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
+    <tr><td class="paramname">devId[out]</td><td>byte&amp;: -1:profile, x:devId </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>true:無し、false:あり </dd></dl>
+<dl class="section note"><dt>覚え書き</dt><dd>replySetDetail_subのサブルーチン、本来はSetPropertyMap[0x9E]の確認をすべきだが、やってない </dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_a1a090418c3fe0bac57f15a82bc206d69_icgraph.png" border="0" usemap="#aclass_e_l_a1a090418c3fe0bac57f15a82bc206d69_icgraph" alt=""/></div>
+<map name="aclass_e_l_a1a090418c3fe0bac57f15a82bc206d69_icgraph" id="aclass_e_l_a1a090418c3fe0bac57f15a82bc206d69_icgraph">
+<area shape="rect" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="415,5,571,31"/>
+<area shape="rect" href="class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,367,31"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,5,191,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
 </div>
 
 </div>
@@ -804,12 +959,16 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a54d6de75eb5743e2d80dbe81c93993ed_cgraph.png" border="0" usemap="#aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_cgraph" alt=""/></div>
 <map name="aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_cgraph" id="aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_cgraph">
-<area shape="rect" title=" " alt="" coords="5,55,96,80"/>
-<area shape="rect" href="class_e_l.html#afb8d61da0fa657758fb4231f061337fc" title=" " alt="" coords="164,5,263,31"/>
-<area shape="rect" href="class_e_l.html#a8551857c372d8e40ddc60e3801ef3aec" title=" " alt="" coords="144,55,283,80"/>
-<area shape="rect" href="class_e_l.html#abcd52c423f1cc2e8bf0cedcf2542747a" title=" " alt="" coords="158,104,269,129"/>
-<area shape="rect" href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title=" " alt="" coords="331,55,433,80"/>
-<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title=" " alt="" coords="345,104,419,129"/>
+<area shape="rect" title=" " alt="" coords="5,104,96,129"/>
+<area shape="rect" href="class_e_l.html#afb8d61da0fa657758fb4231f061337fc" title="受信データの送信元を取得する" alt="" coords="164,5,263,31"/>
+<area shape="rect" href="class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="149,55,278,80"/>
+<area shape="rect" href="class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="149,104,277,129"/>
+<area shape="rect" href="class_e_l.html#a244aa53bae7709adcf29c631b7cabf55" title=" " alt="" coords="144,153,283,179"/>
+<area shape="rect" href="class_e_l.html#ac68ea0b0b0d356a1d6931aca75d1c65d" title=" " alt="" coords="158,203,269,228"/>
+<area shape="rect" href="class_e_l.html#a1d6a20d4d498936b3afe2bcfad10f268" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="331,31,488,56"/>
+<area shape="rect" href="class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="352,80,467,105"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="536,80,611,105"/>
+<area shape="rect" href="class_e_l.html#a1a090418c3fe0bac57f15a82bc206d69" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="331,129,487,155"/>
 </map>
 </div>
 <div class="dynheader">
@@ -870,11 +1029,12 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a58b950847b38135814429193175b9b72_icgraph.png" border="0" usemap="#aclass_e_l_a58b950847b38135814429193175b9b72_icgraph" alt=""/></div>
 <map name="aclass_e_l_a58b950847b38135814429193175b9b72_icgraph" id="aclass_e_l_a58b950847b38135814429193175b9b72_icgraph">
-<area shape="rect" title=" " alt="" coords="417,31,492,56"/>
-<area shape="rect" href="class_e_l.html#abcd52c423f1cc2e8bf0cedcf2542747a" title=" " alt="" coords="259,31,369,56"/>
-<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="110,5,201,31"/>
-<area shape="rect" href="class_e_l.html#a11eef040ec7e7a75756369707e7d8fa4" title=" " alt="" coords="100,55,211,80"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+<area shape="rect" title="IP指定による送信" alt="" coords="579,31,653,56"/>
+<area shape="rect" href="class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="416,31,531,56"/>
+<area shape="rect" href="class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,368,31"/>
+<area shape="rect" href="class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,55,367,80"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,31,191,56"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,31,52,56"/>
 </map>
 </div>
 
@@ -1001,11 +1161,22 @@ EL 連携図</div>
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a558f0e1b780b266d05ad73a57f991029_cgraph.png" border="0" usemap="#aclass_e_l_a558f0e1b780b266d05ad73a57f991029_cgraph" alt=""/></div>
+<map name="aclass_e_l_a558f0e1b780b266d05ad73a57f991029_cgraph" id="aclass_e_l_a558f0e1b780b266d05ad73a57f991029_cgraph">
+<area shape="rect" title="複数のEPCで送信する場合はこれを使う" alt="" coords="5,5,120,31"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="168,5,243,31"/>
+</map>
 </div>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a558f0e1b780b266d05ad73a57f991029_icgraph.png" border="0" usemap="#aclass_e_l_a558f0e1b780b266d05ad73a57f991029_icgraph" alt=""/></div>
+<map name="aclass_e_l_a558f0e1b780b266d05ad73a57f991029_icgraph" id="aclass_e_l_a558f0e1b780b266d05ad73a57f991029_icgraph">
+<area shape="rect" title="複数のEPCで送信する場合はこれを使う" alt="" coords="416,31,531,56"/>
+<area shape="rect" href="class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,368,31"/>
+<area shape="rect" href="class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,55,367,80"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,31,191,56"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,31,52,56"/>
+</map>
 </div>
 
 </div>
@@ -1050,12 +1221,8 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a401f22b7f82d6dbb832bd1589a276720_icgraph.png" border="0" usemap="#aclass_e_l_a401f22b7f82d6dbb832bd1589a276720_icgraph" alt=""/></div>
 <map name="aclass_e_l_a401f22b7f82d6dbb832bd1589a276720_icgraph" id="aclass_e_l_a401f22b7f82d6dbb832bd1589a276720_icgraph">
-<area shape="rect" title=" " alt="" coords="473,55,576,80"/>
-<area shape="rect" href="class_e_l.html#a8551857c372d8e40ddc60e3801ef3aec" title=" " alt="" coords="287,29,425,55"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="329,79,383,104"/>
-<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="124,5,215,31"/>
-<area shape="rect" href="class_e_l.html#aee174fdf4b60605fd2c68367013ea196" title=" " alt="" coords="100,55,239,80"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+<area shape="rect" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="108,5,211,31"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,60,31"/>
 </map>
 </div>
 
@@ -1200,6 +1367,11 @@ EL 連携図</div>
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a244aa53bae7709adcf29c631b7cabf55_icgraph.png" border="0" usemap="#aclass_e_l_a244aa53bae7709adcf29c631b7cabf55_icgraph" alt=""/></div>
+<map name="aclass_e_l_a244aa53bae7709adcf29c631b7cabf55_icgraph" id="aclass_e_l_a244aa53bae7709adcf29c631b7cabf55_icgraph">
+<area shape="rect" title=" " alt="" coords="239,5,377,31"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,5,191,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
 </div>
 
 </div>
@@ -1356,6 +1528,11 @@ EL 連携図</div>
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a18b96ff082a6ce4248cd8ad6202a2b8a_cgraph.png" border="0" usemap="#aclass_e_l_a18b96ff082a6ce4248cd8ad6202a2b8a_cgraph" alt=""/></div>
+<map name="aclass_e_l_a18b96ff082a6ce4248cd8ad6202a2b8a_cgraph" id="aclass_e_l_a18b96ff082a6ce4248cd8ad6202a2b8a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,116,56"/>
+<area shape="rect" href="class_e_l.html#ac68ea0b0b0d356a1d6931aca75d1c65d" title=" " alt="" coords="181,5,292,31"/>
+<area shape="rect" href="class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="164,55,309,80"/>
+</map>
 </div>
 
 </div>
@@ -1419,6 +1596,12 @@ EL 連携図</div>
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_ac68ea0b0b0d356a1d6931aca75d1c65d_icgraph.png" border="0" usemap="#aclass_e_l_ac68ea0b0b0d356a1d6931aca75d1c65d_icgraph" alt=""/></div>
+<map name="aclass_e_l_ac68ea0b0b0d356a1d6931aca75d1c65d_icgraph" id="aclass_e_l_ac68ea0b0b0d356a1d6931aca75d1c65d_icgraph">
+<area shape="rect" title=" " alt="" coords="259,31,369,56"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="110,5,201,31"/>
+<area shape="rect" href="class_e_l.html#a18b96ff082a6ce4248cd8ad6202a2b8a" title=" " alt="" coords="100,55,211,80"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+</map>
 </div>
 
 </div>
@@ -1512,6 +1695,10 @@ EL 連携図</div>
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_ab91f0e1d94556d7a34d93c938ca4939e_icgraph.png" border="0" usemap="#aclass_e_l_ab91f0e1d94556d7a34d93c938ca4939e_icgraph" alt=""/></div>
+<map name="aclass_e_l_ab91f0e1d94556d7a34d93c938ca4939e_icgraph" id="aclass_e_l_ab91f0e1d94556d7a34d93c938ca4939e_icgraph">
+<area shape="rect" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="164,5,309,31"/>
+<area shape="rect" href="class_e_l.html#a18b96ff082a6ce4248cd8ad6202a2b8a" title=" " alt="" coords="5,5,116,31"/>
+</map>
 </div>
 
 </div>
@@ -1557,7 +1744,7 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a0f235980e2cdae6da6ca84c8098d49cb_cgraph.png" border="0" usemap="#aclass_e_l_a0f235980e2cdae6da6ca84c8098d49cb_cgraph" alt=""/></div>
 <map name="aclass_e_l_a0f235980e2cdae6da6ca84c8098d49cb_cgraph" id="aclass_e_l_a0f235980e2cdae6da6ca84c8098d49cb_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,91,31"/>
+<area shape="rect" title="EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）" alt="" coords="5,5,91,31"/>
 <area shape="rect" href="class_e_l_o_b_j.html#a215e34be020dd6dc5d63d677a3f858b2" title="EPCに対して、PDCEDTのを結びつける（セットと更新）" alt="" coords="139,5,287,31"/>
 </map>
 </div>
@@ -1566,7 +1753,7 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a0f235980e2cdae6da6ca84c8098d49cb_icgraph.png" border="0" usemap="#aclass_e_l_a0f235980e2cdae6da6ca84c8098d49cb_icgraph" alt=""/></div>
 <map name="aclass_e_l_a0f235980e2cdae6da6ca84c8098d49cb_icgraph" id="aclass_e_l_a0f235980e2cdae6da6ca84c8098d49cb_icgraph">
-<area shape="rect" title=" " alt="" coords="100,5,185,31"/>
+<area shape="rect" title="EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）" alt="" coords="100,5,185,31"/>
 <area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
 </map>
 </div>
@@ -1620,7 +1807,7 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a989732eaa75eba55e3a569a0e4a3b6ec_cgraph.png" border="0" usemap="#aclass_e_l_a989732eaa75eba55e3a569a0e4a3b6ec_cgraph" alt=""/></div>
 <map name="aclass_e_l_a989732eaa75eba55e3a569a0e4a3b6ec_cgraph" id="aclass_e_l_a989732eaa75eba55e3a569a0e4a3b6ec_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,91,31"/>
+<area shape="rect" title="EPCの値を変更する, 複数の場合" alt="" coords="5,5,91,31"/>
 <area shape="rect" href="class_e_l_o_b_j.html#a215e34be020dd6dc5d63d677a3f858b2" title="EPCに対して、PDCEDTのを結びつける（セットと更新）" alt="" coords="139,5,287,31"/>
 </map>
 </div>
