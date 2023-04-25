@@ -202,8 +202,8 @@ public:
 	// void replyOPC1(const IPAddress toip, const unsigned short tid, const byte *seoj, const byte* deoj, const byte esv, const byte epc, const byte* edt);
 	void replyGetDetail(const IPAddress toip);
 	boolean replyGetDetail_sub(const byte eoj[], const byte epc, byte& devId );
-	// void replySetDetail(const IPAddress toip, const byte* eoj, const byte epc);
-	// void replySetDetail_sub(const IPAddress toip, const byte *eoj, const byte epc);
+	void replySetDetail(const IPAddress toip);
+	boolean replySetDetail_sub(const byte eoj[], const byte epc, byte& devId );
 
 	// reseiver
 	int read();

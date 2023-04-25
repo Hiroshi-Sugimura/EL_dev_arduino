@@ -540,9 +540,8 @@ void EL::replyGetDetail(const IPAddress toip)
 
 	// rBuffer走査用
 	byte* p_rEPC = &_rBuffer[EL_EPC];  // 初期EPCポインタ
-	// GETの場合に固定ｓれるので、 PDC:0x00, EDTなしのため、EPCだけを焦点とする
-	// byte* p_rPDC = &_rBuffer[EL_EPC+1]; // 初期PDCポインタ
-	// byte* p_rEDT = &_rBuffer[EL_EPC+2];  // 初期EDTポインタ
+	// この関数を呼ばれるのはGETの場合なので、 PDC:0x00, EDTなしに決まっている。
+	// 従って、EPCだけを焦点とする
 
 	// temp
 	byte* pdcedt = nullptr;         // pdc edt
@@ -555,21 +554,20 @@ void EL::replyGetDetail(const IPAddress toip)
 		if( exist )
 		{
 			// ある
-			// Serial.print("devId ");
-			// Serial.print(devId);
-			if( devId == -1 )  // devId = -1 is profile
+			Serial.printf("devId: %x\n", devId);
+			if( devId == 0xff )  // devId = 0xff is profile
 			{
-				pdcedt = profile[*p_rEPC];  // EPC確保
-				detail[detailSize] = *p_rEPC;
+				pdcedt = profile[*p_rEPC];  // EPCに対応するPDCEDT確保
+				// Serial.printf("node prof: pdcedt: %x %x %x\n", pdcedt[0], pdcedt[1], pdcedt[2]);
+				detail[detailSize] = *p_rEPC;  // EPCに対して
 				detailSize += 1;
-				// PDCとEDT確保
+				// PDCとEDTを設定
 				memcpy( &detail[detailSize], pdcedt, pdcedt[0] + 1 ); // size = pcd + edt
 				detailSize += pdcedt[0] + 1;
 			}else{
-				// Serial.printf("detailSize: %d\n", detailSize);
-
-				pdcedt = devices[devId][*p_rEPC];  // EPC確保
-				detail[detailSize] = *p_rEPC;
+				pdcedt = devices[devId][*p_rEPC];  // EPCに対応するPDCEDT確保
+				// Serial.printf("dev obj: pdcedt: %x %x %x\n", pdcedt[0], pdcedt[1], pdcedt[2]);
+				detail[detailSize] = *p_rEPC;  // EPCに対して
 				detailSize += 1;
 				// PDCとEDT確保
 				memcpy( &detail[detailSize], pdcedt, pdcedt[0] + 1 ); // size = pcd + edt
@@ -579,36 +577,41 @@ void EL::replyGetDetail(const IPAddress toip)
 		else
 		{
 			// ない
-			// Serial.println("nothing");
-			memcpy( &detail[detailSize], pdcedt, pdcedt[0] + 1 ); // size = pcd + edt
-			detail[detailSize] = *p_rEPC;
-			detailSize += 1;
-			detail[detailSize] = 0x00;
-			detailSize += 1;
-			success = false;
+			if( devId == 0xfe ) { // そもそもDEOJが自分のオブジェクトでない場合は無視（@@ 追加）
+				return;
+			}else{  // DEOJはあるが、EPCがない
+				// Serial.println("nothing");
+				memcpy( &detail[detailSize], pdcedt, pdcedt[0] + 1 ); // size = pcd + edt
+				detail[detailSize] = *p_rEPC;
+				detailSize += 1;
+				detail[detailSize] = 0x00;
+				detailSize += 1;
+				success = false;
+			}
 		}
 	}
 
 	// Serial.printf("detailSize: %d\n", detailSize);
 
-	esv = success? EL_GET_RES: EL_GET_SNA;  // 一つでも失敗したらGET_SNA、全部OKならGET＿RES
+	esv = success? EL_GET_RES: EL_GET_SNA;  // 一つでも失敗したらGET_SNA、全部OKならGET_RES
 	sendDetails(  toip,  tid,  seoj, deoj,  esv, opc, detail,  detailSize);
 }
 
 
 ////////////////////////////////////////////////////
-/// @brief EOJとEPCを指定したとき、そのプロパティ（EDT）はあるかチェックする内部関数
+/// @brief EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数
 /// @param eoj const byte[]
 /// @param epc const byte
 /// @param devId[out] byte&: -1:profile, x:devId
 /// @return true:無し、false:あり
-/// @note replyGetDetailのサブルーチン
+/// @note replyGetDetailのサブルーチン、GetPropertyMapを参照しなくても、基本的に持っているPeopertyはGet可能なのでMapチェックしなくてよい
 boolean EL::replyGetDetail_sub( const byte eoj[], const byte epc, byte& devId )
 {
+	devId = 0xfe;  // 0xfe はOJB無しとする（） // @@@ 実際は別の方法でOBJ無しとしないとバグ
 	if( eoj[0] == 0x0e && eoj[1] == 0xf0 && eoj[2] == 0x01 )  // profile object
 	{
+		devId = 0xff;  // devId = -1 は node profileとする。（この方式は後で変更）
 		byte* pdcedt = profile[epc];
-		devId = -1;
 
 		if( pdcedt == nullptr ) return false;  // epcがない
 		return true;
@@ -629,14 +632,123 @@ boolean EL::replyGetDetail_sub( const byte eoj[], const byte epc, byte& devId )
 	return false;  // no eoj, no epc
 }
 
-// dev_detailのSetに対して複数OPCにも対応して返答する
-// ただしEPC毎の設定値に関して基本はノーチェックなので注意すべし
-// EPC毎の設定値チェックや、INF処理に関しては下記の replySetDetail_sub にて実施
-// SET_RESはEDT入ってない
-// void EL::replySetDetail(const IPAddress toip, const byte* eoj, const byte epc) {}
 
-// 上記のサブルーチン
-// void EL::replySetDetail_sub(const IPAddress toip, const byte* eoj, const byte epc) {}
+////////////////////////////////////////////////////
+/// @brief Setに対して複数OPCにも対応して返答する内部関数
+/// @param toip const IPAddress
+/// @return void
+/// @note EPC毎の設定値に関して基本はノーチェックなので注意すべし
+/// EPC毎の設定値チェックや、INF処理に関しては下記の replySetDetail_sub にて実施
+/// SET_RESはEDT入ってない
+void EL::replySetDetail(const IPAddress toip)
+{
+	byte tid[]  = {_rBuffer[EL_TID], _rBuffer[EL_TID + 1]};
+	byte seoj[] = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]};   // DEOJがreplyではSEOJになる
+	byte deoj[] = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]};   // SEOJがreplyではDEOJになる
+	byte esv = _rBuffer[EL_ESV];
+	byte opc = _rBuffer[EL_OPC];
+
+	// 送信用
+	boolean success = true;
+	byte detail[1500];  // EPC,PDC,EDT[n]
+	byte detailSize = 0;    // data size
+
+	// rBuffer走査用
+	byte* p_rEPC = &_rBuffer[EL_EPC];  // 初期EPCポインタ
+	// この関数を呼ばれるのはSETの場合であるので、 PDCを見ながらEDT分をスキップしていく
+	byte* p_rPDC = &_rBuffer[EL_EPC+1]; // 初期PDCポインタ
+
+	// temp
+	byte* pdcedt = nullptr;         // pdc edt
+	byte devId;
+
+	for( byte i=0; i<opc; i+=1 )  // OPC個数のEPCに回答する
+	{
+		Serial.printf("i:%d EPC:%X\n", i, *p_rEPC);
+		boolean exist = replySetDetail_sub(seoj, *p_rEPC, devId);
+		if( exist )
+		{
+			// ある
+			// Serial.print("devId ");
+			// Serial.print(devId);
+			if( devId == 0xff )  // devId = -1 is profile
+			{
+				// 成功
+				// pdcedt = profile[*p_rEPC];  // EPC確保
+				detail[detailSize] = *p_rEPC;
+				detailSize += 1;
+				Serial.printf("node prof: EPC: %x\n", *p_rEPC);
+				detail[detailSize] = 0x00;  // 成功したら0x00を返却
+				detailSize += 1;
+			}else{
+				// pdcedt = devices[devId][*p_rEPC];  // EPC確保
+				detail[detailSize] = *p_rEPC;
+				detailSize += 1;
+				Serial.printf("dev obj: EPC: %x\n", *p_rEPC);
+				detail[detailSize] = 0x00;  // 成功したら0x00を返却
+				detailSize += 1;
+			}
+		}
+		else
+		{
+			// 失敗したら、受信したデータをそのまま返却
+			// Serial.println("nothing");
+			detail[detailSize] = *p_rEPC;
+			detailSize += 1;
+			Serial.printf("no epc: pdcedt: %x\n", *p_rEPC);
+			memcpy( &detail[detailSize], p_rPDC, p_rPDC[0] + 1 ); // size = pcd + edt
+			detailSize += p_rPDC[0] + 1;
+			success = false;  // 失敗フラグを付けておく
+		}
+
+		// EPCとPDCを次のステップへ
+		p_rEPC += p_rPDC[0] + 2;  // EPC 1Byte とPDC 1Byteと EDT(PDC) Byte分移動
+		p_rPDC += p_rPDC[0] + 2;
+	}
+
+	// Serial.printf("detailSize: %d\n", detailSize);
+
+	if( esv == EL_SETI ) { return; }  // SetIなら返却なし
+	// DEOJが自分のオブジェクトでない場合は破棄（@@ 追加）
+
+	esv = success? EL_SET_RES: EL_SETC_SNA;  // 一つでも失敗したらSETC_SNA、全部OKならSET_RES
+	sendDetails(  toip,  tid,  seoj, deoj,  esv, opc, detail,  detailSize);
+}
+
+
+////////////////////////////////////////////////////
+/// @brief EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数
+/// @param eoj const byte[]
+/// @param epc const byte
+/// @param devId[out] byte&: -1:profile, x:devId
+/// @return true:無し、false:あり
+/// @note replySetDetail_subのサブルーチン、本来はSetPropertyMap[0x9E]の確認をすべきだが、やってない
+boolean EL::replySetDetail_sub(const byte eoj[], const byte epc, byte& devId )
+{
+	// profile
+	if( eoj[0] == 0x0e && eoj[1] == 0xf0 && eoj[2] == 0x01 )  // profile object
+	{
+		byte* pdcedt = profile[epc];
+		devId = 0xff;
+
+		if( pdcedt == nullptr ) return false;  // epcがない
+		return true;
+	}
+
+	// device object
+	for (int i = 0; i < deviceCount; i++)  // deojとマッチするdevIdを調べる
+	{
+		if (eoj[0] == _eojs[i * 3 + 0] && eoj[1] == _eojs[i * 3 + 1])
+		{
+			devId = i;
+			byte* pdcedt = devices[devId][epc];
+
+			if( pdcedt == nullptr ) return false;  // epcがない
+			return true;
+		}
+	}
+	return false;  // no eoj, no epc
+}
 
 
 
@@ -732,19 +844,8 @@ void EL::returner(void)
 		///////////////////////////////////////////////////////////////////
 		// SETC, Get, INF_REQ は返信処理がある
 	case EL_SETC:
-		Serial.print("SETC: ");
-		Serial.println(epc, HEX);
-
-		if (pdcedt)
-		{ // そのEPCがある場合
-			// Serial.println("There is pdcedt.");
-			sendOPC1(remIP, tid, deoj, seoj, (esv + 0x10), epc, pdcedt);
-		}
-		else
-		{
-			// Serial.println("No pdcedt.");
-			sendOPC1(remIP, tid, deoj, seoj, (esv - 0x10), epc, nullptr);
-		}
+		Serial.println("### SETC ###");
+		replySetDetail( remIP );
 		break;
 
 	case EL_GET:

@@ -505,6 +505,10 @@ Limitations of this module is following.
 
 # Version
 
+- 2.4.0 multi set epc
+- 2.3.1 bug fix
+- 2.3.0 bug fix, and multi get epc
+- 2.2.1 bug fix
 - 2.2.0 bug fix, support multi device
 - 2.1.0 considering TID
 - 2.0.0 change memory management, cope with memory leak.
