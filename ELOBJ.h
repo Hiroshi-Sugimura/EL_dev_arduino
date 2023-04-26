@@ -9,11 +9,15 @@
 #define __ELOBJ_H__
 #pragma once
 
-// configure
-#include <Arduino.h>
+#include <initializer_list>
 
 // auto config
-#ifndef Arduino_h
+#ifndef GPP
+// arduino
+#include <Arduino.h>
+
+#else
+// g++
 #define byte unsigned char
 #include <iostream>
 using std::cout;
@@ -22,7 +26,6 @@ using std::endl;
 using std::hex;
 using std::move;
 #endif
-
 
 //////////////////////////////////////////////////////////////////////
 /// @class PDCEDT
@@ -36,12 +39,29 @@ protected:
 
 public:
   PDCEDT();
-  PDCEDT(const PDCEDT& val);
-  PDCEDT(const byte* val);
+  PDCEDT(const PDCEDT &val);
+  PDCEDT(const byte *val);
+  PDCEDT(std::initializer_list<byte> il);
+
   virtual ~PDCEDT();
+
+  // setter
   const PDCEDT operator=(const PDCEDT val);
-  const byte* operator=(const byte* val);
-  operator byte* () const;
+  const byte *operator=(const byte *val);
+  const byte *operator=(std::initializer_list<byte> il);
+  const byte *setEDT(std::initializer_list<byte> il);
+
+  // getter
+  const byte getLength() const;
+  const byte getPDC();
+  const byte *getEDT();
+
+  // キャスト
+  operator byte *() const;
+
+  // チェック
+  const bool isEmpty() const;
+
   void print(void) const;
 };
 
@@ -66,11 +86,11 @@ public:
   //	データ取得
   const PDCEDT GetPDCEDT(const byte epc) const;
   const PDCEDT SetPDCEDT(const byte epc, const PDCEDT pdcedt);
-  const PDCEDT SetPDCEDT(const byte epc, const byte*&& pdcedt);
+  const PDCEDT SetPDCEDT(const byte epc, const byte *&&pdcedt);
 
   //	配列らしいインターフェイス
   const PDCEDT operator[](const byte epc) const;
-  PDCEDT& operator[](const byte epc);
+  PDCEDT &operator[](const byte epc);
 
   // 状態表示系
   void printAll() const; // all print edt
