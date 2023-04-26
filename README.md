@@ -505,6 +505,7 @@ Limitations of this module is following.
 
 # Version
 
+- 2.5.0 Add methods of class PDCEDT, ELOBJ
 - 2.4.0 multi set epc
 - 2.3.1 bug fix
 - 2.3.0 bug fix, and multi get epc
