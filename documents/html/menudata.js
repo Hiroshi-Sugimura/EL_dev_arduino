@@ -37,6 +37,7 @@ var menudata={children:[
 {text:"d",url:"functions.html#index_d"},
 {text:"e",url:"functions.html#index_e"},
 {text:"g",url:"functions.html#index_g"},
+{text:"i",url:"functions.html#index_i"},
 {text:"l",url:"functions.html#index_l"},
 {text:"m",url:"functions.html#index_m"},
 {text:"o",url:"functions.html#index_o"},
@@ -53,6 +54,7 @@ var menudata={children:[
 {text:"d",url:"functions_func.html#index_d"},
 {text:"e",url:"functions_func.html#index_e"},
 {text:"g",url:"functions_func.html#index_g"},
+{text:"i",url:"functions_func.html#index_i"},
 {text:"o",url:"functions_func.html#index_o"},
 {text:"p",url:"functions_func.html#index_p"},
 {text:"r",url:"functions_func.html#index_r"},
@@ -65,7 +67,6 @@ var menudata={children:[
 {text:"ファイル一覧",url:"files.html"},
 {text:"ファイルメンバ",url:"globals.html",children:[
 {text:"全て",url:"globals.html",children:[
-{text:"b",url:"globals.html#index_b"},
 {text:"c",url:"globals.html#index_c"},
 {text:"e",url:"globals.html#index_e"},
 {text:"f",url:"globals.html#index_f"},
@@ -77,6 +78,5 @@ var menudata={children:[
 {text:"関数",url:"globals_func.html"},
 {text:"変数",url:"globals_vars.html"},
 {text:"マクロ定義",url:"globals_defs.html",children:[
-{text:"b",url:"globals_defs.html#index_b"},
 {text:"e",url:"globals_defs.html#index_e"},
 {text:"w",url:"globals_defs.html#index_w"}]}]}]}]}
