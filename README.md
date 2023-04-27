@@ -39,12 +39,16 @@ You can install the module by using Library Manager of ArduinoIDE as following.
 # How to use (for Mac)
 
 1. Install the Arduino
-2. Download or clone this (https://github.com/Hiroshi-Sugimura/EL\_dev\_arduino)
+2. Download or clone this (https://github.com/Hiroshi-Sugimura/EL_dev_arduino)
 3. put EL_dev_arduino into ~/Documents/Arduino/libraries
 4. Open example GeneralLighting by arduino IDE
 5. Attach the M5stack
 6. Run
 
+
+# API Manual
+
+https://hiroshi-sugimura.github.io/EL_dev_arduino/documents/html/index.html
 
 
 # Example (General Lighting)
@@ -237,6 +241,7 @@ EL echo(elUDP, 0x02, 0x90, 0x01 );
 
 
 ## APIs of EL class
+
 
 
 ### Initialize（初期化）
