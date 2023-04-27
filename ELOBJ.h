@@ -53,14 +53,15 @@ public:
 
   // getter
   const byte getLength() const;
-  const byte getPDC();
-  const byte *getEDT();
+  const byte getPDC() const;
+  const byte *getEDT() const;
 
   // キャスト
   operator byte *() const;
 
   // チェック
   const bool isEmpty() const;
+  const bool isNull() const;
 
   void print(void) const;
 };
@@ -87,6 +88,10 @@ public:
   const PDCEDT GetPDCEDT(const byte epc) const;
   const PDCEDT SetPDCEDT(const byte epc, const PDCEDT pdcedt);
   const PDCEDT SetPDCEDT(const byte epc, const byte *&&pdcedt);
+  const PDCEDT SetProfile(const byte epc, std::initializer_list<byte> epcs); // for EPC: 9e,9d,9f
+  const PDCEDT GetProfile(const byte epc) const;
+  const bool isGettable(const byte epc) const; // Get可能なEPC?
+  const bool isSettable(const byte epc) const; // Set可能なEPC?
 
   //	配列らしいインターフェイス
   const PDCEDT operator[](const byte epc) const;
