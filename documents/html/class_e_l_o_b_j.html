@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EL_dev_arduino<span id="projectnumber">&#160;2.5.0</span>
+   <div id="projectname">EL_dev_arduino<span id="projectnumber">&#160;2.6.0</span>
    </div>
   </td>
  </tr>
@@ -109,6 +109,18 @@ ELOBJ 連携図</div>
 <tr class="memitem:a7aca78a5ab1d2670efbfc711d1f5d28b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_p_d_c_e_d_t.html">PDCEDT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#a7aca78a5ab1d2670efbfc711d1f5d28b">SetPDCEDT</a> (const byte epc, const byte *&amp;&amp;<a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>)</td></tr>
 <tr class="memdesc:a7aca78a5ab1d2670efbfc711d1f5d28b"><td class="mdescLeft">&#160;</td><td class="mdescRight">EPCに対して、PDCEDTのを結びつける（セットと更新）  <br /></td></tr>
 <tr class="separator:a7aca78a5ab1d2670efbfc711d1f5d28b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b8d42eb0f64b05f40b0ff65076384ae"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_p_d_c_e_d_t.html">PDCEDT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#a7b8d42eb0f64b05f40b0ff65076384ae">SetProfile</a> (const byte epc, std::initializer_list&lt; byte &gt; epcs)</td></tr>
+<tr class="memdesc:a7b8d42eb0f64b05f40b0ff65076384ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Profile(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する  <br /></td></tr>
+<tr class="separator:a7b8d42eb0f64b05f40b0ff65076384ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a6405087fac50d264901ddc7aa4a35a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_p_d_c_e_d_t.html">PDCEDT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#a1a6405087fac50d264901ddc7aa4a35a">GetProfile</a> (const byte epc) const</td></tr>
+<tr class="memdesc:a1a6405087fac50d264901ddc7aa4a35a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Profile(0x9d, 0x9e, 0x9f)を計算してPDC[1] + EDT[PDC]の形で返す  <br /></td></tr>
+<tr class="separator:a1a6405087fac50d264901ddc7aa4a35a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accda8bff74ca8a8424ee822803419e3b"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#accda8bff74ca8a8424ee822803419e3b">isGettable</a> (const byte epc) const</td></tr>
+<tr class="memdesc:accda8bff74ca8a8424ee822803419e3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定のEPCがGet可能かどうか  <br /></td></tr>
+<tr class="separator:accda8bff74ca8a8424ee822803419e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab68a696d3bbd7a926e331fd45a147084"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#ab68a696d3bbd7a926e331fd45a147084">isSettable</a> (const byte epc) const</td></tr>
+<tr class="memdesc:ab68a696d3bbd7a926e331fd45a147084"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定のEPCがSet可能かどうか  <br /></td></tr>
+<tr class="separator:ab68a696d3bbd7a926e331fd45a147084"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addd51aa06cc437431b1adc29c8d48bda"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_p_d_c_e_d_t.html">PDCEDT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#addd51aa06cc437431b1adc29c8d48bda">operator[]</a> (const byte epc) const</td></tr>
 <tr class="memdesc:addd51aa06cc437431b1adc29c8d48bda"><td class="mdescLeft">&#160;</td><td class="mdescRight">配列らしいインターフェイス，const this  <br /></td></tr>
 <tr class="separator:addd51aa06cc437431b1adc29c8d48bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -218,6 +230,100 @@ ELOBJ 連携図</div>
 <area shape="rect" title="キー文字列からデータ取得" alt="" coords="111,5,260,31"/>
 <area shape="rect" href="class_e_l.html#a986d605da832524b0f80f8330df1a1da" title="EPCの値を取得する, eojが1個の場合（複数の場合は0番に相当）" alt="" coords="5,5,63,31"/>
 </map>
+</div>
+
+</div>
+</div>
+<a id="a1a6405087fac50d264901ddc7aa4a35a" name="a1a6405087fac50d264901ddc7aa4a35a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a6405087fac50d264901ddc7aa4a35a">&#9670;&#160;</a></span>GetProfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_p_d_c_e_d_t.html">PDCEDT</a> ELOBJ::GetProfile </td>
+          <td>(</td>
+          <td class="paramtype">const byte&#160;</td>
+          <td class="paramname"><em>epc</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Profile(0x9d, 0x9e, 0x9f)を計算してPDC[1] + EDT[PDC]の形で返す </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>epcs <a class="el" href="class_p_d_c_e_d_t.html" title="PDC and EDT in ELOBJ">PDCEDT</a> </dd></dl>
+<dl class="section note"><dt>覚え書き</dt><dd>e.g. obj.GetProfile( 0x9d ); Format 2を解析するところがミソ </dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_o_b_j_a1a6405087fac50d264901ddc7aa4a35a_icgraph.png" border="0" usemap="#aclass_e_l_o_b_j_a1a6405087fac50d264901ddc7aa4a35a_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="accda8bff74ca8a8424ee822803419e3b" name="accda8bff74ca8a8424ee822803419e3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accda8bff74ca8a8424ee822803419e3b">&#9670;&#160;</a></span>isGettable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool ELOBJ::isGettable </td>
+          <td>(</td>
+          <td class="paramtype">const byte&#160;</td>
+          <td class="paramname"><em>epc</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>指定のEPCがGet可能かどうか </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>boolean true:available, false: no EPC </dd></dl>
+<dl class="section note"><dt>覚え書き</dt><dd>isEmptyの逆と思っていい。プロパティ持っているかだけで判定する、EPC:0x9fは確認しない </dd></dl>
+
+</div>
+</div>
+<a id="ab68a696d3bbd7a926e331fd45a147084" name="ab68a696d3bbd7a926e331fd45a147084"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab68a696d3bbd7a926e331fd45a147084">&#9670;&#160;</a></span>isSettable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool ELOBJ::isSettable </td>
+          <td>(</td>
+          <td class="paramtype">const byte&#160;</td>
+          <td class="paramname"><em>epc</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>指定のEPCがSet可能かどうか </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>boolean true:available, false: not available </dd></dl>
+<dl class="section note"><dt>覚え書き</dt><dd>EPC:0x9eで判定する 毎回Profileを全部作って捜査するので少し遅い。 いくつもEPCを検索するなら、GetProfileをつかって自分で探すことをお勧めする。 </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_o_b_j_ab68a696d3bbd7a926e331fd45a147084_cgraph.png" border="0" usemap="#aclass_e_l_o_b_j_ab68a696d3bbd7a926e331fd45a147084_cgraph" alt=""/></div>
 </div>
 
 </div>
@@ -403,6 +509,49 @@ ELOBJ 連携図</div>
 <area shape="rect" href="class_e_l.html#a0f235980e2cdae6da6ca84c8098d49cb" title="EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）" alt="" coords="100,5,185,31"/>
 <area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
 </map>
+</div>
+
+</div>
+</div>
+<a id="a7b8d42eb0f64b05f40b0ff65076384ae" name="a7b8d42eb0f64b05f40b0ff65076384ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b8d42eb0f64b05f40b0ff65076384ae">&#9670;&#160;</a></span>SetProfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_p_d_c_e_d_t.html">PDCEDT</a> ELOBJ::SetProfile </td>
+          <td>(</td>
+          <td class="paramtype">const byte&#160;</td>
+          <td class="paramname"><em>epc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::initializer_list&lt; byte &gt;&#160;</td>
+          <td class="paramname"><em>epcs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Profile(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">epcs</td><td>std::initializer_list&lt;byte&gt; : epc list </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
+<dl class="section note"><dt>覚え書き</dt><dd>e.g. obj.SetProfile( {0x80, 0x81, 0x88} ) プロパティ数16以上（PDC含めると17Byte以上）のとき、Format 2 </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_o_b_j_a7b8d42eb0f64b05f40b0ff65076384ae_cgraph.png" border="0" usemap="#aclass_e_l_o_b_j_a7b8d42eb0f64b05f40b0ff65076384ae_cgraph" alt=""/></div>
 </div>
 
 </div>

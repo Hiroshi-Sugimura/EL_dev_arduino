@@ -505,6 +505,7 @@ Limitations of this module is following.
 
 # Version
 
+- 2.6.0 Add methods of class PDCEDT, ELOBJ
 - 2.5.0 Add methods of class PDCEDT, ELOBJ
 - 2.4.0 multi set epc
 - 2.3.1 bug fix
@@ -519,7 +520,7 @@ Limitations of this module is following.
 - 1.2.0 Readme, keywords, library.json, library.properties
 - 1.1.0 organized for m5stack
 - 1.0.0 M5Stack
-- 0.10 commit and publish
+- 0.10.0 commit and publish
 
 
 # License

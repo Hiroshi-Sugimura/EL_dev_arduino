@@ -11,7 +11,7 @@
 /// @brief コンストラクタ
 /// @param none
 /// @return none
-/// @note ex. PDCEDT p; p = {0x30, 0x31};
+/// @note e.g. PDCEDT p; p = {0x30, 0x31};
 PDCEDT::PDCEDT()
 {
 	m_pdcedt = nullptr;
@@ -22,7 +22,7 @@ PDCEDT::PDCEDT()
 /// @brief コピーコンストラクタ
 /// @param val const PDCEDT& コピー元
 /// @return none
-/// @note ex. PDCEDT pb = pa;
+/// @note e.g. PDCEDT pb = pa;
 PDCEDT::PDCEDT(const PDCEDT &val) // copy constractor
 {
 #ifdef DEBUG
@@ -37,7 +37,7 @@ PDCEDT::PDCEDT(const PDCEDT &val) // copy constractor
 /// @brief 初期化コンストラクタ
 /// @param val const byte*
 /// @return none
-/// @note ex. PDCEDT pb((byte[]){0x01, 0x8b});
+/// @note e.g. PDCEDT pb((byte[]){0x01, 0x8b});
 PDCEDT::PDCEDT(const byte *val)
 {
 #ifdef DEBUG
@@ -78,7 +78,7 @@ PDCEDT::PDCEDT(std::initializer_list<byte> il)
 PDCEDT::~PDCEDT()
 {
 #ifdef DEBUG
-	cout << "- PDCEDT::destructor" << endl;
+	// cout << "- PDCEDT::destructor" << endl;
 #endif
 	if (nullptr != m_pdcedt)
 	{
@@ -178,7 +178,7 @@ PDCEDT::operator byte *() const
 /// @param il list<byte>
 /// @return EDT byte*
 /// @note 可変長引数のような実装、PDCは自動計算
-/// ex. pf.setEDT( {0x81, 0x82, 0x83} );
+/// e.g. pf.setEDT( {0x81, 0x82, 0x83} );
 const byte *PDCEDT::setEDT(std::initializer_list<byte> il)
 {
 #ifdef DEBUG
@@ -222,7 +222,7 @@ const byte PDCEDT::getLength() const
 /// @param none
 /// @return PDC byte (length of EDT)
 /// @note
-const byte PDCEDT::getPDC()
+const byte PDCEDT::getPDC() const
 {
 #ifdef DEBUG
 	cout << "- PDCEDT::getPDC()" << endl;
@@ -235,7 +235,7 @@ const byte PDCEDT::getPDC()
 /// @param none
 /// @return EDT byte*
 /// @note
-const byte *PDCEDT::getEDT()
+const byte *PDCEDT::getEDT() const
 {
 #ifdef DEBUG
 	cout << "- PDCEDT::getEDT()" << endl;
@@ -246,9 +246,23 @@ const byte *PDCEDT::getEDT()
 ////////////////////////////////////////////////////
 /// @brief 設定されているかどうか
 /// @param void
-/// @return boolean
-/// @note
+/// @return boolean true:empty, false: not empty
+/// @note isNullと同じ
 const bool PDCEDT::isEmpty() const
+{
+	if (nullptr == m_pdcedt)
+	{
+		return true;
+	}
+	return false;
+}
+
+////////////////////////////////////////////////////
+/// @brief Nullかどうか
+/// @param void
+/// @return boolean true:Null, false: not Null
+/// @note isEmptyと同じ
+const bool PDCEDT::isNull() const
 {
 	if (nullptr == m_pdcedt)
 	{
@@ -376,6 +390,132 @@ const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const byte *&&pdcedt)
 }
 
 ////////////////////////////////////////////////////
+/// @brief Profile(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する
+/// @param epcs std::initializer_list<byte> : epc list
+/// @return none
+/// @note e.g. obj.SetProfile( {0x80, 0x81, 0x88} )
+/// プロパティ数16以上（PDC含めると17Byte以上）のとき、Format 2
+const PDCEDT ELOBJ::SetProfile(const byte epc, std::initializer_list<byte> epcs)
+{
+#ifdef DEBUG
+	cout << "- ELOBJ::SetProfile()" << endl;
+#endif
+	int key = epc - 0x80;
+	byte n = (byte)epcs.size();
+
+	if (n < 16)
+	{ // format 1
+		PDCEDT t;
+		m_pdcedt[key] = t.setEDT(epcs);
+	}
+	else
+	{								// format 2
+		byte temp_pdcedt[17] = {0}; // 確保するメモリは17Byte固定(PDC + EDT[16])となる
+		temp_pdcedt[0] = n;			// PDCはプロパティ数
+
+		for (auto it = epcs.begin(); it != epcs.end(); it += 1)
+		{
+			int i = (*it & 0x0f) + 1;			  // バイト目
+			byte flag = 0x01 << ((*it >> 4) - 8); // フラグ位置
+#ifdef DEBUG
+			// cout << "- ELOBJ::SetProfile() [" << dec << i << "]" << hex << (int)flag << endl;
+#endif
+			temp_pdcedt[i] += flag;
+		}
+
+		m_pdcedt[key] = temp_pdcedt;
+	}
+	return (m_pdcedt[key]);
+}
+
+////////////////////////////////////////////////////
+/// @brief Profile(0x9d, 0x9e, 0x9f)を計算してPDC[1] + EDT[PDC]の形で返す
+/// @param epc const byte
+/// @return epcs PDCEDT
+/// @note e.g. obj.GetProfile( 0x9d );
+/// Format 2を解析するところがミソ
+const PDCEDT ELOBJ::GetProfile(const byte epc) const
+{
+#ifdef DEBUG
+	cout << "- ELOBJ::GetProfile()" << endl;
+#endif
+	int key = epc - 0x80;
+	byte *pdcedt = m_pdcedt[key];
+	byte pdc = pdcedt[0];
+#ifdef DEBUG
+	cout << "- ELOBJ::GetProfile() PDC:" << dec << (int)pdc << endl;
+#endif
+	if (pdc < 16)
+	{ // format 1ならそのまま
+		return m_pdcedt[key];
+	}
+	else
+	{								   // format 2
+		byte *ret = new byte[pdc + 1]; // 確保するメモリは17Byte固定(PDC + EDT[16])となる
+		ret[0] = pdc;
+
+		int count = 1;
+		for (int bit = 0; bit < 8; bit += 1)
+		{
+			for (int i = 1; i < 17; i += 1)
+			{
+				byte exist = ((pdcedt[i] >> bit) & 0x01);
+				if (exist)
+				{
+					// 上位 (bit + 7) << 4
+					// 下位 i-1
+					byte epc = ((bit + 8) << 4) + (i - 1);
+#ifdef DEBUG
+					cout << "- ELOBJ::GetProfile()" << dec << i << ":" << hex << (int)bit << endl;
+#endif
+					ret[count] = epc;
+					count += 1;
+				}
+			}
+		}
+		return PDCEDT(ret);
+	}
+}
+
+////////////////////////////////////////////////////
+/// @brief 指定のEPCがGet可能かどうか
+/// @param void
+/// @return boolean true:available, false: no EPC
+/// @note isEmptyの逆と思っていい。プロパティ持っているかだけで判定する、EPC:0x9fは確認しない
+const bool ELOBJ::isGettable(const byte epc) const
+{
+	int key = epc - 0x80;
+	return (!m_pdcedt[key].isNull());
+}
+
+
+////////////////////////////////////////////////////
+/// @brief 指定のEPCがSet可能かどうか
+/// @param epc const byte
+/// @return boolean true:available, false: not available
+/// @note EPC:0x9eで判定する
+/// 毎回Profileを全部作って捜査するので少し遅い。
+/// いくつもEPCを検索するなら、GetProfileをつかって自分で探すことをお勧めする。
+const bool ELOBJ::isSettable(const byte epc) const
+{
+	int key = epc - 0x80;
+	// ここ修正
+	const PDCEDT setlist = GetProfile(0x9e);
+	const byte pdc = setlist.getPDC();
+	const byte* edtarray = setlist.getEDT();
+	bool ret = false;
+	for (int i = 1; i < pdc; i += 1)
+	{
+		if (edtarray[i] == epc)
+		{
+			ret = true;
+		}
+	}
+
+	return ret;
+}
+
+////////////////////////////////////////////////////
 /// @brief 配列らしいインターフェイス，const this
 /// @param epc const byte
 /// @return none
@@ -412,7 +552,7 @@ void ELOBJ::printAll() const
 	char s[2];
 	for (int i = 0; i < PDC_MAX; i += 1)
 	{
-		if ( !m_pdcedt[i].isEmpty() )
+		if (!m_pdcedt[i].isEmpty())
 		{
 #ifdef Arduino_h
 			sprintf(s, "%02X", (int)(i + 0x80)); // print EPC
