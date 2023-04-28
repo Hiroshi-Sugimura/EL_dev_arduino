@@ -72,34 +72,27 @@ $(function() {
   <div class="headertitle"><div class="title">Overview (EL_dev_arduino) </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>このモジュールはArduinoの**ECHONET Liteプロトコル**をサポートします． ECHONET Liteプロトコルはスマートハウス機器の通信プロトコルです． M5Stackでテストしています。</p>
-<p>This module provides <b>ECHONET Lite protocol</b> for Arduino. The ECHONET Lite protocol is a communication protocol for smart home devices. It is comfirmed with M5stack.</p>
+<div class="textblock"><p>このモジュールはArduinoの**ECHONET Liteプロトコル**通信をサポートします． (ECHONET Liteプロトコルはスマートハウス機器の通信プロトコルです．) M5Stack Core2を中心にテストしています。 <b>本モジュールはECHONET Lite認証を受けたものではありませんので、商品化する際には開発者自らが認証を受ける必要があります。</b></p>
+<p>This module provides the communication method, <b>ECHONET Lite protocol</b>, for Arduino. (ECHONET Lite protocol is a common communication specification for Smart home) We are developping and debugging with M5stack Core2 mainly.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Install</h1>
-<p>ArduinoIDEのライブラリマネージャからモジュールをインストールできます． ECHONETでフィルタしてください。</p>
-<div class="fragment"><div class="line">1. ArduinoIDEを起動する</div>
-<div class="line">2. メニューのスケッチ</div>
-<div class="line">3. ライブラリをインクルード</div>
-<div class="line">4. ライブラリを管理</div>
-<div class="line">5. ECHONETでフィルタ</div>
-<div class="line">6. EL_dev_arduinoをインストール</div>
-</div><!-- fragment --><p>You can install the module by using Library Manager of ArduinoIDE as following.</p>
-<div class="fragment"><div class="line">1. Start ArduinoIDE</div>
-<div class="line">2. Menu &gt; Sketch</div>
-<div class="line">3. Include Library</div>
-<div class="line">4. Library Manager</div>
-<div class="line">5. Filter [ECHONET]</div>
-<div class="line">6. Install EL_dev_arduino</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
-How to use (for Mac)</h1>
+<p>Arduino IDEのライブラリマネージャからモジュールをインストールできます． sugimuraでフィルタするとすぐ出ます。</p>
 <ol type="1">
-<li>Install the Arduino</li>
-<li>Download or clone this (<a href="https://github.com/Hiroshi-Sugimura/EL_dev_arduino">https://github.com/Hiroshi-Sugimura/EL_dev_arduino</a>)</li>
-<li>put EL_dev_arduino into ~/Documents/Arduino/libraries</li>
-<li>Open example GeneralLighting by arduino IDE</li>
-<li>Attach the M5stack</li>
-<li>Run</li>
+<li>Arduino IDEを起動する</li>
+<li>メニュー &gt; スケッチ &gt; ライブラリをインクルード &gt; ライブラリを管理</li>
+<li>sugimuraでフィルタ</li>
+<li>EL_dev_arduinoをインストール</li>
 </ol>
+<p>You can install the module by using Library Manager of ArduinoIDE as following. It can be found to use filter text 'sugimura', author's name.</p>
+<ol type="1">
+<li>Start ArduinoIDE</li>
+<li>Menu &gt; Sketch &gt; Include Library &gt; Library Manager</li>
+<li>Filter [ECHONET]</li>
+<li>Install EL_dev_arduino</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md2"></a>
+API Manual</h1>
+<p><a href="https://hiroshi-sugimura.github.io/EL_dev_arduino/documents/html/index.html">https://hiroshi-sugimura.github.io/EL_dev_arduino/documents/html/index.html</a></p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Example (General Lighting)</h1>
 <div class="fragment"><div class="line">#include &lt;M5Stack.h&gt;</div>
@@ -265,44 +258,33 @@ Example (General Lighting)</h1>
 <div class="line">  Serial.println(&quot;-----------------------------------&quot;);</div>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
-Classes</h1>
+Description for the example</h1>
 <h2><a class="anchor" id="autotoc_md5"></a>
-EL (for user)</h2>
-<p>ELクラスはWiFiのUDP（受信は3610，送信は適当）とECHONET Liteプロトコルをサポートします。ECHONET Liteネットワークにデバイスを参加させるためには専門のオブジェクトコードが必要です。オブジェクトコードはECHONET規格書に書かれているものを参照してください（https://echonet.jp/spec_g/#standard-01）。サンプルとして一般照明（0x029001）をM5Stackで実装した例を示しています。</p>
+Constractor</h2>
+<p>ELクラスはWiFiのUDP（受信は3610，送信は適当）とECHONET Liteプロトコルをサポートします。ECHONET Liteネットワークにデバイスを参加させるためには専門のオブジェクトコードが必要です。オブジェクトコードはECHONET規格書に書かれているものを参照してください（https://echonet.jp/spec_g/#standard-01）。 サンプルとして一般照明（0x029001）をM5Stackで実装した例を示しています。</p>
 <p><a class="el" href="class_e_l.html" title="Main class for EL">EL</a> class manages WiFiUDP (recv is 3610 port, sned is any port) and ECHONET Lite protocol. To join ECHONET Lite network, the device needs ECHONET Lite object code. ECHONET Lite object code is defined in the specifications. (see <a href="https://echonet.jp/spec-en/#standard-01">https://echonet.jp/spec-en/#standard-01</a>) In this example, we deals with M5stack as a general lighting (0x029001).</p>
-<div class="fragment"><div class="line"> {C++}</div>
-<div class="line">EL echo(elUDP, 0x02, 0x90, 0x01 );</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md6"></a>
-ELOBJ (inner class)</h2>
-<h2><a class="anchor" id="autotoc_md7"></a>
-APIs of EL class</h2>
-<h3><a class="anchor" id="autotoc_md8"></a>
-Initialize（初期化）</h3>
 <ul>
-<li><a class="el" href="class_e_l.html" title="Main class for EL">EL( WiFiUDP&amp; udp, byte eoj0, byte eoj1, byte eoj2)</a>;</li>
+<li>single object <div class="fragment"><div class="line"> {C++}</div>
+<div class="line">EL echo(elUDP, 0x02, 0x90, 0x01 );</div>
+</div><!-- fragment --></li>
+<li>multi object <div class="fragment"><div class="line"> {C++}</div>
+<div class="line">byte devices[][3] = { {0x02, 0x90, 0x01}, {0x02, 0x90, 0x02}};</div>
+<div class="line">EL echo(elUDP, devices, 2 );</div>
+</div><!-- fragment --></li>
 </ul>
-<p>constructor</p>
+<h3><a class="anchor" id="autotoc_md6"></a>
+Initialize and Start communication（初期化と通信開始）</h3>
+<p>begin()メソドを呼ぶと受信開始します。</p>
+<p>To call 'begin()' method begins receiving ECHONET Lite protocol.</p>
 <ul>
 <li>void begin(void);</li>
 </ul>
-<p>beggining ECHONET Lite protocol.</p>
 <div class="fragment"><div class="line">EL echo(elUDP, 0x02, 0x90, 0x01 );</div>
 <div class="line"> </div>
 <div class="line">void setup() {</div>
 <div class="line">  echo.begin();</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md9"></a>
-Sender（送信）</h3>
-<ul>
-<li>void send(IPAddress toip, byte sBuffer[], int size);</li>
-<li>void sendOPC1(const IPAddress toip, const byte *deoj, const byte esv, const byte epc, const byte *edt);</li>
-<li>void sendOPC1(const IPAddress toip, const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);</li>
-<li>void sendBroad(byte sBuffer[], int size);</li>
-<li>void sendMulti(byte sBuffer[], int size);</li>
-<li>void sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const byte *edt);</li>
-<li>void sendMultiOPC1(const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *edt);</li>
-</ul>
-<h3><a class="anchor" id="autotoc_md10"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md7"></a>
 Receiver（受信）</h3>
 <ul>
 <li>int read();</li>
@@ -320,213 +302,10 @@ Receiver（受信）</h3>
 <li>byte _rBuffer[EL_BUFFER_SIZE]; // receive buffer</li>
 </ul>
 <p>Received data. 受信したデータ</p>
-<div class="fragment"><div class="line">void loop() {</div>
-<div class="line">  if (0 != echo.read()) )</div>
-<div class="line">  {</div>
-<div class="line">    switch (echo._rBuffer[EL_ESV])</div>
-<div class="line">    {</div>
-<div class="line">      // -----------------------------------</div>
-<div class="line">      // 動作状態の変更 Set対応</div>
-<div class="line">      case EL_SETI:</div>
-<div class="line">      case EL_SETC:</div>
-<div class="line">        break; // SETI, SETCここまで</div>
-<div class="line"> </div>
-<div class="line">      // -----------------------------------</div>
-<div class="line">      // Get,INF_REQ</div>
-<div class="line">      case EL_GET:</div>
-<div class="line">      case EL_INF_REQ:</div>
-<div class="line">        echo.returner();</div>
-<div class="line">        break;</div>
-<div class="line"> </div>
-<div class="line">      case EL_INF:</div>
-<div class="line">        break;</div>
-<div class="line">      default: // 解釈不可能なESV</div>
-<div class="line">    }</div>
-<div class="line">  }</div>
-<div class="line">}</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md11"></a>
-Update EDT（EDT:機器データの更新）</h3>
-<ul>
-<li>void update(const byte epc, byte pdcedt[]);</li>
-</ul>
-<h3><a class="anchor" id="autotoc_md12"></a>
-Confirm EDT（機器データの確認）</h3>
-<ul>
-<li>byte *at(const byte epc);</li>
-</ul>
-<h3><a class="anchor" id="autotoc_md13"></a>
-Device Data（機器データ）</h3>
-<ul>
-<li><a class="el" href="class_e_l_o_b_j.html" title="EL Object">ELOBJ</a> profile; // node profile object (PDC and EDT list)</li>
-<li><a class="el" href="class_e_l_o_b_j.html" title="EL Object">ELOBJ</a> details; // device object (PDC and EDT list)</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md14"></a>
-Defines</h1>
-<div class="fragment"><div class="line"> {C++:EL.h}</div>
-<div class="line">#define EL_PORT     3610</div>
-<div class="line">#define EL_EHD1     0</div>
-<div class="line">#define EL_EHD2     1</div>
-<div class="line">#define EL_TID      2</div>
-<div class="line">#define EL_SEOJ     4</div>
-<div class="line">#define EL_DEOJ     7</div>
-<div class="line">#define EL_ESV      10</div>
-<div class="line">#define EL_OPC      11</div>
-<div class="line">#define EL_EPC      12</div>
-<div class="line">#define EL_PDC      13</div>
-<div class="line">#define EL_EDT      14</div>
-<div class="line">#define EL_SETI_SNA 0x50</div>
-<div class="line">#define EL_SETC_SNA 0x51</div>
-<div class="line">#define EL_GET_SNA  0x52</div>
-<div class="line">#define EL_INF_SNA  0x53</div>
-<div class="line">#define EL_SETGET_SNA 0x5e</div>
-<div class="line">#define EL_SETI     0x60</div>
-<div class="line">#define EL_SETC     0x61</div>
-<div class="line">#define EL_GET      0x62</div>
-<div class="line">#define EL_INF_REQ  0x63</div>
-<div class="line">#define EL_SETGET   0x6e</div>
-<div class="line">#define EL_SET_RES  0x71</div>
-<div class="line">#define EL_GET_RES  0x72</div>
-<div class="line">#define EL_INF      0x73</div>
-<div class="line">#define EL_INFC     0x74</div>
-<div class="line">#define EL_INFC_RES 0x7a</div>
-<div class="line">#define EL_SETGET_RES 0x7e</div>
-<div class="line">#define EL_BUFFER_SIZE 256</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">// Device Object</div>
-<div class="line">// センサ関連機器</div>
-<div class="line">#define EL_GasLeakSensor    0x00, 0x01  //  ガス漏れセンサ</div>
-<div class="line">#define EL_CrimePreventionSensor    0x00, 0x02  //  防犯センサ</div>
-<div class="line">#define EL_EmergencyButton  0x00, 0x03  //  非常ボタン</div>
-<div class="line">#define EL_FirstAidSensor   0x00, 0x04  //  救急用センサ</div>
-<div class="line">#define EL_EarthquakeSensor 0x00, 0x05  //  地震センサ</div>
-<div class="line">#define EL_ElectricLeakSensor   0x00, 0x06  //  漏電センサ</div>
-<div class="line">#define EL_HumanDetectionSensor 0x00, 0x07  //  人体検知センサ</div>
-<div class="line">#define EL_VisitorSensor    0x00, 0x08  //  来客センサ</div>
-<div class="line">#define EL_CallSensor   0x00, 0x09  //  呼び出しセンサ</div>
-<div class="line">#define EL_CondensationSensor   0x00, 0x0A  //  結露センサ</div>
-<div class="line">#define EL_AirPollutionSensor   0x00, 0x0B  //  空気汚染センサ</div>
-<div class="line">#define EL_OxygenSensor 0x00, 0x0C  //  酸素センサ</div>
-<div class="line">#define EL_IlluminanceSensor    0x00, 0x0D  //  照度センサ</div>
-<div class="line">#define EL_SoundSensor  0x00, 0x0E  //  音センサ</div>
-<div class="line">#define EL_MailingSensor    0x00, 0x0F  //  投函センサ</div>
-<div class="line">#define EL_WeightSensor 0x00, 0x10  //  重荷センサ</div>
-<div class="line">#define EL_TemperatureSensor    0x00, 0x11  //  温度センサ</div>
-<div class="line">#define EL_HumiditySensor   0x00, 0x12  //  湿度センサ</div>
-<div class="line">#define EL_RainSensor   0x00, 0x13  //  雨センサ</div>
-<div class="line">#define EL_WaterLevelSensor 0x00, 0x14  //  水位センサ</div>
-<div class="line">#define EL_BathWaterLevelSensor 0x00, 0x15  //  風呂水位センサ</div>
-<div class="line">#define EL_BathHeatingStatusSensor  0x00, 0x16  //  風呂沸き上がりセンサ</div>
-<div class="line">#define EL_WaterLeakSensor  0x00, 0x17  //  水漏れセンサ</div>
-<div class="line">#define EL_WaterOverflowSensor  0x00, 0x18  //  水あふれセンサ</div>
-<div class="line">#define EL_FireSensor   0x00, 0x19  //  火災センサ</div>
-<div class="line">#define EL_CigaretteSmokeSensor 0x00, 0x1A  //  タバコ煙センサ</div>
-<div class="line">#define EL_CO2Sensor    0x00, 0x1B  //  CO2センサ</div>
-<div class="line">#define EL_GasSensor    0x00, 0x1C  //  ガスセンサ</div>
-<div class="line">#define EL_VOCSensor    0x00, 0x1D  //  VOCセンサ</div>
-<div class="line">#define EL_DifferentialPressureSensor   0x00, 0x1E  //  差圧センサ</div>
-<div class="line">#define EL_AirSpeedSensor   0x00, 0x1F  //  風速センサ</div>
-<div class="line">#define EL_OdorSensor   0x00, 0x20  //  臭いセンサ</div>
-<div class="line">#define EL_FlameSensor  0x00, 0x21  //  炎センサ</div>
-<div class="line">#define EL_ElectricEnergySensor 0x00, 0x22  //  電力量センサ</div>
-<div class="line">#define EL_CurrentValueSensor   0x00, 0x23  //  電流値センサ</div>
-<div class="line">#define EL_WaterFlowRateSensor  0x00, 0x25  //  水流量センサ</div>
-<div class="line">#define EL_MicromotionSensor    0x00, 0x26  //  微動センサ</div>
-<div class="line">#define EL_PassageSensor    0x00, 0x27  //  通過センサ</div>
-<div class="line">#define EL_BedPresenceSensor    0x00, 0x28  //  在床センサ</div>
-<div class="line">#define EL_OpenCloseSensor  0x00, 0x29  //  開閉センサ</div>
-<div class="line">#define EL_ActivityAmountSensor 0x00, 0x2A  //  活動量センサ</div>
-<div class="line">#define EL_HumanBodyLocationSensor  0x00, 0x2B  //  人体位置センサ</div>
-<div class="line">#define EL_SnowSensor   0x00, 0x2C  //  雪センサ</div>
-<div class="line">// 空調関連機器</div>
-<div class="line">#define EL_HomeAirConditioner   0x01, 0x30  //  家庭用エアコン</div>
-<div class="line">#define EL_VentilationFan   0x01, 0x32  //  換気扇</div>
-<div class="line">#define EL_AirConditionerVentilationFan 0x01, 0x34  //  空調換気扇</div>
-<div class="line">#define EL_AirCleaner   0x01, 0x35  //  空気清浄器</div>
-<div class="line">#define EL_Humidifier   0x01, 0x39  //  加湿器</div>
-<div class="line">#define EL_ElectricHeater   0x01, 0x42  //  電気暖房機</div>
-<div class="line">#define EL_FanHeater    0x01, 0x43  //  ファンヒータ</div>
-<div class="line">#define EL_PackageTypeCommercialAirConditionerIndoorUnit    0x01, 0x56  //  業務用パッケージエアコン室内機</div>
-<div class="line">#define EL_PackageTypeCommercialAirConditionerOutdoorUnit   0x01, 0x57  //  業務用パッケージエアコン室外機</div>
-<div class="line">// 住宅・設備関連機器</div>
-<div class="line">#define EL_ElectricallyOperatedShade    0x02, 0x60  //  電動ブラインド・日よけ</div>
-<div class="line">#define EL_ElectricShutter  0x02, 0x61  //  電動シャッター</div>
-<div class="line">#define EL_ElectricStormWindow  0x02, 0x63  //  電動雨戸・シャッター</div>
-<div class="line">#define EL_Sprinkler    0x02, 0x67  //  散水器(庭用)</div>
-<div class="line">#define EL_ElectricWaterHeater  0x02, 0x6B  //  電気温水器</div>
-<div class="line">#define EL_ElectricToiletSeat   0x02, 0x6E  //  電気便座(温水洗浄便座・暖房便座など)</div>
-<div class="line">#define EL_ElectricLock 0x02, 0x6F  //  電気錠</div>
-<div class="line">#define EL_InstantaneousWaterHeater 0x02, 0x72  //  瞬間式給湯機</div>
-<div class="line">#define EL_BathroomHeaterAndDryer   0x02, 0x73  //  浴室暖房乾燥機</div>
-<div class="line">#define EL_HouseholdSolarPowerGeneration    0x02, 0x79  //  住宅用太陽光発電</div>
-<div class="line">#define EL_ColdOrHotWaterHeatSourceEquipment    0x02, 0x7A  //  冷温水熱源機</div>
-<div class="line">#define EL_FloorHeater  0x02, 0x7B  //  床暖房</div>
-<div class="line">#define EL_FuelCell 0x02, 0x7C  //  燃料電池</div>
-<div class="line">#define EL_Battery  0x02, 0x7D  //  蓄電池</div>
-<div class="line">#define EL_ElectricVehicle  0x02, 0x7E  //  電気自動車充放電器</div>
-<div class="line">#define EL_EngineCogeneration   0x02, 0x7F  //  エンジンコージェネレーション</div>
-<div class="line">#define EL_WattHourMeter    0x02, 0x80  //  電力量メータ</div>
-<div class="line">#define EL_WaterFlowmeter   0x02, 0x81  //  水流量メータ</div>
-<div class="line">#define EL_GasMeter 0x02, 0x82  //  ガスメータ</div>
-<div class="line">#define EL_LPGasMeter   0x02, 0x83  //  LPガスメータ</div>
-<div class="line">#define EL_PowerDistributionBoardMetering   0x02, 0x87  //  分電盤メータリング</div>
-<div class="line">#define EL_SmartElectricEnergyMeter 0x02, 0x88  //  スマート電力量メータ</div>
-<div class="line">#define EL_SmartGasMeter    0x02, 0x89  //  スマートガスメータ</div>
-<div class="line">#define EL_GeneralLighting  0x02, 0x90  //  一般照明</div>
-<div class="line">#define EL_Buzzer   0x02, 0xA0  //  ブザー</div>
-<div class="line">// 調理・家事関連機器</div>
-<div class="line">#define EL_ElectricHotWaterPot  0x03, 0xB2  //  電気ポット</div>
-<div class="line">#define EL_Refrigerator 0x03, 0xB7  //  冷凍冷蔵庫</div>
-<div class="line">#define EL_CombinationMicrowaveOven 0x03, 0xB8  //  オーブンレンジ</div>
-<div class="line">#define EL_CookingHeater    0x03, 0xB9  //  クッキングヒータ</div>
-<div class="line">#define EL_RiceCooker   0x03, 0xBB  //  炊飯器</div>
-<div class="line">#define EL_WashingMachine   0x03, 0xC5  //  洗濯機</div>
-<div class="line">#define EL_ClothesDryer 0x03, 0xC6  //  衣類乾燥機</div>
-<div class="line">#define EL_WasherAndDryer   0x03, 0xD3  //  洗濯乾燥機</div>
-<div class="line">// 健康関連機器</div>
-<div class="line">#define EL_Weighing 0x04, 0x01  //  体重計</div>
-<div class="line">// 管理・操作関連機器</div>
-<div class="line">#define EL_Switch   0x05, 0xFD  //  スイッチ(JEM-A/HA端子対応)</div>
-<div class="line">#define EL_Controller   0x05, 0xFF  //  コントローラ</div>
-<div class="line">// AV関連機器</div>
-<div class="line">#define EL_Display  0x06, 0x01  //  ディスプレー</div>
-<div class="line">#define EL_Television   0x06, 0x02  //  テレビ</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md15"></a>
-Files</h1>
-<ul>
-<li>examples/GeneralLighting/GeneralLighting.ino: sample program</li>
-<li><a class="el" href="_e_l_8h.html" title="ECHONET Lite protocol for Arduino">EL.h</a>, <a class="el" href="_e_l_8cpp.html" title="ECHONET Lite protocol for Arduino">EL.cpp</a>: ECHONET Lite protocol class</li>
-<li><a class="el" href="_e_l_o_b_j_8h.html" title="Subclasses for ECHONET Lite protocol">ELOBJ.h</a>, <a class="el" href="_e_l_o_b_j_8cpp.html" title="Subclasses for ECHONET Lite protocol">ELOBJ.cpp</a>: ECHONET Lite object manager class. It is required by <a class="el" href="_e_l_8h.html" title="ECHONET Lite protocol for Arduino">EL.h</a></li>
-</ul>
-<h1><a class="anchor" id="autotoc_md16"></a>
-Limitations</h1>
-<p>本モジュールの制限として気がついた点を下記に示します。</p>
-<ul>
-<li>機器オブジェクトは1つだけしか持てない。</li>
-</ul>
-<p>Limitations of this module is following.</p>
-<ul>
-<li>This module can have only a device object.</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md17"></a>
-Know-how</h1>
-<ul>
-<li>もしESVがSETCのパケットを受信したときに再起動するなら，EL.returner関数でエラーが発生していると思われる。<ul>
-<li>対応するEDTを下記のように設定してください。</li>
-</ul>
-</li>
-</ul>
-<div class="fragment"><div class="line">details[ 0xE0 ] = (byte[]){0x01, soundNumber}; // power</div>
-</div><!-- fragment --><ul>
-<li>If occuring reboot when receiving a packet (ESV is SETC), it seems that <a class="el" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed">EL.returner</a> function occurs an error probably.<ul>
-<li>Please set details (EDT) as following.</li>
-</ul>
-</li>
-</ul>
-<div class="fragment"><div class="line">details[ 0xE0 ] = (byte[]){0x01, soundNumber}; // power</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md18"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 Version</h1>
 <ul>
+<li>2.7.0 Add methods of class <a class="el" href="class_e_l_o_b_j.html" title="EL Object">ELOBJ</a></li>
 <li>2.6.0 Add methods of class <a class="el" href="class_p_d_c_e_d_t.html" title="PDC and EDT in ELOBJ">PDCEDT</a>, <a class="el" href="class_e_l_o_b_j.html" title="EL Object">ELOBJ</a></li>
 <li>2.5.0 Add methods of class <a class="el" href="class_p_d_c_e_d_t.html" title="PDC and EDT in ELOBJ">PDCEDT</a>, <a class="el" href="class_e_l_o_b_j.html" title="EL Object">ELOBJ</a></li>
 <li>2.4.0 multi set epc</li>
@@ -544,15 +323,15 @@ Version</h1>
 <li>1.0.0 M5Stack</li>
 <li>0.10.0 commit and publish</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md19"></a>
+<h1><a class="anchor" id="autotoc_md9"></a>
 License</h1>
 <p>MIT</p>
-<h2><a class="anchor" id="autotoc_md20"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 Author</h2>
 <p>神奈川工科大学 創造工学部 ホームエレクトロニクス開発学科</p>
 <p>Dept. of Home Electronics, Faculty of Creative Engineering, Kanagawa Institute of Technology.</p>
 <p>杉村　博</p>
-<p>SUGIMURA, Hiroshi </p>
+<p>SUGIMURA Hiroshi </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
