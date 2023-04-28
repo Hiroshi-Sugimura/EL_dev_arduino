@@ -1,0 +1,15 @@
+digraph "ELOBJ::hasInfProfile"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [label="ELOBJ::hasInfProfile",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="指定のEPCがINF必須かどうか"];
+  Node1 -> Node2 [color="steelblue1",style="solid"];
+  Node2 [label="PDCEDT::getEDT",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_p_d_c_e_d_t.html#ae2e735567ce8725dae3620113c7ca709",tooltip="EDT getter"];
+  Node1 -> Node3 [color="steelblue1",style="solid"];
+  Node3 [label="PDCEDT::getPDC",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_p_d_c_e_d_t.html#ad3a04c94e29d541c95c25cf81f8c5e4b",tooltip="PDC getter"];
+  Node1 -> Node4 [color="steelblue1",style="solid"];
+  Node4 [label="ELOBJ::GetProfile",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l_o_b_j.html#a1a6405087fac50d264901ddc7aa4a35a",tooltip="Profile(0x9d, 0x9e, 0x9f)を計算してPDC[1] + EDT[PDC]の形で返す"];
+}

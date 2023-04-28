@@ -7,5 +7,7 @@ digraph "ELOBJ::GetProfile"
   rankdir="RL";
   Node1 [label="ELOBJ::GetProfile",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Profile(0x9d, 0x9e, 0x9f)を計算してPDC[1] + EDT[PDC]の形で返す"];
   Node1 -> Node2 [dir="back",color="steelblue1",style="solid"];
-  Node2 [label="ELOBJ::isSettable",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l_o_b_j.html#ab68a696d3bbd7a926e331fd45a147084",tooltip="指定のEPCがSet可能かどうか"];
+  Node2 [label="ELOBJ::hasInfProfile",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l_o_b_j.html#af66af5e13e88e3fb9094af3d4dd794a4",tooltip="指定のEPCがINF必須かどうか"];
+  Node1 -> Node3 [dir="back",color="steelblue1",style="solid"];
+  Node3 [label="ELOBJ::hasSetProfile",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l_o_b_j.html#a8f839fe9e104859d6d4cfe7446d94c86",tooltip="指定のEPCがSet可能かどうか"];
 }
