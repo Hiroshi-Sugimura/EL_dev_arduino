@@ -7,5 +7,5 @@ digraph "ELOBJ::SetProfile"
   rankdir="LR";
   Node1 [label="ELOBJ::SetProfile",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Profile(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する"];
   Node1 -> Node2 [color="steelblue1",style="solid"];
-  Node2 [label="PDCEDT::setEDT",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_p_d_c_e_d_t.html#a914652d7094bc62c56095b11be5bcfa7",tooltip="EDT setter"];
+  Node2 [label="PDCEDT::setEDT",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_p_d_c_e_d_t.html#adf332064486b2b0e7e608a18a82bd318",tooltip="EDT setter"];
 }

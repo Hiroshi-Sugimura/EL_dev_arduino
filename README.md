@@ -26,7 +26,7 @@ It can be found to use filter text 'sugimura', author's name.
 
 1. Start ArduinoIDE
 2. Menu > Sketch > Include Library > Library Manager
-3. Filter [ECHONET]
+3. Filter [sugimura]
 4. Install EL_dev_arduino
 
 
@@ -268,6 +268,7 @@ Received data.
 
 # Version
 
+- 2.8.0 bugfix and, Add methods of class PDCEDT
 - 2.7.0 Add methods of class ELOBJ
 - 2.6.0 Add methods of class PDCEDT, ELOBJ
 - 2.5.0 Add methods of class PDCEDT, ELOBJ

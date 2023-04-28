@@ -7,6 +7,8 @@
 //////////////////////////////////////////////////////////////////////
 #include "ELOBJ.h"
 
+// #define __ELOJB_DEBUG__ 1
+
 //////////////////////////////////////////////////////////////////////
 /// @brief コンストラクタ
 /// @param none
@@ -25,7 +27,7 @@ PDCEDT::PDCEDT()
 /// @note e.g. PDCEDT pb = pa;
 PDCEDT::PDCEDT(const PDCEDT &val) // copy constractor
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- PDCEDT::deep copy constractor PDCEDT" << endl;
 #endif
 	length = val.getLength();
@@ -40,7 +42,7 @@ PDCEDT::PDCEDT(const PDCEDT &val) // copy constractor
 /// @note e.g. PDCEDT pb((byte[]){0x01, 0x8b});
 PDCEDT::PDCEDT(const byte *val)
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- PDCEDT::deep copy constractor byte*" << endl;
 #endif
 	length = val[0] + 1;
@@ -55,7 +57,7 @@ PDCEDT::PDCEDT(const byte *val)
 /// @note  PDCEDT p = {0x30, 0x31}; のように実装可能なコンストラクタ
 PDCEDT::PDCEDT(std::initializer_list<byte> il)
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- PDCEDT::constractor iterator" << endl;
 #endif
 	byte n = (byte)il.size();
@@ -77,7 +79,7 @@ PDCEDT::PDCEDT(std::initializer_list<byte> il)
 /// @note
 PDCEDT::~PDCEDT()
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	// cout << "- PDCEDT::destructor" << endl;
 #endif
 	if (nullptr != m_pdcedt)
@@ -95,7 +97,7 @@ PDCEDT::~PDCEDT()
 /// @note PDCEDT型
 const PDCEDT PDCEDT::operator=(const PDCEDT val)
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- PDCEDT::operator = PDCEDT" << endl;
 #endif
 	if (nullptr != m_pdcedt)
@@ -120,7 +122,7 @@ const PDCEDT PDCEDT::operator=(const PDCEDT val)
 /// @note
 const byte *PDCEDT::operator=(const byte *val)
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- PDCEDT::operator = byte*" << endl;
 #endif
 	if (nullptr != m_pdcedt)
@@ -144,7 +146,7 @@ const byte *PDCEDT::operator=(const byte *val)
 /// @note = {0x02, 0x31, 0x32}
 const byte *PDCEDT::operator=(std::initializer_list<byte> il)
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- PDCEDT::operator = iterator" << endl;
 #endif
 	byte n = (byte)il.size();
@@ -167,7 +169,7 @@ const byte *PDCEDT::operator=(std::initializer_list<byte> il)
 /// @note
 PDCEDT::operator byte *() const
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- PDCEDT::cast to byte*" << endl;
 #endif
 	return m_pdcedt;
@@ -181,7 +183,7 @@ PDCEDT::operator byte *() const
 /// e.g. pf.setEDT( {0x81, 0x82, 0x83} );
 const byte *PDCEDT::setEDT(std::initializer_list<byte> il)
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- PDCEDT::setEDT()" << endl;
 #endif
 	if (nullptr != m_pdcedt)
@@ -205,13 +207,43 @@ const byte *PDCEDT::setEDT(std::initializer_list<byte> il)
 }
 
 ////////////////////////////////////////////////////
+/// @brief EDT setter
+/// @param edt byte[]
+/// @param size int: size of edt
+/// @return EDT byte*
+/// @note PDCは自動計算だけどサイズがほしい
+/// e.g. pf.setEDT( new[3]{0x81, 0x82, 0x83}, 3 );
+const byte *PDCEDT::setEDT(const byte edt[], int size)
+{
+#ifdef __ELOJB_DEBUG__
+	cout << "- PDCEDT::setEDT( const byte edt[], size)" << endl;
+#endif
+	if (nullptr != m_pdcedt)
+	{
+		delete[] m_pdcedt;
+		m_pdcedt = nullptr;
+	}
+	length = (byte)size + 1;
+	m_pdcedt = new byte[length];
+	m_pdcedt[0] = size;
+
+	int i = 1;
+	for (int i = 1; i <= size; i += 1)
+	{
+		m_pdcedt[i] = edt[i - 1];
+	}
+
+	return m_pdcedt;
+}
+
+////////////////////////////////////////////////////
 /// @brief PDCEDT Length getter
 /// @param none
 /// @return Length byte (= PDC + 1 Byte)
 /// @note
 const byte PDCEDT::getLength() const
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- PDCEDT::getLength()" << endl;
 #endif
 	return length;
@@ -224,7 +256,7 @@ const byte PDCEDT::getLength() const
 /// @note
 const byte PDCEDT::getPDC() const
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- PDCEDT::getPDC()" << endl;
 #endif
 	return m_pdcedt[0];
@@ -237,7 +269,7 @@ const byte PDCEDT::getPDC() const
 /// @note
 const byte *PDCEDT::getEDT() const
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- PDCEDT::getEDT()" << endl;
 #endif
 	return &m_pdcedt[1];
@@ -330,7 +362,7 @@ void PDCEDT::print(void) const
 /// @note
 ELOBJ::ELOBJ()
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- ELOBJ::new empty" << endl;
 #endif
 }
@@ -341,7 +373,7 @@ ELOBJ::ELOBJ()
 /// @note
 ELOBJ::~ELOBJ()
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- ELOBJ::destractor" << endl;
 #endif
 }
@@ -365,7 +397,7 @@ const PDCEDT ELOBJ::GetPDCEDT(const byte epc) const
 /// @note pdcedtがPDCEDT型のときに呼ばれる
 const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const PDCEDT pdcedt)
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- ELOBJ::SetPDCEDT PDCEDT" << endl;
 #endif
 	int key = epc - 0x80;
@@ -381,7 +413,7 @@ const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const PDCEDT pdcedt)
 /// @note pdcedtがconst byte*型のときに呼ばれる
 const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const byte *&&pdcedt)
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- ELOBJ::SetPDCEDT byte *&&" << endl;
 #endif
 	int key = epc - 0x80;
@@ -397,7 +429,7 @@ const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const byte *&&pdcedt)
 /// プロパティ数16以上（PDC含めると17Byte以上）のとき、Format 2
 const PDCEDT ELOBJ::SetProfile(const byte epc, std::initializer_list<byte> epcs)
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- ELOBJ::SetProfile()" << endl;
 #endif
 	int key = epc - 0x80;
@@ -417,7 +449,7 @@ const PDCEDT ELOBJ::SetProfile(const byte epc, std::initializer_list<byte> epcs)
 		{
 			int i = (*it & 0x0f) + 1;			  // バイト目
 			byte flag = 0x01 << ((*it >> 4) - 8); // フラグ位置
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 			// cout << "- ELOBJ::SetProfile() [" << dec << i << "]" << hex << (int)flag << endl;
 #endif
 			temp_pdcedt[i] += flag;
@@ -436,13 +468,13 @@ const PDCEDT ELOBJ::SetProfile(const byte epc, std::initializer_list<byte> epcs)
 /// Format 2を解析するところがミソ
 const PDCEDT ELOBJ::GetProfile(const byte epc) const
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- ELOBJ::GetProfile()" << endl;
 #endif
 	int key = epc - 0x80;
 	byte *pdcedt = m_pdcedt[key];
 	byte pdc = pdcedt[0];
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- ELOBJ::GetProfile() PDC:" << dec << (int)pdc << endl;
 #endif
 	if (pdc < 16)
@@ -465,7 +497,7 @@ const PDCEDT ELOBJ::GetProfile(const byte epc) const
 					// 上位 (bit + 7) << 4
 					// 下位 i-1
 					byte epc = ((bit + 8) << 4) + (i - 1);
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 					// DEBUG時でもうるさいので必要な時だけ有効にする
 					// cout << "- ELOBJ::GetProfile()" << dec << i << ":" << hex << (int)bit << endl;
 #endif
@@ -489,7 +521,6 @@ const bool ELOBJ::hasGetProfile(const byte epc) const
 	return (!m_pdcedt[key].isNull());
 }
 
-
 ////////////////////////////////////////////////////
 /// @brief 指定のEPCがSet可能かどうか
 /// @param epc const byte
@@ -503,7 +534,7 @@ const bool ELOBJ::hasSetProfile(const byte epc) const
 	int key = epc - 0x80;
 	const PDCEDT setlist = GetProfile(0x9e);
 	const byte pdc = setlist.getPDC();
-	const byte* edtarray = setlist.getEDT();
+	const byte *edtarray = setlist.getEDT();
 	bool ret = false;
 	for (int i = 1; i < pdc; i += 1)
 	{
@@ -515,7 +546,6 @@ const bool ELOBJ::hasSetProfile(const byte epc) const
 
 	return ret;
 }
-
 
 ////////////////////////////////////////////////////
 /// @brief 指定のEPCがINF必須かどうか
@@ -529,7 +559,7 @@ const bool ELOBJ::hasInfProfile(const byte epc) const
 	int key = epc - 0x80;
 	const PDCEDT setlist = GetProfile(0x9f);
 	const byte pdc = setlist.getPDC();
-	const byte* edtarray = setlist.getEDT();
+	const byte *edtarray = setlist.getEDT();
 	bool ret = false;
 	for (int i = 1; i < pdc; i += 1)
 	{
@@ -542,7 +572,6 @@ const bool ELOBJ::hasInfProfile(const byte epc) const
 	return ret;
 }
 
-
 ////////////////////////////////////////////////////
 /// @brief 配列らしいインターフェイス，const this
 /// @param epc const byte
@@ -550,7 +579,7 @@ const bool ELOBJ::hasInfProfile(const byte epc) const
 /// @note
 const PDCEDT ELOBJ::operator[](const byte epc) const
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- ELOBJ::SetPDCEDT const : operator[]" << endl;
 #endif
 	int key = epc - 0x80;
@@ -564,7 +593,7 @@ const PDCEDT ELOBJ::operator[](const byte epc) const
 /// @note
 PDCEDT &ELOBJ::operator[](const byte epc)
 {
-#ifdef DEBUG
+#ifdef __ELOJB_DEBUG__
 	cout << "- ELOBJ::SetPDCEDT & : operator" << endl;
 #endif
 	int key = epc - 0x80;

@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EL_dev_arduino<span id="projectnumber">&#160;2.6.0</span>
+   <div id="projectname">EL_dev_arduino<span id="projectnumber">&#160;2.8.0</span>
    </div>
   </td>
  </tr>
@@ -108,6 +108,9 @@ $(function() {
 <tr class="memitem:afb7d35ce752f981f6925adbe3beef471"><td class="memItemLeft" align="right" valign="top">const byte *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_d_c_e_d_t.html#afb7d35ce752f981f6925adbe3beef471">operator=</a> (std::initializer_list&lt; byte &gt; il)</td></tr>
 <tr class="memdesc:afb7d35ce752f981f6925adbe3beef471"><td class="mdescLeft">&#160;</td><td class="mdescRight">operator= (iterator)  <br /></td></tr>
 <tr class="separator:afb7d35ce752f981f6925adbe3beef471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf332064486b2b0e7e608a18a82bd318"><td class="memItemLeft" align="right" valign="top">const byte *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_d_c_e_d_t.html#adf332064486b2b0e7e608a18a82bd318">setEDT</a> (const byte edt[], int size)</td></tr>
+<tr class="memdesc:adf332064486b2b0e7e608a18a82bd318"><td class="mdescLeft">&#160;</td><td class="mdescRight">EDT setter  <br /></td></tr>
+<tr class="separator:adf332064486b2b0e7e608a18a82bd318"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a914652d7094bc62c56095b11be5bcfa7"><td class="memItemLeft" align="right" valign="top">const byte *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_d_c_e_d_t.html#a914652d7094bc62c56095b11be5bcfa7">setEDT</a> (std::initializer_list&lt; byte &gt; il)</td></tr>
 <tr class="memdesc:a914652d7094bc62c56095b11be5bcfa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">EDT setter  <br /></td></tr>
 <tr class="separator:a914652d7094bc62c56095b11be5bcfa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -603,8 +606,52 @@ $(function() {
 
 </div>
 </div>
+<a id="adf332064486b2b0e7e608a18a82bd318" name="adf332064486b2b0e7e608a18a82bd318"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf332064486b2b0e7e608a18a82bd318">&#9670;&#160;</a></span>setEDT() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const byte * PDCEDT::setEDT </td>
+          <td>(</td>
+          <td class="paramtype">const byte&#160;</td>
+          <td class="paramname"><em>edt</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>EDT setter </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">edt</td><td>byte[] </td></tr>
+    <tr><td class="paramname">size</td><td>int: size of edt </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>EDT byte* </dd></dl>
+<dl class="section note"><dt>覚え書き</dt><dd>PDCは自動計算だけどサイズがほしい e.g. pf.setEDT( new[3]{0x81, 0x82, 0x83}, 3 ); </dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_p_d_c_e_d_t_adf332064486b2b0e7e608a18a82bd318_icgraph.png" border="0" usemap="#aclass_p_d_c_e_d_t_adf332064486b2b0e7e608a18a82bd318_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
 <a id="a914652d7094bc62c56095b11be5bcfa7" name="a914652d7094bc62c56095b11be5bcfa7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a914652d7094bc62c56095b11be5bcfa7">&#9670;&#160;</a></span>setEDT()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a914652d7094bc62c56095b11be5bcfa7">&#9670;&#160;</a></span>setEDT() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -628,11 +675,6 @@ $(function() {
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>EDT byte* </dd></dl>
 <dl class="section note"><dt>覚え書き</dt><dd>可変長引数のような実装、PDCは自動計算 e.g. pf.setEDT( {0x81, 0x82, 0x83} ); </dd></dl>
-<div class="dynheader">
-被呼び出し関係図:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_p_d_c_e_d_t_a914652d7094bc62c56095b11be5bcfa7_icgraph.png" border="0" usemap="#aclass_p_d_c_e_d_t_a914652d7094bc62c56095b11be5bcfa7_icgraph" alt=""/></div>
-</div>
 
 </div>
 </div>

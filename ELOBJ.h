@@ -18,7 +18,7 @@
 
 #else
 // g++
-#define byte unsigned char
+typedef unsigned char byte;
 #include <iostream>
 using std::cout;
 using std::dec;
@@ -49,6 +49,7 @@ public:
   const PDCEDT operator=(const PDCEDT val);
   const byte *operator=(const byte *val);
   const byte *operator=(std::initializer_list<byte> il);
+  const byte *setEDT(const byte edt[], int size);
   const byte *setEDT(std::initializer_list<byte> il);
 
   // getter

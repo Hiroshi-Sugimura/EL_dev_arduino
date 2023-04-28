@@ -8,6 +8,8 @@
 #include "ELOBJ.h"
 #include "EL.h"
 
+// #define __EL_DEBUG__ 1
+
 ////////////////////////////////////////////////////
 /// @brief オブジェクトを一つだけサポートする場合のコンストラクタ
 /// @param WiFiUDP&
@@ -20,7 +22,7 @@
 /// ex. EL(udp, 0x02, 0x90, 0x01);
 EL::EL(WiFiUDP &udp, byte classGroupCode, byte classCode, byte instanceNumber)
 {
-	byte eoj[1][3] = {{ classGroupCode, classCode, instanceNumber }};
+	byte eoj[1][3] = {{classGroupCode, classCode, instanceNumber}};
 	commonConstructor(udp, eoj, 1);
 }
 
@@ -36,7 +38,6 @@ EL::EL(WiFiUDP &udp, byte eojs[][3], int count)
 	commonConstructor(udp, eojs, count);
 }
 
-
 ////////////////////////////////////////////////////
 /// @brief コンストラクタ共通処理
 /// @param udp WiFiUDP&
@@ -49,7 +50,7 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 	_udp = &udp;
 
 	deviceCount = count;
-	_eojs = new byte[deviceCount * 3];  // [count][3], 3 = classGroupCode, classCode, instanceNumber
+	_eojs = new byte[deviceCount * 3]; // [count][3], 3 = classGroupCode, classCode, instanceNumber
 	devices = new ELOBJ[deviceCount];
 
 	for (int i = 0; i < deviceCount; i++)
@@ -72,43 +73,76 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 	_tid[1] = 0;
 
 	// profile object
-	profile[0x80] = new byte[2]{0x01, 0x30};																								  // power
-	profile[0x81] = new byte[2]{0x01, 0x00};																								  // osition
-	profile[0x82] = new byte[5]{0x04, 0x01, 0x0a, 0x01, 0x00};																				  // Ver 1.10 (type 1)
-	profile[0x83] = new byte[19]{0x12, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // identification number
-	profile[0x88] = new byte[4]{0x01, 0x42};																								  // error status
-	profile[0x8a] = new byte[4]{0x03, 0x00, 0x00, 0x77};																					  // maker KAIT
-	profile[0x9d] = new byte[3]{0x02, 0x01, 0x80};																							  // inf property map
-	profile[0x9e] = new byte[3]{0x02, 0x01, 0x80};																							  // set property map
-	profile[0x9f] = new byte[16]{0x0f, 0x0e, 0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f, 0xd3, 0xd4, 0xd5, 0xd6, 0xd7};			  // get property map
-	profile[0xd3] = new byte[4]{0x03, 0x00, 0x00, byte(deviceCount)};																		  // total instance number
-	profile[0xd4] = new byte[3]{0x02, 0x00, byte(deviceCount + 1)};																			  // total class number
-	profile[0xd5] = new byte[2 + deviceCount * sizeof(byte[3])]{byte(1 + deviceCount * 3), byte(deviceCount)};								  // obj list
-	profile[0xd6] = new byte[2 + deviceCount * sizeof(byte[3])]{byte(1 + deviceCount * 3), byte(deviceCount)};								  // obj list
-	profile[0xd7] = new byte[2 + deviceCount * sizeof(byte[2])]{byte(1 + deviceCount * 2), byte(deviceCount)};								  // class list
-	for (int i = 0; i < deviceCount; i++)
+	profile[0x80].setEDT({0x30});																								  // power
+	profile[0x82].setEDT({0x01, 0x0a, 0x01, 0x00});																				  // Ver 1.10 (type 1)
+	profile[0x83].setEDT({0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}); // identification number
+	profile[0x88].setEDT({0x42});																								  // error status
+	profile[0x8a].setEDT({0x00, 0x00, 0x77});																					  // maker KAIT
+
+	profile.SetProfile(0x9d, {0x80, 0xd5});																	  // inf property map
+	profile.SetProfile(0x9e, {0x80});																		  // set property map
+	profile.SetProfile(0x9f, {0x80, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f, 0xd3, 0xd4, 0xd5, 0xd6, 0xd7}); // get property map
+
+	// int deviceCount;				   // インスタンス数, d3用
+	int classNum = 0;				   // クラス数, d4用
+	byte devObjs[deviceCount * 3 + 1]; // maxで確保しておく, d5, d6用, edt
+	byte classes[deviceCount * 2 + 1]; // maxで確保しておく, d7用, edt
+
+	int devPosition = 0;
+	devObjs[devPosition] = deviceCount;
+	devPosition += 0;
+
+	int classPosition = 0;
+	for (int di = 0; di < deviceCount; di++)
 	{
-		memcpy(&profile[0xd5][2 + i * sizeof(byte[3])], &_eojs[i * sizeof(byte[3])], sizeof(byte[3]));
-		memcpy(&profile[0xd6][2 + i * sizeof(byte[3])], &_eojs[i * sizeof(byte[3])], sizeof(byte[3]));
-		memcpy(&profile[0xd7][2 + i * sizeof(byte[2])], &_eojs[i * sizeof(byte[3])], sizeof(byte[2]));
+		// デバイスのD6登録
+		devObjs[devPosition * 3 + 1] = eojs[di][0];
+		devObjs[devPosition * 3 + 2] = eojs[di][1];
+		devObjs[devPosition * 3 + 3] = eojs[di][2];
+		devPosition += 1;
+
+		// classのD7登録
+		bool exist = false;
+		for (int ci = 0; ci < classNum; ci += 1)
+		{
+			if (classes[ci * 2 + 1] == eojs[di][0] && classes[ci * 2 + 2] == eojs[di][1])
+			{
+				exist = true;
+			}
+		}
+		if (!exist)
+		{
+			classes[classNum * 2 + 1] = eojs[di][0];
+			classes[classNum * 2 + 2] = eojs[di][1];
+			classNum += 1;
+		}
 	}
+	classes[0] = classNum;
+
+	profile[0xd3].setEDT({0x00, 0x00, byte(deviceCount)}); // total instance number、デバイスオブジェクトの数
+	profile[0xd4].setEDT({0x00, byte(classNum + 1)});	   // total class number、デバイスクラス＋ノードプロファイルクラス
+
+	profile[0xd5].setEDT(devObjs, deviceCount * 3 + 1); // obj list
+	profile[0xd6].setEDT(devObjs, deviceCount * 3 + 1); // obj list
+	profile[0xd7].setEDT(classes, classNum * 2 + 1);		// class list
 
 	// device object
 	for (int i = 0; i < deviceCount; i++)
 	{
-		devices[i][0x80] = new byte[2]{0x01, 0x30};																								  // power
-		devices[i][0x81] = new byte[2]{0x01, 0x00};																								  // position
-		devices[i][0x82] = new byte[5]{0x04, 0x00, 0x00, 0x4b, 0x00};																				  // release K
-		devices[i][0x83] = new byte[19]{0x12, 0xfe, _eojs[i * 3 + 0], _eojs[i * 3 + 1], _eojs[i * 3 + 2], 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // identification number
-		devices[i][0x88] = new byte[4]{0x01, 0x42};																								  // error status
-		devices[i][0x8a] = new byte[4]{0x03, 0x00, 0x00, 0x77};																					  // maker KAIT
-		devices[i][0x9d] = new byte[4]{0x03, 0x02, 0x80, 0xd6};																					  // inf property map
-		devices[i][0x9e] = new byte[3]{0x02, 0x01, 0xe0};																							  // set property map
-		devices[i][0x9f] = new byte[11]{0x0a, 0x09, 0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f};											  // get property map
+		devices[i][0x80].setEDT({0x30});																																	 // power
+		devices[i][0x81].setEDT({0x00});																																	 // position
+		devices[i][0x82].setEDT({0x00, 0x00, 0x4b, 0x00});																													 // release K
+		devices[i][0x83].setEDT({0xfe, _eojs[i * 3 + 0], _eojs[i * 3 + 1], _eojs[i * 3 + 2], 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}); // identification number
+		devices[i][0x88].setEDT({0x42});																																	 // error status
+		devices[i][0x8a].setEDT({0x00, 0x00, 0x77});																														 // maker KAIT
+		devices[i].SetProfile(0x9d, {0x80, 0xd6});																															 // inf property map
+		devices[i].SetProfile(0x9e, {0xe0});																																 // set property map
+		devices[i].SetProfile(0x9f, {0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f});																				 // get property map
+#ifdef __EL_DEBUG__
 		devices[i].printAll();
+#endif
 	}
 }
-
 
 ////////////////////////////////////////////////////
 /// @brief TIDの自動インクリメント、オーバーフロー対策
@@ -117,15 +151,21 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 /// @note
 void EL::tidAutoIncrement(void)
 {
-	if( _tid[0] == 0xff && _tid[1] == 0xff ) {
-		_tid[0] = 0; _tid[1] = 0;
-	}else if( _tid[1] == 0xff ) {
-		_tid[0] += 1; _tid[1] = 0;
-	}else{
+	if (_tid[0] == 0xff && _tid[1] == 0xff)
+	{
+		_tid[0] = 0;
+		_tid[1] = 0;
+	}
+	else if (_tid[1] == 0xff)
+	{
+		_tid[0] += 1;
+		_tid[1] = 0;
+	}
+	else
+	{
 		_tid[1] += 1;
 	}
 }
-
 
 ////////////////////////////////////////////////////
 /// @brief 通信の開始、受信開始
@@ -134,38 +174,48 @@ void EL::tidAutoIncrement(void)
 /// @note
 void EL::begin(void)
 {
+#ifdef __EL_DEBUG__
 	Serial.println("=========== EL.begin");
 	Serial.printf("deviceCount: %d", deviceCount);
 	Serial.println();
+
 	for (int i = 0; i < deviceCount; i++)
 	{
 		Serial.printf("eojs[%d] = %02x%02x%02x", i, *(_eojs + i * 3 + 0), *(_eojs + i * 3 + 1), *(_eojs + i * 3 + 2));
 		Serial.println();
 	}
+#endif
 
 	// udp
 	if (_udp->begin(EL_PORT))
 	{
+#ifdef __EL_DEBUG__
 		Serial.println("EL.udp.begin successful.");
+#endif
 	}
 	else
 	{
+#ifdef __EL_DEBUG__
 		Serial.println("Reseiver udp.begin failed."); // localPort
+#endif
 	}
 
 	if (_udp->beginMulticast(_multi, EL_PORT))
 	{
+#ifdef __EL_DEBUG__
 		Serial.println("EL.udp.beginMulticast successful.");
+#endif
 	}
 	else
 	{
+#ifdef __EL_DEBUG__
 		Serial.println("Reseiver EL.udp.beginMulticast failed."); // localPort
+#endif
 	}
 
 	// 接続ネットワークのブロードキャストアドレスに更新
-	_broad = IPAddress( ip[0], ip[1], ip[2], 255);
+	_broad = IPAddress(ip[0], ip[1], ip[2], 255);
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）
@@ -178,16 +228,14 @@ void EL::update(const byte epc, byte pdcedt[])
 	devices[0].SetPDCEDT(epc, pdcedt); // power
 }
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief EPCの値を取得する, eojが1個の場合（複数の場合は0番に相当）
 /// @param epc const byte
 /// @return byte*
-byte* EL::at(const byte epc)
+byte *EL::at(const byte epc)
 {
 	return devices[0].GetPDCEDT(epc);
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief EPCの値を変更する, 複数の場合
@@ -206,7 +254,7 @@ void EL::update(const int devId, const byte epc, byte pdcedt[])
 /// @param devId const int, コンストラクタで渡した順番に相当
 /// @param epc const byte
 /// @return none
-byte* EL::at(const int devId, const byte epc)
+byte *EL::at(const int devId, const byte epc)
 {
 	if (devId < deviceCount)
 		return devices[devId].GetPDCEDT(epc);
@@ -218,7 +266,6 @@ byte* EL::at(const int devId, const byte epc)
 // sender
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief ブロードキャストによる送信(default: 192.168.1.255)
 /// @param byte sBuffer[]
@@ -229,17 +276,23 @@ void EL::sendBroad(byte sBuffer[], int size)
 {
 	if (_udp->beginPacket(_broad, EL_PORT))
 	{
+#ifdef __EL_DEBUG__
 		// Serial.println("UDP beginPacket(B) Successful.");
+#endif
 		_udp->write(sBuffer, size);
 	}
 
 	if (_udp->endPacket())
 	{
+#ifdef __EL_DEBUG__
 		// Serial.println("UDP endPacket(B) Successful.");
+#endif
 	}
 	else
 	{
+#ifdef __EL_DEBUG__
 		Serial.println("UDP endPacket(B) failed.");
+#endif
 	}
 }
 
@@ -255,17 +308,23 @@ void EL::sendMulti(byte sBuffer[], int size)
 
 	if (_udp->beginMulticastPacket())
 	{
+#ifdef __EL_DEBUG__
 		// Serial.println("UDP beginPacket(B) Successful.");
+#endif
 		_udp->write(sBuffer, size);
 	}
 
 	if (_udp->endPacket())
 	{
+#ifdef __EL_DEBUG__
 		// Serial.println("UDP endPacket(B) Successful.");
+#endif
 	}
 	else
 	{
+#ifdef __EL_DEBUG__
 		Serial.println("UDP endPacket(M) failed.");
+#endif
 	}
 }
 
@@ -278,7 +337,7 @@ void EL::sendMulti(byte sBuffer[], int size)
 /// @param epc const byte
 /// @param pdcedt const byte*
 /// @return none
-void EL::sendMultiOPC1(const byte* tid, const byte* seoj, const byte* deoj, const byte esv, const byte epc, const byte* pdcedt)
+void EL::sendMultiOPC1(const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	_sBuffer[EL_EHD1] = 0x10;
 	_sBuffer[EL_EHD2] = 0x81;
@@ -306,7 +365,7 @@ void EL::sendMultiOPC1(const byte* tid, const byte* seoj, const byte* deoj, cons
 	}
 	sendMulti(_sBuffer, _sendPacketSize);
 
-#ifdef EL_DEBUG
+#ifdef __EL_DEBUG__
 	Serial.print("sendMultiOPC1 packet: ");
 	for (int i = 0; i < _sendPacketSize; i += 1)
 	{
@@ -325,12 +384,11 @@ void EL::sendMultiOPC1(const byte* tid, const byte* seoj, const byte* deoj, cons
 /// @param epc const byte
 /// @param pdcedt const byte *
 /// @return none
-void EL::sendMultiOPC1(const byte* seoj, const byte* deoj, const byte esv, const byte epc, const byte* pdcedt)
+void EL::sendMultiOPC1(const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	sendMultiOPC1(_tid, seoj, deoj, esv, epc, pdcedt);
 	tidAutoIncrement();
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief OPC一個用のマルチキャスト送信、seoj省略（0番）、TID自動
@@ -339,13 +397,12 @@ void EL::sendMultiOPC1(const byte* seoj, const byte* deoj, const byte esv, const
 /// @param epc const byte
 /// @param pdcedt const byte*
 /// @return none
-void EL::sendMultiOPC1(const byte* deoj, const byte esv, const byte epc, const byte* pdcedt)
+void EL::sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	byte eoj[3] = {_eojs[0], _eojs[1], _eojs[2]};
 	sendMultiOPC1(_tid, eoj, deoj, esv, epc, pdcedt);
 	tidAutoIncrement();
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動
@@ -356,12 +413,12 @@ void EL::sendMultiOPC1(const byte* deoj, const byte esv, const byte epc, const b
 /// @param pdcedt const byte*
 /// @return none
 /// @note recommendation 推奨
-void EL::sendMultiOPC1(const int devId, const byte* deoj, const byte esv, const byte epc, const byte* pdcedt)
+void EL::sendMultiOPC1(const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	if (devId < deviceCount)
 	{
 		byte eoj[3] = {_eojs[devId * 3 + 0], _eojs[devId * 3 + 1], _eojs[devId * 3 + 2]};
-		sendMultiOPC1( _tid, eoj, deoj, esv, epc, pdcedt);
+		sendMultiOPC1(_tid, eoj, deoj, esv, epc, pdcedt);
 		tidAutoIncrement();
 	}
 }
@@ -375,21 +432,29 @@ void EL::send(IPAddress toip, byte sBuffer[], int size)
 {
 	if (_udp->beginPacket(toip, EL_PORT))
 	{
+#ifdef __EL_DEBUG__
 		// Serial.println("UDP beginPacket Successful.");
+#endif
 		_udp->write(sBuffer, size);
 	}
 	else
 	{
+#ifdef __EL_DEBUG__
 		Serial.println("UDP beginPacket failed.");
+#endif
 	}
 
 	if (_udp->endPacket())
 	{
+#ifdef __EL_DEBUG__
 		// Serial.println("UDP endPacket Successful.");
+#endif
 	}
 	else
 	{
+#ifdef __EL_DEBUG__
 		Serial.println("UDP endPacket failed.");
+#endif
 	}
 }
 
@@ -427,7 +492,7 @@ void EL::sendOPC1(const IPAddress toip, const byte tid[], const byte *seoj, cons
 	}
 	send(toip, _sBuffer, _sendPacketSize);
 
-#ifdef EL_DEBUG
+#ifdef __EL_DEBUG__
 	Serial.print("sendOPC1 packet: ");
 	for (int i = 0; i < _sendPacketSize; i += 1)
 	{
@@ -449,7 +514,6 @@ void EL::sendOPC1(const IPAddress toip, const byte seoj[], const byte deoj[], co
 	sendOPC1(toip, _tid, seoj, deoj, esv, epc, pdcedt);
 	tidAutoIncrement();
 }
-
 
 ////////////////////////////////////////////////////
 /// @brief
@@ -476,7 +540,6 @@ void EL::sendOPC1(const IPAddress toip, const int devId, const byte deoj[], cons
 	tidAutoIncrement();
 }
 
-
 ////////////////////////////////////////////////////
 /// @brief 複数のEPCで送信する場合はこれを使う
 /// @param toip const IPAddress:送信先
@@ -491,31 +554,32 @@ void EL::sendOPC1(const IPAddress toip, const int devId, const byte deoj[], cons
 /// @note
 void EL::sendDetails(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte opc, const byte detail[], const byte detailSize)
 {
-	_sBuffer[EL_EHD1]   = 0x10;
-	_sBuffer[EL_EHD2]   = 0x81;
-	_sBuffer[EL_TID]    = tid[0];
-	_sBuffer[EL_TID+1]  = tid[1];
-	_sBuffer[EL_SEOJ]   = seoj[0];
-	_sBuffer[EL_SEOJ+1] = seoj[1];
-	_sBuffer[EL_SEOJ+2] = seoj[2];
-	_sBuffer[EL_DEOJ]   = deoj[0];
-	_sBuffer[EL_DEOJ+1] = deoj[1];
-	_sBuffer[EL_DEOJ+2] = deoj[2];
+	_sBuffer[EL_EHD1] = 0x10;
+	_sBuffer[EL_EHD2] = 0x81;
+	_sBuffer[EL_TID] = tid[0];
+	_sBuffer[EL_TID + 1] = tid[1];
+	_sBuffer[EL_SEOJ] = seoj[0];
+	_sBuffer[EL_SEOJ + 1] = seoj[1];
+	_sBuffer[EL_SEOJ + 2] = seoj[2];
+	_sBuffer[EL_DEOJ] = deoj[0];
+	_sBuffer[EL_DEOJ + 1] = deoj[1];
+	_sBuffer[EL_DEOJ + 2] = deoj[2];
 	_sBuffer[EL_ESV] = esv;
 	_sBuffer[EL_OPC] = opc;
 
 	if (detail != nullptr)
 	{
-		memcpy( &_sBuffer[EL_EPC], detail, detailSize); // size = pcd + edt
+		memcpy(&_sBuffer[EL_EPC], detail, detailSize); // size = pcd + edt
 		_sendPacketSize = EL_EPC + detailSize;
 		send(toip, _sBuffer, _sendPacketSize);
 	}
 	else
 	{
+#ifdef __EL_DEBUG__
 		Serial.println("Error: EL::sendDetails, detail is nullptr.");
+#endif
 	}
 }
-
 
 // ELの返信用、典型的なOPC一個でやる．TIDを併せて返信しないといけないため
 // void EL::replyOPC1(const IPAddress toip, const unsigned short tid, const byte* seoj, const byte* deoj, const byte esv, const byte epc, const byte* edt) {}
@@ -527,61 +591,70 @@ void EL::sendDetails(const IPAddress toip, const byte tid[], const byte seoj[], 
 /// @note
 void EL::replyGetDetail(const IPAddress toip)
 {
-	byte tid[]  = {_rBuffer[EL_TID], _rBuffer[EL_TID + 1]};
-	byte seoj[] = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]};   // DEOJがreplyではSEOJになる
-	byte deoj[] = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]};   // SEOJがreplyではDEOJになる
+	byte tid[] = {_rBuffer[EL_TID], _rBuffer[EL_TID + 1]};
+	byte seoj[] = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]}; // DEOJがreplyではSEOJになる
+	byte deoj[] = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]}; // SEOJがreplyではDEOJになる
 	byte esv = _rBuffer[EL_ESV];
 	byte opc = _rBuffer[EL_OPC];
 
 	// 送信用
 	boolean success = true;
-	byte detail[1500];  // EPC,PDC,EDT[n]
-	byte detailSize = 0;    // data size
+	byte detail[1500];	 // EPC,PDC,EDT[n]
+	byte detailSize = 0; // data size
 
 	// rBuffer走査用
-	byte* p_rEPC = &_rBuffer[EL_EPC];  // 初期EPCポインタ
+	byte *p_rEPC = &_rBuffer[EL_EPC]; // 初期EPCポインタ
 	// この関数を呼ばれるのはGETの場合なので、 PDC:0x00, EDTなしに決まっている。
 	// 従って、EPCだけを焦点とする
 
 	// temp
-	byte* pdcedt = nullptr;         // pdc edt
+	byte *pdcedt = nullptr; // pdc edt
 	byte devId;
 
-	for( byte i=0; i<opc; i+=1, p_rEPC += 2 )  // OPC個数のEPCに回答する
+	for (byte i = 0; i < opc; i += 1, p_rEPC += 2) // OPC個数のEPCに回答する
 	{
+#ifdef __EL_DEBUG__
 		Serial.printf("i:%d EPC:%X\n", i, *p_rEPC);
+#endif
 		boolean exist = replyGetDetail_sub(seoj, *p_rEPC, devId);
-		if( exist )
+		if (exist)
 		{
 			// ある
+#ifdef __EL_DEBUG__
 			Serial.printf("devId: %x\n", devId);
-			if( devId == 0xff )  // devId = 0xff is profile
+#endif
+			if (devId == 0xff) // devId = 0xff is profile
 			{
-				pdcedt = profile[*p_rEPC];  // EPCに対応するPDCEDT確保
+				pdcedt = profile[*p_rEPC]; // EPCに対応するPDCEDT確保
 				// Serial.printf("node prof: pdcedt: %x %x %x\n", pdcedt[0], pdcedt[1], pdcedt[2]);
-				detail[detailSize] = *p_rEPC;  // EPCに対して
+				detail[detailSize] = *p_rEPC; // EPCに対して
 				detailSize += 1;
 				// PDCとEDTを設定
-				memcpy( &detail[detailSize], pdcedt, pdcedt[0] + 1 ); // size = pcd + edt
+				memcpy(&detail[detailSize], pdcedt, pdcedt[0] + 1); // size = pcd + edt
 				detailSize += pdcedt[0] + 1;
-			}else{
-				pdcedt = devices[devId][*p_rEPC];  // EPCに対応するPDCEDT確保
+			}
+			else
+			{
+				pdcedt = devices[devId][*p_rEPC]; // EPCに対応するPDCEDT確保
 				// Serial.printf("dev obj: pdcedt: %x %x %x\n", pdcedt[0], pdcedt[1], pdcedt[2]);
-				detail[detailSize] = *p_rEPC;  // EPCに対して
+				detail[detailSize] = *p_rEPC; // EPCに対して
 				detailSize += 1;
 				// PDCとEDT確保
-				memcpy( &detail[detailSize], pdcedt, pdcedt[0] + 1 ); // size = pcd + edt
+				memcpy(&detail[detailSize], pdcedt, pdcedt[0] + 1); // size = pcd + edt
 				detailSize += pdcedt[0] + 1;
 			}
 		}
 		else
 		{
 			// ない
-			if( devId == 0xfe ) { // そもそもDEOJが自分のオブジェクトでない場合は無視（@@ 追加）
+			if (devId == 0xfe)
+			{ // そもそもDEOJが自分のオブジェクトでない場合は無視（@@ 追加）
 				return;
-			}else{  // DEOJはあるが、EPCがない
+			}
+			else
+			{ // DEOJはあるが、EPCがない
 				// Serial.println("nothing");
-				memcpy( &detail[detailSize], pdcedt, pdcedt[0] + 1 ); // size = pcd + edt
+				memcpy(&detail[detailSize], pdcedt, pdcedt[0] + 1); // size = pcd + edt
 				detail[detailSize] = *p_rEPC;
 				detailSize += 1;
 				detail[detailSize] = 0x00;
@@ -593,10 +666,9 @@ void EL::replyGetDetail(const IPAddress toip)
 
 	// Serial.printf("detailSize: %d\n", detailSize);
 
-	esv = success? EL_GET_RES: EL_GET_SNA;  // 一つでも失敗したらGET_SNA、全部OKならGET_RES
-	sendDetails(  toip,  tid,  seoj, deoj,  esv, opc, detail,  detailSize);
+	esv = success ? EL_GET_RES : EL_GET_SNA; // 一つでも失敗したらGET_SNA、全部OKならGET_RES
+	sendDetails(toip, tid, seoj, deoj, esv, opc, detail, detailSize);
 }
-
 
 ////////////////////////////////////////////////////
 /// @brief EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数
@@ -605,33 +677,34 @@ void EL::replyGetDetail(const IPAddress toip)
 /// @param devId[out] byte&: -1:profile, x:devId
 /// @return true:無し、false:あり
 /// @note replyGetDetailのサブルーチン、GetPropertyMapを参照しなくても、基本的に持っているPeopertyはGet可能なのでMapチェックしなくてよい
-boolean EL::replyGetDetail_sub( const byte eoj[], const byte epc, byte& devId )
+boolean EL::replyGetDetail_sub(const byte eoj[], const byte epc, byte &devId)
 {
-	devId = 0xfe;  // 0xfe はOJB無しとする（） // @@@ 実際は別の方法でOBJ無しとしないとバグ
-	if( eoj[0] == 0x0e && eoj[1] == 0xf0 && eoj[2] == 0x01 )  // profile object
+	devId = 0xfe;											// 0xfe はOJB無しとする（） // @@@ 実際は別の方法でOBJ無しとしないとバグ
+	if (eoj[0] == 0x0e && eoj[1] == 0xf0 && eoj[2] == 0x01) // profile object
 	{
-		devId = 0xff;  // devId = -1 は node profileとする。（この方式は後で変更）
-		byte* pdcedt = profile[epc];
+		devId = 0xff; // devId = -1 は node profileとする。（この方式は後で変更）
+		byte *pdcedt = profile[epc];
 
-		if( pdcedt == nullptr ) return false;  // epcがない
+		if (pdcedt == nullptr)
+			return false; // epcがない
 		return true;
 	}
 
 	// device object
-	for (int i = 0; i < deviceCount; i++)  // deojとマッチするdevIdを調べる
+	for (int i = 0; i < deviceCount; i++) // deojとマッチするdevIdを調べる
 	{
 		if (eoj[0] == _eojs[i * 3 + 0] && eoj[1] == _eojs[i * 3 + 1])
 		{
 			devId = i;
-			byte* pdcedt = devices[devId][epc];
+			byte *pdcedt = devices[devId][epc];
 
-			if( pdcedt == nullptr ) return false;  // epcがない
+			if (pdcedt == nullptr)
+				return false; // epcがない
 			return true;
 		}
 	}
-	return false;  // no eoj, no epc
+	return false; // no eoj, no epc
 }
-
 
 ////////////////////////////////////////////////////
 /// @brief Setに対して複数OPCにも対応して返答する内部関数
@@ -642,50 +715,58 @@ boolean EL::replyGetDetail_sub( const byte eoj[], const byte epc, byte& devId )
 /// SET_RESはEDT入ってない
 void EL::replySetDetail(const IPAddress toip)
 {
-	byte tid[]  = {_rBuffer[EL_TID], _rBuffer[EL_TID + 1]};
-	byte seoj[] = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]};   // DEOJがreplyではSEOJになる
-	byte deoj[] = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]};   // SEOJがreplyではDEOJになる
+	byte tid[] = {_rBuffer[EL_TID], _rBuffer[EL_TID + 1]};
+	byte seoj[] = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]}; // DEOJがreplyではSEOJになる
+	byte deoj[] = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]}; // SEOJがreplyではDEOJになる
 	byte esv = _rBuffer[EL_ESV];
 	byte opc = _rBuffer[EL_OPC];
 
 	// 送信用
 	boolean success = true;
-	byte detail[1500];  // EPC,PDC,EDT[n]
-	byte detailSize = 0;    // data size
+	byte detail[1500];	 // EPC,PDC,EDT[n]
+	byte detailSize = 0; // data size
 
 	// rBuffer走査用
-	byte* p_rEPC = &_rBuffer[EL_EPC];  // 初期EPCポインタ
+	byte *p_rEPC = &_rBuffer[EL_EPC]; // 初期EPCポインタ
 	// この関数を呼ばれるのはSETの場合であるので、 PDCを見ながらEDT分をスキップしていく
-	byte* p_rPDC = &_rBuffer[EL_EPC+1]; // 初期PDCポインタ
+	byte *p_rPDC = &_rBuffer[EL_EPC + 1]; // 初期PDCポインタ
 
 	// temp
-	byte* pdcedt = nullptr;         // pdc edt
+	byte *pdcedt = nullptr; // pdc edt
 	byte devId;
 
-	for( byte i=0; i<opc; i+=1 )  // OPC個数のEPCに回答する
+	for (byte i = 0; i < opc; i += 1) // OPC個数のEPCに回答する
 	{
+#ifdef __EL_DEBUG__
 		Serial.printf("i:%d EPC:%X\n", i, *p_rEPC);
+#endif
 		boolean exist = replySetDetail_sub(seoj, *p_rEPC, devId);
-		if( exist )
+		if (exist)
 		{
 			// ある
 			// Serial.print("devId ");
 			// Serial.print(devId);
-			if( devId == 0xff )  // devId = -1 is profile
+			if (devId == 0xff) // devId = -1 is profile
 			{
 				// 成功
 				// pdcedt = profile[*p_rEPC];  // EPC確保
 				detail[detailSize] = *p_rEPC;
 				detailSize += 1;
+#ifdef __EL_DEBUG__
 				Serial.printf("node prof: EPC: %x\n", *p_rEPC);
-				detail[detailSize] = 0x00;  // 成功したら0x00を返却
+#endif
+				detail[detailSize] = 0x00; // 成功したら0x00を返却
 				detailSize += 1;
-			}else{
+			}
+			else
+			{
 				// pdcedt = devices[devId][*p_rEPC];  // EPC確保
 				detail[detailSize] = *p_rEPC;
 				detailSize += 1;
+#ifdef __EL_DEBUG__
 				Serial.printf("dev obj: EPC: %x\n", *p_rEPC);
-				detail[detailSize] = 0x00;  // 成功したら0x00を返却
+#endif
+				detail[detailSize] = 0x00; // 成功したら0x00を返却
 				detailSize += 1;
 			}
 		}
@@ -695,26 +776,30 @@ void EL::replySetDetail(const IPAddress toip)
 			// Serial.println("nothing");
 			detail[detailSize] = *p_rEPC;
 			detailSize += 1;
+#ifdef __EL_DEBUG__
 			Serial.printf("no epc: pdcedt: %x\n", *p_rEPC);
-			memcpy( &detail[detailSize], p_rPDC, p_rPDC[0] + 1 ); // size = pcd + edt
+#endif
+			memcpy(&detail[detailSize], p_rPDC, p_rPDC[0] + 1); // size = pcd + edt
 			detailSize += p_rPDC[0] + 1;
-			success = false;  // 失敗フラグを付けておく
+			success = false; // 失敗フラグを付けておく
 		}
 
 		// EPCとPDCを次のステップへ
-		p_rEPC += p_rPDC[0] + 2;  // EPC 1Byte とPDC 1Byteと EDT(PDC) Byte分移動
+		p_rEPC += p_rPDC[0] + 2; // EPC 1Byte とPDC 1Byteと EDT(PDC) Byte分移動
 		p_rPDC += p_rPDC[0] + 2;
 	}
 
 	// Serial.printf("detailSize: %d\n", detailSize);
 
-	if( esv == EL_SETI ) { return; }  // SetIなら返却なし
+	if (esv == EL_SETI)
+	{
+		return;
+	} // SetIなら返却なし
 	// DEOJが自分のオブジェクトでない場合は破棄（@@ 追加）
 
-	esv = success? EL_SET_RES: EL_SETC_SNA;  // 一つでも失敗したらSETC_SNA、全部OKならSET_RES
-	sendDetails(  toip,  tid,  seoj, deoj,  esv, opc, detail,  detailSize);
+	esv = success ? EL_SET_RES : EL_SETC_SNA; // 一つでも失敗したらSETC_SNA、全部OKならSET_RES
+	sendDetails(toip, tid, seoj, deoj, esv, opc, detail, detailSize);
 }
-
 
 ////////////////////////////////////////////////////
 /// @brief EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数
@@ -723,34 +808,34 @@ void EL::replySetDetail(const IPAddress toip)
 /// @param devId[out] byte&: -1:profile, x:devId
 /// @return true:無し、false:あり
 /// @note replySetDetail_subのサブルーチン、本来はSetPropertyMap[0x9E]の確認をすべきだが、やってない
-boolean EL::replySetDetail_sub(const byte eoj[], const byte epc, byte& devId )
+boolean EL::replySetDetail_sub(const byte eoj[], const byte epc, byte &devId)
 {
 	// profile
-	if( eoj[0] == 0x0e && eoj[1] == 0xf0 && eoj[2] == 0x01 )  // profile object
+	if (eoj[0] == 0x0e && eoj[1] == 0xf0 && eoj[2] == 0x01) // profile object
 	{
-		byte* pdcedt = profile[epc];
+		byte *pdcedt = profile[epc];
 		devId = 0xff;
 
-		if( pdcedt == nullptr ) return false;  // epcがない
+		if (pdcedt == nullptr)
+			return false; // epcがない
 		return true;
 	}
 
 	// device object
-	for (int i = 0; i < deviceCount; i++)  // deojとマッチするdevIdを調べる
+	for (int i = 0; i < deviceCount; i++) // deojとマッチするdevIdを調べる
 	{
 		if (eoj[0] == _eojs[i * 3 + 0] && eoj[1] == _eojs[i * 3 + 1])
 		{
 			devId = i;
-			byte* pdcedt = devices[devId][epc];
+			byte *pdcedt = devices[devId][epc];
 
-			if( pdcedt == nullptr ) return false;  // epcがない
+			if (pdcedt == nullptr)
+				return false; // epcがない
 			return true;
 		}
 	}
-	return false;  // no eoj, no epc
+	return false; // no eoj, no epc
 }
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // reseiver
@@ -774,7 +859,6 @@ IPAddress EL::remoteIP(void)
 {
 	return _udp->remoteIP();
 }
-
 
 ////////////////////////////////////////////////////
 /// @brief 受信データを受け取る
@@ -803,12 +887,12 @@ void EL::returner(void)
 	///////////////////////////////////////////////////////////////////
 	// 受信パケット解析
 	IPAddress remIP = remoteIP();
-	byte tid[]  = {_rBuffer[EL_TID], _rBuffer[EL_TID + 1]};
+	byte tid[] = {_rBuffer[EL_TID], _rBuffer[EL_TID + 1]};
 	byte seoj[] = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]};
 	byte deoj[] = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]};
 	const byte esv = _rBuffer[EL_ESV];
 	const byte epc = _rBuffer[EL_EPC];
-	byte* pdcedt = nullptr;
+	byte *pdcedt = nullptr;
 	int devId = 0;
 
 	// 要求されたオブジェクトについて調べる
@@ -820,15 +904,17 @@ void EL::returner(void)
 	else
 	{
 		boolean noDevice = true;
-		for (int i = 0; i < deviceCount; i++)  // deojとマッチするdevIdを調べる
+		for (int i = 0; i < deviceCount; i++) // deojとマッチするdevIdを調べる
 		{
 			if (deoj[0] == _eojs[i * 3 + 0] && deoj[1] == _eojs[i * 3 + 1])
 			{
 				devId = i;
 				pdcedt = devices[devId][epc];
 				noDevice = false;
+#ifdef __EL_DEBUG__
 				Serial.printf("pdcedt: %p", pdcedt);
 				Serial.println();
+#endif
 				break;
 			}
 		}
@@ -841,22 +927,28 @@ void EL::returner(void)
 	{
 	case EL_SETI:
 		break; // SetIは返信しない
-		///////////////////////////////////////////////////////////////////
-		// SETC, Get, INF_REQ は返信処理がある
+			   ///////////////////////////////////////////////////////////////////
+			   // SETC, Get, INF_REQ は返信処理がある
 	case EL_SETC:
+#ifdef __EL_DEBUG__
 		Serial.println("### SETC ###");
-		replySetDetail( remIP );
+#endif
+		replySetDetail(remIP);
 		break;
 
 	case EL_GET:
+#ifdef __EL_DEBUG__
 		Serial.println("### GET ###");
-		replyGetDetail( remIP );
+#endif
+		replyGetDetail(remIP);
 		break;
 
 		// ユニキャストへの返信ここまで，INFはマルチキャスト
 	case EL_INF_REQ:
+#ifdef __EL_DEBUG__
 		Serial.print("INF_REQ: ");
 		Serial.println(epc, HEX);
+#endif
 		if (pdcedt)
 		{ // そのEPCがある場合、マルチキャスト
 			sendMultiOPC1(tid, deoj, seoj, (esv + 0x10), epc, pdcedt);
@@ -876,7 +968,6 @@ void EL::returner(void)
 // EL処理ここまで
 ////////////////////////////////////////////////////
 
-
 ////////////////////////////////////////////////////
 /// @brief インスタンスの情報を表示
 /// @param none
@@ -884,25 +975,39 @@ void EL::returner(void)
 /// @note
 void EL::printAll(void)
 {
+#ifdef Arduino_h
 	Serial.println("===================");
 	Serial.println("Node profile object");
+#else
+	cout << "=================== Node profile object" << endl;
+#endif
 	profile.printAll();
 
+#ifdef Arduino_h
 	Serial.println("--------------");
 	Serial.print("Device object (deviceCount: ");
 	Serial.print(deviceCount);
 	Serial.println(")");
+#else
+	cout << "-------------- Device object" << endl;
+#endif
 
-	for( int i = 0; i < deviceCount; i += 1 ) {
+	for (int i = 0; i < deviceCount; i += 1)
+	{
+#ifdef Arduino_h
 		Serial.print("-- devId: ");
 		Serial.print(i);
-		Serial.printf(" (%02X %02X %02X)\n",  _eojs[i * 3], _eojs[i * 3 + 1], _eojs[i * 3 + 2]);
+		Serial.printf(" (%02X %02X %02X)\n", _eojs[i * 3], _eojs[i * 3 + 1], _eojs[i * 3 + 2]);
+#else
+	cout << "-------------- DevId: " << i << endl;
+#endif
 		devices[i].printAll();
 	}
+
+#ifdef Arduino_h
 	Serial.println("===================");
+#endif
 }
-
-
 
 ////////////////////////////////////////////////////
 /// @brief byte[] を安全にdeleteするinline関数
