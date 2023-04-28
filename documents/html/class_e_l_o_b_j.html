@@ -71,8 +71,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">公開メンバ関数</a> &#124;
-<a href="#pub-static-attribs">静的公開変数類</a> &#124;
 <a href="#pro-attribs">限定公開変数類</a> &#124;
+<a href="#pro-static-attribs">静的限定公開変数類</a> &#124;
 <a href="class_e_l_o_b_j-members.html">全メンバ一覧</a>  </div>
   <div class="headertitle"><div class="title">ELOBJ クラス</div></div>
 </div><!--header-->
@@ -115,12 +115,15 @@ ELOBJ 連携図</div>
 <tr class="memitem:a1a6405087fac50d264901ddc7aa4a35a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_p_d_c_e_d_t.html">PDCEDT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#a1a6405087fac50d264901ddc7aa4a35a">GetProfile</a> (const byte epc) const</td></tr>
 <tr class="memdesc:a1a6405087fac50d264901ddc7aa4a35a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Profile(0x9d, 0x9e, 0x9f)を計算してPDC[1] + EDT[PDC]の形で返す  <br /></td></tr>
 <tr class="separator:a1a6405087fac50d264901ddc7aa4a35a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accda8bff74ca8a8424ee822803419e3b"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#accda8bff74ca8a8424ee822803419e3b">isGettable</a> (const byte epc) const</td></tr>
-<tr class="memdesc:accda8bff74ca8a8424ee822803419e3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定のEPCがGet可能かどうか  <br /></td></tr>
-<tr class="separator:accda8bff74ca8a8424ee822803419e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab68a696d3bbd7a926e331fd45a147084"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#ab68a696d3bbd7a926e331fd45a147084">isSettable</a> (const byte epc) const</td></tr>
-<tr class="memdesc:ab68a696d3bbd7a926e331fd45a147084"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定のEPCがSet可能かどうか  <br /></td></tr>
-<tr class="separator:ab68a696d3bbd7a926e331fd45a147084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6a42eb7825a1799de45cc95f2ac794f"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#ae6a42eb7825a1799de45cc95f2ac794f">hasGetProfile</a> (const byte epc) const</td></tr>
+<tr class="memdesc:ae6a42eb7825a1799de45cc95f2ac794f"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定のEPCがGet可能かどうか  <br /></td></tr>
+<tr class="separator:ae6a42eb7825a1799de45cc95f2ac794f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f839fe9e104859d6d4cfe7446d94c86"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#a8f839fe9e104859d6d4cfe7446d94c86">hasSetProfile</a> (const byte epc) const</td></tr>
+<tr class="memdesc:a8f839fe9e104859d6d4cfe7446d94c86"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定のEPCがSet可能かどうか  <br /></td></tr>
+<tr class="separator:a8f839fe9e104859d6d4cfe7446d94c86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af66af5e13e88e3fb9094af3d4dd794a4"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#af66af5e13e88e3fb9094af3d4dd794a4">hasInfProfile</a> (const byte epc) const</td></tr>
+<tr class="memdesc:af66af5e13e88e3fb9094af3d4dd794a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定のEPCがINF必須かどうか  <br /></td></tr>
+<tr class="separator:af66af5e13e88e3fb9094af3d4dd794a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addd51aa06cc437431b1adc29c8d48bda"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_p_d_c_e_d_t.html">PDCEDT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#addd51aa06cc437431b1adc29c8d48bda">operator[]</a> (const byte epc) const</td></tr>
 <tr class="memdesc:addd51aa06cc437431b1adc29c8d48bda"><td class="mdescLeft">&#160;</td><td class="mdescRight">配列らしいインターフェイス，const this  <br /></td></tr>
 <tr class="separator:addd51aa06cc437431b1adc29c8d48bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,17 +134,17 @@ ELOBJ 連携図</div>
 <tr class="memdesc:a262bfd0930406b6833070140721d70d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">null以外のEPCを全部出力  <br /></td></tr>
 <tr class="separator:a262bfd0930406b6833070140721d70d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
-静的公開変数類</h2></td></tr>
-<tr class="memitem:ae18274b5af9ed651242f22b4f43727ff"><td class="memItemLeft" align="right" valign="top">static const byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#ae18274b5af9ed651242f22b4f43727ff">PDC_MAX</a> = 0x80</td></tr>
-<tr class="memdesc:ae18274b5af9ed651242f22b4f43727ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">PDC_MAX 0xFF - 0x79  <br /></td></tr>
-<tr class="separator:ae18274b5af9ed651242f22b4f43727ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 限定公開変数類</h2></td></tr>
 <tr class="memitem:aa22be2c3e4e7584f4bae0d2e060e1fd6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_p_d_c_e_d_t.html">PDCEDT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#aa22be2c3e4e7584f4bae0d2e060e1fd6">m_pdcedt</a> [<a class="el" href="class_e_l_o_b_j.html#ae18274b5af9ed651242f22b4f43727ff">PDC_MAX</a>]</td></tr>
 <tr class="memdesc:aa22be2c3e4e7584f4bae0d2e060e1fd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">= m_pdcedt[EPC] (EPC mapped( EPC - 0x80 = 0.. 0xFF = 0x80 );  <br /></td></tr>
 <tr class="separator:aa22be2c3e4e7584f4bae0d2e060e1fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
+静的限定公開変数類</h2></td></tr>
+<tr class="memitem:ae18274b5af9ed651242f22b4f43727ff"><td class="memItemLeft" align="right" valign="top">static const byte&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#ae18274b5af9ed651242f22b4f43727ff">PDC_MAX</a> = 0x80</td></tr>
+<tr class="memdesc:ae18274b5af9ed651242f22b4f43727ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">PDC_MAX 0xFF - 0x79  <br /></td></tr>
+<tr class="separator:ae18274b5af9ed651242f22b4f43727ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p><a class="el" href="class_e_l.html" title="Main class for EL">EL</a> Object </p>
@@ -267,14 +270,14 @@ ELOBJ 連携図</div>
 
 </div>
 </div>
-<a id="accda8bff74ca8a8424ee822803419e3b" name="accda8bff74ca8a8424ee822803419e3b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#accda8bff74ca8a8424ee822803419e3b">&#9670;&#160;</a></span>isGettable()</h2>
+<a id="ae6a42eb7825a1799de45cc95f2ac794f" name="ae6a42eb7825a1799de45cc95f2ac794f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6a42eb7825a1799de45cc95f2ac794f">&#9670;&#160;</a></span>hasGetProfile()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const bool ELOBJ::isGettable </td>
+          <td class="memname">const bool ELOBJ::hasGetProfile </td>
           <td>(</td>
           <td class="paramtype">const byte&#160;</td>
           <td class="paramname"><em>epc</em></td><td>)</td>
@@ -295,14 +298,47 @@ ELOBJ 連携図</div>
 
 </div>
 </div>
-<a id="ab68a696d3bbd7a926e331fd45a147084" name="ab68a696d3bbd7a926e331fd45a147084"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab68a696d3bbd7a926e331fd45a147084">&#9670;&#160;</a></span>isSettable()</h2>
+<a id="af66af5e13e88e3fb9094af3d4dd794a4" name="af66af5e13e88e3fb9094af3d4dd794a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af66af5e13e88e3fb9094af3d4dd794a4">&#9670;&#160;</a></span>hasInfProfile()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const bool ELOBJ::isSettable </td>
+          <td class="memname">const bool ELOBJ::hasInfProfile </td>
+          <td>(</td>
+          <td class="paramtype">const byte&#160;</td>
+          <td class="paramname"><em>epc</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>指定のEPCがINF必須かどうか </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>boolean true:available, false: not available </dd></dl>
+<dl class="section note"><dt>覚え書き</dt><dd>EPC:0x9fで判定する 毎回Profileを全部作って捜査するので少し遅い。 いくつもEPCを検索するなら、GetProfileをつかって自分で探すことをお勧めする。 </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_o_b_j_af66af5e13e88e3fb9094af3d4dd794a4_cgraph.png" border="0" usemap="#aclass_e_l_o_b_j_af66af5e13e88e3fb9094af3d4dd794a4_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a8f839fe9e104859d6d4cfe7446d94c86" name="a8f839fe9e104859d6d4cfe7446d94c86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f839fe9e104859d6d4cfe7446d94c86">&#9670;&#160;</a></span>hasSetProfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool ELOBJ::hasSetProfile </td>
           <td>(</td>
           <td class="paramtype">const byte&#160;</td>
           <td class="paramname"><em>epc</em></td><td>)</td>
@@ -319,11 +355,11 @@ ELOBJ 連携図</div>
   </dd>
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>boolean true:available, false: not available </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd>EPC:0x9eで判定する 毎回Profileを全部作って捜査するので少し遅い。 いくつもEPCを検索するなら、GetProfileをつかって自分で探すことをお勧めする。 </dd></dl>
+<dl class="section note"><dt>覚え書き</dt><dd>EPC:0x9eで判定する 毎回Profileを全部作って捜査するので少し遅い。 いくつもEPCを検索するなら、GetProfileをつかって自分で探すことをお勧めする。 No checkでEPCにセットすると、新規作成するのできちんとチェックしてからセットしたい </dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_e_l_o_b_j_ab68a696d3bbd7a926e331fd45a147084_cgraph.png" border="0" usemap="#aclass_e_l_o_b_j_ab68a696d3bbd7a926e331fd45a147084_cgraph" alt=""/></div>
+<div class="center"><img src="class_e_l_o_b_j_a8f839fe9e104859d6d4cfe7446d94c86_cgraph.png" border="0" usemap="#aclass_e_l_o_b_j_a8f839fe9e104859d6d4cfe7446d94c86_cgraph" alt=""/></div>
 </div>
 
 </div>
@@ -596,7 +632,7 @@ ELOBJ 連携図</div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

@@ -466,7 +466,8 @@ const PDCEDT ELOBJ::GetProfile(const byte epc) const
 					// 下位 i-1
 					byte epc = ((bit + 8) << 4) + (i - 1);
 #ifdef DEBUG
-					cout << "- ELOBJ::GetProfile()" << dec << i << ":" << hex << (int)bit << endl;
+					// DEBUG時でもうるさいので必要な時だけ有効にする
+					// cout << "- ELOBJ::GetProfile()" << dec << i << ":" << hex << (int)bit << endl;
 #endif
 					ret[count] = epc;
 					count += 1;
@@ -482,7 +483,7 @@ const PDCEDT ELOBJ::GetProfile(const byte epc) const
 /// @param void
 /// @return boolean true:available, false: no EPC
 /// @note isEmptyの逆と思っていい。プロパティ持っているかだけで判定する、EPC:0x9fは確認しない
-const bool ELOBJ::isGettable(const byte epc) const
+const bool ELOBJ::hasGetProfile(const byte epc) const
 {
 	int key = epc - 0x80;
 	return (!m_pdcedt[key].isNull());
@@ -496,10 +497,10 @@ const bool ELOBJ::isGettable(const byte epc) const
 /// @note EPC:0x9eで判定する
 /// 毎回Profileを全部作って捜査するので少し遅い。
 /// いくつもEPCを検索するなら、GetProfileをつかって自分で探すことをお勧めする。
-const bool ELOBJ::isSettable(const byte epc) const
+/// No checkでEPCにセットすると、新規作成するのできちんとチェックしてからセットしたい
+const bool ELOBJ::hasSetProfile(const byte epc) const
 {
 	int key = epc - 0x80;
-	// ここ修正
 	const PDCEDT setlist = GetProfile(0x9e);
 	const byte pdc = setlist.getPDC();
 	const byte* edtarray = setlist.getEDT();
@@ -514,6 +515,33 @@ const bool ELOBJ::isSettable(const byte epc) const
 
 	return ret;
 }
+
+
+////////////////////////////////////////////////////
+/// @brief 指定のEPCがINF必須かどうか
+/// @param epc const byte
+/// @return boolean true:available, false: not available
+/// @note EPC:0x9fで判定する
+/// 毎回Profileを全部作って捜査するので少し遅い。
+/// いくつもEPCを検索するなら、GetProfileをつかって自分で探すことをお勧めする。
+const bool ELOBJ::hasInfProfile(const byte epc) const
+{
+	int key = epc - 0x80;
+	const PDCEDT setlist = GetProfile(0x9f);
+	const byte pdc = setlist.getPDC();
+	const byte* edtarray = setlist.getEDT();
+	bool ret = false;
+	for (int i = 1; i < pdc; i += 1)
+	{
+		if (edtarray[i] == epc)
+		{
+			ret = true;
+		}
+	}
+
+	return ret;
+}
+
 
 ////////////////////////////////////////////////////
 /// @brief 配列らしいインターフェイス，const this
