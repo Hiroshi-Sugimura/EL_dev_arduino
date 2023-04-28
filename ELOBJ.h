@@ -76,7 +76,7 @@ class ELOBJ
   //	メンバ変数定義
 protected:
   const static byte PDC_MAX = 0x80; ///< PDC_MAX 0xFF - 0x79
-  PDCEDT m_pdcedt[PDC_MAX]; ///< = m_pdcedt[EPC] (EPC mapped( EPC - 0x80 = 0.. 0xFF = 0x80 );
+  PDCEDT m_pdcedt[PDC_MAX];         ///< = m_pdcedt[EPC] (EPC mapped( EPC - 0x80 = 0.. 0xFF = 0x80 );
 
   // member function
 public:
@@ -88,7 +88,7 @@ public:
   const PDCEDT SetPDCEDT(const byte epc, const PDCEDT pdcedt);
   const PDCEDT SetPDCEDT(const byte epc, const byte *&&pdcedt);
   const PDCEDT SetProfile(const byte epc, std::initializer_list<byte> epcs); // for EPC: 9e,9d,9f
-  const PDCEDT GetProfile(const byte epc) const;
+  const byte *GetProfile(const byte epc) const;
 
   const bool hasGetProfile(const byte epc) const; // Get可能なEPC?
   const bool hasSetProfile(const byte epc) const; // Set可能なEPC?

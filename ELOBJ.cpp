@@ -436,14 +436,24 @@ const PDCEDT ELOBJ::SetProfile(const byte epc, std::initializer_list<byte> epcs)
 	byte n = (byte)epcs.size();
 
 	if (n < 16)
-	{ // format 1
+	{						  // format 1
+		byte temp_edt[n + 1]; // EDT
+		temp_edt[0] = n;	  // EDT[0]はプロパティの数
+		int i = 1;
+		for (auto it = epcs.begin(); it != epcs.end(); it += 1)
+		{
+			temp_edt[i] = *it;
+			i += 1;
+		}
+
 		PDCEDT t;
-		m_pdcedt[key] = t.setEDT(epcs);
+		t.setEDT(temp_edt, n + 1);
+		m_pdcedt[key] = t;
 	}
 	else
-	{								// format 2
-		byte temp_pdcedt[17] = {0}; // 確保するメモリは17Byte固定(PDC + EDT[16])となる
-		temp_pdcedt[0] = n;			// PDCはプロパティ数
+	{							 // format 2
+		byte temp_edt[17] = {0}; // 確保するEDTのメモリは17Byte固定となる
+		temp_edt[0] = n;		 // EDT[0]はプロパティ数
 
 		for (auto it = epcs.begin(); it != epcs.end(); it += 1)
 		{
@@ -452,21 +462,22 @@ const PDCEDT ELOBJ::SetProfile(const byte epc, std::initializer_list<byte> epcs)
 #ifdef __ELOJB_DEBUG__
 			// cout << "- ELOBJ::SetProfile() [" << dec << i << "]" << hex << (int)flag << endl;
 #endif
-			temp_pdcedt[i] += flag;
+			temp_edt[i] += flag;
 		}
-
-		m_pdcedt[key] = temp_pdcedt;
+		PDCEDT t;
+		t.setEDT(temp_edt, 17);
+		m_pdcedt[key] = t;
 	}
 	return (m_pdcedt[key]);
 }
 
 ////////////////////////////////////////////////////
-/// @brief Profile(0x9d, 0x9e, 0x9f)を計算してPDC[1] + EDT[PDC]の形で返す
+/// @brief Profile(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）
 /// @param epc const byte
-/// @return epcs PDCEDT
+/// @return epcs Num + EPCs
 /// @note e.g. obj.GetProfile( 0x9d );
 /// Format 2を解析するところがミソ
-const PDCEDT ELOBJ::GetProfile(const byte epc) const
+const byte *ELOBJ::GetProfile(const byte epc) const
 {
 #ifdef __ELOJB_DEBUG__
 	cout << "- ELOBJ::GetProfile()" << endl;
@@ -474,24 +485,27 @@ const PDCEDT ELOBJ::GetProfile(const byte epc) const
 	int key = epc - 0x80;
 	byte *pdcedt = m_pdcedt[key];
 	byte pdc = pdcedt[0];
+	byte profNum = pdcedt[1];
+	byte *epcs = &pdcedt[2];
 #ifdef __ELOJB_DEBUG__
-	cout << "- ELOBJ::GetProfile() PDC:" << dec << (int)pdc << endl;
+	// cout << "- ELOBJ::GetProfile() PDC:" << dec << (int)pdc << endl;
+	// cout << "- ELOBJ::GetProfile() Num:" << dec << (int)profNum << endl;
 #endif
-	if (pdc < 16)
-	{ // format 1ならそのまま
-		return m_pdcedt[key];
+	if (profNum < 16)
+	{ // format 1ならそのままの形式、ただし 個数+epc listは pdcedt[1] に相当する
+		return &pdcedt[1];
 	}
 	else
-	{								   // format 2
-		byte *ret = new byte[pdc + 1]; // 確保するメモリは17Byte固定(PDC + EDT[16])となる
-		ret[0] = pdc;
+	{									   // format 2
+		byte *ret = new byte[profNum + 1]; // 確保するメモリはprofileの数+1
+		ret[0] = profNum;
 
 		int count = 1;
 		for (int bit = 0; bit < 8; bit += 1)
 		{
 			for (int i = 1; i < 17; i += 1)
 			{
-				byte exist = ((pdcedt[i] >> bit) & 0x01);
+				byte exist = ((epcs[i] >> bit) & 0x01);
 				if (exist)
 				{
 					// 上位 (bit + 7) << 4
@@ -499,26 +513,45 @@ const PDCEDT ELOBJ::GetProfile(const byte epc) const
 					byte epc = ((bit + 8) << 4) + (i - 1);
 #ifdef __ELOJB_DEBUG__
 					// DEBUG時でもうるさいので必要な時だけ有効にする
-					// cout << "- ELOBJ::GetProfile()" << dec << i << ":" << hex << (int)bit << endl;
+					// cout << "- ELOBJ::GetProfile() : " << dec << count << ":" << hex << (int)epc << endl;
 #endif
 					ret[count] = epc;
 					count += 1;
 				}
 			}
 		}
-		return PDCEDT(ret);
+		return ret;
 	}
 }
 
 ////////////////////////////////////////////////////
-/// @brief 指定のEPCがGet可能かどうか
-/// @param void
-/// @return boolean true:available, false: no EPC
-/// @note isEmptyの逆と思っていい。プロパティ持っているかだけで判定する、EPC:0x9fは確認しない
-const bool ELOBJ::hasGetProfile(const byte epc) const
+/// @brief 指定のEPCがINF必須かどうか
+/// @param epc const byte
+/// @return boolean true:available, false: not available
+/// @note EPC:0x9dで判定する
+/// 毎回Profileを全部作って捜査するので少し遅い。
+/// いくつもEPCを検索するなら、GetProfileをつかって自分で探すことをお勧めする。
+const bool ELOBJ::hasInfProfile(const byte epc) const
 {
 	int key = epc - 0x80;
-	return (!m_pdcedt[key].isNull());
+	const byte *setlist = GetProfile(0x9d);
+	const byte num = setlist[0];
+	const byte *edtarray = &setlist[1];
+
+	for (int i = 0; i < num; i += 1)
+	{
+#ifdef __ELOJB_DEBUG__
+		// cout << "- ELOBJ::hasInfProfile : " << (int)i + 1 << "/" << (int)num << endl;
+		// cout << "- ELOBJ::hasInfProfile : has:" << hex << (int)edtarray[i] << endl;
+		// cout << "- ELOBJ::hasInfProfile : epc:" << hex << (int)epc << endl;
+#endif
+		if (edtarray[i] == epc)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 ////////////////////////////////////////////////////
@@ -532,44 +565,35 @@ const bool ELOBJ::hasGetProfile(const byte epc) const
 const bool ELOBJ::hasSetProfile(const byte epc) const
 {
 	int key = epc - 0x80;
-	const PDCEDT setlist = GetProfile(0x9e);
-	const byte pdc = setlist.getPDC();
-	const byte *edtarray = setlist.getEDT();
-	bool ret = false;
-	for (int i = 1; i < pdc; i += 1)
+	const byte *setlist = GetProfile(0x9d);
+	const byte num = setlist[0];
+	const byte *edtarray = &setlist[1];
+
+	for (int i = 0; i < num; i += 1)
 	{
+#ifdef __ELOJB_DEBUG__
+		// cout << "- ELOBJ::hasSetProfile : " << (int)i + 1 << "/" << (int)num << endl;
+		// cout << "- ELOBJ::hasSetProfile : has:" << hex << (int)edtarray[i] << endl;
+		// cout << "- ELOBJ::hasSetProfile : epc:" << hex << (int)epc << endl;
+#endif
 		if (edtarray[i] == epc)
 		{
-			ret = true;
+			return true;
 		}
 	}
 
-	return ret;
+	return false;
 }
 
 ////////////////////////////////////////////////////
-/// @brief 指定のEPCがINF必須かどうか
-/// @param epc const byte
-/// @return boolean true:available, false: not available
-/// @note EPC:0x9fで判定する
-/// 毎回Profileを全部作って捜査するので少し遅い。
-/// いくつもEPCを検索するなら、GetProfileをつかって自分で探すことをお勧めする。
-const bool ELOBJ::hasInfProfile(const byte epc) const
+/// @brief 指定のEPCがGet可能かどうか
+/// @param void
+/// @return boolean true:available, false: no EPC
+/// @note isEmptyの逆と思っていい。プロパティ持っているかだけで判定する、EPC:0x9fは確認しない
+const bool ELOBJ::hasGetProfile(const byte epc) const
 {
 	int key = epc - 0x80;
-	const PDCEDT setlist = GetProfile(0x9f);
-	const byte pdc = setlist.getPDC();
-	const byte *edtarray = setlist.getEDT();
-	bool ret = false;
-	for (int i = 1; i < pdc; i += 1)
-	{
-		if (edtarray[i] == epc)
-		{
-			ret = true;
-		}
-	}
-
-	return ret;
+	return (!m_pdcedt[key].isNull());
 }
 
 ////////////////////////////////////////////////////

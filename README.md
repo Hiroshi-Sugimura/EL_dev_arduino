@@ -268,6 +268,7 @@ Received data.
 
 # Version
 
+- 2.8.2 bugfix SetProfile, GetProfile
 - 2.8.0 bugfix and, Add methods of class PDCEDT
 - 2.7.0 Add methods of class ELOBJ
 - 2.6.0 Add methods of class PDCEDT, ELOBJ
