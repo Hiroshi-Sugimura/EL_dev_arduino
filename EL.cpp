@@ -79,11 +79,11 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 #ifdef ESP32
 	String macraw = WiFi.macAddress(); // stringを返すタイプしかない。 M5Stackで WiFi.macAddress(byte) はダメ
 	String mac1 = macraw.substring(0, 2);
-	String mac2 = macraw.substring(3, 2);
-	String mac3 = macraw.substring(6, 2);
-	String mac4 = macraw.substring(9, 2);
-	String mac5 = macraw.substring(12, 2);
-	String mac6 = macraw.substring(15, 2);
+	String mac2 = macraw.substring(3, 5);
+	String mac3 = macraw.substring(6, 8);
+	String mac4 = macraw.substring(9, 11);
+	String mac5 = macraw.substring(12, 14);
+	String mac6 = macraw.substring(15, 17);
 	profile[0x83].setEDT({0xfe, strtoul( mac1.c_str(), 0, 16), strtoul( mac2.c_str(), 0, 16), strtoul( mac3.c_str(), 0, 16), strtoul( mac4.c_str(), 0, 16), strtoul( mac5.c_str(), 0, 16), strtoul( mac6.c_str(), 0, 16), 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}); // identification number
 #else
 	profile[0x83].setEDT({0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}); // identification number
