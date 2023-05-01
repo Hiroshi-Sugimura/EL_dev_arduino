@@ -170,6 +170,7 @@ private:
 	IPAddress ip;				   ///< my ipaddress: 自分のIPアドレス
 	IPAddress _multi;			   ///< multicast address:
 	IPAddress _broad;			   ///< broadcast address:
+	byte _mac[6];				   ///< mac address
 	byte *_eojs;				   ///< EOJ array: = _eojs[][3]の構造で管理
 	int deviceCount;			   ///< Number of EOJ: _eojs[deviceCount][3]に相当
 	int _sendPacketSize = 0;	   ///< recentry sended packet size: 直近の送信パケットサイズ

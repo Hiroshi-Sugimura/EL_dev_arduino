@@ -69,6 +69,14 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 	// 仮
 	_broad = IPAddress(192, 168, 1, 255);
 
+	// 仮
+	_mac[0] = 0x00;
+	_mac[1] = 0x00;
+	_mac[2] = 0x77;
+	_mac[3] = 0x00;
+	_mac[4] = 0x00;
+	_mac[5] = 0x77;
+
 	_tid[0] = 0;
 	_tid[1] = 0;
 
@@ -78,16 +86,22 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 	profile[0x83].setEDT({0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}); // identification number
 #ifdef ESP32
 	String macraw = WiFi.macAddress(); // stringを返すタイプしかない。 M5Stackで WiFi.macAddress(byte) はダメ
-	String mac1 = macraw.substring(0, 2);
-	String mac2 = macraw.substring(3, 5);
-	String mac3 = macraw.substring(6, 8);
-	String mac4 = macraw.substring(9, 11);
-	String mac5 = macraw.substring(12, 14);
-	String mac6 = macraw.substring(15, 17);
-	profile[0x83].setEDT({0xfe, strtoul( mac1.c_str(), 0, 16), strtoul( mac2.c_str(), 0, 16), strtoul( mac3.c_str(), 0, 16), strtoul( mac4.c_str(), 0, 16), strtoul( mac5.c_str(), 0, 16), strtoul( mac6.c_str(), 0, 16), 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}); // identification number
-#else
-	profile[0x83].setEDT({0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}); // identification number
+	String mac0str = macraw.substring(0, 2);
+	String mac1str = macraw.substring(3, 5);
+	String mac2str = macraw.substring(6, 8);
+	String mac3str = macraw.substring(9, 11);
+	String mac4str = macraw.substring(12, 14);
+	String mac5str = macraw.substring(15, 17);
+
+	_mac[0] = strtoul(mac0str.c_str(), 0, 16);
+	_mac[1] = strtoul(mac1str.c_str(), 0, 16);
+	_mac[2] = strtoul(mac2str.c_str(), 0, 16);
+	_mac[3] = strtoul(mac3str.c_str(), 0, 16);
+	_mac[4] = strtoul(mac4str.c_str(), 0, 16);
+	_mac[5] = strtoul(mac5str.c_str(), 0, 16);
 #endif
+	profile[0x83].setEDT({0xfe, _mac[0], _mac[1], _mac[2], _mac[3], _mac[4], _mac[5], 0x0e, 0xf0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}); // identification number
+
 	profile[0x88].setEDT({0x42});			  // error status
 	profile[0x8a].setEDT({0x00, 0x00, 0x77}); // maker KAIT
 
@@ -141,15 +155,18 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 	// device object
 	for (int i = 0; i < deviceCount; i++)
 	{
-		devices[i][0x80].setEDT({0x30});																																	 // power
-		devices[i][0x81].setEDT({0x00});																																	 // position
-		devices[i][0x82].setEDT({0x00, 0x00, 0x4b, 0x00});																													 // release K
-		devices[i][0x83].setEDT({0xfe, _eojs[i * 3 + 0], _eojs[i * 3 + 1], _eojs[i * 3 + 2], 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}); // identification number
-		devices[i][0x88].setEDT({0x42});																																	 // error status
-		devices[i][0x8a].setEDT({0x00, 0x00, 0x77});																														 // maker KAIT
-		devices[i].SetProfile(0x9d, {0x80, 0xd6});																															 // inf property map
-		devices[i].SetProfile(0x9e, {0xe0});																																 // set property map
-		devices[i].SetProfile(0x9f, {0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f});																				 // get property map
+		devices[i][0x80].setEDT({0x30});				   // power
+		devices[i][0x81].setEDT({0x00});				   // position
+		devices[i][0x82].setEDT({0x00, 0x00, 0x4b, 0x00}); // release K
+
+		devices[i][0x83].setEDT({0xfe, _mac[0], _mac[1], _mac[2], _mac[3], _mac[4], _mac[5], _eojs[i * 3], _eojs[i * 3 + 1], _eojs[i * 3 + 2], 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, i + 1}); // identification number
+
+		devices[i][0x88].setEDT({0x42});			 // error status
+		devices[i][0x8a].setEDT({0x00, 0x00, 0x77}); // maker KAIT
+
+		devices[i].SetProfile(0x9d, {0x80, 0xd6});											 // inf property map
+		devices[i].SetProfile(0x9e, {0xe0});												 // set property map
+		devices[i].SetProfile(0x9f, {0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f}); // get property map
 #ifdef __EL_DEBUG__
 		devices[i].printAll();
 #endif
