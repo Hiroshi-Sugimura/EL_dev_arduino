@@ -5,7 +5,6 @@
 #define WIFI_SSID "ssid"  // !!!! change
 #define WIFI_PASS "pass"  // !!!! change
 
-// WiFiClient client;
 WiFiUDP elUDP;
 
 EL echo(elUDP, 0x02, 0x90, 0x01);  // single
@@ -168,18 +167,18 @@ void printNetData() {
 
   byte mac[6];
   WiFi.macAddress(mac);
-  Serial.print("ESP32 MAC: ");
-  Serial.print(mac[5]);
+  Serial.print("Arduino MAC: ");
+  Serial.print(mac[5], HEX);
   Serial.print(":");
-  Serial.print(mac[4]);
+  Serial.print(mac[4], HEX);
   Serial.print(":");
-  Serial.print(mac[3]);
+  Serial.print(mac[3], HEX);
   Serial.print(":");
-  Serial.print(mac[2]);
+  Serial.print(mac[2], HEX);
   Serial.print(":");
-  Serial.print(mac[1]);
+  Serial.print(mac[1], HEX);
   Serial.print(":");
-  Serial.println(mac[0]);
+  Serial.println(mac[0], HEX);
 
   Serial.print("M5 MAC: ");
   Serial.println(WiFi.macAddress());
