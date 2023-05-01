@@ -268,7 +268,8 @@ Received data.
 
 # Version
 
-- 2.9.0 calc and set automatically the identification number(0x83)
+- 2.9.1 calc and set automatically the identification number(0x83) (devices)
+- 2.9.0 calc and set automatically the identification number(0x83) (profile)
 - 2.8.2 bugfix SetProfile, GetProfile
 - 2.8.0 bugfix and, Add methods of class PDCEDT
 - 2.7.0 Add methods of class ELOBJ
