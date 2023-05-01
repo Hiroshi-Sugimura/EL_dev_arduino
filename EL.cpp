@@ -76,8 +76,20 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 	profile[0x80].setEDT({0x30});																								  // power
 	profile[0x82].setEDT({0x01, 0x0a, 0x01, 0x00});																				  // Ver 1.10 (type 1)
 	profile[0x83].setEDT({0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}); // identification number
-	profile[0x88].setEDT({0x42});																								  // error status
-	profile[0x8a].setEDT({0x00, 0x00, 0x77});																					  // maker KAIT
+#ifdef ESP32
+	String macraw = WiFi.macAddress(); // stringを返すタイプしかない。 M5Stackで WiFi.macAddress(byte) はダメ
+	String mac1 = macraw.substring(0, 2);
+	String mac2 = macraw.substring(3, 2);
+	String mac3 = macraw.substring(6, 2);
+	String mac4 = macraw.substring(9, 2);
+	String mac5 = macraw.substring(12, 2);
+	String mac6 = macraw.substring(15, 2);
+	profile[0x83].setEDT({0xfe, strtoul( mac1.c_str(), 0, 16), strtoul( mac2.c_str(), 0, 16), strtoul( mac3.c_str(), 0, 16), strtoul( mac4.c_str(), 0, 16), strtoul( mac5.c_str(), 0, 16), strtoul( mac6.c_str(), 0, 16), 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}); // identification number
+#else
+	profile[0x83].setEDT({0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}); // identification number
+#endif
+	profile[0x88].setEDT({0x42});			  // error status
+	profile[0x8a].setEDT({0x00, 0x00, 0x77}); // maker KAIT
 
 	profile.SetProfile(0x9d, {0x80, 0xd5});																	  // inf property map
 	profile.SetProfile(0x9e, {0x80});																		  // set property map
@@ -124,7 +136,7 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 
 	profile[0xd5].setEDT(devObjs, deviceCount * 3 + 1); // obj list
 	profile[0xd6].setEDT(devObjs, deviceCount * 3 + 1); // obj list
-	profile[0xd7].setEDT(classes, classNum * 2 + 1);		// class list
+	profile[0xd7].setEDT(classes, classNum * 2 + 1);	// class list
 
 	// device object
 	for (int i = 0; i < deviceCount; i++)
@@ -999,7 +1011,7 @@ void EL::printAll(void)
 		Serial.print(i);
 		Serial.printf(" (%02X %02X %02X)\n", _eojs[i * 3], _eojs[i * 3 + 1], _eojs[i * 3 + 2]);
 #else
-	cout << "-------------- DevId: " << i << endl;
+		cout << "-------------- DevId: " << i << endl;
 #endif
 		devices[i].printAll();
 	}

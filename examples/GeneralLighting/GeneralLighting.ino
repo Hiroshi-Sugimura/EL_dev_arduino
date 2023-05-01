@@ -1,17 +1,16 @@
-#include <M5Stack.h>
+#include <M5Core2.h>
 #include <WiFi.h>
 #include "EL.h"
 
-#define WIFI_SSID "ssid"        // !!!! change
+#define WIFI_SSID "ssid"  // !!!! change
 #define WIFI_PASS "pass"  // !!!! change
 
-WiFiClient client;
+// WiFiClient client;
 WiFiUDP elUDP;
 
-// EL echo(elUDP, 0x02, 0x90, 0x01);  // single
-
-byte eojs[1][3] = { { 0x02, 0x90, 0x01 } };  // single (multi)
-EL echo(elUDP, eojs, 1);
+EL echo(elUDP, 0x02, 0x90, 0x01);  // single
+// byte eojs[1][3] = { { 0x02, 0x90, 0x01 } };  // single (multi)
+// EL echo(elUDP, eojs, 1);
 
 IPAddress myip;
 
@@ -26,20 +25,20 @@ void setup() {
 
   WiFi.begin(WIFI_SSID, WIFI_PASS);
   while (WiFi.status() != WL_CONNECTED) {
-    Serial.println("wait...");
+    Serial.print(".");
     delay(1000);
   }
   M5.Lcd.println("wifi connect ok");
-  M5.update();
+  printNetData();  // to serial (debug)
 
   // print your WiFi IP address:
   myip = WiFi.localIP();
+  M5.Lcd.fillScreen(BLACK);
+  M5.Lcd.setTextColor(WHITE);
   M5.Lcd.setCursor(0, 0);
-  M5.Lcd.print("IP Address: ");
+  M5.Lcd.setTextSize(2);
+  M5.Lcd.print("IP: ");
   M5.Lcd.println(myip);
-
-  printNetData();
-
 
 
   echo.begin();  // EL 起動シーケンス
@@ -48,18 +47,11 @@ void setup() {
   const byte deoj[] = { 0x05, 0xff, 0x01 };
   const byte edt[] = { 0x01, 0x31 };
   echo.sendMultiOPC1(deoj, EL_INF, 0x80, edt);
-
-  M5.Lcd.fillScreen(BLACK);
-  M5.Lcd.setTextColor(WHITE);
-  M5.Lcd.setCursor(10, 10);
-  M5.Lcd.setTextSize(3);
 }
 
 int packetSize = 0;  // 受信データ量
 
 void light(byte esv, byte epc, byte pdc, byte* edt) {
-  Serial.printf("light: %x, %x, %x, %x\n", esv, epc, pdc, edt[0]);
-
   // -----------------------------------
   // ESVがSETとかGETとかで動作をかえる
   switch (esv) {
@@ -120,7 +112,7 @@ void loop() {
   if (0 != (packetSize = echo.read()))  // 0!=はなくてもよいが，Warning出るのでつけとく
   {                                     // 受け取った内容読み取り，あったら中へ
                                         // 受信データをまずは意味づけしておくとらくかも
-    byte classGroup = echo._rBuffer[EL_DEOJ + 0];
+    byte classGroup = echo._rBuffer[EL_DEOJ];
     byte classNo = echo._rBuffer[EL_DEOJ + 1];
     byte instanceNo = echo._rBuffer[EL_DEOJ + 2];
     byte esv = echo._rBuffer[EL_ESV];
@@ -128,30 +120,31 @@ void loop() {
     byte pdc = echo._rBuffer[EL_PDC];
     byte* edt = &echo._rBuffer[EL_EDT];
 
+    // 受信データの確認
+    Serial.printf("loop: %x, %x, %x, %x\n", esv, epc, pdc, edt[0]);
 
-    // Serial.printf("loop: %x, %x, %x, %x\n", esv, epc, pdc, edt[0]);
-
+    // 画面更新入るのでベースを作っておく
+    M5.Lcd.fillScreen(BLACK);
+    M5.Lcd.setTextColor(WHITE);
+    M5.Lcd.setCursor(0, 0);
+    M5.Lcd.setTextSize(2);
+    M5.Lcd.print("IP: ");
+    M5.Lcd.println(myip);
 
     if (classGroup == 0x02 && classNo == 0x90) {
       switch (instanceNo) {
         case 0x00:  // インスタンス番号0は、全ての意味
-          light(esv, epc, pdc, edt);
-          break;
-        case 0x01:
+        case 0x01:  // したがって 0と1で実行する
           light(esv, epc, pdc, edt);
           break;
       }
     }
 
-    M5.Lcd.setCursor(0, 0);
-    M5.Lcd.print("IP Address: ");
-    M5.Lcd.println(myip);
-
     // EL、自分の処理ここまで
-    echo.returner();  // 何かしら受信データあればreturnerを呼んでくおくとライブラリが適当に返信する
+    echo.returner();  // 何かしら受信データあればreturnerを呼んでおくとライブラリが適当に返信する
   }
 
-  delay(200);
+  delay(300);
 }
 
 
@@ -172,6 +165,27 @@ void printNetData() {
   IPAddress smip = WiFi.subnetMask();
   Serial.print("SM  Address: ");
   Serial.println(smip);
+
+  byte mac[6];
+  WiFi.macAddress(mac);
+  Serial.print("ESP32 MAC: ");
+  Serial.print(mac[5]);
+  Serial.print(":");
+  Serial.print(mac[4]);
+  Serial.print(":");
+  Serial.print(mac[3]);
+  Serial.print(":");
+  Serial.print(mac[2]);
+  Serial.print(":");
+  Serial.print(mac[1]);
+  Serial.print(":");
+  Serial.println(mac[0]);
+
+  Serial.print("M5 MAC: ");
+  Serial.println(WiFi.macAddress());
+
+  Serial.print("M5 MAC(AP): ");
+  Serial.println(WiFi.softAPmacAddress());
 
   Serial.println("-----------------------------------");
 }
