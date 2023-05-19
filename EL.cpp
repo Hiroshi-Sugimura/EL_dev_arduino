@@ -105,9 +105,9 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 	profile[0x88].setEDT({0x42});			  // error status
 	profile[0x8a].setEDT({0x00, 0x00, 0x77}); // maker KAIT
 
-	profile.SetProfile(0x9d, {0x80, 0xd5});																	  // inf property map
-	profile.SetProfile(0x9e, {0x80});																		  // set property map
-	profile.SetProfile(0x9f, {0x80, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f, 0xd3, 0xd4, 0xd5, 0xd6, 0xd7}); // get property map
+	profile.SetMyPropertyMap(0x9d, {0x80, 0xd5});																	  // inf property map
+	profile.SetMyPropertyMap(0x9e, {0x80});																		  // set property map
+	profile.SetMyPropertyMap(0x9f, {0x80, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f, 0xd3, 0xd4, 0xd5, 0xd6, 0xd7}); // get property map
 
 	// int deviceCount;				   // インスタンス数, d3用
 	int classNum = 0;				   // クラス数, d4用
@@ -164,9 +164,9 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 		devices[i][0x88].setEDT({0x42});			 // error status
 		devices[i][0x8a].setEDT({0x00, 0x00, 0x77}); // maker KAIT
 
-		devices[i].SetProfile(0x9d, {0x80, 0xd6});											 // inf property map
-		devices[i].SetProfile(0x9e, {0xe0});												 // set property map
-		devices[i].SetProfile(0x9f, {0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f}); // get property map
+		devices[i].SetMyPropertyMap(0x9d, {0x80, 0xd6});											 // inf property map
+		devices[i].SetMyPropertyMap(0x9e, {0xe0});												 // set property map
+		devices[i].SetMyPropertyMap(0x9f, {0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f}); // get property map
 #ifdef __EL_DEBUG__
 		devices[i].printAll();
 #endif

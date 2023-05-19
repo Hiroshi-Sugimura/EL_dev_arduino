@@ -11,7 +11,6 @@
 
 #include <initializer_list>
 
-
 // auto config
 #ifndef GPP
 // arduino
@@ -88,12 +87,12 @@ public:
   const PDCEDT GetPDCEDT(const byte epc) const;
   const PDCEDT SetPDCEDT(const byte epc, const PDCEDT pdcedt);
   const PDCEDT SetPDCEDT(const byte epc, const byte *&&pdcedt);
-  const PDCEDT SetProfile(const byte epc, std::initializer_list<byte> epcs); // for EPC: 9e,9d,9f
-  const byte *GetProfile(const byte epc) const;
+  const PDCEDT SetMyPropertyMap(const byte epc, std::initializer_list<byte> epcs); // for EPC: 9e,9d,9f
+  const byte *GetMyPropertyMap(const byte epc) const;
 
-  const bool hasGetProfile(const byte epc) const; // Get可能なEPC?
-  const bool hasSetProfile(const byte epc) const; // Set可能なEPC?
-  const bool hasInfProfile(const byte epc) const; // Inf必須なEPC?
+  const bool hasGetProperty(const byte epc) const; // Get可能なEPC?
+  const bool hasSetProperty(const byte epc) const; // Set可能なEPC?
+  const bool hasInfProperty(const byte epc) const; // Inf必須なEPC?
 
   //	配列らしいインターフェイス
   const PDCEDT operator[](const byte epc) const;

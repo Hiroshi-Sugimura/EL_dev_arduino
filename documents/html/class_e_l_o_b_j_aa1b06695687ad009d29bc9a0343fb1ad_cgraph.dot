@@ -1,0 +1,11 @@
+digraph "ELOBJ::hasSetProperty"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [label="ELOBJ::hasSetProperty",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="指定のEPCがSet可能かどうか"];
+  Node1 -> Node2 [color="steelblue1",style="solid"];
+  Node2 [label="ELOBJ::GetMyPropertyMap",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l_o_b_j.html#a7303a697a8e593724b3edde5834037db",tooltip="Profile(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）"];
+}
