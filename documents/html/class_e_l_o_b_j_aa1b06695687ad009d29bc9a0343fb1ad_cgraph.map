@@ -1,0 +1,4 @@
+<map id="ELOBJ::hasSetProperty" name="ELOBJ::hasSetProperty">
+<area shape="rect" id="node1" title="指定のEPCがSet可能かどうか" alt="" coords="5,5,167,31"/>
+<area shape="rect" id="node2" href="$class_e_l_o_b_j.html#a7303a697a8e593724b3edde5834037db" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）" alt="" coords="215,5,399,31"/>
+</map>

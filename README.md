@@ -208,7 +208,7 @@ void printNetData()
 
 ## Constractor
 
-ELクラスはWiFiのUDP（受信は3610，送信は適当）とECHONET Liteプロトコルをサポートします。ECHONET Liteネットワークにデバイスを参加させるためには専門のオブジェクトコードが必要です。オブジェクトコードはECHONET規格書に書かれているものを参照してください（https://echonet.jp/spec_g/#standard-01）。
+ELクラスはWiFiのUDP（受信は3610，送信は適当）とECHONET Liteプロトコルをサポートします。ECHONET Liteネットワークにデバイスを参加させるためには専門のオブジェクトコードが必要です。オブジェクトコードはECHONET規格書に書かれているものを参照してください [ECHONET規格書]（https://echonet.jp/spec_g/#standard-01）。
 サンプルとして一般照明（0x029001）をM5Stackで実装した例を示しています。
 
 EL class manages WiFiUDP (recv is 3610 port, sned is any port) and ECHONET Lite protocol.

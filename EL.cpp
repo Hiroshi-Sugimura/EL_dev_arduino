@@ -12,11 +12,10 @@
 
 ////////////////////////////////////////////////////
 /// @brief オブジェクトを一つだけサポートする場合のコンストラクタ
-/// @param WiFiUDP&
-/// @param byte eoj0: class group code
-/// @param byte eoj1: class code
-/// @param byte eoj2: instance code
-/// @return none
+/// @param udp WiFiUDP&
+/// @param classGroupCode byte class group code
+/// @param classCode byte class code
+/// @param instanceNumber byte instance number
 /// @note eoj0, eoj1, eoj2で一つのオブジェクト
 /// 一般照明の例
 /// ex. EL(udp, 0x02, 0x90, 0x01);
@@ -28,10 +27,9 @@ EL::EL(WiFiUDP &udp, byte classGroupCode, byte classCode, byte instanceNumber)
 
 ////////////////////////////////////////////////////
 /// @brief オブジェクトを複数サポートする場合のコンストラクタ
-/// @param WiFiUDP&
-/// @param byte eoj[][3]
-/// @param int count
-/// @return none
+/// @param udp WiFiUDP&
+/// @param eojs byte [][3]
+/// @param count int
 /// @note
 EL::EL(WiFiUDP &udp, byte eojs[][3], int count)
 {
@@ -43,8 +41,6 @@ EL::EL(WiFiUDP &udp, byte eojs[][3], int count)
 /// @param udp WiFiUDP&
 /// @param eojs byte[][3]
 /// @param count int
-/// @return none
-/// @note
 void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 {
 	_udp = &udp;
@@ -175,9 +171,6 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 
 ////////////////////////////////////////////////////
 /// @brief TIDの自動インクリメント、オーバーフロー対策
-/// @param none
-/// @return none
-/// @note
 void EL::tidAutoIncrement(void)
 {
 	if (_tid[0] == 0xff && _tid[1] == 0xff)
@@ -198,9 +191,6 @@ void EL::tidAutoIncrement(void)
 
 ////////////////////////////////////////////////////
 /// @brief 通信の開始、受信開始
-/// @param none
-/// @return none
-/// @note
 void EL::begin(void)
 {
 #ifdef __EL_DEBUG__
@@ -250,7 +240,6 @@ void EL::begin(void)
 /// @brief EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）
 /// @param epc const byte
 /// @param pdcedt byte[]
-/// @return none
 /// @note pdcedtなので、pdcは自分で計算することに注意
 void EL::update(const byte epc, byte pdcedt[])
 {
@@ -260,7 +249,7 @@ void EL::update(const byte epc, byte pdcedt[])
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief EPCの値を取得する, eojが1個の場合（複数の場合は0番に相当）
 /// @param epc const byte
-/// @return byte*
+/// @return edt byte*
 byte *EL::at(const byte epc)
 {
 	return devices[0].GetPDCEDT(epc);
@@ -270,8 +259,7 @@ byte *EL::at(const byte epc)
 /// @brief EPCの値を変更する, 複数の場合
 /// @param devId const int, コンストラクタで渡した順番に相当
 /// @param epc const byte
-/// @param byte pdcedt[]
-/// @return none
+/// @param pdcedt byte []
 void EL::update(const int devId, const byte epc, byte pdcedt[])
 {
 	if (devId < deviceCount)
@@ -282,7 +270,7 @@ void EL::update(const int devId, const byte epc, byte pdcedt[])
 /// @brief EPCの値を取得する, 複数の場合
 /// @param devId const int, コンストラクタで渡した順番に相当
 /// @param epc const byte
-/// @return none
+/// @return edt or nullptr
 byte *EL::at(const int devId, const byte epc)
 {
 	if (devId < deviceCount)
@@ -297,9 +285,8 @@ byte *EL::at(const int devId, const byte epc)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief ブロードキャストによる送信(default: 192.168.1.255)
-/// @param byte sBuffer[]
-/// @param int size
-/// @return none
+/// @param sBuffer byte[]
+/// @param size int
 /// @note !!deprecated!! 非推奨機能なので、本番環境では利用しないように
 void EL::sendBroad(byte sBuffer[], int size)
 {
@@ -327,9 +314,8 @@ void EL::sendBroad(byte sBuffer[], int size)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief マルチキャストによる送信(default: 192.168.1.255)
-/// @param byte sBuffer[]
-/// @param int size
-/// @return none
+/// @param sBuffer byte []
+/// @param size int
 /// バージョンによってはブロードキャストによる送信の場合がある。
 void EL::sendMulti(byte sBuffer[], int size)
 {
@@ -359,14 +345,13 @@ void EL::sendMulti(byte sBuffer[], int size)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief OPC一個用のマルチキャスト送信、TID指定有り
-/// @param tid const byte*
-/// @param seoj const byte*
-/// @param deoj const byte*
+/// @param tid const byte[]
+/// @param seoj const byte[]
+/// @param deoj const byte[]
 /// @param esv const byte
 /// @param epc const byte
-/// @param pdcedt const byte*
-/// @return none
-void EL::sendMultiOPC1(const byte *tid, const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
+/// @param pdcedt const byte[]
+void EL::sendMultiOPC1(const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])
 {
 	_sBuffer[EL_EHD1] = 0x10;
 	_sBuffer[EL_EHD2] = 0x81;
@@ -407,13 +392,12 @@ void EL::sendMultiOPC1(const byte *tid, const byte *seoj, const byte *deoj, cons
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief OPC一個用のマルチキャスト送信、TID自動
-/// @param seoj const byte*
-/// @param deoj const byte*
+/// @param seoj const byte[]
+/// @param deoj const byte[]
 /// @param esv const byte
 /// @param epc const byte
-/// @param pdcedt const byte *
-/// @return none
-void EL::sendMultiOPC1(const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
+/// @param pdcedt const byte[]
+void EL::sendMultiOPC1(const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])
 {
 	sendMultiOPC1(_tid, seoj, deoj, esv, epc, pdcedt);
 	tidAutoIncrement();
@@ -421,12 +405,11 @@ void EL::sendMultiOPC1(const byte *seoj, const byte *deoj, const byte esv, const
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief OPC一個用のマルチキャスト送信、seoj省略（0番）、TID自動
-/// @param deoj const byte*
+/// @param deoj const byte[]
 /// @param esv const byte
 /// @param epc const byte
-/// @param pdcedt const byte*
-/// @return none
-void EL::sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
+/// @param pdcedt const byte[]
+void EL::sendMultiOPC1(const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])
 {
 	byte eoj[3] = {_eojs[0], _eojs[1], _eojs[2]};
 	sendMultiOPC1(_tid, eoj, deoj, esv, epc, pdcedt);
@@ -436,13 +419,12 @@ void EL::sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const b
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動
 /// @param devId const byte int
-/// @param deoj const byte*
-/// @param esvconst byte
+/// @param deoj const byte[]
+/// @param esv const byte
 /// @param epc const byte
-/// @param pdcedt const byte*
-/// @return none
+/// @param pdcedt const byte[]
 /// @note recommendation 推奨
-void EL::sendMultiOPC1ID(const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
+void EL::sendMultiOPC1ID(const int devId, const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])
 {
 	if (devId < deviceCount)
 	{
@@ -488,11 +470,14 @@ void EL::send(IPAddress toip, byte sBuffer[], int size)
 }
 
 ////////////////////////////////////////////////////
-/// @brief
-/// @param
-/// @return none
-/// @note
-// OPC1指定による送信(SEOJも指定する，ほぼ内部関数)
+/// @brief OPC1指定による送信(SEOJも指定する，ほぼ内部関数)
+/// @param toip const IPAddress
+/// @param tid const byte[]
+/// @param seoj const byte[]
+/// @param deoj const byte[]
+/// @param esv const byte
+/// @param epc const byte
+/// @param pdcedt const byte[]
 void EL::sendOPC1(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])
 {
 	_sBuffer[EL_EHD1] = 0x10;
@@ -533,11 +518,13 @@ void EL::sendOPC1(const IPAddress toip, const byte tid[], const byte seoj[], con
 }
 
 ////////////////////////////////////////////////////
-/// @brief
-/// @param
-/// @return none
-/// @note
-// OPC1指定による送信(SEOJも指定する，ほぼ内部関数)
+/// @brief OPC1指定による送信(SEOJも指定する，ほぼ内部関数)
+/// @param toip const IPAddress
+/// @param seoj const byte[]
+/// @param deoj const byte[]
+/// @param esv const byte
+/// @param epc const byte
+/// @param pdcedt const byte[]
 void EL::sendOPC1(const IPAddress toip, const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])
 {
 	sendOPC1(toip, _tid, seoj, deoj, esv, epc, pdcedt);
@@ -545,11 +532,12 @@ void EL::sendOPC1(const IPAddress toip, const byte seoj[], const byte deoj[], co
 }
 
 ////////////////////////////////////////////////////
-/// @brief
-/// @param
-/// @return none
-/// @note
-// OPC1指定による送信(SEOJは初期化時に指定したものを使う)
+/// @brief OPC1指定による送信(SEOJは初期化時に指定したものを使う)
+/// @param toip const IPAddress
+/// @param deoj const byte[]
+/// @param esv const byte
+/// @param epc const byte
+/// @param pdcedt const byte[]
 void EL::sendOPC1(const IPAddress toip, const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])
 {
 	byte eoj[3] = {_eojs[0], _eojs[1], _eojs[2]};
@@ -559,9 +547,13 @@ void EL::sendOPC1(const IPAddress toip, const byte deoj[], const byte esv, const
 
 ////////////////////////////////////////////////////
 /// @brief
-/// @param
-/// @return none
-/// @note
+/// @param toip const IPAddress
+/// @param devId const int
+/// @param deoj const byte[]
+/// @param esv const byte
+/// @param epc const byte
+/// @param pdcedt const byte[]
+/// @note recommended 推奨
 void EL::sendOPC1ID(const IPAddress toip, const int devId, const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])
 {
 	byte eoj[3] = {_eojs[devId * 3 + 0], _eojs[devId * 3 + 1], _eojs[devId * 3 + 2]};
@@ -576,11 +568,9 @@ void EL::sendOPC1ID(const IPAddress toip, const int devId, const byte deoj[], co
 /// @param seoj const byte[3]
 /// @param deoj const byte[3]
 /// @param esv const byte
-/// @param epc const byte
+/// @param opc const byte
 /// @param detail const byte[N]: {EPC, PDC, EDT[x]}[y]
 /// @param detailSize const byte: size of detail N
-/// @return none
-/// @note
 void EL::sendDetails(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte opc, const byte detail[], const byte detailSize)
 {
 	_sBuffer[EL_EHD1] = 0x10;
@@ -616,8 +606,6 @@ void EL::sendDetails(const IPAddress toip, const byte tid[], const byte seoj[], 
 ////////////////////////////////////////////////////
 /// @brief Getに対して複数OPCにも対応して返答する内部関数
 /// @param toip const IPAddress
-/// @return void
-/// @note
 void EL::replyGetDetail(const IPAddress toip)
 {
 	byte tid[] = {_rBuffer[EL_TID], _rBuffer[EL_TID + 1]};
@@ -738,7 +726,6 @@ boolean EL::replyGetDetail_sub(const byte eoj[], const byte epc, byte &devId)
 ////////////////////////////////////////////////////
 /// @brief Setに対して複数OPCにも対応して返答する内部関数
 /// @param toip const IPAddress
-/// @return void
 /// @note EPC毎の設定値に関して基本はノーチェックなので注意すべし
 /// EPC毎の設定値チェックや、INF処理に関しては下記の replySetDetail_sub にて実施
 /// SET_RESはEDT入ってない
@@ -871,9 +858,7 @@ boolean EL::replySetDetail_sub(const byte eoj[], const byte epc, byte &devId)
 
 ////////////////////////////////////////////////////
 /// @brief 受信データを読む
-/// @param void
 /// @return int
-/// @note
 int EL::parsePacket(void)
 {
 	return _udp->parsePacket();
@@ -881,9 +866,7 @@ int EL::parsePacket(void)
 
 ////////////////////////////////////////////////////
 /// @brief 受信データの送信元を取得する
-/// @param void
 /// @return 受信データの送信元IPアドレス : IPAddress
-/// @note
 IPAddress EL::remoteIP(void)
 {
 	return _udp->remoteIP();
@@ -891,9 +874,7 @@ IPAddress EL::remoteIP(void)
 
 ////////////////////////////////////////////////////
 /// @brief 受信データを受け取る
-/// @param void
 /// @return 受信データサイズ : int
-/// @note
 int EL::read(void)
 {
 	_readPacketSize = parsePacket();
@@ -906,11 +887,7 @@ int EL::read(void)
 }
 
 ////////////////////////////////////////////////////
-/// @brief
-/// @param
-/// @return none
-/// @note
-// details
+/// @brief 受信データを処理する。EL処理でupdateしたら呼ぶ
 void EL::returner(void)
 {
 	///////////////////////////////////////////////////////////////////
@@ -999,9 +976,6 @@ void EL::returner(void)
 
 ////////////////////////////////////////////////////
 /// @brief インスタンスの情報を表示
-/// @param none
-/// @return none
-/// @note
 void EL::printAll(void)
 {
 #ifdef Arduino_h
@@ -1041,8 +1015,6 @@ void EL::printAll(void)
 ////////////////////////////////////////////////////
 /// @brief byte[] を安全にdeleteするinline関数
 /// @param ptr byte[]
-/// @return none
-/// @note
 inline void EL::delPtr(byte ptr[])
 {
 	if (ptr != nullptr)

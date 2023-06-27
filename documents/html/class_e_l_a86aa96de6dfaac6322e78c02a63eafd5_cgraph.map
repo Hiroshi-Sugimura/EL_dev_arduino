@@ -1,0 +1,6 @@
+<map id="EL::sendOPC1" name="EL::sendOPC1">
+<area shape="rect" id="node1" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="5,31,115,56"/>
+<area shape="rect" id="node2" href="$class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="180,5,290,31"/>
+<area shape="rect" id="node4" href="$class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="163,55,307,80"/>
+<area shape="rect" id="node3" href="$class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="355,5,428,31"/>
+</map>

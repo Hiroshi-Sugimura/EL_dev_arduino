@@ -1,4 +1,9 @@
 <map id="EL::sendMulti" name="EL::sendMulti">
-<area shape="rect" id="node1" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="108,5,211,31"/>
-<area shape="rect" id="node2" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,60,31"/>
+<area shape="rect" id="node1" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="483,80,585,106"/>
+<area shape="rect" id="node2" href="$class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="298,55,435,80"/>
+<area shape="rect" id="node7" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="340,104,393,130"/>
+<area shape="rect" id="node3" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="130,5,219,31"/>
+<area shape="rect" id="node5" href="$class_e_l.html#ad4f9ad8d9d65fdc65a7914a42e58cdf5" title="OPC一個用のマルチキャスト送信、TID自動" alt="" coords="106,55,243,80"/>
+<area shape="rect" id="node6" href="$class_e_l.html#a1c2e707d004abf421b57d74ad46beebf" title="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動" alt="" coords="99,104,250,130"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,31"/>
 </map>

@@ -1,0 +1,6 @@
+<map id="EL::sendMultiOPC1" name="EL::sendMultiOPC1">
+<area shape="rect" id="node1" title="OPC一個用のマルチキャスト送信、seoj省略（0番）、TID自動" alt="" coords="5,31,143,56"/>
+<area shape="rect" id="node2" href="$class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="194,5,332,31"/>
+<area shape="rect" id="node4" href="$class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="191,55,335,80"/>
+<area shape="rect" id="node3" href="$class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="383,5,484,31"/>
+</map>

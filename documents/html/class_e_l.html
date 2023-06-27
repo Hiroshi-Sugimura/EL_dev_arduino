@@ -119,14 +119,17 @@ EL 連携図</div>
 <tr class="memitem:a58b950847b38135814429193175b9b72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a58b950847b38135814429193175b9b72">send</a> (IPAddress toip, byte sBuffer[], int size)</td></tr>
 <tr class="memdesc:a58b950847b38135814429193175b9b72"><td class="mdescLeft">&#160;</td><td class="mdescRight">IP指定による送信  <br /></td></tr>
 <tr class="separator:a58b950847b38135814429193175b9b72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac68ea0b0b0d356a1d6931aca75d1c65d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#ac68ea0b0b0d356a1d6931aca75d1c65d">sendOPC1</a> (const IPAddress toip, const byte tid[], const byte seoj[], const byte *deoj, const byte esv, const byte epc, const byte edt[])</td></tr>
-<tr class="separator:ac68ea0b0b0d356a1d6931aca75d1c65d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18b96ff082a6ce4248cd8ad6202a2b8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a18b96ff082a6ce4248cd8ad6202a2b8a">sendOPC1</a> (const IPAddress toip, const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte edt[])</td></tr>
-<tr class="separator:a18b96ff082a6ce4248cd8ad6202a2b8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abef29de87d06ab6430325bf3d9b740cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#abef29de87d06ab6430325bf3d9b740cd">sendOPC1</a> (const IPAddress toip, const byte deoj[], const byte esv, const byte epc, const byte *edt)</td></tr>
-<tr class="separator:abef29de87d06ab6430325bf3d9b740cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa53e1f54dfbca2247da0fbd965582854"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#aa53e1f54dfbca2247da0fbd965582854">sendOPC1ID</a> (const IPAddress toip, const int devId, const byte deoj[], const byte esv, const byte epc, const byte *<a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>)</td></tr>
-<tr class="separator:aa53e1f54dfbca2247da0fbd965582854"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5d0960aa0bd6a33c36a461e34e9bf9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f">sendOPC1</a> (const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte <a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>[])</td></tr>
+<tr class="memdesc:ac5d0960aa0bd6a33c36a461e34e9bf9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">OPC1指定による送信(SEOJも指定する，ほぼ内部関数)  <br /></td></tr>
+<tr class="separator:ac5d0960aa0bd6a33c36a461e34e9bf9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86aa96de6dfaac6322e78c02a63eafd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a86aa96de6dfaac6322e78c02a63eafd5">sendOPC1</a> (const IPAddress toip, const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte <a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>[])</td></tr>
+<tr class="memdesc:a86aa96de6dfaac6322e78c02a63eafd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">OPC1指定による送信(SEOJも指定する，ほぼ内部関数)  <br /></td></tr>
+<tr class="separator:a86aa96de6dfaac6322e78c02a63eafd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad72059417fc988bc260e92a8619475a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#aad72059417fc988bc260e92a8619475a">sendOPC1</a> (const IPAddress toip, const byte deoj[], const byte esv, const byte epc, const byte <a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>[])</td></tr>
+<tr class="memdesc:aad72059417fc988bc260e92a8619475a"><td class="mdescLeft">&#160;</td><td class="mdescRight">OPC1指定による送信(SEOJは初期化時に指定したものを使う)  <br /></td></tr>
+<tr class="separator:aad72059417fc988bc260e92a8619475a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4248443d7f4c60f5e06325738713c9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#af4248443d7f4c60f5e06325738713c9e">sendOPC1ID</a> (const IPAddress toip, const int devId, const byte deoj[], const byte esv, const byte epc, const byte <a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>[])</td></tr>
+<tr class="separator:af4248443d7f4c60f5e06325738713c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af296f88ac8aa0c0a1f233f4884d294f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#af296f88ac8aa0c0a1f233f4884d294f5">sendBroad</a> (byte sBuffer[], int size)</td></tr>
 <tr class="memdesc:af296f88ac8aa0c0a1f233f4884d294f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">ブロードキャストによる送信(default: 192.168.1.255)  <br /></td></tr>
 <tr class="separator:af296f88ac8aa0c0a1f233f4884d294f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,10 +137,13 @@ EL 連携図</div>
 <tr class="memdesc:a401f22b7f82d6dbb832bd1589a276720"><td class="mdescLeft">&#160;</td><td class="mdescRight">マルチキャストによる送信(default: 192.168.1.255)  <br /></td></tr>
 <tr class="separator:a401f22b7f82d6dbb832bd1589a276720"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af07cdb8adb9646ce1de478989c53034e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#af07cdb8adb9646ce1de478989c53034e">sendMultiOPC1</a> (const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte <a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>[])</td></tr>
+<tr class="memdesc:af07cdb8adb9646ce1de478989c53034e"><td class="mdescLeft">&#160;</td><td class="mdescRight">OPC一個用のマルチキャスト送信、TID指定有り  <br /></td></tr>
 <tr class="separator:af07cdb8adb9646ce1de478989c53034e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4f9ad8d9d65fdc65a7914a42e58cdf5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#ad4f9ad8d9d65fdc65a7914a42e58cdf5">sendMultiOPC1</a> (const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte <a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>[])</td></tr>
+<tr class="memdesc:ad4f9ad8d9d65fdc65a7914a42e58cdf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">OPC一個用のマルチキャスト送信、TID自動  <br /></td></tr>
 <tr class="separator:ad4f9ad8d9d65fdc65a7914a42e58cdf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf67ebe5a2d7efc9c2e8251e2e44f044"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#abf67ebe5a2d7efc9c2e8251e2e44f044">sendMultiOPC1</a> (const byte deoj[], const byte esv, const byte epc, const byte <a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>[])</td></tr>
+<tr class="memdesc:abf67ebe5a2d7efc9c2e8251e2e44f044"><td class="mdescLeft">&#160;</td><td class="mdescRight">OPC一個用のマルチキャスト送信、seoj省略（0番）、TID自動  <br /></td></tr>
 <tr class="separator:abf67ebe5a2d7efc9c2e8251e2e44f044"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c2e707d004abf421b57d74ad46beebf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a1c2e707d004abf421b57d74ad46beebf">sendMultiOPC1ID</a> (const int devId, const byte deoj[], const byte esv, const byte epc, const byte <a class="el" href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a>[])</td></tr>
 <tr class="memdesc:a1c2e707d004abf421b57d74ad46beebf"><td class="mdescLeft">&#160;</td><td class="mdescRight">OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動  <br /></td></tr>
@@ -164,6 +170,7 @@ EL 連携図</div>
 <tr class="memdesc:afb8d61da0fa657758fb4231f061337fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">受信データの送信元を取得する  <br /></td></tr>
 <tr class="separator:afb8d61da0fa657758fb4231f061337fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54d6de75eb5743e2d80dbe81c93993ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed">returner</a> (void)</td></tr>
+<tr class="memdesc:a54d6de75eb5743e2d80dbe81c93993ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">受信データを処理する。EL処理でupdateしたら呼ぶ  <br /></td></tr>
 <tr class="separator:a54d6de75eb5743e2d80dbe81c93993ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeabba38117ff155c9bee8ee963bf0eeb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l.html#aeabba38117ff155c9bee8ee963bf0eeb">printAll</a> (void)</td></tr>
 <tr class="memdesc:aeabba38117ff155c9bee8ee963bf0eeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">インスタンスの情報を表示  <br /></td></tr>
@@ -243,24 +250,25 @@ EL 連携図</div>
 <p>オブジェクトを一つだけサポートする場合のコンストラクタ </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">WiFiUDP&amp;</td><td></td></tr>
-    <tr><td class="paramname">byte</td><td>eoj0: class group code </td></tr>
-    <tr><td class="paramname">byte</td><td>eoj1: class code </td></tr>
-    <tr><td class="paramname">byte</td><td>eoj2: instance code </td></tr>
+    <tr><td class="paramname">udp</td><td>WiFiUDP&amp; </td></tr>
+    <tr><td class="paramname">classGroupCode</td><td>byte class group code </td></tr>
+    <tr><td class="paramname">classCode</td><td>byte class code </td></tr>
+    <tr><td class="paramname">instanceNumber</td><td>byte instance number </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
 <dl class="section note"><dt>覚え書き</dt><dd>eoj0, eoj1, eoj2で一つのオブジェクト 一般照明の例 ex. <a class="el" href="class_e_l.html" title="Main class for EL">EL(udp, 0x02, 0x90, 0x01)</a>; </dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_aeea65419f3e4e45f6d10af3a01d50cbd_cgraph.png" border="0" usemap="#aclass_e_l_aeea65419f3e4e45f6d10af3a01d50cbd_cgraph" alt=""/></div>
 <map name="aclass_e_l_aeea65419f3e4e45f6d10af3a01d50cbd_cgraph" id="aclass_e_l_aeea65419f3e4e45f6d10af3a01d50cbd_cgraph">
-<area shape="rect" title="オブジェクトを一つだけサポートする場合のコンストラクタ" alt="" coords="5,5,68,31"/>
-<area shape="rect" href="class_e_l.html#ad38241dcaa4337cf959d85906773242f" title="コンストラクタ共通処理" alt="" coords="116,5,280,31"/>
-<area shape="rect" href="class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3" title="null以外のEPCを全部出力" alt="" coords="328,5,440,31"/>
-<area shape="rect" href="class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title="デバグ用の標準出力" alt="" coords="488,5,597,31"/>
+<area shape="rect" title="オブジェクトを一つだけサポートする場合のコンストラクタ" alt="" coords="5,31,67,56"/>
+<area shape="rect" href="class_e_l.html#ad38241dcaa4337cf959d85906773242f" title="コンストラクタ共通処理" alt="" coords="115,31,278,56"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3" title="null以外のEPCを全部出力" alt="" coords="362,5,473,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a43860eb81d06e0940a04f756b2ce6ab9" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する" alt="" coords="326,55,509,80"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title="デバグ用の標準出力" alt="" coords="567,5,676,31"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html#adf332064486b2b0e7e608a18a82bd318" title="EDT setter" alt="" coords="557,55,686,80"/>
 </map>
 </div>
 
@@ -301,23 +309,24 @@ EL 連携図</div>
 <p>オブジェクトを複数サポートする場合のコンストラクタ </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">WiFiUDP&amp;</td><td></td></tr>
-    <tr><td class="paramname">byte</td><td>eoj[][3] </td></tr>
-    <tr><td class="paramname">int</td><td>count </td></tr>
+    <tr><td class="paramname">udp</td><td>WiFiUDP&amp; </td></tr>
+    <tr><td class="paramname">eojs</td><td>byte [][3] </td></tr>
+    <tr><td class="paramname">count</td><td>int </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
 <dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a2a54d80256fe75d16e04f33eed327fdd_cgraph.png" border="0" usemap="#aclass_e_l_a2a54d80256fe75d16e04f33eed327fdd_cgraph" alt=""/></div>
 <map name="aclass_e_l_a2a54d80256fe75d16e04f33eed327fdd_cgraph" id="aclass_e_l_a2a54d80256fe75d16e04f33eed327fdd_cgraph">
-<area shape="rect" title="オブジェクトを複数サポートする場合のコンストラクタ" alt="" coords="5,5,68,31"/>
-<area shape="rect" href="class_e_l.html#ad38241dcaa4337cf959d85906773242f" title="コンストラクタ共通処理" alt="" coords="116,5,280,31"/>
-<area shape="rect" href="class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3" title="null以外のEPCを全部出力" alt="" coords="328,5,440,31"/>
-<area shape="rect" href="class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title="デバグ用の標準出力" alt="" coords="488,5,597,31"/>
+<area shape="rect" title="オブジェクトを複数サポートする場合のコンストラクタ" alt="" coords="5,31,67,56"/>
+<area shape="rect" href="class_e_l.html#ad38241dcaa4337cf959d85906773242f" title="コンストラクタ共通処理" alt="" coords="115,31,278,56"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3" title="null以外のEPCを全部出力" alt="" coords="362,5,473,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a43860eb81d06e0940a04f756b2ce6ab9" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する" alt="" coords="326,55,509,80"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title="デバグ用の標準出力" alt="" coords="567,5,676,31"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html#adf332064486b2b0e7e608a18a82bd318" title="EDT setter" alt="" coords="557,55,686,80"/>
 </map>
 </div>
 
@@ -347,7 +356,7 @@ EL 連携図</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>byte* </dd></dl>
+<dl class="section return"><dt>戻り値</dt><dd>edt byte* </dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
@@ -394,7 +403,7 @@ EL 連携図</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
+<dl class="section return"><dt>戻り値</dt><dd>edt or nullptr </dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
@@ -424,14 +433,6 @@ EL 連携図</div>
 </div><div class="memdoc">
 
 <p>通信の開始、受信開始 </p>
-<dl class="params"><dt>引数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">none</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
@@ -493,16 +494,16 @@ EL 連携図</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_ad38241dcaa4337cf959d85906773242f_cgraph.png" border="0" usemap="#aclass_e_l_ad38241dcaa4337cf959d85906773242f_cgraph" alt=""/></div>
 <map name="aclass_e_l_ad38241dcaa4337cf959d85906773242f_cgraph" id="aclass_e_l_ad38241dcaa4337cf959d85906773242f_cgraph">
-<area shape="rect" title="コンストラクタ共通処理" alt="" coords="5,5,169,31"/>
-<area shape="rect" href="class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3" title="null以外のEPCを全部出力" alt="" coords="217,5,329,31"/>
-<area shape="rect" href="class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title="デバグ用の標準出力" alt="" coords="377,5,487,31"/>
+<area shape="rect" title="コンストラクタ共通処理" alt="" coords="5,31,169,56"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3" title="null以外のEPCを全部出力" alt="" coords="253,5,364,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a43860eb81d06e0940a04f756b2ce6ab9" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する" alt="" coords="217,55,400,80"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title="デバグ用の標準出力" alt="" coords="458,5,566,31"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html#adf332064486b2b0e7e608a18a82bd318" title="EDT setter" alt="" coords="448,55,576,80"/>
 </map>
 </div>
 <div class="dynheader">
@@ -548,8 +549,6 @@ EL 連携図</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -578,14 +577,7 @@ EL 連携図</div>
 </div><div class="memdoc">
 
 <p>受信データを読む </p>
-<dl class="params"><dt>引数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">void</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>戻り値</dt><dd>int </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
@@ -616,14 +608,6 @@ EL 連携図</div>
 </div><div class="memdoc">
 
 <p>インスタンスの情報を表示 </p>
-<dl class="params"><dt>引数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">none</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
@@ -654,14 +638,7 @@ EL 連携図</div>
 </div><div class="memdoc">
 
 <p>受信データを受け取る </p>
-<dl class="params"><dt>引数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">void</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>戻り値</dt><dd>受信データサイズ : int </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
@@ -700,22 +677,15 @@ EL 連携図</div>
 </div><div class="memdoc">
 
 <p>受信データの送信元を取得する </p>
-<dl class="params"><dt>引数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">void</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>戻り値</dt><dd>受信データの送信元IPアドレス : IPAddress </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_afb8d61da0fa657758fb4231f061337fc_icgraph.png" border="0" usemap="#aclass_e_l_afb8d61da0fa657758fb4231f061337fc_icgraph" alt=""/></div>
 <map name="aclass_e_l_afb8d61da0fa657758fb4231f061337fc_icgraph" id="aclass_e_l_afb8d61da0fa657758fb4231f061337fc_icgraph">
-<area shape="rect" title="受信データの送信元を取得する" alt="" coords="239,5,337,31"/>
-<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,5,191,31"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+<area shape="rect" title="受信データの送信元を取得する" alt="" coords="236,5,334,31"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="99,5,188,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,31"/>
 </map>
 </div>
 
@@ -744,8 +714,6 @@ EL 連携図</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>void </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
@@ -762,9 +730,9 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a7c323a2e5634104f38317521d4c0a239_icgraph.png" border="0" usemap="#aclass_e_l_a7c323a2e5634104f38317521d4c0a239_icgraph" alt=""/></div>
 <map name="aclass_e_l_a7c323a2e5634104f38317521d4c0a239_icgraph" id="aclass_e_l_a7c323a2e5634104f38317521d4c0a239_icgraph">
-<area shape="rect" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,368,31"/>
-<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,5,191,31"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+<area shape="rect" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="236,5,364,31"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="99,5,188,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,31"/>
 </map>
 </div>
 
@@ -818,10 +786,10 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a1d6a20d4d498936b3afe2bcfad10f268_icgraph.png" border="0" usemap="#aclass_e_l_a1d6a20d4d498936b3afe2bcfad10f268_icgraph" alt=""/></div>
 <map name="aclass_e_l_a1d6a20d4d498936b3afe2bcfad10f268_icgraph" id="aclass_e_l_a1d6a20d4d498936b3afe2bcfad10f268_icgraph">
-<area shape="rect" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="416,5,573,31"/>
-<area shape="rect" href="class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,368,31"/>
-<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,5,191,31"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+<area shape="rect" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="412,5,569,31"/>
+<area shape="rect" href="class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="236,5,364,31"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="99,5,188,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,31"/>
 </map>
 </div>
 
@@ -850,7 +818,6 @@ EL 連携図</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>void </dd></dl>
 <dl class="section note"><dt>覚え書き</dt><dd>EPC毎の設定値に関して基本はノーチェックなので注意すべし EPC毎の設定値チェックや、INF処理に関しては下記の replySetDetail_sub にて実施 SET_RESはEDT入ってない </dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
@@ -868,9 +835,9 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a14175763153b18bcd3efa044e2e303ee_icgraph.png" border="0" usemap="#aclass_e_l_a14175763153b18bcd3efa044e2e303ee_icgraph" alt=""/></div>
 <map name="aclass_e_l_a14175763153b18bcd3efa044e2e303ee_icgraph" id="aclass_e_l_a14175763153b18bcd3efa044e2e303ee_icgraph">
-<area shape="rect" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,367,31"/>
-<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,5,191,31"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+<area shape="rect" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="236,5,363,31"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="99,5,188,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,31"/>
 </map>
 </div>
 
@@ -924,10 +891,10 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a1a090418c3fe0bac57f15a82bc206d69_icgraph.png" border="0" usemap="#aclass_e_l_a1a090418c3fe0bac57f15a82bc206d69_icgraph" alt=""/></div>
 <map name="aclass_e_l_a1a090418c3fe0bac57f15a82bc206d69_icgraph" id="aclass_e_l_a1a090418c3fe0bac57f15a82bc206d69_icgraph">
-<area shape="rect" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="415,5,571,31"/>
-<area shape="rect" href="class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,367,31"/>
-<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,5,191,31"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+<area shape="rect" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="411,5,567,31"/>
+<area shape="rect" href="class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="236,5,363,31"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="99,5,188,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,31"/>
 </map>
 </div>
 
@@ -948,28 +915,24 @@ EL 連携図</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>引数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname"></td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<p>return none </p><dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
+
+<p>受信データを処理する。EL処理でupdateしたら呼ぶ </p>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a54d6de75eb5743e2d80dbe81c93993ed_cgraph.png" border="0" usemap="#aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_cgraph" alt=""/></div>
 <map name="aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_cgraph" id="aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_cgraph">
-<area shape="rect" title=" " alt="" coords="5,104,96,129"/>
-<area shape="rect" href="class_e_l.html#afb8d61da0fa657758fb4231f061337fc" title="受信データの送信元を取得する" alt="" coords="164,5,263,31"/>
-<area shape="rect" href="class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="149,55,278,80"/>
-<area shape="rect" href="class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="149,104,277,129"/>
-<area shape="rect" href="class_e_l.html#a244aa53bae7709adcf29c631b7cabf55" title=" " alt="" coords="144,153,283,179"/>
-<area shape="rect" href="class_e_l.html#ac68ea0b0b0d356a1d6931aca75d1c65d" title=" " alt="" coords="158,203,269,228"/>
-<area shape="rect" href="class_e_l.html#a1d6a20d4d498936b3afe2bcfad10f268" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="331,31,488,56"/>
-<area shape="rect" href="class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="352,80,467,105"/>
-<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="536,80,611,105"/>
-<area shape="rect" href="class_e_l.html#a1a090418c3fe0bac57f15a82bc206d69" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="331,129,487,155"/>
+<area shape="rect" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="5,104,95,130"/>
+<area shape="rect" href="class_e_l.html#afb8d61da0fa657758fb4231f061337fc" title="受信データの送信元を取得する" alt="" coords="162,5,261,31"/>
+<area shape="rect" href="class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="147,55,276,80"/>
+<area shape="rect" href="class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="148,104,275,130"/>
+<area shape="rect" href="class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="143,153,280,179"/>
+<area shape="rect" href="class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="352,204,461,230"/>
+<area shape="rect" href="class_e_l.html#a1d6a20d4d498936b3afe2bcfad10f268" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="328,7,484,32"/>
+<area shape="rect" href="class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="349,56,463,82"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="532,131,606,156"/>
+<area shape="rect" href="class_e_l.html#a1a090418c3fe0bac57f15a82bc206d69" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="329,105,484,131"/>
+<area shape="rect" href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="356,155,457,180"/>
 </map>
 </div>
 <div class="dynheader">
@@ -977,8 +940,8 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a54d6de75eb5743e2d80dbe81c93993ed_icgraph.png" border="0" usemap="#aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_icgraph" alt=""/></div>
 <map name="aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_icgraph" id="aclass_e_l_a54d6de75eb5743e2d80dbe81c93993ed_icgraph">
-<area shape="rect" title=" " alt="" coords="100,5,191,31"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+<area shape="rect" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="99,5,188,31"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,31"/>
 </map>
 </div>
 
@@ -1030,12 +993,15 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a58b950847b38135814429193175b9b72_icgraph.png" border="0" usemap="#aclass_e_l_a58b950847b38135814429193175b9b72_icgraph" alt=""/></div>
 <map name="aclass_e_l_a58b950847b38135814429193175b9b72_icgraph" id="aclass_e_l_a58b950847b38135814429193175b9b72_icgraph">
-<area shape="rect" title="IP指定による送信" alt="" coords="579,31,653,56"/>
-<area shape="rect" href="class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="416,31,531,56"/>
-<area shape="rect" href="class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,368,31"/>
-<area shape="rect" href="class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,55,367,80"/>
-<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,31,191,56"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,31,52,56"/>
+<area shape="rect" title="IP指定による送信" alt="" coords="575,105,648,131"/>
+<area shape="rect" href="class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="412,55,527,80"/>
+<area shape="rect" href="class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="415,131,524,156"/>
+<area shape="rect" href="class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="236,5,364,31"/>
+<area shape="rect" href="class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="237,55,364,80"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="99,55,188,80"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,55,51,80"/>
+<area shape="rect" href="class_e_l.html#a86aa96de6dfaac6322e78c02a63eafd5" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="246,156,355,182"/>
+<area shape="rect" href="class_e_l.html#af4248443d7f4c60f5e06325738713c9e" title=" " alt="" coords="239,205,362,231"/>
 </map>
 </div>
 
@@ -1070,12 +1036,11 @@ EL 連携図</div>
 <p>ブロードキャストによる送信(default: 192.168.1.255) </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">byte</td><td>sBuffer[] </td></tr>
-    <tr><td class="paramname">int</td><td>size </td></tr>
+    <tr><td class="paramname">sBuffer</td><td>byte[] </td></tr>
+    <tr><td class="paramname">size</td><td>int </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
 <dl class="section note"><dt>覚え書き</dt><dd>!!deprecated!! 非推奨機能なので、本番環境では利用しないように </dd></dl>
 
 </div>
@@ -1150,14 +1115,12 @@ EL 連携図</div>
     <tr><td class="paramname">seoj</td><td>const byte[3] </td></tr>
     <tr><td class="paramname">deoj</td><td>const byte[3] </td></tr>
     <tr><td class="paramname">esv</td><td>const byte </td></tr>
-    <tr><td class="paramname">epc</td><td>const byte </td></tr>
+    <tr><td class="paramname">opc</td><td>const byte </td></tr>
     <tr><td class="paramname">detail</td><td>const byte[N]: {EPC, PDC, EDT[x]}[y] </td></tr>
     <tr><td class="paramname">detailSize</td><td>const byte: size of detail N </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
@@ -1172,11 +1135,11 @@ EL 連携図</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a558f0e1b780b266d05ad73a57f991029_icgraph.png" border="0" usemap="#aclass_e_l_a558f0e1b780b266d05ad73a57f991029_icgraph" alt=""/></div>
 <map name="aclass_e_l_a558f0e1b780b266d05ad73a57f991029_icgraph" id="aclass_e_l_a558f0e1b780b266d05ad73a57f991029_icgraph">
-<area shape="rect" title="複数のEPCで送信する場合はこれを使う" alt="" coords="416,31,531,56"/>
-<area shape="rect" href="class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,368,31"/>
-<area shape="rect" href="class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,55,367,80"/>
-<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,31,191,56"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,31,52,56"/>
+<area shape="rect" title="複数のEPCで送信する場合はこれを使う" alt="" coords="412,31,527,56"/>
+<area shape="rect" href="class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="236,5,364,31"/>
+<area shape="rect" href="class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="237,55,364,80"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="99,31,188,56"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,31,51,56"/>
 </map>
 </div>
 
@@ -1211,19 +1174,23 @@ EL 連携図</div>
 <p>マルチキャストによる送信(default: 192.168.1.255) </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">byte</td><td>sBuffer[] </td></tr>
-    <tr><td class="paramname">int</td><td>size </td></tr>
+    <tr><td class="paramname">sBuffer</td><td>byte [] </td></tr>
+    <tr><td class="paramname">size</td><td>int バージョンによってはブロードキャストによる送信の場合がある。 </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none バージョンによってはブロードキャストによる送信の場合がある。 </dd></dl>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a401f22b7f82d6dbb832bd1589a276720_icgraph.png" border="0" usemap="#aclass_e_l_a401f22b7f82d6dbb832bd1589a276720_icgraph" alt=""/></div>
 <map name="aclass_e_l_a401f22b7f82d6dbb832bd1589a276720_icgraph" id="aclass_e_l_a401f22b7f82d6dbb832bd1589a276720_icgraph">
-<area shape="rect" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="108,5,211,31"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,60,31"/>
+<area shape="rect" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="483,80,585,106"/>
+<area shape="rect" href="class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="298,55,435,80"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="340,104,393,130"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="130,5,219,31"/>
+<area shape="rect" href="class_e_l.html#ad4f9ad8d9d65fdc65a7914a42e58cdf5" title="OPC一個用のマルチキャスト送信、TID自動" alt="" coords="106,55,243,80"/>
+<area shape="rect" href="class_e_l.html#a1c2e707d004abf421b57d74ad46beebf" title="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動" alt="" coords="99,104,250,130"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,31"/>
 </map>
 </div>
 
@@ -1266,6 +1233,28 @@ EL 連携図</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>OPC一個用のマルチキャスト送信、seoj省略（0番）、TID自動 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deoj</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">esv</td><td>const byte </td></tr>
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
+    <tr><td class="paramname">pdcedt</td><td>const byte[] </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_abf67ebe5a2d7efc9c2e8251e2e44f044_cgraph.png" border="0" usemap="#aclass_e_l_abf67ebe5a2d7efc9c2e8251e2e44f044_cgraph" alt=""/></div>
+<map name="aclass_e_l_abf67ebe5a2d7efc9c2e8251e2e44f044_cgraph" id="aclass_e_l_abf67ebe5a2d7efc9c2e8251e2e44f044_cgraph">
+<area shape="rect" title="OPC一個用のマルチキャスト送信、seoj省略（0番）、TID自動" alt="" coords="5,31,143,56"/>
+<area shape="rect" href="class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="194,5,332,31"/>
+<area shape="rect" href="class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="191,55,335,80"/>
+<area shape="rect" href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="383,5,484,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -1312,6 +1301,29 @@ EL 連携図</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>OPC一個用のマルチキャスト送信、TID自動 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seoj</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">deoj</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">esv</td><td>const byte </td></tr>
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
+    <tr><td class="paramname">pdcedt</td><td>const byte[] </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_ad4f9ad8d9d65fdc65a7914a42e58cdf5_cgraph.png" border="0" usemap="#aclass_e_l_ad4f9ad8d9d65fdc65a7914a42e58cdf5_cgraph" alt=""/></div>
+<map name="aclass_e_l_ad4f9ad8d9d65fdc65a7914a42e58cdf5_cgraph" id="aclass_e_l_ad4f9ad8d9d65fdc65a7914a42e58cdf5_cgraph">
+<area shape="rect" title="OPC一個用のマルチキャスト送信、TID自動" alt="" coords="5,31,143,56"/>
+<area shape="rect" href="class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="194,5,332,31"/>
+<area shape="rect" href="class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="191,55,335,80"/>
+<area shape="rect" href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="383,5,484,31"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -1364,10 +1376,39 @@ EL 連携図</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>OPC一個用のマルチキャスト送信、TID指定有り </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tid</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">seoj</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">deoj</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">esv</td><td>const byte </td></tr>
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
+    <tr><td class="paramname">pdcedt</td><td>const byte[] </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_af07cdb8adb9646ce1de478989c53034e_cgraph.png" border="0" usemap="#aclass_e_l_af07cdb8adb9646ce1de478989c53034e_cgraph" alt=""/></div>
+<map name="aclass_e_l_af07cdb8adb9646ce1de478989c53034e_cgraph" id="aclass_e_l_af07cdb8adb9646ce1de478989c53034e_cgraph">
+<area shape="rect" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="5,5,143,31"/>
+<area shape="rect" href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="191,5,292,31"/>
+</map>
+</div>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_af07cdb8adb9646ce1de478989c53034e_icgraph.png" border="0" usemap="#aclass_e_l_af07cdb8adb9646ce1de478989c53034e_icgraph" alt=""/></div>
+<map name="aclass_e_l_af07cdb8adb9646ce1de478989c53034e_icgraph" id="aclass_e_l_af07cdb8adb9646ce1de478989c53034e_icgraph">
+<area shape="rect" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="298,55,435,80"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="130,5,219,31"/>
+<area shape="rect" href="class_e_l.html#ad4f9ad8d9d65fdc65a7914a42e58cdf5" title="OPC一個用のマルチキャスト送信、TID自動" alt="" coords="106,55,243,80"/>
+<area shape="rect" href="class_e_l.html#a1c2e707d004abf421b57d74ad46beebf" title="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動" alt="" coords="99,104,250,130"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,31"/>
+</map>
 </div>
 
 </div>
@@ -1420,25 +1461,30 @@ EL 連携図</div>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
     <tr><td class="paramname">devId</td><td>const byte int </td></tr>
-    <tr><td class="paramname">deoj</td><td>const byte* </td></tr>
-    <tr><td class="paramname">esvconst</td><td>byte </td></tr>
+    <tr><td class="paramname">deoj</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">esv</td><td>const byte </td></tr>
     <tr><td class="paramname">epc</td><td>const byte </td></tr>
-    <tr><td class="paramname">pdcedt</td><td>const byte* </td></tr>
+    <tr><td class="paramname">pdcedt</td><td>const byte[] </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
 <dl class="section note"><dt>覚え書き</dt><dd>recommendation 推奨 </dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_a1c2e707d004abf421b57d74ad46beebf_cgraph.png" border="0" usemap="#aclass_e_l_a1c2e707d004abf421b57d74ad46beebf_cgraph" alt=""/></div>
+<map name="aclass_e_l_a1c2e707d004abf421b57d74ad46beebf_cgraph" id="aclass_e_l_a1c2e707d004abf421b57d74ad46beebf_cgraph">
+<area shape="rect" title="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動" alt="" coords="5,31,157,56"/>
+<area shape="rect" href="class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="208,5,346,31"/>
+<area shape="rect" href="class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="205,55,349,80"/>
+<area shape="rect" href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="397,5,498,31"/>
+</map>
 </div>
 
 </div>
 </div>
-<a id="abef29de87d06ab6430325bf3d9b740cd" name="abef29de87d06ab6430325bf3d9b740cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abef29de87d06ab6430325bf3d9b740cd">&#9670;&#160;</a></span>sendOPC1() <span class="overload">[1/3]</span></h2>
+<a id="aad72059417fc988bc260e92a8619475a" name="aad72059417fc988bc260e92a8619475a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad72059417fc988bc260e92a8619475a">&#9670;&#160;</a></span>sendOPC1() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1470,8 +1516,8 @@ EL 連携図</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const byte *&#160;</td>
-          <td class="paramname"><em>edt</em>&#160;</td>
+          <td class="paramtype">const byte&#160;</td>
+          <td class="paramname"><em>pdcedt</em>[]&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1481,10 +1527,33 @@ EL 連携図</div>
       </table>
 </div><div class="memdoc">
 
+<p>OPC1指定による送信(SEOJは初期化時に指定したものを使う) </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">toip</td><td>const IPAddress </td></tr>
+    <tr><td class="paramname">deoj</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">esv</td><td>const byte </td></tr>
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
+    <tr><td class="paramname">pdcedt</td><td>const byte[] </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_aad72059417fc988bc260e92a8619475a_cgraph.png" border="0" usemap="#aclass_e_l_aad72059417fc988bc260e92a8619475a_cgraph" alt=""/></div>
+<map name="aclass_e_l_aad72059417fc988bc260e92a8619475a_cgraph" id="aclass_e_l_aad72059417fc988bc260e92a8619475a_cgraph">
+<area shape="rect" title="OPC1指定による送信(SEOJは初期化時に指定したものを使う)" alt="" coords="5,31,115,56"/>
+<area shape="rect" href="class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="180,5,290,31"/>
+<area shape="rect" href="class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="163,55,307,80"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="355,5,428,31"/>
+</map>
+</div>
+
 </div>
 </div>
-<a id="a18b96ff082a6ce4248cd8ad6202a2b8a" name="a18b96ff082a6ce4248cd8ad6202a2b8a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18b96ff082a6ce4248cd8ad6202a2b8a">&#9670;&#160;</a></span>sendOPC1() <span class="overload">[2/3]</span></h2>
+<a id="a86aa96de6dfaac6322e78c02a63eafd5" name="a86aa96de6dfaac6322e78c02a63eafd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86aa96de6dfaac6322e78c02a63eafd5">&#9670;&#160;</a></span>sendOPC1() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1532,28 +1601,35 @@ EL 連携図</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>OPC1指定による送信(SEOJも指定する，ほぼ内部関数) </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname"></td><td></td></tr>
+    <tr><td class="paramname">toip</td><td>const IPAddress </td></tr>
+    <tr><td class="paramname">seoj</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">deoj</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">esv</td><td>const byte </td></tr>
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
+    <tr><td class="paramname">pdcedt</td><td>const byte[] </td></tr>
   </table>
   </dd>
 </dl>
-<p>return none </p><dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_e_l_a18b96ff082a6ce4248cd8ad6202a2b8a_cgraph.png" border="0" usemap="#aclass_e_l_a18b96ff082a6ce4248cd8ad6202a2b8a_cgraph" alt=""/></div>
-<map name="aclass_e_l_a18b96ff082a6ce4248cd8ad6202a2b8a_cgraph" id="aclass_e_l_a18b96ff082a6ce4248cd8ad6202a2b8a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,31,116,56"/>
-<area shape="rect" href="class_e_l.html#ac68ea0b0b0d356a1d6931aca75d1c65d" title=" " alt="" coords="181,5,292,31"/>
-<area shape="rect" href="class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="164,55,309,80"/>
+<div class="center"><img src="class_e_l_a86aa96de6dfaac6322e78c02a63eafd5_cgraph.png" border="0" usemap="#aclass_e_l_a86aa96de6dfaac6322e78c02a63eafd5_cgraph" alt=""/></div>
+<map name="aclass_e_l_a86aa96de6dfaac6322e78c02a63eafd5_cgraph" id="aclass_e_l_a86aa96de6dfaac6322e78c02a63eafd5_cgraph">
+<area shape="rect" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="5,31,115,56"/>
+<area shape="rect" href="class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="180,5,290,31"/>
+<area shape="rect" href="class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="163,55,307,80"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="355,5,428,31"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="ac68ea0b0b0d356a1d6931aca75d1c65d" name="ac68ea0b0b0d356a1d6931aca75d1c65d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac68ea0b0b0d356a1d6931aca75d1c65d">&#9670;&#160;</a></span>sendOPC1() <span class="overload">[3/3]</span></h2>
+<a id="ac5d0960aa0bd6a33c36a461e34e9bf9f" name="ac5d0960aa0bd6a33c36a461e34e9bf9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5d0960aa0bd6a33c36a461e34e9bf9f">&#9670;&#160;</a></span>sendOPC1() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1579,8 +1655,8 @@ EL 連携図</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const byte *&#160;</td>
-          <td class="paramname"><em>deoj</em>, </td>
+          <td class="paramtype">const byte&#160;</td>
+          <td class="paramname"><em>deoj</em>[], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1598,7 +1674,7 @@ EL 連携図</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const byte&#160;</td>
-          <td class="paramname"><em>edt</em>[]&#160;</td>
+          <td class="paramname"><em>pdcedt</em>[]&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1607,22 +1683,46 @@ EL 連携図</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>OPC1指定による送信(SEOJも指定する，ほぼ内部関数) </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">toip</td><td>const IPAddress </td></tr>
+    <tr><td class="paramname">tid</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">seoj</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">deoj</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">esv</td><td>const byte </td></tr>
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
+    <tr><td class="paramname">pdcedt</td><td>const byte[] </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_e_l_ac5d0960aa0bd6a33c36a461e34e9bf9f_cgraph.png" border="0" usemap="#aclass_e_l_ac5d0960aa0bd6a33c36a461e34e9bf9f_cgraph" alt=""/></div>
+<map name="aclass_e_l_ac5d0960aa0bd6a33c36a461e34e9bf9f_cgraph" id="aclass_e_l_ac5d0960aa0bd6a33c36a461e34e9bf9f_cgraph">
+<area shape="rect" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="5,5,115,31"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="163,5,236,31"/>
+</map>
+</div>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_e_l_ac68ea0b0b0d356a1d6931aca75d1c65d_icgraph.png" border="0" usemap="#aclass_e_l_ac68ea0b0b0d356a1d6931aca75d1c65d_icgraph" alt=""/></div>
-<map name="aclass_e_l_ac68ea0b0b0d356a1d6931aca75d1c65d_icgraph" id="aclass_e_l_ac68ea0b0b0d356a1d6931aca75d1c65d_icgraph">
-<area shape="rect" title=" " alt="" coords="259,31,369,56"/>
-<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="110,5,201,31"/>
-<area shape="rect" href="class_e_l.html#a18b96ff082a6ce4248cd8ad6202a2b8a" title=" " alt="" coords="100,55,211,80"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+<div class="center"><img src="class_e_l_ac5d0960aa0bd6a33c36a461e34e9bf9f_icgraph.png" border="0" usemap="#aclass_e_l_ac5d0960aa0bd6a33c36a461e34e9bf9f_icgraph" alt=""/></div>
+<map name="aclass_e_l_ac5d0960aa0bd6a33c36a461e34e9bf9f_icgraph" id="aclass_e_l_ac5d0960aa0bd6a33c36a461e34e9bf9f_icgraph">
+<area shape="rect" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="270,55,379,80"/>
+<area shape="rect" href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="116,5,205,31"/>
+<area shape="rect" href="class_e_l.html#a86aa96de6dfaac6322e78c02a63eafd5" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="106,55,215,80"/>
+<area shape="rect" href="class_e_l.html#af4248443d7f4c60f5e06325738713c9e" title=" " alt="" coords="99,104,222,130"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,31"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="aa53e1f54dfbca2247da0fbd965582854" name="aa53e1f54dfbca2247da0fbd965582854"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa53e1f54dfbca2247da0fbd965582854">&#9670;&#160;</a></span>sendOPC1ID()</h2>
+<a id="af4248443d7f4c60f5e06325738713c9e" name="af4248443d7f4c60f5e06325738713c9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4248443d7f4c60f5e06325738713c9e">&#9670;&#160;</a></span>sendOPC1ID()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1660,8 +1760,8 @@ EL 連携図</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const byte *&#160;</td>
-          <td class="paramname"><em>pdcedt</em>&#160;</td>
+          <td class="paramtype">const byte&#160;</td>
+          <td class="paramname"><em>pdcedt</em>[]&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1672,15 +1772,26 @@ EL 連携図</div>
 </div><div class="memdoc">
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname"></td><td></td></tr>
+    <tr><td class="paramname">toip</td><td>const IPAddress </td></tr>
+    <tr><td class="paramname">devId</td><td>const int </td></tr>
+    <tr><td class="paramname">deoj</td><td>const byte[] </td></tr>
+    <tr><td class="paramname">esv</td><td>const byte </td></tr>
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
+    <tr><td class="paramname">pdcedt</td><td>const byte[] </td></tr>
   </table>
   </dd>
 </dl>
-<p>return none </p><dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
+<dl class="section note"><dt>覚え書き</dt><dd>recommended 推奨 </dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_e_l_aa53e1f54dfbca2247da0fbd965582854_cgraph.png" border="0" usemap="#aclass_e_l_aa53e1f54dfbca2247da0fbd965582854_cgraph" alt=""/></div>
+<div class="center"><img src="class_e_l_af4248443d7f4c60f5e06325738713c9e_cgraph.png" border="0" usemap="#aclass_e_l_af4248443d7f4c60f5e06325738713c9e_cgraph" alt=""/></div>
+<map name="aclass_e_l_af4248443d7f4c60f5e06325738713c9e_cgraph" id="aclass_e_l_af4248443d7f4c60f5e06325738713c9e_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,129,56"/>
+<area shape="rect" href="class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="194,5,304,31"/>
+<area shape="rect" href="class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="177,55,321,80"/>
+<area shape="rect" href="class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="369,5,442,31"/>
+</map>
 </div>
 
 </div>
@@ -1710,21 +1821,16 @@ EL 連携図</div>
 </div><div class="memdoc">
 
 <p>TIDの自動インクリメント、オーバーフロー対策 </p>
-<dl class="params"><dt>引数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">none</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_ab91f0e1d94556d7a34d93c938ca4939e_icgraph.png" border="0" usemap="#aclass_e_l_ab91f0e1d94556d7a34d93c938ca4939e_icgraph" alt=""/></div>
 <map name="aclass_e_l_ab91f0e1d94556d7a34d93c938ca4939e_icgraph" id="aclass_e_l_ab91f0e1d94556d7a34d93c938ca4939e_icgraph">
-<area shape="rect" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="164,5,309,31"/>
-<area shape="rect" href="class_e_l.html#a18b96ff082a6ce4248cd8ad6202a2b8a" title=" " alt="" coords="5,5,116,31"/>
+<area shape="rect" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="205,80,349,106"/>
+<area shape="rect" href="class_e_l.html#ad4f9ad8d9d65fdc65a7914a42e58cdf5" title="OPC一個用のマルチキャスト送信、TID自動" alt="" coords="12,5,150,31"/>
+<area shape="rect" href="class_e_l.html#a1c2e707d004abf421b57d74ad46beebf" title="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動" alt="" coords="5,55,157,80"/>
+<area shape="rect" href="class_e_l.html#a86aa96de6dfaac6322e78c02a63eafd5" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="26,104,136,130"/>
+<area shape="rect" href="class_e_l.html#af4248443d7f4c60f5e06325738713c9e" title=" " alt="" coords="19,153,143,179"/>
 </map>
 </div>
 
@@ -1764,7 +1870,6 @@ EL 連携図</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
 <dl class="section note"><dt>覚え書き</dt><dd>pdcedtなので、pdcは自分で計算することに注意 </dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
@@ -1824,11 +1929,10 @@ EL 連携図</div>
   <table class="params">
     <tr><td class="paramname">devId</td><td>const int, コンストラクタで渡した順番に相当 </td></tr>
     <tr><td class="paramname">epc</td><td>const byte </td></tr>
-    <tr><td class="paramname">byte</td><td>pdcedt[] </td></tr>
+    <tr><td class="paramname">pdcedt</td><td>byte [] </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">

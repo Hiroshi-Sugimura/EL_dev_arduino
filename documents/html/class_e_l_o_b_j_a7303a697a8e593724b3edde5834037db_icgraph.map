@@ -1,0 +1,5 @@
+<map id="ELOBJ::GetMyPropertyMap" name="ELOBJ::GetMyPropertyMap">
+<area shape="rect" id="node1" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）" alt="" coords="215,31,399,56"/>
+<area shape="rect" id="node2" href="$class_e_l_o_b_j.html#ad5b66b3e3b3659afec58cbff221a8f41" title="指定のEPCがINF必須かどうか" alt="" coords="8,5,164,31"/>
+<area shape="rect" id="node3" href="$class_e_l_o_b_j.html#aa1b06695687ad009d29bc9a0343fb1ad" title="指定のEPCがSet可能かどうか" alt="" coords="5,55,167,80"/>
+</map>

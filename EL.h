@@ -174,7 +174,7 @@ private:
 	byte *_eojs;				   ///< EOJ array: = _eojs[][3]の構造で管理
 	int deviceCount;			   ///< Number of EOJ: _eojs[deviceCount][3]に相当
 	int _sendPacketSize = 0;	   ///< recentry sended packet size: 直近の送信パケットサイズ
-	int _readPacketSize = 0;	   /// < recentry readed packet size: 直近の受信・読込パケットサイズ
+	int _readPacketSize = 0;	   ///< recentry readed packet size: 直近の受信・読込パケットサイズ
 	byte _sBuffer[EL_BUFFER_SIZE]; ///< send buffer: 直近の送信パケットデータ
 	WiFiUDP *_udp;				   ///< WiFiのUDPソケット
 
@@ -202,10 +202,10 @@ public:
 
 	// sender
 	void send(IPAddress toip, byte sBuffer[], int size);
-	void sendOPC1(const IPAddress toip, const byte tid[], const byte seoj[], const byte *deoj, const byte esv, const byte epc, const byte edt[]);
-	void sendOPC1(const IPAddress toip, const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte edt[]);
-	void sendOPC1(const IPAddress toip, const byte deoj[], const byte esv, const byte epc, const byte *edt);
-	void sendOPC1ID(const IPAddress toip, const int devId, const byte deoj[], const byte esv, const byte epc, const byte *pdcedt);
+	void sendOPC1(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[]);
+	void sendOPC1(const IPAddress toip, const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[]);
+	void sendOPC1(const IPAddress toip, const byte deoj[], const byte esv, const byte epc, const byte pdcedt[]);
+	void sendOPC1ID(const IPAddress toip, const int devId, const byte deoj[], const byte esv, const byte epc, const byte pdcedt[]);
 	void sendBroad(byte sBuffer[], int size);
 	void sendMulti(byte sBuffer[], int size);
 	void sendMultiOPC1(const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[]);

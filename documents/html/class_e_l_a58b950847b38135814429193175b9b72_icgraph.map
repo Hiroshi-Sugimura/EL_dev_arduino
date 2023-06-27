@@ -1,8 +1,11 @@
 <map id="EL::send" name="EL::send">
-<area shape="rect" id="node1" title="IP指定による送信" alt="" coords="579,31,653,56"/>
-<area shape="rect" id="node2" href="$class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="416,31,531,56"/>
-<area shape="rect" id="node3" href="$class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,368,31"/>
-<area shape="rect" id="node6" href="$class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,55,367,80"/>
-<area shape="rect" id="node4" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,31,191,56"/>
-<area shape="rect" id="node5" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,31,52,56"/>
+<area shape="rect" id="node1" title="IP指定による送信" alt="" coords="575,105,648,131"/>
+<area shape="rect" id="node2" href="$class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="412,55,527,80"/>
+<area shape="rect" id="node7" href="$class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="415,131,524,156"/>
+<area shape="rect" id="node3" href="$class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="236,5,364,31"/>
+<area shape="rect" id="node6" href="$class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="237,55,364,80"/>
+<area shape="rect" id="node4" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="99,55,188,80"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,55,51,80"/>
+<area shape="rect" id="node8" href="$class_e_l.html#a86aa96de6dfaac6322e78c02a63eafd5" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="246,156,355,182"/>
+<area shape="rect" id="node9" href="$class_e_l.html#af4248443d7f4c60f5e06325738713c9e" title=" " alt="" coords="239,205,362,231"/>
 </map>

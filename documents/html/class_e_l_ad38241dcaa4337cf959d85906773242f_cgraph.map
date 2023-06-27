@@ -1,5 +1,7 @@
 <map id="EL::commonConstructor" name="EL::commonConstructor">
-<area shape="rect" id="node1" title="コンストラクタ共通処理" alt="" coords="5,5,169,31"/>
-<area shape="rect" id="node2" href="$class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3" title="null以外のEPCを全部出力" alt="" coords="217,5,329,31"/>
-<area shape="rect" id="node3" href="$class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title="デバグ用の標準出力" alt="" coords="377,5,487,31"/>
+<area shape="rect" id="node1" title="コンストラクタ共通処理" alt="" coords="5,31,169,56"/>
+<area shape="rect" id="node2" href="$class_e_l_o_b_j.html#a262bfd0930406b6833070140721d70d3" title="null以外のEPCを全部出力" alt="" coords="253,5,364,31"/>
+<area shape="rect" id="node4" href="$class_e_l_o_b_j.html#a43860eb81d06e0940a04f756b2ce6ab9" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する" alt="" coords="217,55,400,80"/>
+<area shape="rect" id="node3" href="$class_p_d_c_e_d_t.html#a2fedd0a51fc970f57b19fa2d1e7b8c7f" title="デバグ用の標準出力" alt="" coords="458,5,566,31"/>
+<area shape="rect" id="node5" href="$class_p_d_c_e_d_t.html#adf332064486b2b0e7e608a18a82bd318" title="EDT setter" alt="" coords="448,55,576,80"/>
 </map>
