@@ -3,6 +3,8 @@
 #######################################
 
 EL	KEYWORD1
+ELOBJ	KEYWORD1
+PDCEDT	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -14,10 +16,29 @@ update	KEYWORD2
 at	KEYWORD2
 send	KEYWORD2
 sendOPC1	KEYWORD2
+sendOPC1ID	KEYWORD2
 sendBroad	KEYWORD2
 sendMulti	KEYWORD2
 sendMultiOPC1	KEYWORD2
+sendMultiOPC1ID	KEYWORD2
 read	KEYWORD2
 remoteIP	KEYWORD2
 returner	KEYWORD2
+setEDTgetLength
+GetPDCEDTgetEDT
+isEmpty
+isNull
+GetPDCEDT
+SetPDCEDT
+SetProfile
+GetProfile
+hasGetProfile
+hasSetProfile
+hasInfProfile
+
+
+
+
+
+
 

@@ -425,12 +425,12 @@ const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const byte *&&pdcedt)
 /// @brief Profile(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する
 /// @param epcs std::initializer_list<byte> : epc list
 /// @return none
-/// @note e.g. obj.SetProfile( {0x80, 0x81, 0x88} )
+/// @note e.g. obj.SetMyPropertyMap( {0x80, 0x81, 0x88} )
 /// プロパティ数16以上（PDC含めると17Byte以上）のとき、Format 2
-const PDCEDT ELOBJ::SetProfile(const byte epc, std::initializer_list<byte> epcs)
+const PDCEDT ELOBJ::SetMyPropertyMap(const byte epc, std::initializer_list<byte> epcs)
 {
 #ifdef __ELOJB_DEBUG__
-	cout << "- ELOBJ::SetProfile()" << endl;
+	cout << "- ELOBJ::SetMyPropertyMap()" << endl;
 #endif
 	int key = epc - 0x80;
 	byte n = (byte)epcs.size();
@@ -475,12 +475,12 @@ const PDCEDT ELOBJ::SetProfile(const byte epc, std::initializer_list<byte> epcs)
 /// @brief Profile(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）
 /// @param epc const byte
 /// @return epcs Num + EPCs
-/// @note e.g. obj.GetProfile( 0x9d );
+/// @note e.g. obj.GetMyPropertyMap( 0x9d );
 /// Format 2を解析するところがミソ
-const byte *ELOBJ::GetProfile(const byte epc) const
+const byte *ELOBJ::GetMyPropertyMap(const byte epc) const
 {
 #ifdef __ELOJB_DEBUG__
-	cout << "- ELOBJ::GetProfile()" << endl;
+	cout << "- ELOBJ::GetMyPropertyMap()" << endl;
 #endif
 	int key = epc - 0x80;
 	byte *pdcedt = m_pdcedt[key];
@@ -488,8 +488,8 @@ const byte *ELOBJ::GetProfile(const byte epc) const
 	byte profNum = pdcedt[1];
 	byte *epcs = &pdcedt[2];
 #ifdef __ELOJB_DEBUG__
-	// cout << "- ELOBJ::GetProfile() PDC:" << dec << (int)pdc << endl;
-	// cout << "- ELOBJ::GetProfile() Num:" << dec << (int)profNum << endl;
+	// cout << "- ELOBJ::GetMyPropertyMap() PDC:" << dec << (int)pdc << endl;
+	// cout << "- ELOBJ::GetMyPropertyMap() Num:" << dec << (int)profNum << endl;
 #endif
 	if (profNum < 16)
 	{ // format 1ならそのままの形式、ただし 個数+epc listは pdcedt[1] に相当する
@@ -530,20 +530,20 @@ const byte *ELOBJ::GetProfile(const byte epc) const
 /// @return boolean true:available, false: not available
 /// @note EPC:0x9dで判定する
 /// 毎回Profileを全部作って捜査するので少し遅い。
-/// いくつもEPCを検索するなら、GetProfileをつかって自分で探すことをお勧めする。
-const bool ELOBJ::hasInfProfile(const byte epc) const
+/// いくつもEPCを検索するなら、GetMyPropertyMapをつかって自分で探すことをお勧めする。
+const bool ELOBJ::hasInfProperty(const byte epc) const
 {
 	int key = epc - 0x80;
-	const byte *setlist = GetProfile(0x9d);
+	const byte *setlist = GetMyPropertyMap(0x9d);
 	const byte num = setlist[0];
 	const byte *edtarray = &setlist[1];
 
 	for (int i = 0; i < num; i += 1)
 	{
 #ifdef __ELOJB_DEBUG__
-		// cout << "- ELOBJ::hasInfProfile : " << (int)i + 1 << "/" << (int)num << endl;
-		// cout << "- ELOBJ::hasInfProfile : has:" << hex << (int)edtarray[i] << endl;
-		// cout << "- ELOBJ::hasInfProfile : epc:" << hex << (int)epc << endl;
+		// cout << "- ELOBJ::hasInfProperty : " << (int)i + 1 << "/" << (int)num << endl;
+		// cout << "- ELOBJ::hasInfProperty : has:" << hex << (int)edtarray[i] << endl;
+		// cout << "- ELOBJ::hasInfProperty : epc:" << hex << (int)epc << endl;
 #endif
 		if (edtarray[i] == epc)
 		{
@@ -560,21 +560,21 @@ const bool ELOBJ::hasInfProfile(const byte epc) const
 /// @return boolean true:available, false: not available
 /// @note EPC:0x9eで判定する
 /// 毎回Profileを全部作って捜査するので少し遅い。
-/// いくつもEPCを検索するなら、GetProfileをつかって自分で探すことをお勧めする。
+/// いくつもEPCを検索するなら、GetMyPropertyMapをつかって自分で探すことをお勧めする。
 /// No checkでEPCにセットすると、新規作成するのできちんとチェックしてからセットしたい
-const bool ELOBJ::hasSetProfile(const byte epc) const
+const bool ELOBJ::hasSetProperty(const byte epc) const
 {
 	int key = epc - 0x80;
-	const byte *setlist = GetProfile(0x9d);
+	const byte *setlist = GetMyPropertyMap(0x9d);
 	const byte num = setlist[0];
 	const byte *edtarray = &setlist[1];
 
 	for (int i = 0; i < num; i += 1)
 	{
 #ifdef __ELOJB_DEBUG__
-		// cout << "- ELOBJ::hasSetProfile : " << (int)i + 1 << "/" << (int)num << endl;
-		// cout << "- ELOBJ::hasSetProfile : has:" << hex << (int)edtarray[i] << endl;
-		// cout << "- ELOBJ::hasSetProfile : epc:" << hex << (int)epc << endl;
+		// cout << "- ELOBJ::hasSetProperty : " << (int)i + 1 << "/" << (int)num << endl;
+		// cout << "- ELOBJ::hasSetProperty : has:" << hex << (int)edtarray[i] << endl;
+		// cout << "- ELOBJ::hasSetProperty : epc:" << hex << (int)epc << endl;
 #endif
 		if (edtarray[i] == epc)
 		{
@@ -590,7 +590,7 @@ const bool ELOBJ::hasSetProfile(const byte epc) const
 /// @param void
 /// @return boolean true:available, false: no EPC
 /// @note isEmptyの逆と思っていい。プロパティ持っているかだけで判定する、EPC:0x9fは確認しない
-const bool ELOBJ::hasGetProfile(const byte epc) const
+const bool ELOBJ::hasGetProperty(const byte epc) const
 {
 	int key = epc - 0x80;
 	return (!m_pdcedt[key].isNull());
