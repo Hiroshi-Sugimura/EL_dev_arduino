@@ -5,7 +5,7 @@
 /// @date 2013.09.27
 /// @details https://github.com/Hiroshi-Sugimura/EL_dev_arduino
 //////////////////////////////////////////////////////////////////////
-#include "ELOBJ.h"
+#include <ELOBJ.h>
 
 // #define __ELOJB_DEBUG__ 1
 

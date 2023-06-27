@@ -5,8 +5,8 @@
 /// @date 2013.09.27
 /// @details https://github.com/Hiroshi-Sugimura/EL_dev_arduino
 //////////////////////////////////////////////////////////////////////
-#include "ELOBJ.h"
-#include "EL.h"
+#include <ELOBJ.h>
+#include <EL.h>
 
 // #define __EL_DEBUG__ 1
 
@@ -442,7 +442,7 @@ void EL::sendMultiOPC1(const byte *deoj, const byte esv, const byte epc, const b
 /// @param pdcedt const byte*
 /// @return none
 /// @note recommendation 推奨
-void EL::sendMultiOPC1(const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
+void EL::sendMultiOPC1ID(const int devId, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
 {
 	if (devId < deviceCount)
 	{
@@ -493,7 +493,7 @@ void EL::send(IPAddress toip, byte sBuffer[], int size)
 /// @return none
 /// @note
 // OPC1指定による送信(SEOJも指定する，ほぼ内部関数)
-void EL::sendOPC1(const IPAddress toip, const byte tid[], const byte *seoj, const byte *deoj, const byte esv, const byte epc, const byte *pdcedt)
+void EL::sendOPC1(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])
 {
 	_sBuffer[EL_EHD1] = 0x10;
 	_sBuffer[EL_EHD2] = 0x81;
@@ -562,7 +562,7 @@ void EL::sendOPC1(const IPAddress toip, const byte deoj[], const byte esv, const
 /// @param
 /// @return none
 /// @note
-void EL::sendOPC1(const IPAddress toip, const int devId, const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])
+void EL::sendOPC1ID(const IPAddress toip, const int devId, const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])
 {
 	byte eoj[3] = {_eojs[devId * 3 + 0], _eojs[devId * 3 + 1], _eojs[devId * 3 + 2]};
 	sendOPC1(toip, _tid, eoj, deoj, esv, epc, pdcedt);

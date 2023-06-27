@@ -3,6 +3,8 @@
 #######################################
 
 EL	KEYWORD1
+ELOBJ	KEYWORD1
+PDCEDT	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -14,10 +16,28 @@ update	KEYWORD2
 at	KEYWORD2
 send	KEYWORD2
 sendOPC1	KEYWORD2
+sendOPC1ID	KEYWORD2
 sendBroad	KEYWORD2
 sendMulti	KEYWORD2
 sendMultiOPC1	KEYWORD2
+sendMultiOPC1ID	KEYWORD2
 read	KEYWORD2
 remoteIP	KEYWORD2
 returner	KEYWORD2
+setEDT	KEYWORD2
+getEDT	KEYWORD2
+getLength	KEYWORD2
+isEmpty	KEYWORD2
+isNull	KEYWORD2
+GetPDCEDT	KEYWORD2
+SetPDCEDT	KEYWORD2
+SetMyPropertyMap	KEYWORD2
+GetMyPropertyMap	KEYWORD2
+hasGetProperty	KEYWORD2
+hasSetProperty	KEYWORD2
+hasInfProperty	KEYWORD2
+
+#######################################
+# Literals (LITERAL1)
+#######################################
 

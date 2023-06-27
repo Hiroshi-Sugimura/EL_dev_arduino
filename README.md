@@ -268,7 +268,7 @@ Received data.
 
 # Version
 
-- 2.10.0 rename functions, e.g. SetProfile to SetMyPropertyMap
+- 3.0.0 change method name! sendOPC1(type devId) to sendOPC1ID, also sendMultiOPC1(type devId) to sendMultiOPC1ID. workaround for overload issue. Set/GetProfile to Set/GetMyPropertyMap. additional Keyword.
 - 2.9.1 calc and set automatically the identification number(0x83) (devices)
 - 2.9.0 calc and set automatically the identification number(0x83) (profile)
 - 2.8.2 bugfix SetProfile, GetProfile
