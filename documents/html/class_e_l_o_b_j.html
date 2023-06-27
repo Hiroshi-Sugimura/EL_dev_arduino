@@ -110,10 +110,10 @@ ELOBJ 連携図</div>
 <tr class="memdesc:a7aca78a5ab1d2670efbfc711d1f5d28b"><td class="mdescLeft">&#160;</td><td class="mdescRight">EPCに対して、PDCEDTのを結びつける（セットと更新）  <br /></td></tr>
 <tr class="separator:a7aca78a5ab1d2670efbfc711d1f5d28b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43860eb81d06e0940a04f756b2ce6ab9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_p_d_c_e_d_t.html">PDCEDT</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#a43860eb81d06e0940a04f756b2ce6ab9">SetMyPropertyMap</a> (const byte epc, std::initializer_list&lt; byte &gt; epcs)</td></tr>
-<tr class="memdesc:a43860eb81d06e0940a04f756b2ce6ab9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Profile(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する  <br /></td></tr>
+<tr class="memdesc:a43860eb81d06e0940a04f756b2ce6ab9"><td class="mdescLeft">&#160;</td><td class="mdescRight">PropertyMap(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する  <br /></td></tr>
 <tr class="separator:a43860eb81d06e0940a04f756b2ce6ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7303a697a8e593724b3edde5834037db"><td class="memItemLeft" align="right" valign="top">const byte *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#a7303a697a8e593724b3edde5834037db">GetMyPropertyMap</a> (const byte epc) const</td></tr>
-<tr class="memdesc:a7303a697a8e593724b3edde5834037db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Profile(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）  <br /></td></tr>
+<tr class="memdesc:a7303a697a8e593724b3edde5834037db"><td class="mdescLeft">&#160;</td><td class="mdescRight">PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）  <br /></td></tr>
 <tr class="separator:a7303a697a8e593724b3edde5834037db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84730709bbdc40e8d31c6d42f76a15a9"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_e_l_o_b_j.html#a84730709bbdc40e8d31c6d42f76a15a9">hasGetProperty</a> (const byte epc) const</td></tr>
 <tr class="memdesc:a84730709bbdc40e8d31c6d42f76a15a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定のEPCがGet可能かどうか  <br /></td></tr>
@@ -165,8 +165,6 @@ ELOBJ 連携図</div>
 </div><div class="memdoc">
 
 <p>コンストラクタ </p>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -194,8 +192,6 @@ ELOBJ 連携図</div>
 </div><div class="memdoc">
 
 <p>デストラクタ </p>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -216,7 +212,7 @@ ELOBJ 連携図</div>
       </table>
 </div><div class="memdoc">
 
-<p>Profile(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意） </p>
+<p>PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意） </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
     <tr><td class="paramname">epc</td><td>const byte </td></tr>
@@ -229,6 +225,11 @@ ELOBJ 連携図</div>
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_o_b_j_a7303a697a8e593724b3edde5834037db_icgraph.png" border="0" usemap="#aclass_e_l_o_b_j_a7303a697a8e593724b3edde5834037db_icgraph" alt=""/></div>
+<map name="aclass_e_l_o_b_j_a7303a697a8e593724b3edde5834037db_icgraph" id="aclass_e_l_o_b_j_a7303a697a8e593724b3edde5834037db_icgraph">
+<area shape="rect" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）" alt="" coords="215,31,399,56"/>
+<area shape="rect" href="class_e_l_o_b_j.html#ad5b66b3e3b3659afec58cbff221a8f41" title="指定のEPCがINF必須かどうか" alt="" coords="8,5,164,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#aa1b06695687ad009d29bc9a0343fb1ad" title="指定のEPCがSet可能かどうか" alt="" coords="5,55,167,80"/>
+</map>
 </div>
 
 </div>
@@ -256,8 +257,7 @@ ELOBJ 連携図</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
+<dl class="section return"><dt>戻り値</dt><dd>m_pdcedt[key] </dd></dl>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
@@ -289,7 +289,7 @@ ELOBJ 連携図</div>
 <p>指定のEPCがGet可能かどうか </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">void</td><td></td></tr>
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
   </table>
   </dd>
 </dl>
@@ -327,6 +327,10 @@ ELOBJ 連携図</div>
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_o_b_j_ad5b66b3e3b3659afec58cbff221a8f41_cgraph.png" border="0" usemap="#aclass_e_l_o_b_j_ad5b66b3e3b3659afec58cbff221a8f41_cgraph" alt=""/></div>
+<map name="aclass_e_l_o_b_j_ad5b66b3e3b3659afec58cbff221a8f41_cgraph" id="aclass_e_l_o_b_j_ad5b66b3e3b3659afec58cbff221a8f41_cgraph">
+<area shape="rect" title="指定のEPCがINF必須かどうか" alt="" coords="5,5,162,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a7303a697a8e593724b3edde5834037db" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）" alt="" coords="210,5,394,31"/>
+</map>
 </div>
 
 </div>
@@ -360,6 +364,10 @@ ELOBJ 連携図</div>
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_o_b_j_aa1b06695687ad009d29bc9a0343fb1ad_cgraph.png" border="0" usemap="#aclass_e_l_o_b_j_aa1b06695687ad009d29bc9a0343fb1ad_cgraph" alt=""/></div>
+<map name="aclass_e_l_o_b_j_aa1b06695687ad009d29bc9a0343fb1ad_cgraph" id="aclass_e_l_o_b_j_aa1b06695687ad009d29bc9a0343fb1ad_cgraph">
+<area shape="rect" title="指定のEPCがSet可能かどうか" alt="" coords="5,5,167,31"/>
+<area shape="rect" href="class_e_l_o_b_j.html#a7303a697a8e593724b3edde5834037db" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）" alt="" coords="215,5,399,31"/>
+</map>
 </div>
 
 </div>
@@ -387,8 +395,7 @@ ELOBJ 連携図</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
+<dl class="section return"><dt>戻り値</dt><dd>pdcedt <a class="el" href="class_p_d_c_e_d_t.html" title="PDC and EDT in ELOBJ">PDCEDT</a>&amp; </dd></dl>
 
 </div>
 </div>
@@ -415,8 +422,7 @@ ELOBJ 連携図</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
+<dl class="section return"><dt>戻り値</dt><dd>pdcedt const <a class="el" href="class_p_d_c_e_d_t.html" title="PDC and EDT in ELOBJ">PDCEDT</a> </dd></dl>
 
 </div>
 </div>
@@ -436,8 +442,6 @@ ELOBJ 連携図</div>
 </div><div class="memdoc">
 
 <p>null以外のEPCを全部出力 </p>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
-<dl class="section note"><dt>覚え書き</dt><dd></dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
@@ -487,24 +491,34 @@ ELOBJ 連携図</div>
       </table>
 </div><div class="memdoc">
 
-<p>Profile(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する </p>
+<p>PropertyMap(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
     <tr><td class="paramname">epcs</td><td>std::initializer_list&lt;byte&gt; : epc list </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
+<dl class="section return"><dt>戻り値</dt><dd>m_pdcedt[key] </dd></dl>
 <dl class="section note"><dt>覚え書き</dt><dd>e.g. obj.SetMyPropertyMap( {0x80, 0x81, 0x88} ) プロパティ数16以上（PDC含めると17Byte以上）のとき、Format 2 </dd></dl>
 <div class="dynheader">
 呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_o_b_j_a43860eb81d06e0940a04f756b2ce6ab9_cgraph.png" border="0" usemap="#aclass_e_l_o_b_j_a43860eb81d06e0940a04f756b2ce6ab9_cgraph" alt=""/></div>
+<map name="aclass_e_l_o_b_j_a43860eb81d06e0940a04f756b2ce6ab9_cgraph" id="aclass_e_l_o_b_j_a43860eb81d06e0940a04f756b2ce6ab9_cgraph">
+<area shape="rect" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する" alt="" coords="5,5,189,31"/>
+<area shape="rect" href="class_p_d_c_e_d_t.html#adf332064486b2b0e7e608a18a82bd318" title="EDT setter" alt="" coords="237,5,365,31"/>
+</map>
 </div>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_e_l_o_b_j_a43860eb81d06e0940a04f756b2ce6ab9_icgraph.png" border="0" usemap="#aclass_e_l_o_b_j_a43860eb81d06e0940a04f756b2ce6ab9_icgraph" alt=""/></div>
+<map name="aclass_e_l_o_b_j_a43860eb81d06e0940a04f756b2ce6ab9_icgraph" id="aclass_e_l_o_b_j_a43860eb81d06e0940a04f756b2ce6ab9_icgraph">
+<area shape="rect" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する" alt="" coords="326,5,509,31"/>
+<area shape="rect" href="class_e_l.html#ad38241dcaa4337cf959d85906773242f" title="コンストラクタ共通処理" alt="" coords="115,5,278,31"/>
+<area shape="rect" href="class_e_l.html#aeea65419f3e4e45f6d10af3a01d50cbd" title="オブジェクトを一つだけサポートする場合のコンストラクタ" alt="" coords="5,5,67,31"/>
+</map>
 </div>
 
 </div>
@@ -538,12 +552,12 @@ ELOBJ 連携図</div>
 <p>EPCに対して、PDCEDTのを結びつける（セットと更新） </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">epc</td><td></td></tr>
-    <tr><td class="paramname">pdcedt</td><td></td></tr>
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
+    <tr><td class="paramname">pdcedt</td><td>const byte*&amp;&amp; </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
+<dl class="section return"><dt>戻り値</dt><dd>m_pdcedt[key] </dd></dl>
 <dl class="section note"><dt>覚え書き</dt><dd>pdcedtがconst byte*型のときに呼ばれる </dd></dl>
 
 </div>
@@ -577,12 +591,12 @@ ELOBJ 連携図</div>
 <p>EPCに対して、PDCEDTのを結びつける（セットと更新） </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">epc</td><td></td></tr>
-    <tr><td class="paramname">pdcedt</td><td></td></tr>
+    <tr><td class="paramname">epc</td><td>const byte </td></tr>
+    <tr><td class="paramname">pdcedt</td><td>const <a class="el" href="class_p_d_c_e_d_t.html" title="PDC and EDT in ELOBJ">PDCEDT</a> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>none </dd></dl>
+<dl class="section return"><dt>戻り値</dt><dd>m_pdcedt[key] </dd></dl>
 <dl class="section note"><dt>覚え書き</dt><dd>pdcedtがPDCEDT型のときに呼ばれる </dd></dl>
 <div class="dynheader">
 被呼び出し関係図:</div>

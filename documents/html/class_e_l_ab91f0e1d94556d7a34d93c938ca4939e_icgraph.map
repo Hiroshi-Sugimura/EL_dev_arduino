@@ -1,4 +1,7 @@
 <map id="EL::tidAutoIncrement" name="EL::tidAutoIncrement">
-<area shape="rect" id="node1" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="164,5,309,31"/>
-<area shape="rect" id="node2" href="$class_e_l.html#a18b96ff082a6ce4248cd8ad6202a2b8a" title=" " alt="" coords="5,5,116,31"/>
+<area shape="rect" id="node1" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="205,80,349,106"/>
+<area shape="rect" id="node2" href="$class_e_l.html#ad4f9ad8d9d65fdc65a7914a42e58cdf5" title="OPC一個用のマルチキャスト送信、TID自動" alt="" coords="12,5,150,31"/>
+<area shape="rect" id="node3" href="$class_e_l.html#a1c2e707d004abf421b57d74ad46beebf" title="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動" alt="" coords="5,55,157,80"/>
+<area shape="rect" id="node4" href="$class_e_l.html#a86aa96de6dfaac6322e78c02a63eafd5" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="26,104,136,130"/>
+<area shape="rect" id="node5" href="$class_e_l.html#af4248443d7f4c60f5e06325738713c9e" title=" " alt="" coords="19,153,143,179"/>
 </map>

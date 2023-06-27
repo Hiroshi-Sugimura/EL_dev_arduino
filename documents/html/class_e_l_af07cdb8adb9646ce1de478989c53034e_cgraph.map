@@ -1,0 +1,4 @@
+<map id="EL::sendMultiOPC1" name="EL::sendMultiOPC1">
+<area shape="rect" id="node1" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="5,5,143,31"/>
+<area shape="rect" id="node2" href="$class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="191,5,292,31"/>
+</map>

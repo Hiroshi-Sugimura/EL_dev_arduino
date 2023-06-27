@@ -11,8 +11,6 @@
 
 //////////////////////////////////////////////////////////////////////
 /// @brief コンストラクタ
-/// @param none
-/// @return none
 /// @note e.g. PDCEDT p; p = {0x30, 0x31};
 PDCEDT::PDCEDT()
 {
@@ -23,7 +21,6 @@ PDCEDT::PDCEDT()
 ////////////////////////////////////////////////////
 /// @brief コピーコンストラクタ
 /// @param val const PDCEDT& コピー元
-/// @return none
 /// @note e.g. PDCEDT pb = pa;
 PDCEDT::PDCEDT(const PDCEDT &val) // copy constractor
 {
@@ -38,7 +35,6 @@ PDCEDT::PDCEDT(const PDCEDT &val) // copy constractor
 ////////////////////////////////////////////////////
 /// @brief 初期化コンストラクタ
 /// @param val const byte*
-/// @return none
 /// @note e.g. PDCEDT pb((byte[]){0x01, 0x8b});
 PDCEDT::PDCEDT(const byte *val)
 {
@@ -53,7 +49,6 @@ PDCEDT::PDCEDT(const byte *val)
 ////////////////////////////////////////////////////
 /// @brief 初期化コンストラクタ
 /// @param il iterator
-/// @return none
 /// @note  PDCEDT p = {0x30, 0x31}; のように実装可能なコンストラクタ
 PDCEDT::PDCEDT(std::initializer_list<byte> il)
 {
@@ -74,9 +69,6 @@ PDCEDT::PDCEDT(std::initializer_list<byte> il)
 
 ////////////////////////////////////////////////////
 /// @brief デストラクタ
-/// @param none
-/// @return none
-/// @note
 PDCEDT::~PDCEDT()
 {
 #ifdef __ELOJB_DEBUG__
@@ -119,7 +111,6 @@ const PDCEDT PDCEDT::operator=(const PDCEDT val)
 /// @brief operator=
 /// @param val const byte*
 /// @return const byte*
-/// @note
 const byte *PDCEDT::operator=(const byte *val)
 {
 #ifdef __ELOJB_DEBUG__
@@ -164,9 +155,7 @@ const byte *PDCEDT::operator=(std::initializer_list<byte> il)
 
 ////////////////////////////////////////////////////
 /// @brief operator byte*
-/// @param none
-/// @return byte*
-/// @note
+/// @return pdcedt byte*
 PDCEDT::operator byte *() const
 {
 #ifdef __ELOJB_DEBUG__
@@ -238,9 +227,7 @@ const byte *PDCEDT::setEDT(const byte edt[], int size)
 
 ////////////////////////////////////////////////////
 /// @brief PDCEDT Length getter
-/// @param none
 /// @return Length byte (= PDC + 1 Byte)
-/// @note
 const byte PDCEDT::getLength() const
 {
 #ifdef __ELOJB_DEBUG__
@@ -251,9 +238,7 @@ const byte PDCEDT::getLength() const
 
 ////////////////////////////////////////////////////
 /// @brief PDC getter
-/// @param none
 /// @return PDC byte (length of EDT)
-/// @note
 const byte PDCEDT::getPDC() const
 {
 #ifdef __ELOJB_DEBUG__
@@ -264,9 +249,7 @@ const byte PDCEDT::getPDC() const
 
 ////////////////////////////////////////////////////
 /// @brief EDT getter
-/// @param none
 /// @return EDT byte*
-/// @note
 const byte *PDCEDT::getEDT() const
 {
 #ifdef __ELOJB_DEBUG__
@@ -277,7 +260,6 @@ const byte *PDCEDT::getEDT() const
 
 ////////////////////////////////////////////////////
 /// @brief 設定されているかどうか
-/// @param void
 /// @return boolean true:empty, false: not empty
 /// @note isNullと同じ
 const bool PDCEDT::isEmpty() const
@@ -291,7 +273,6 @@ const bool PDCEDT::isEmpty() const
 
 ////////////////////////////////////////////////////
 /// @brief Nullかどうか
-/// @param void
 /// @return boolean true:Null, false: not Null
 /// @note isEmptyと同じ
 const bool PDCEDT::isNull() const
@@ -305,9 +286,6 @@ const bool PDCEDT::isNull() const
 
 ////////////////////////////////////////////////////
 /// @brief デバグ用の標準出力
-/// @param void
-/// @return void
-/// @note
 void PDCEDT::print(void) const
 {
 	char s[2];
@@ -358,8 +336,6 @@ void PDCEDT::print(void) const
 
 ////////////////////////////////////////////////////
 /// @brief コンストラクタ
-/// @return none
-/// @note
 ELOBJ::ELOBJ()
 {
 #ifdef __ELOJB_DEBUG__
@@ -369,8 +345,6 @@ ELOBJ::ELOBJ()
 
 ////////////////////////////////////////////////////
 /// @brief デストラクタ
-/// @return none
-/// @note
 ELOBJ::~ELOBJ()
 {
 #ifdef __ELOJB_DEBUG__
@@ -381,8 +355,7 @@ ELOBJ::~ELOBJ()
 ////////////////////////////////////////////////////
 /// @brief キー文字列からデータ取得
 /// @param epc const byte
-/// @return none
-/// @note
+/// @return m_pdcedt[key]
 const PDCEDT ELOBJ::GetPDCEDT(const byte epc) const
 {
 	int key = epc - 0x80;
@@ -391,9 +364,9 @@ const PDCEDT ELOBJ::GetPDCEDT(const byte epc) const
 
 ////////////////////////////////////////////////////
 /// @brief EPCに対して、PDCEDTのを結びつける（セットと更新）
-/// @param epc
-/// @param pdcedt
-/// @return none
+/// @param epc const byte
+/// @param pdcedt const PDCEDT
+/// @return m_pdcedt[key]
 /// @note pdcedtがPDCEDT型のときに呼ばれる
 const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const PDCEDT pdcedt)
 {
@@ -407,9 +380,9 @@ const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const PDCEDT pdcedt)
 
 ////////////////////////////////////////////////////
 /// @brief EPCに対して、PDCEDTのを結びつける（セットと更新）
-/// @param epc
-/// @param pdcedt
-/// @return none
+/// @param epc const byte
+/// @param pdcedt const byte*&&
+/// @return m_pdcedt[key]
 /// @note pdcedtがconst byte*型のときに呼ばれる
 const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const byte *&&pdcedt)
 {
@@ -422,9 +395,10 @@ const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const byte *&&pdcedt)
 }
 
 ////////////////////////////////////////////////////
-/// @brief Profile(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する
+/// @brief PropertyMap(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する
+/// @param epc const byte
 /// @param epcs std::initializer_list<byte> : epc list
-/// @return none
+/// @return m_pdcedt[key]
 /// @note e.g. obj.SetMyPropertyMap( {0x80, 0x81, 0x88} )
 /// プロパティ数16以上（PDC含めると17Byte以上）のとき、Format 2
 const PDCEDT ELOBJ::SetMyPropertyMap(const byte epc, std::initializer_list<byte> epcs)
@@ -472,7 +446,7 @@ const PDCEDT ELOBJ::SetMyPropertyMap(const byte epc, std::initializer_list<byte>
 }
 
 ////////////////////////////////////////////////////
-/// @brief Profile(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）
+/// @brief PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）
 /// @param epc const byte
 /// @return epcs Num + EPCs
 /// @note e.g. obj.GetMyPropertyMap( 0x9d );
@@ -587,7 +561,7 @@ const bool ELOBJ::hasSetProperty(const byte epc) const
 
 ////////////////////////////////////////////////////
 /// @brief 指定のEPCがGet可能かどうか
-/// @param void
+/// @param epc const byte
 /// @return boolean true:available, false: no EPC
 /// @note isEmptyの逆と思っていい。プロパティ持っているかだけで判定する、EPC:0x9fは確認しない
 const bool ELOBJ::hasGetProperty(const byte epc) const
@@ -599,8 +573,7 @@ const bool ELOBJ::hasGetProperty(const byte epc) const
 ////////////////////////////////////////////////////
 /// @brief 配列らしいインターフェイス，const this
 /// @param epc const byte
-/// @return none
-/// @note
+/// @return pdcedt const PDCEDT
 const PDCEDT ELOBJ::operator[](const byte epc) const
 {
 #ifdef __ELOJB_DEBUG__
@@ -613,8 +586,7 @@ const PDCEDT ELOBJ::operator[](const byte epc) const
 ////////////////////////////////////////////////////
 /// @brief 配列らしいインターフェイス，not const this
 /// @param epc const byte
-/// @return none
-/// @note
+/// @return pdcedt PDCEDT&
 PDCEDT &ELOBJ::operator[](const byte epc)
 {
 #ifdef __ELOJB_DEBUG__
@@ -626,8 +598,6 @@ PDCEDT &ELOBJ::operator[](const byte epc)
 
 ////////////////////////////////////////////////////
 /// @brief null以外のEPCを全部出力
-/// @return none
-/// @note
 void ELOBJ::printAll() const
 {
 	char s[2];

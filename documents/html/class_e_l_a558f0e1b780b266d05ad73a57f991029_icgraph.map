@@ -1,7 +1,7 @@
 <map id="EL::sendDetails" name="EL::sendDetails">
-<area shape="rect" id="node1" title="複数のEPCで送信する場合はこれを使う" alt="" coords="416,31,531,56"/>
-<area shape="rect" id="node2" href="$class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,368,31"/>
-<area shape="rect" id="node5" href="$class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,55,367,80"/>
-<area shape="rect" id="node3" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,31,191,56"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,31,52,56"/>
+<area shape="rect" id="node1" title="複数のEPCで送信する場合はこれを使う" alt="" coords="412,31,527,56"/>
+<area shape="rect" id="node2" href="$class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="236,5,364,31"/>
+<area shape="rect" id="node5" href="$class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="237,55,364,80"/>
+<area shape="rect" id="node3" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="99,31,188,56"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,31,51,56"/>
 </map>

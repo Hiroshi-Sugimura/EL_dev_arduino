@@ -1,6 +1,6 @@
 <map id="EL::replySetDetail_sub" name="EL::replySetDetail_sub">
-<area shape="rect" id="node1" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="415,5,571,31"/>
-<area shape="rect" id="node2" href="$class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="239,5,367,31"/>
-<area shape="rect" id="node3" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title=" " alt="" coords="100,5,191,31"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,52,31"/>
+<area shape="rect" id="node1" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="411,5,567,31"/>
+<area shape="rect" id="node2" href="$class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="236,5,363,31"/>
+<area shape="rect" id="node3" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="99,5,188,31"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,31"/>
 </map>
