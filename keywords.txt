@@ -24,21 +24,16 @@ sendMultiOPC1ID	KEYWORD2
 read	KEYWORD2
 remoteIP	KEYWORD2
 returner	KEYWORD2
-setEDTgetLength
-GetPDCEDTgetEDT
-isEmpty
-isNull
-GetPDCEDT
-SetPDCEDT
-SetProfile
-GetProfile
-hasGetProfile
-hasSetProfile
-hasInfProfile
-
-
-
-
-
-
+setEDT	KEYWORD2
+getEDT	KEYWORD2
+getLength	KEYWORD2
+isEmpty	KEYWORD2
+isNull	KEYWORD2
+GetPDCEDT	KEYWORD2
+SetPDCEDT	KEYWORD2
+SetProperty	KEYWORD2
+GetProperty	KEYWORD2
+hasGetProperty	KEYWORD2
+hasSetProperty	KEYWORD2
+hasInfProperty	KEYWORD2
 
