@@ -29,7 +29,7 @@ using std::hex;
 using std::move;
 #endif
 
-#include "ELOBJ.h"
+#include <ELOBJ.h>
 
 // defined
 #define EL_PORT 3610 ///< ECHONET Lite port

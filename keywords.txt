@@ -31,9 +31,13 @@ isEmpty	KEYWORD2
 isNull	KEYWORD2
 GetPDCEDT	KEYWORD2
 SetPDCEDT	KEYWORD2
-SetProperty	KEYWORD2
-GetProperty	KEYWORD2
+SetMyPropertyMap	KEYWORD2
+GetMyPropertyMap	KEYWORD2
 hasGetProperty	KEYWORD2
 hasSetProperty	KEYWORD2
 hasInfProperty	KEYWORD2
+
+#######################################
+# Literals (LITERAL1)
+#######################################
 

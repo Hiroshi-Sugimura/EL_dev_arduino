@@ -1,0 +1,13 @@
+digraph "EL::sendMultiOPC1ID"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [label="EL::sendMultiOPC1ID",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動"];
+  Node1 -> Node2 [color="steelblue1",style="solid"];
+  Node2 [label="EL::sendMultiOPC1",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l.html#af07cdb8adb9646ce1de478989c53034e",tooltip=" "];
+  Node1 -> Node3 [color="steelblue1",style="solid"];
+  Node3 [label="EL::tidAutoIncrement",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e",tooltip="TIDの自動インクリメント、オーバーフロー対策"];
+}
