@@ -5,8 +5,13 @@
 /// @date 2013.09.27
 /// @details https://github.com/Hiroshi-Sugimura/EL_dev_arduino
 //////////////////////////////////////////////////////////////////////
+#ifndef GPP
 #include <ELOBJ.h>
 #include <EL.h>
+#else
+#include "ELOBJ.h"
+#include "EL.h"
+#endif
 
 // #define __EL_DEBUG__ 1
 
@@ -149,13 +154,13 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 	profile[0xd7].setEDT(classes, classNum * 2 + 1);	// class list
 
 	// device object
-	for (int i = 0; i < deviceCount; i++)
+	for (unsigned char i = 0; i < deviceCount; i++)
 	{
 		devices[i][0x80].setEDT({0x30});				   // power
 		devices[i][0x81].setEDT({0x00});				   // position
 		devices[i][0x82].setEDT({0x00, 0x00, 0x4b, 0x00}); // release K
 
-		devices[i][0x83].setEDT({0xfe, _mac[0], _mac[1], _mac[2], _mac[3], _mac[4], _mac[5], _eojs[i * 3], _eojs[i * 3 + 1], _eojs[i * 3 + 2], 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, i + 1}); // identification number
+		devices[i][0x83].setEDT({0xfe, _mac[0], _mac[1], _mac[2], _mac[3], _mac[4], _mac[5], _eojs[i * 3], _eojs[i * 3 + 1], _eojs[i * 3 + 2], 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, static_cast<unsigned char>(i + 1) }); // identification number
 
 		devices[i][0x88].setEDT({0x42});			 // error status
 		devices[i][0x8a].setEDT({0x00, 0x00, 0x77}); // maker KAIT
