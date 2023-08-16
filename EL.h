@@ -15,6 +15,7 @@
 #include <Arduino.h>
 #include <WiFi.h>
 #include <WiFiUDP.h>
+#include <ELOBJ.h>
 
 #else
 // g++
@@ -22,6 +23,7 @@ typedef unsigned char byte;
 typedef bool boolean;
 #include <iostream>
 #include "WiFiUDP.h"
+#include "ELOBJ.h"
 using std::cout;
 using std::dec;
 using std::endl;
@@ -29,7 +31,6 @@ using std::hex;
 using std::move;
 #endif
 
-#include <ELOBJ.h>
 
 // defined
 #define EL_PORT 3610 ///< ECHONET Lite port

@@ -5,7 +5,11 @@
 /// @date 2013.09.27
 /// @details https://github.com/Hiroshi-Sugimura/EL_dev_arduino
 //////////////////////////////////////////////////////////////////////
+#ifndef GPP
 #include <ELOBJ.h>
+#else
+#include "ELOBJ.h"
+#endif
 
 // #define __ELOJB_DEBUG__ 1
 
