@@ -268,6 +268,7 @@ Received data.
 
 # Version
 
+- 4.0.0 コールバックタイプのAPI追加
 - 3.0.1 スタブ対応と細かいキャスト
 - 3.0.0 change method name! sendOPC1(type devId) to sendOPC1ID, also sendMultiOPC1(type devId) to sendMultiOPC1ID. workaround for overload issue. Set/GetProfile to Set/GetMyPropertyMap. additional Keyword.
 - 2.9.1 calc and set automatically the identification number(0x83) (devices)

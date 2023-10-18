@@ -991,8 +991,8 @@ void EL::returner(void)
 	{
 	case EL_SETI:
 		break; // SetIは返信しない
-			   ///////////////////////////////////////////////////////////////////
-			   // SETC, Get, INF_REQ は返信処理がある
+		///////////////////////////////////////////////////////////////////
+		// SETC, Get, INF_REQ は返信処理がある
 	case EL_SETC:
 #ifdef __EL_DEBUG__
 		Serial.println("### SETC ###");
@@ -1029,6 +1029,33 @@ void EL::returner(void)
 		break;
 	}
 }
+
+
+void EL::recvProcess(void)
+{
+	// パケット貰ったらやる
+	int packetSize = 0;  // 受信データ量
+
+	// -----------------------------------
+	// ESVがSETとかGETとかで動作をかえる
+	if (0 != (packetSize = echo.read()))  // 0!=はなくてもよいが，Warning出るのでつけとく
+	{                                     // 受け取った内容読み取り，あったら中へ
+		// 受信データをまずは意味づけしておくとらくかも
+		byte	classGroup = echo._rBuffer[EL_DEOJ];
+		byte	classNo	 = echo._rBuffer[EL_DEOJ + 1];
+		byte	instanceNo = echo._rBuffer[EL_DEOJ + 2];
+		byte	esv		 = echo._rBuffer[EL_ESV];
+		byte	epc		 = echo._rBuffer[EL_EPC];
+		byte	pdc		 = echo._rBuffer[EL_PDC];
+		byte*	edt		 = &echo._rBuffer[EL_EDT];
+
+		// EL、自分の処理ここまで
+		echo.returner();  // 何かしら受信データあればreturnerを呼んでおくとライブラリが適当に返信する
+	}
+
+}
+
+
 // EL処理ここまで
 ////////////////////////////////////////////////////
 

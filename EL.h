@@ -232,6 +232,7 @@ public:
 	int read();
 	IPAddress remoteIP(void);
 	void returner(void);
+	void recvProcess(void);	// 受信処理 V4
 
 	// display, debug
 	void printAll(void);
