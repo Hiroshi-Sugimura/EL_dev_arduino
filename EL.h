@@ -161,6 +161,10 @@ using std::move;
 #define EL_Display 0x06, 0x01	 ///< ディスプレー
 #define EL_Television 0x06, 0x02 ///< テレビ
 
+// V.4
+typedef bool (*ELCallback) (byte[], byte[], byte[], byte, byte, byte, PDCEDT);
+
+
 //////////////////////////////////////////////////////////////////////
 /// @class EL
 /// @brief Main class for EL
@@ -178,6 +182,7 @@ private:
 	int _readPacketSize = 0;	   ///< recentry readed packet size: 直近の受信・読込パケットサイズ
 	byte _sBuffer[EL_BUFFER_SIZE]; ///< send buffer: 直近の送信パケットデータ
 	WiFiUDP *_udp;				   ///< WiFiのUDPソケット
+	ELCallback userfunc;		   ///< ユーザの受信処理, V.4
 
 protected:
 	int parsePacket(void);											 // 受信データを読む
@@ -194,6 +199,7 @@ public:
 	EL(WiFiUDP &udp, byte classGroupCode, byte classCode, byte instanceNumber);
 	EL(WiFiUDP &udp, byte eojs[][3], int count);
 	void begin(void);
+	void begin(ELCallback cb);  // V.4
 
 	// details change
 	void update(const byte epc, byte pdcedt[]);

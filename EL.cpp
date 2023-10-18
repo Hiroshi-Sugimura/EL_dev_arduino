@@ -239,7 +239,60 @@ void EL::begin(void)
 
 	// 接続ネットワークのブロードキャストアドレスに更新
 	_broad = IPAddress(ip[0], ip[1], ip[2], 255);
+
+	userfunc = null;  // ユーザ処理のコールバックなし
 }
+
+////////////////////////////////////////////////////
+/// @brief 通信の開始、受信開始、ユーザ関数受付
+void EL::begin(ELCallback cb)
+{
+#ifdef __EL_DEBUG__
+	Serial.println("=========== EL.begin");
+	Serial.printf("deviceCount: %d", deviceCount);
+	Serial.println();
+
+	for (int i = 0; i < deviceCount; i++)
+	{
+		Serial.printf("eojs[%d] = %02x%02x%02x", i, *(_eojs + i * 3 + 0), *(_eojs + i * 3 + 1), *(_eojs + i * 3 + 2));
+		Serial.println();
+	}
+#endif
+
+	// udp
+	if (_udp->begin(EL_PORT))
+	{
+#ifdef __EL_DEBUG__
+		Serial.println("EL.udp.begin successful.");
+#endif
+	}
+	else
+	{
+#ifdef __EL_DEBUG__
+		Serial.println("Reseiver udp.begin failed."); // localPort
+#endif
+	}
+
+	if (_udp->beginMulticast(_multi, EL_PORT))
+	{
+#ifdef __EL_DEBUG__
+		Serial.println("EL.udp.beginMulticast successful.");
+#endif
+	}
+	else
+	{
+#ifdef __EL_DEBUG__
+		Serial.println("Reseiver EL.udp.beginMulticast failed."); // localPort
+#endif
+	}
+
+	// 接続ネットワークのブロードキャストアドレスに更新
+	_broad = IPAddress(ip[0], ip[1], ip[2], 255);
+
+	// ユーザ処理のコールバック登録
+	userfunc = cb;
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）
