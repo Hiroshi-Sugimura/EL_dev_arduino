@@ -161,8 +161,8 @@ using std::move;
 #define EL_Television 0x06, 0x02 ///< テレビ
 
 // V.4
-//      bool (*ELCallback) (  tid,   seoj,   deoj,  esv,  opc,  epc, pdcedt);
-typedef bool (*ELCallback)(byte[], byte[], byte[], byte, byte, byte, PDCEDT);
+//      bool (*ELCallback) (  tid,   seoj,   deoj,  esv,  opc,  epc, pdc,  edt);
+typedef bool (*ELCallback)(byte[], byte[], byte[], byte, byte, byte, byte, byte[]);
 
 //////////////////////////////////////////////////////////////////////
 /// @class EL
@@ -202,8 +202,10 @@ public:
 
 	// details change
 	void update(const byte epc, byte pdcedt[]);
+	void update(const byte epc, std::initializer_list<byte> il);
 	byte *at(const byte epc);
 	void update(const int devId, const byte epc, byte pdcedt[]);
+	void update(const int devId, const byte epc, std::initializer_list<byte> il);
 	byte *at(const int devId, const byte epc);
 
 	// sender

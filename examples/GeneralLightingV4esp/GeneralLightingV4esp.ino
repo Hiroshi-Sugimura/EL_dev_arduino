@@ -1,4 +1,4 @@
-#include <M5Core2.h>
+#include <Arduino.h>
 #include <WiFi.h>
 #include "EL.h"
 
@@ -21,8 +21,8 @@ void printNetData();
 // 受信したらこの関数が呼ばれるので、SetやGetに対して動けばよい、基本はSETだけ動けばよい
 // 戻り値や引数は決まっている
 
-//      bool (*ELCallback) (   tid,  seoj,   deoj,   esv,  opc,  epc, pdcedt);
-bool cb(byte[] tid, byte[] seoj, byte[] deoj, byte esv, byte opc, byte epc, PDCEDT pdcedt) {
+//      bool (*ELCallback) (   tid,  seoj,   deoj,   esv,  opc,  epc, pdc, edt);
+bool cb(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc, byte pdc, byte edt[]) {
   bool ret = false;                                          // デフォルトで失敗としておく
   if (deoj[0] != 0x02 || deoj[1] != 0x90) { return false; }  // 照明ではない
   if (deoj[2] != 0x00 || deoj[2] != 0x01) { return false; }  // インスタンスがない
@@ -37,11 +37,9 @@ bool cb(byte[] tid, byte[] seoj, byte[] deoj, byte esv, byte opc, byte epc, PDCE
       switch (epc) {
         case 0x80:               // 電源
           if (edt[0] == 0x30) {  // ON
-            M5.Lcd.fillCircle(160, 120, 80, WHITE);
             echo.update(0, epc, { 0x30 });  // 設定した値にする
             ret = true;                     // 処理できたので成功
           } else if (edt[0] == 0x31) {      // OFF
-            M5.Lcd.fillCircle(160, 120, 80, BLACK);
             echo.update(0, epc, { 0x31 });  // 設定した値にする
             ret = true;                     // 処理できたので成功
           }
@@ -59,26 +57,16 @@ bool cb(byte[] tid, byte[] seoj, byte[] deoj, byte esv, byte opc, byte epc, PDCE
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  M5.begin();
-  M5.Lcd.setTextSize(2);
-  M5.Lcd.println("wifi connect start");
 
   WiFi.begin(WIFI_SSID, WIFI_PASS);
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
     delay(1000);
   }
-  M5.Lcd.println("wifi connect ok");
   printNetData();  // to serial (debug)
 
   // print your WiFi IP address:
   myip = WiFi.localIP();
-  M5.Lcd.fillScreen(BLACK);
-  M5.Lcd.setTextColor(WHITE);
-  M5.Lcd.setCursor(0, 0);
-  M5.Lcd.setTextSize(2);
-  M5.Lcd.print("IP: ");
-  M5.Lcd.println(myip);
 
   echo.begin(cb);  // EL 起動シーケンス
 
@@ -93,7 +81,6 @@ void setup() {
 //====================================================================
 // main loop
 void loop() {
-  M5.update();
 
   echo.recvProcess();
 

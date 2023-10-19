@@ -240,7 +240,7 @@ void EL::begin(void)
 	// 接続ネットワークのブロードキャストアドレスに更新
 	_broad = IPAddress(ip[0], ip[1], ip[2], 255);
 
-	userfunc = null; // ユーザ処理のコールバックなし
+	userfunc = nullptr; // ユーザ処理のコールバックなし
 }
 
 ////////////////////////////////////////////////////
@@ -300,7 +300,17 @@ void EL::begin(ELCallback cb)
 /// @note pdcedtなので、pdcは自分で計算することに注意
 void EL::update(const byte epc, byte pdcedt[])
 {
-	devices[0].SetPDCEDT(epc, pdcedt); // power
+	devices[0].SetPDCEDT(epc, pdcedt);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// @brief EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）
+/// @param epc const byte
+/// @param il  std::initializer_list<byte>
+/// @note pdcedtなので、pdcは自分で計算することに注意
+void EL::update(const byte epc,  std::initializer_list<byte> il)
+{
+	devices[0].SetPDCEDT(epc, il);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -320,8 +330,20 @@ byte *EL::at(const byte epc)
 void EL::update(const int devId, const byte epc, byte pdcedt[])
 {
 	if (devId < deviceCount)
-		devices[devId].SetPDCEDT(epc, pdcedt); // power
+		devices[devId].SetPDCEDT(epc, pdcedt);
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// @brief EPCの値を変更する, 複数の場合
+/// @param devId const int, コンストラクタで渡した順番に相当
+/// @param epc const byte
+/// @param il  std::initializer_list<byte>
+void EL::update(const int devId, const byte epc, std::initializer_list<byte> il)
+{
+	if (devId < deviceCount)
+		devices[devId].SetPDCEDT(epc, il);
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief EPCの値を取得する, 複数の場合
@@ -1039,23 +1061,23 @@ void EL::recvProcess(void)
 
 	// -----------------------------------
 	// ESVがSETとかGETとかで動作をかえる
-	if (0 != (packetSize = echo.read())) // 0!=はなくてもよいが，Warning出るのでつけとく
+	if (0 != (packetSize = read())) // 0!=はなくてもよいが，Warning出るのでつけとく
 	{									 // 受け取った内容読み取り，あったら中へ
 		///////////////////////////////////////////////////////////////////
 		// 受信パケット解析
 		IPAddress remIP = remoteIP();
 
 		// 受信データをまずは意味づけしておくとらくかも
-		byte tid[]  = {_rBuffer[EL_TID],  _rBuffer[EL_TID + 1]};
-		byte seoj[] = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]};
-		byte deoj[] = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]};
-		byte esv    = echo._rBuffer[EL_ESV];
-		byte opc    = echo._rBuffer[EL_OPC];
-		byte epc    = echo._rBuffer[EL_EPC]; // details
-		byte pdc    = echo._rBuffer[EL_PDC];
-		byte *edt   = echo._rBuffer[EL_EDT];
-		PDCEDT pdcedt = &echo._rBuffer[EL_PDC];
-
+		byte tid[]    = {_rBuffer[EL_TID],  _rBuffer[EL_TID + 1]};
+		byte seoj[]   = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]};
+		byte deoj[]   = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]};
+		byte esv      = _rBuffer[EL_ESV];
+		byte opc      = _rBuffer[EL_OPC];
+		byte epc      = _rBuffer[EL_EPC]; // details
+		byte pdc      = _rBuffer[EL_PDC];
+		byte *edt     = &_rBuffer[EL_EDT];
+		PDCEDT pdcedt = &_rBuffer[EL_PDC];
+		int devId = 0;
 
 		// 要求されたオブジェクトについて調べる
 		if (deoj[0] == 0x0e && deoj[1] == 0xf0)
@@ -1090,7 +1112,7 @@ void EL::recvProcess(void)
 		boolean success = true;
 		for (int o = 0; o < opc; o += 1)
 		{
-			if ( !userfunc(tid, seoj, deoj, esv, opc, epc, pdcedt)) // 失敗
+			if ( !userfunc(tid, seoj, deoj, esv, opc, epc, pdc, edt)) // 失敗
 			{
 				// どこかで失敗したら、失敗を返却
 				success = false;
@@ -1098,8 +1120,9 @@ void EL::recvProcess(void)
 
 			// 次のEPC,PDC,EDTへ
 			// SET, epc,pdc,edt数 進める
-			edt    += 2 + pdcedt[0];
-			pdcedt += 2 + pdcedt[0];
+			edt  += 2 + edt[0];
+			pdc  += 2 + edt[0];
+			edt  += 2 + edt[0];
 		}
 
 
