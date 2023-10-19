@@ -47,8 +47,8 @@ void setup() {
   echo.sendMultiOPC1(deoj, EL_INF, 0x80, edt);
 }
 
-
-bool cb(byte[], byte[], byte[], byte, byte, byte, PDCEDT)
+//      bool (*ELCallback) (   tid,  seoj,   deoj,   esv,  opc,  epc, pdcedt);
+bool cb(byte[] tid, byte[] seoj, byte[] deoj, byte esv, byte opc, byte epc, PDCEDT& pdcedt)
 {
 }
 

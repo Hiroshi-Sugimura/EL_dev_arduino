@@ -106,8 +106,8 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 	profile[0x88].setEDT({0x42});			  // error status
 	profile[0x8a].setEDT({0x00, 0x00, 0x77}); // maker KAIT
 
-	profile.SetMyPropertyMap(0x9d, {0x80, 0xd5});																	  // inf property map
-	profile.SetMyPropertyMap(0x9e, {0x80});																		  // set property map
+	profile.SetMyPropertyMap(0x9d, {0x80, 0xd5});																	// inf property map
+	profile.SetMyPropertyMap(0x9e, {0x80});																			// set property map
 	profile.SetMyPropertyMap(0x9f, {0x80, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f, 0xd3, 0xd4, 0xd5, 0xd6, 0xd7}); // get property map
 
 	// int deviceCount;				   // インスタンス数, d3用
@@ -160,13 +160,13 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 		devices[i][0x81].setEDT({0x00});				   // position
 		devices[i][0x82].setEDT({0x00, 0x00, 0x4b, 0x00}); // release K
 
-		devices[i][0x83].setEDT({0xfe, _mac[0], _mac[1], _mac[2], _mac[3], _mac[4], _mac[5], _eojs[i * 3], _eojs[i * 3 + 1], _eojs[i * 3 + 2], 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, static_cast<unsigned char>(i + 1) }); // identification number
+		devices[i][0x83].setEDT({0xfe, _mac[0], _mac[1], _mac[2], _mac[3], _mac[4], _mac[5], _eojs[i * 3], _eojs[i * 3 + 1], _eojs[i * 3 + 2], 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, static_cast<unsigned char>(i + 1)}); // identification number
 
 		devices[i][0x88].setEDT({0x42});			 // error status
 		devices[i][0x8a].setEDT({0x00, 0x00, 0x77}); // maker KAIT
 
-		devices[i].SetMyPropertyMap(0x9d, {0x80, 0xd6});											 // inf property map
-		devices[i].SetMyPropertyMap(0x9e, {0xe0});												 // set property map
+		devices[i].SetMyPropertyMap(0x9d, {0x80, 0xd6});										   // inf property map
+		devices[i].SetMyPropertyMap(0x9e, {0xe0});												   // set property map
 		devices[i].SetMyPropertyMap(0x9f, {0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f}); // get property map
 #ifdef __EL_DEBUG__
 		devices[i].printAll();
@@ -240,7 +240,7 @@ void EL::begin(void)
 	// 接続ネットワークのブロードキャストアドレスに更新
 	_broad = IPAddress(ip[0], ip[1], ip[2], 255);
 
-	userfunc = null;  // ユーザ処理のコールバックなし
+	userfunc = null; // ユーザ処理のコールバックなし
 }
 
 ////////////////////////////////////////////////////
@@ -292,7 +292,6 @@ void EL::begin(ELCallback cb)
 	// ユーザ処理のコールバック登録
 	userfunc = cb;
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）
@@ -991,8 +990,8 @@ void EL::returner(void)
 	{
 	case EL_SETI:
 		break; // SetIは返信しない
-		///////////////////////////////////////////////////////////////////
-		// SETC, Get, INF_REQ は返信処理がある
+			   ///////////////////////////////////////////////////////////////////
+			   // SETC, Get, INF_REQ は返信処理がある
 	case EL_SETC:
 #ifdef __EL_DEBUG__
 		Serial.println("### SETC ###");
@@ -1030,31 +1029,92 @@ void EL::returner(void)
 	}
 }
 
-
 void EL::recvProcess(void)
 {
 	// パケット貰ったらやる
-	int packetSize = 0;  // 受信データ量
+	int packetSize = 0; // 受信データ量
 
 	// -----------------------------------
 	// ESVがSETとかGETとかで動作をかえる
-	if (0 != (packetSize = echo.read()))  // 0!=はなくてもよいが，Warning出るのでつけとく
-	{                                     // 受け取った内容読み取り，あったら中へ
+	if (0 != (packetSize = echo.read())) // 0!=はなくてもよいが，Warning出るのでつけとく
+	{									 // 受け取った内容読み取り，あったら中へ
+		///////////////////////////////////////////////////////////////////
+		// 受信パケット解析
+		IPAddress remIP = remoteIP();
+
 		// 受信データをまずは意味づけしておくとらくかも
-		byte	classGroup = echo._rBuffer[EL_DEOJ];
-		byte	classNo	 = echo._rBuffer[EL_DEOJ + 1];
-		byte	instanceNo = echo._rBuffer[EL_DEOJ + 2];
-		byte	esv		 = echo._rBuffer[EL_ESV];
-		byte	epc		 = echo._rBuffer[EL_EPC];
-		byte	pdc		 = echo._rBuffer[EL_PDC];
-		byte*	edt		 = &echo._rBuffer[EL_EDT];
+		byte tid[]  = {_rBuffer[EL_TID],  _rBuffer[EL_TID + 1]};
+		byte seoj[] = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]};
+		byte deoj[] = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]};
+		byte esv = echo._rBuffer[EL_ESV];
+		byte opc = echo._rBuffer[EL_OPC];
 
-		// EL、自分の処理ここまで
-		echo.returner();  // 何かしら受信データあればreturnerを呼んでおくとライブラリが適当に返信する
+		byte epc = echo._rBuffer[EL_EPC];
+		byte pdc = echo._rBuffer[EL_PDC];
+
+		byte *edt = &echo._rBuffer[EL_EDT];
+		PDCEDT pdcedt = &echo._rBuffer[EL_PDC];
+
+		// 返却用のpdcedt
+		byte ret_details[1024]; // 1024で良いかはあとで考える
+		byte ret_now = 0;
+
+		// OPCで処理
+		boolean success = true;
+		for (int o = 0; o < opc; o += 1)
+		{
+			if (userfunc(tid, seoj, deoj, esv, opc, epc, pdcedt)) // 成功
+			{
+				switch (esv)
+				{
+				case EL_SET: // SET成功したらedtは0
+					*(ret_details + ret_now) = epc;
+					*(ret_details + ret_now + 1) = 0;
+					break;
+				case EL_GET: // GET成功したらedtはその数値
+					*(ret_details + ret_now) = epc;
+					*(ret_details + ret_now + 1) = pdc[0];
+					memcpy( (ret_details + ret_now + 2), &pdc[1], pdc[0]);
+					break;
+				}
+			}
+			else // 失敗
+			{
+				// どこかで失敗したら、失敗を返却
+				success = false;
+				switch (esv)
+				{
+				case EL_SET: // SET失敗
+					break;
+				case EL_GET: // GET失敗
+					break;
+				}
+			}
+
+			// 次のEPC,PDC,EDTへ
+			switch ()
+			{
+			case EL_SET: // SET, epc,pdc,edt数 進める
+				edt += 2 + pdcedt[0];
+				pdcedt += 2 + pdcedt[0];
+				break;
+			case EL_GET: // GET, epc,pdcの２byte進める
+				edt += 2;
+				pdcedt += 2;
+				break;
+			}
+		}
+
+		// OPCでまとめて返信
+		switch (esv)
+		{
+		case: // SET返却
+			break;
+		case: // GET返却
+			break;
+		}
 	}
-
 }
-
 
 // EL処理ここまで
 ////////////////////////////////////////////////////

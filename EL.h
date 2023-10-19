@@ -31,7 +31,6 @@ using std::hex;
 using std::move;
 #endif
 
-
 // defined
 #define EL_PORT 3610 ///< ECHONET Lite port
 #define EL_EHD1 0
@@ -162,8 +161,8 @@ using std::move;
 #define EL_Television 0x06, 0x02 ///< テレビ
 
 // V.4
-typedef bool (*ELCallback) (byte[], byte[], byte[], byte, byte, byte, PDCEDT);
-
+//      bool (*ELCallback) (   tid,  seoj,   deoj,   esv,  opc,  epc,  pdcedt);
+typedef bool (*ELCallback)(byte[], byte[], byte[], byte, byte, byte, PDCEDT &);
 
 //////////////////////////////////////////////////////////////////////
 /// @class EL
@@ -199,7 +198,7 @@ public:
 	EL(WiFiUDP &udp, byte classGroupCode, byte classCode, byte instanceNumber);
 	EL(WiFiUDP &udp, byte eojs[][3], int count);
 	void begin(void);
-	void begin(ELCallback cb);  // V.4
+	void begin(ELCallback cb); // V.4
 
 	// details change
 	void update(const byte epc, byte pdcedt[]);
@@ -232,7 +231,7 @@ public:
 	int read();
 	IPAddress remoteIP(void);
 	void returner(void);
-	void recvProcess(void);	// 受信処理 V4
+	void recvProcess(void); // 受信処理 V4
 
 	// display, debug
 	void printAll(void);
