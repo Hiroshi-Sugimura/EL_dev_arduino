@@ -6,15 +6,56 @@
 #define WIFI_PASS "pass"  // !!!! change
 
 WiFiUDP elUDP;
-
-EL echo(elUDP, 0x02, 0x90, 0x01);  // single
-// byte eojs[1][3] = { { 0x02, 0x90, 0x01 } };  // single (multi)
-// EL echo(elUDP, eojs, 1);
-
 IPAddress myip;
+
+
+#define OBJ_NUM 1
+byte eojs[OBJ_NUM][3] = { { 0x02, 0x90, 0x01 } };
+EL echo(elUDP, eojs, OBJ_NUM);
 
 void printNetData();
 
+
+//====================================================================
+// user用のcallback
+// 受信したらこの関数が呼ばれるので、SetやGetに対して動けばよい、基本はSETだけ動けばよい
+// 戻り値や引数は決まっている
+
+//      bool (*ELCallback) (   tid,  seoj,   deoj,   esv,  opc,  epc, pdcedt);
+bool cb(byte[] tid, byte[] seoj, byte[] deoj, byte esv, byte opc, byte epc, PDCEDT pdcedt) {
+  bool ret = false;                                          // デフォルトで失敗としておく
+  if (deoj[0] != 0x02 || deoj[1] != 0x90) { return false; }  // 照明ではない
+  if (deoj[2] != 0x00 || deoj[2] != 0x01) { return false; }  // インスタンスがない
+
+  // -----------------------------------
+  // ESVがSETとかGETとかで動作をかえる、基本的にはSETのみ対応すればよい
+  switch (esv) {
+    // -----------------------------------
+    // 動作状態の変更 Set対応
+    case EL_SETI:
+    case EL_SETC:
+      switch (epc) {
+        case 0x80:               // 電源
+          if (edt[0] == 0x30) {  // ON
+            M5.Lcd.fillCircle(160, 120, 80, WHITE);
+            echo.update(0, epc, { 0x30 });  // 設定した値にする
+            ret = true;                     // 処理できたので成功
+          } else if (edt[0] == 0x31) {      // OFF
+            M5.Lcd.fillCircle(160, 120, 80, BLACK);
+            echo.update(0, epc, { 0x31 });  // 設定した値にする
+            ret = true;                     // 処理できたので成功
+          }
+          break;
+      }
+      break;  // SETI, SETCここまで
+  }
+
+  return ret;
+}
+
+
+//====================================================================
+// main loop
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
@@ -39,7 +80,7 @@ void setup() {
   M5.Lcd.print("IP: ");
   M5.Lcd.println(myip);
 
-  echo.begin();  // EL 起動シーケンス
+  echo.begin(cb);  // EL 起動シーケンス
 
   // 一般照明の状態，繋がった宣言として立ち上がったことをコントローラに知らせるINFを飛ばす
   const byte deoj[] = { 0x05, 0xff, 0x01 };
@@ -47,64 +88,10 @@ void setup() {
   echo.sendMultiOPC1(deoj, EL_INF, 0x80, edt);
 }
 
-//      bool (*ELCallback) (   tid,  seoj,   deoj,   esv,  opc,  epc, pdcedt);
-bool cb(byte[] tid, byte[] seoj, byte[] deoj, byte esv, byte opc, byte epc, PDCEDT& pdcedt)
-{
-}
 
 
-
-
-void light(byte esv, byte epc, byte pdc, byte* edt) {
-  // -----------------------------------
-  // ESVがSETとかGETとかで動作をかえる
-  switch (esv) {
-    // -----------------------------------
-    // 動作状態の変更 Set対応
-    case EL_SETI:
-    case EL_SETC:
-      switch (epc) {
-        case 0x80:               // 電源
-          if (edt[0] == 0x30) {  // ON
-            M5.Lcd.fillCircle(160, 120, 80, WHITE);
-            echo.devices[0][epc].setEDT({ 0x30 });  // ECHONET Liteの状態を変更
-          } else if (edt[0] == 0x31) {              // OFF
-            M5.Lcd.fillCircle(160, 120, 80, BLACK);
-            echo.devices[0][epc].setEDT({ 0x31 });  // ECHONET Liteの状態を変更
-          }
-          break;
-
-        default:  // 不明なEPC
-          M5.Lcd.print("??? packet esv, epc, edt is : ");
-          // set
-          // ESV, EPC, EDT
-          M5.Lcd.print(esv, HEX);
-          M5.Lcd.print(" ");
-          M5.Lcd.print(epc, HEX);
-          M5.Lcd.print(" ");
-          M5.Lcd.println(edt[0], HEX);
-          break;
-      }
-      break;  // SETI, SETCここまで
-
-    // -----------------------------------
-    // Get,INF_REQ対応
-    // SETの時にきちんとupdate関数でECHONET Liteの状態変更をライブラリに教えておけばここは簡素になる
-    case EL_GET:
-    case EL_INF_REQ:
-      break;  // GetとINF_REQここまで
-
-    case EL_INF:
-      break;
-
-    default:  // 解釈不可能なESV
-      M5.Lcd.print("error? ESV = ");
-      Serial.println(esv);
-      break;
-  }
-}
-
-
+//====================================================================
+// main loop
 void loop() {
   M5.update();
 
@@ -114,7 +101,11 @@ void loop() {
 }
 
 
-// debug
+
+
+//////////////////////////////////////////////////////////////////////
+// debug用
+//////////////////////////////////////////////////////////////////////
 void printNetData() {
   Serial.println("-----------------------------------");
 

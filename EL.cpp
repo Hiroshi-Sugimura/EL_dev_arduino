@@ -990,8 +990,8 @@ void EL::returner(void)
 	{
 	case EL_SETI:
 		break; // SetIは返信しない
-			   ///////////////////////////////////////////////////////////////////
-			   // SETC, Get, INF_REQ は返信処理がある
+		///////////////////////////////////////////////////////////////////
+		// SETC, Get, INF_REQ は返信処理がある
 	case EL_SETC:
 #ifdef __EL_DEBUG__
 		Serial.println("### SETC ###");
@@ -1029,6 +1029,9 @@ void EL::returner(void)
 	}
 }
 
+
+////////////////////////////////////////////////////
+/// @brief 受信処理
 void EL::recvProcess(void)
 {
 	// パケット貰ったらやる
@@ -1046,71 +1049,100 @@ void EL::recvProcess(void)
 		byte tid[]  = {_rBuffer[EL_TID],  _rBuffer[EL_TID + 1]};
 		byte seoj[] = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]};
 		byte deoj[] = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]};
-		byte esv = echo._rBuffer[EL_ESV];
-		byte opc = echo._rBuffer[EL_OPC];
-
-		byte epc = echo._rBuffer[EL_EPC];
-		byte pdc = echo._rBuffer[EL_PDC];
-
-		byte *edt = &echo._rBuffer[EL_EDT];
+		byte esv    = echo._rBuffer[EL_ESV];
+		byte opc    = echo._rBuffer[EL_OPC];
+		byte epc    = echo._rBuffer[EL_EPC]; // details
+		byte pdc    = echo._rBuffer[EL_PDC];
+		byte *edt   = echo._rBuffer[EL_EDT];
 		PDCEDT pdcedt = &echo._rBuffer[EL_PDC];
 
-		// 返却用のpdcedt
-		byte ret_details[1024]; // 1024で良いかはあとで考える
-		byte ret_now = 0;
 
+		// 要求されたオブジェクトについて調べる
+		if (deoj[0] == 0x0e && deoj[1] == 0xf0)
+		{					// 0e f0 xx ならprofile object
+			deoj[2] = 0x01; // search等，インスタンス番号が0で送信される時があるので
+			pdcedt = profile[epc];
+		}
+		else
+		{
+			boolean noDevice = true;
+			for (int i = 0; i < deviceCount; i++) // deojとマッチするdevIdを調べる
+			{
+				if (deoj[0] == _eojs[i * 3 + 0] && deoj[1] == _eojs[i * 3 + 1])
+				{
+					devId = i;
+					pdcedt = devices[devId][epc];
+					noDevice = false;
+#ifdef __EL_DEBUG__
+					Serial.printf("pdcedt: %p", pdcedt);
+					Serial.println();
+#endif
+					break;
+				}
+			}
+			if (noDevice)
+				return;
+		}
+
+
+		// オブジェクトあるみたい
 		// OPCで処理
 		boolean success = true;
 		for (int o = 0; o < opc; o += 1)
 		{
-			if (userfunc(tid, seoj, deoj, esv, opc, epc, pdcedt)) // 成功
-			{
-				switch (esv)
-				{
-				case EL_SET: // SET成功したらedtは0
-					*(ret_details + ret_now) = epc;
-					*(ret_details + ret_now + 1) = 0;
-					break;
-				case EL_GET: // GET成功したらedtはその数値
-					*(ret_details + ret_now) = epc;
-					*(ret_details + ret_now + 1) = pdc[0];
-					memcpy( (ret_details + ret_now + 2), &pdc[1], pdc[0]);
-					break;
-				}
-			}
-			else // 失敗
+			if ( !userfunc(tid, seoj, deoj, esv, opc, epc, pdcedt)) // 失敗
 			{
 				// どこかで失敗したら、失敗を返却
 				success = false;
-				switch (esv)
-				{
-				case EL_SET: // SET失敗
-					break;
-				case EL_GET: // GET失敗
-					break;
-				}
 			}
 
 			// 次のEPC,PDC,EDTへ
-			switch ()
-			{
-			case EL_SET: // SET, epc,pdc,edt数 進める
-				edt += 2 + pdcedt[0];
-				pdcedt += 2 + pdcedt[0];
-				break;
-			case EL_GET: // GET, epc,pdcの２byte進める
-				edt += 2;
-				pdcedt += 2;
-				break;
-			}
+			// SET, epc,pdc,edt数 進める
+			edt    += 2 + pdcedt[0];
+			pdcedt += 2 + pdcedt[0];
 		}
 
-		// OPCでまとめて返信
+
+		// esvの要求にこたえる
 		switch (esv)
 		{
-		case: // SET返却
+		case EL_SETI:
+			break; // SetIは返信しない
+			///////////////////////////////////////////////////////////////////
+			// SETC, Get, INF_REQ は返信処理がある
+		case EL_SETC:
+#ifdef __EL_DEBUG__
+			Serial.println("### SETC ###");
+#endif
+			replySetDetail(remIP);
 			break;
-		case: // GET返却
+
+		case EL_GET:
+#ifdef __EL_DEBUG__
+			Serial.println("### GET ###");
+#endif
+			replyGetDetail(remIP);
+			break;
+
+			// ユニキャストへの返信ここまで，INFはマルチキャスト
+		case EL_INF_REQ:
+#ifdef __EL_DEBUG__
+			Serial.print("INF_REQ: ");
+			Serial.println(epc, HEX);
+#endif
+			if (pdcedt)
+			{ // そのEPCがある場合、マルチキャスト
+				sendMultiOPC1(tid, deoj, seoj, (esv + 0x10), epc, pdcedt);
+			}
+			else
+			{ // ない場合はエラーなのでユニキャストで返信
+				pdcedt[0] = 0x00;
+				sendOPC1(remIP, tid, deoj, seoj, (esv - 0x10), epc, nullptr);
+			}
+			break;
+			//  INF_REQここまで
+
+		default: // 解釈不可能なESV
 			break;
 		}
 	}
