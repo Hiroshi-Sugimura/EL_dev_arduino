@@ -21,11 +21,11 @@ void printNetData();
 // 受信したらこの関数が呼ばれるので、SetやGetに対して動けばよい、基本はSETだけ動けばよい
 // 戻り値や引数は決まっている
 
-//      bool (*ELCallback) (   tid,  seoj,   deoj,   esv,  opc,  epc, pdc, edt);
-bool cb(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc, byte pdc, byte edt[]) {
+// bool (*ELCallback) (   tid,  seoj,   deoj,   esv,  opc,  epc, pdc, edt);
+bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc, byte pdc, byte edt[]) {
   bool ret = false;                                          // デフォルトで失敗としておく
-  if (deoj[0] != 0x02 || deoj[1] != 0x90) { return false; }  // 照明ではない
-  if (deoj[2] != 0x00 || deoj[2] != 0x01) { return false; }  // インスタンスがない
+  if (deoj[0] != 0x02 || deoj[1] != 0x90) { return false; }  // 照明ではないので無視
+  if (deoj[2] != 0x00 || deoj[2] != 0x01) { return false; }  // インスタンスがないので無視
 
   // -----------------------------------
   // ESVがSETとかGETとかで動作をかえる、基本的にはSETのみ対応すればよい
@@ -68,7 +68,7 @@ void setup() {
   // print your WiFi IP address:
   myip = WiFi.localIP();
 
-  echo.begin(cb);  // EL 起動シーケンス
+  echo.begin(callback);  // EL 起動シーケンス
 
   // 一般照明の状態，繋がった宣言として立ち上がったことをコントローラに知らせるINFを飛ばす
   const byte deoj[] = { 0x05, 0xff, 0x01 };
