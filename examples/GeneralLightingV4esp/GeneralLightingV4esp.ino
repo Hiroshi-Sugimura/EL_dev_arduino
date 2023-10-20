@@ -1,14 +1,28 @@
+// ESP32-S3-DevKitC-1
+// https://akizukidenshi.com/catalog/g/gM-17073/
 #include <Arduino.h>
 #include <WiFi.h>
 #include "EL.h"
 
-#define WIFI_SSID "ssid"  // !!!! change
+
+#include <Adafruit_NeoPixel.h>
+
+//--------------LED
+#define DIN_PIN 48      // NeoPixel　の出力ピン番号
+#define LED_COUNT 1     // LEDの連結数
+#define WAIT_MS 1000    // 次の点灯までのウエイト
+#define BRIGHTNESS 128  // 輝度
+Adafruit_NeoPixel pixels(LED_COUNT, DIN_PIN, NEO_GRB + NEO_KHZ800);
+
+
+//--------------WIFI
+#define WIFI_SSID "ssid"        // !!!! change
 #define WIFI_PASS "pass"  // !!!! change
 
 WiFiUDP elUDP;
 IPAddress myip;
 
-
+//--------------EL
 #define OBJ_NUM 1
 byte eojs[OBJ_NUM][3] = { { 0x02, 0x90, 0x01 } };
 EL echo(elUDP, eojs, OBJ_NUM);
@@ -37,9 +51,14 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
       switch (epc) {
         case 0x80:               // 電源
           if (edt[0] == 0x30) {  // ON
-            echo.update(0, epc, { 0x30 });  // 設定した値にする
-            ret = true;                     // 処理できたので成功
-          } else if (edt[0] == 0x31) {      // OFF
+            Serial.println("ON");
+            echo.update(0, epc, { 0x30 });                                              // 設定した値にする
+            pixels.setPixelColor(0, pixels.Color(BRIGHTNESS, BRIGHTNESS, BRIGHTNESS));  // 白
+            pixels.show();
+            ret = true;                 // 処理できたので成功
+          } else if (edt[0] == 0x31) {  // OFF
+            Serial.println("OFF");
+            pixels.clear();                 // 黒
             echo.update(0, epc, { 0x31 });  // 設定した値にする
             ret = true;                     // 処理できたので成功
           }
@@ -57,6 +76,7 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
+  pixels.begin();  //NeoPixel制御開始
 
   WiFi.begin(WIFI_SSID, WIFI_PASS);
   while (WiFi.status() != WL_CONNECTED) {
