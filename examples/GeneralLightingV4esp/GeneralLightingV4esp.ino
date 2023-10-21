@@ -98,7 +98,7 @@ void setup() {
   echo.begin(callback);  // EL 起動シーケンス
 
   // 初期値設定
-  echo.update(0, 0x80, { 0x31 });  // off
+  echo.update(0, 0x80, { 0x01, 0x31 });  // off
 
   echo.printAll();  // 全設定値の確認
 
