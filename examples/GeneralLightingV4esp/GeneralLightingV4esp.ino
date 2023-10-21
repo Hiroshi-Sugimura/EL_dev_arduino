@@ -16,7 +16,7 @@ Adafruit_NeoPixel pixels(LED_COUNT, DIN_PIN, NEO_GRB + NEO_KHZ800);
 
 
 //--------------WIFI
-#define WIFI_SSID "ssid"        // !!!! change
+#define WIFI_SSID "ssid"  // !!!! change
 #define WIFI_PASS "pass"  // !!!! change
 
 WiFiUDP elUDP;
@@ -39,7 +39,7 @@ void printNetData();
 bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc, byte pdc, byte edt[]) {
   bool ret = false;                                          // デフォルトで失敗としておく
   if (deoj[0] != 0x02 || deoj[1] != 0x90) { return false; }  // 照明ではないので無視
-  if (deoj[2] != 0x00 || deoj[2] != 0x01) { return false; }  // インスタンスがないので無視
+  if (deoj[2] != 0x00 && deoj[2] != 0x01) { return false; }  // インスタンスがないので無視
 
   // -----------------------------------
   // ESVがSETとかGETとかで動作をかえる、基本的にはSETのみ対応すればよい
@@ -49,22 +49,29 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
     case EL_SETI:
     case EL_SETC:
       switch (epc) {
-        case 0x80:               // 電源
-          if (edt[0] == 0x30) {  // ON
-            Serial.println("ON");
-            echo.update(0, epc, { 0x30 });                                              // 設定した値にする
+        case 0x80:                                                                      // 電源
+          if (edt[0] == 0x30) {                                                         // ON
+            Serial.println("ON");                                                       // 設定した値にする
+            pixels.clear();                                                             // 黒
             pixels.setPixelColor(0, pixels.Color(BRIGHTNESS, BRIGHTNESS, BRIGHTNESS));  // 白
             pixels.show();
+            echo.update(0, epc, { 0x30 });
             ret = true;                 // 処理できたので成功
           } else if (edt[0] == 0x31) {  // OFF
             Serial.println("OFF");
-            pixels.clear();                 // 黒
+            pixels.clear();                                  // 黒
+            pixels.setPixelColor(0, pixels.Color(0, 0, 0));  // 黒
+            pixels.show();
             echo.update(0, epc, { 0x31 });  // 設定した値にする
             ret = true;                     // 処理できたので成功
           }
           break;
       }
       break;  // SETI, SETCここまで
+
+    default:  // 基本はtrueを返却
+      ret = true;
+      break;
   }
 
   return ret;
@@ -89,6 +96,11 @@ void setup() {
   myip = WiFi.localIP();
 
   echo.begin(callback);  // EL 起動シーケンス
+
+  // 初期値設定
+  echo.update(0, 0x80, { 0x31 });  // off
+
+  echo.printAll();  // 全設定値の確認
 
   // 一般照明の状態，繋がった宣言として立ち上がったことをコントローラに知らせるINFを飛ばす
   const byte deoj[] = { 0x05, 0xff, 0x01 };
