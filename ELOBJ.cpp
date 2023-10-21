@@ -399,6 +399,21 @@ const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const byte *&&pdcedt)
 }
 
 ////////////////////////////////////////////////////
+/// @brief EPCに対して、PDCEDTのを結びつける（セットと更新）
+/// @param epc const byte
+/// @param il std::initializer_list<byte>
+/// @return m_pdcedt[key]
+const PDCEDT ELOBJ::SetPDCEDT(const byte epc, std::initializer_list<byte> il)
+{
+#ifdef __ELOJB_DEBUG__
+	cout << "- ELOBJ::SetPDCEDT std::initializer_list<byte>" << endl;
+#endif
+	int key = epc - 0x80;
+	m_pdcedt[key] = PDCEDT(il);
+	return (m_pdcedt[key]);
+}
+
+////////////////////////////////////////////////////
 /// @brief PropertyMap(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する
 /// @param epc const byte
 /// @param epcs std::initializer_list<byte> : epc list

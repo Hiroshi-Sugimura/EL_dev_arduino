@@ -87,6 +87,7 @@ public:
   const PDCEDT GetPDCEDT(const byte epc) const;
   const PDCEDT SetPDCEDT(const byte epc, const PDCEDT pdcedt);
   const PDCEDT SetPDCEDT(const byte epc, const byte *&&pdcedt);
+  const PDCEDT SetPDCEDT(const byte epc, std::initializer_list<byte> il);
   const PDCEDT SetMyPropertyMap(const byte epc, std::initializer_list<byte> epcs); // for EPC: 9e,9d,9f
   const byte *GetMyPropertyMap(const byte epc) const;
 

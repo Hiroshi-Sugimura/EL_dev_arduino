@@ -341,7 +341,7 @@ void EL::update(const int devId, const byte epc, byte pdcedt[])
 void EL::update(const int devId, const byte epc, std::initializer_list<byte> il)
 {
 	if (devId < deviceCount)
-		devices[devId].SetPDCEDT(epc, il);
+		devices[devId][epc] = il;
 }
 
 
@@ -735,7 +735,7 @@ void EL::replyGetDetail(const IPAddress toip, const byte _seoj[] = nullptr)
 	// 従って、EPCだけを焦点とする
 
 	// temp
-	byte *pdcedt = nullptr; // pdc edt
+	PDCEDT pdcedt; // pdc edt
 	int devId;
 
 	for (byte i = 0; i < opc; i += 1, p_rEPC += 2) // OPC個数のEPCに回答する
@@ -752,30 +752,36 @@ void EL::replyGetDetail(const IPAddress toip, const byte _seoj[] = nullptr)
 #ifdef __EL_DEBUG__
 				Serial.printf("EL::replyGetDetail() Node profile\n");
 #endif
-				pdcedt = profile[*p_rEPC]; // EPCに対応するPDCEDT確保
-#ifdef __EL_DEBUG__
-				// Serial.printf("node prof: pdcedt: %x %x %x\n", pdcedt[0], pdcedt[1], pdcedt[2]);
-#endif
+
 				detail[detailSize] = *p_rEPC; // EPCに対して
 				detailSize += 1;
+
 				// PDCとEDTを設定
-				memcpy(&detail[detailSize], pdcedt, pdcedt[0] + 1); // size = pcd + edt
-				detailSize += pdcedt[0] + 1;
+				pdcedt = profile[*p_rEPC]; // EPCに対応するPDCEDT確保
+#ifdef __EL_DEBUG__
+				Serial.printf("node prof: pdcedt: ");
+				pdcedt.print();
+#endif
+				memcpy( &detail[detailSize], pdcedt, pdcedt.getPDC() + 1); // size = pdc + edt
+				detailSize += pdcedt.getPDC() + 1;
 			}
 			else
 			{
 #ifdef __EL_DEBUG__
 				Serial.printf("EL::replyGetDetail() devId: %x\n", devId);
 #endif
-				pdcedt = devices[devId][*p_rEPC]; // EPCに対応するPDCEDT確保
-#ifdef __EL_DEBUG__
-				// Serial.printf("dev obj: pdcedt: %x %x %x\n", pdcedt[0], pdcedt[1], pdcedt[2]);
-#endif
 				detail[detailSize] = *p_rEPC; // EPCに対して
 				detailSize += 1;
+
+				pdcedt = devices[devId][*p_rEPC]; // EPCに対応するPDCEDT確保
+#ifdef __EL_DEBUG__
+				Serial.printf("dev obj: pdcedt:");
+				pdcedt.print();
+				Serial.printf("dev prof: pdcedt: %d\n", pdcedt.getLength() );
+#endif
 				// PDCとEDT確保
-				memcpy(&detail[detailSize], pdcedt, pdcedt[0] + 1); // size = pcd + edt
-				detailSize += pdcedt[0] + 1;
+				memcpy( &detail[detailSize], pdcedt, pdcedt.getLength() + 1); // size = pdc + edt
+				detailSize += pdcedt.getPDC() + 1;
 			}
 		}
 		else
@@ -795,8 +801,6 @@ void EL::replyGetDetail(const IPAddress toip, const byte _seoj[] = nullptr)
 #ifdef __EL_DEBUG__
 				Serial.printf("EL::replyGetDetail() No EPC\n");
 #endif
-				// Serial.println("nothing");
-				memcpy(&detail[detailSize], pdcedt, pdcedt[0] + 1); // size = pcd + edt
 				detail[detailSize] = *p_rEPC;
 				detailSize += 1;
 				detail[detailSize] = 0x00;
@@ -804,9 +808,8 @@ void EL::replyGetDetail(const IPAddress toip, const byte _seoj[] = nullptr)
 				success = false;
 			}
 		}
+		Serial.printf("detailSize: %d\n", detailSize);
 	}
-
-	// Serial.printf("detailSize: %d\n", detailSize);
 
 	esv = success ? EL_GET_RES : EL_GET_SNA; // 一つでも失敗したらGET_SNA、全部OKならGET_RES
 	sendDetails(toip, tid, seoj, deoj, esv, opc, detail, detailSize);
