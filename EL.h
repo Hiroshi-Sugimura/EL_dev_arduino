@@ -60,6 +60,7 @@ using std::move;
 #define EL_INFC_RES 0x7a
 #define EL_SETGET_RES 0x7e
 #define EL_BUFFER_SIZE 1500
+#define EL_MINIMUM_FRAME 13
 
 // Device Object
 // センサ関連機器
@@ -160,6 +161,12 @@ using std::move;
 #define EL_Display 0x06, 0x01	 ///< ディスプレー
 #define EL_Television 0x06, 0x02 ///< テレビ
 
+// 内部利用
+#define EL_DEVID_NODEPROFILE	-1	///< ノードプロファイルのDevID
+#define EL_DEVID_NOTHING		-2	///< DevIDが見つからなかった
+#define EL_DEVID_MULTI			-3	///< インスタンス0なので複数マッチする可能性あり
+
+
 // V.4
 //      bool (*ELCallback) (  tid,   seoj,   deoj,  esv,  opc,  epc, pdc,  edt);
 typedef bool (*ELCallback)(byte[], byte[], byte[], byte, byte, byte, byte, byte[]);
@@ -224,10 +231,10 @@ public:
 	void sendDetails(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte opc, const byte detail[], const byte detailSize);
 	// return
 	// void replyOPC1(const IPAddress toip, const unsigned short tid, const byte *seoj, const byte* deoj, const byte esv, const byte epc, const byte* edt);
-	void replyGetDetail(const IPAddress toip);
-	boolean replyGetDetail_sub(const byte eoj[], const byte epc, byte &devId);
-	void replySetDetail(const IPAddress toip);
-	boolean replySetDetail_sub(const byte eoj[], const byte epc, byte &devId);
+	void replyGetDetail(const IPAddress toip, const byte seoj[]);
+	boolean replyGetDetail_sub(const byte eoj[], const byte epc, int &devId);
+	void replySetDetail(const IPAddress toip, const byte seoj[]);
+	boolean replySetDetail_sub(const byte eoj[], const byte epc, int &devId);
 
 	// reseiver
 	int read();
@@ -240,6 +247,10 @@ public:
 
 	////////////////////////////////////////////////////////////////////
 	// inline function
+
+	// オブジェクトを持っているかどうか判定して、持っているならdevIdを返す
+	int getDevId( const byte obj[] );
+
 	// byte[] を安全にdeleteする
 	void delPtr(byte ptr[]);
 };

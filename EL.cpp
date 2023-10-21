@@ -13,7 +13,7 @@
 #include "EL.h"
 #endif
 
-// #define __EL_DEBUG__ 1
+#define __EL_DEBUG__ 1
 
 ////////////////////////////////////////////////////
 /// @brief オブジェクトを一つだけサポートする場合のコンストラクタ
@@ -386,7 +386,7 @@ void EL::sendBroad(byte sBuffer[], int size)
 	else
 	{
 #ifdef __EL_DEBUG__
-		Serial.println("UDP endPacket(B) failed.");
+		Serial.println("EL::sendBroad() UDP endPacket(B) failed.");
 #endif
 	}
 }
@@ -398,7 +398,15 @@ void EL::sendBroad(byte sBuffer[], int size)
 /// バージョンによってはブロードキャストによる送信の場合がある。
 void EL::sendMulti(byte sBuffer[], int size)
 {
-	// sendBroad(sBuffer, size);
+#ifdef __EL_DEBUG__
+	Serial.print("EL::sendMulti ---------> [");
+	for (int i = 0; i < size; i += 1)
+	{
+		Serial.print(_sBuffer[i], HEX);
+		Serial.print(" ");
+	}
+	Serial.println("]");
+#endif
 
 	if (_udp->beginMulticastPacket())
 	{
@@ -417,7 +425,7 @@ void EL::sendMulti(byte sBuffer[], int size)
 	else
 	{
 #ifdef __EL_DEBUG__
-		Serial.println("UDP endPacket(M) failed.");
+		Serial.println("EL::sendMulti() UDP endPacket(M) failed.");
 #endif
 	}
 }
@@ -459,13 +467,13 @@ void EL::sendMultiOPC1(const byte tid[], const byte seoj[], const byte deoj[], c
 	sendMulti(_sBuffer, _sendPacketSize);
 
 #ifdef __EL_DEBUG__
-	Serial.print("sendMultiOPC1 packet: ");
+	Serial.print("EL::sendMultiOPC1 -----> [");
 	for (int i = 0; i < _sendPacketSize; i += 1)
 	{
 		Serial.print(_sBuffer[i], HEX);
 		Serial.print(" ");
 	}
-	Serial.println(".");
+	Serial.println("]");
 #endif
 }
 
@@ -497,7 +505,7 @@ void EL::sendMultiOPC1(const byte deoj[], const byte esv, const byte epc, const 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動
-/// @param devId const byte int
+/// @param devId const int
 /// @param deoj const byte[]
 /// @param esv const byte
 /// @param epc const byte
@@ -520,6 +528,16 @@ void EL::sendMultiOPC1ID(const int devId, const byte deoj[], const byte esv, con
 /// @param size int size of sBuffer
 void EL::send(IPAddress toip, byte sBuffer[], int size)
 {
+#ifdef __EL_DEBUG__
+	Serial.print("EL::send() -----------> [");
+	for (int i = 0; i < size; i += 1)
+	{
+		Serial.print(_sBuffer[i], HEX);
+		Serial.print(" ");
+	}
+	Serial.println("]");
+#endif
+
 	if (_udp->beginPacket(toip, EL_PORT))
 	{
 #ifdef __EL_DEBUG__
@@ -530,7 +548,7 @@ void EL::send(IPAddress toip, byte sBuffer[], int size)
 	else
 	{
 #ifdef __EL_DEBUG__
-		Serial.println("UDP beginPacket failed.");
+		Serial.println("EL::send() UDP beginPacket failed.");
 #endif
 	}
 
@@ -543,7 +561,7 @@ void EL::send(IPAddress toip, byte sBuffer[], int size)
 	else
 	{
 #ifdef __EL_DEBUG__
-		Serial.println("UDP endPacket failed.");
+		Serial.println("EL::send() UDP endPacket failed.");
 #endif
 	}
 }
@@ -586,13 +604,13 @@ void EL::sendOPC1(const IPAddress toip, const byte tid[], const byte seoj[], con
 	send(toip, _sBuffer, _sendPacketSize);
 
 #ifdef __EL_DEBUG__
-	Serial.print("sendOPC1 packet: ");
+	Serial.print("EL::sendOPC1() ---------> [");
 	for (int i = 0; i < _sendPacketSize; i += 1)
 	{
 		Serial.print(_sBuffer[i], HEX);
 		Serial.print(" ");
 	}
-	Serial.println(".");
+	Serial.println("]");
 #endif
 }
 
@@ -685,10 +703,23 @@ void EL::sendDetails(const IPAddress toip, const byte tid[], const byte seoj[], 
 ////////////////////////////////////////////////////
 /// @brief Getに対して複数OPCにも対応して返答する内部関数
 /// @param toip const IPAddress
-void EL::replyGetDetail(const IPAddress toip)
+/// @param _seoj const byte[]
+void EL::replyGetDetail(const IPAddress toip, const byte _seoj[] = nullptr)
 {
+	// 返信用データを作る
 	byte tid[] = {_rBuffer[EL_TID], _rBuffer[EL_TID + 1]};
-	byte seoj[] = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]}; // DEOJがreplyではSEOJになる
+
+	byte seoj[3]; // DEOJがreplyではSEOJになる
+	if( _seoj == nullptr ) {
+		seoj[0] = _rBuffer[EL_DEOJ];
+		seoj[1] = _rBuffer[EL_DEOJ + 1];
+		seoj[2] = _rBuffer[EL_DEOJ + 2];
+	}else{
+		seoj[0] = _seoj[0];
+		seoj[1] = _seoj[1];
+		seoj[2] = _seoj[2];
+	}
+
 	byte deoj[] = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]}; // SEOJがreplyではDEOJになる
 	byte esv = _rBuffer[EL_ESV];
 	byte opc = _rBuffer[EL_OPC];
@@ -705,24 +736,26 @@ void EL::replyGetDetail(const IPAddress toip)
 
 	// temp
 	byte *pdcedt = nullptr; // pdc edt
-	byte devId;
+	int devId;
 
 	for (byte i = 0; i < opc; i += 1, p_rEPC += 2) // OPC個数のEPCに回答する
 	{
 #ifdef __EL_DEBUG__
-		Serial.printf("i:%d EPC:%X\n", i, *p_rEPC);
+		Serial.printf("EL::replyGetDetail() i:%d / opc:%d, EPC:%X\n", i, opc, *p_rEPC);
 #endif
 		boolean exist = replyGetDetail_sub(seoj, *p_rEPC, devId);
 		if (exist)
 		{
 			// ある
-#ifdef __EL_DEBUG__
-			Serial.printf("devId: %x\n", devId);
-#endif
-			if (devId == 0xff) // devId = 0xff is profile
+			if (devId == EL_DEVID_NODEPROFILE) // devId, EL_DEVID_NODEPROFILE = -1 is profile
 			{
+#ifdef __EL_DEBUG__
+				Serial.printf("EL::replyGetDetail() Node profile\n");
+#endif
 				pdcedt = profile[*p_rEPC]; // EPCに対応するPDCEDT確保
+#ifdef __EL_DEBUG__
 				// Serial.printf("node prof: pdcedt: %x %x %x\n", pdcedt[0], pdcedt[1], pdcedt[2]);
+#endif
 				detail[detailSize] = *p_rEPC; // EPCに対して
 				detailSize += 1;
 				// PDCとEDTを設定
@@ -731,8 +764,13 @@ void EL::replyGetDetail(const IPAddress toip)
 			}
 			else
 			{
+#ifdef __EL_DEBUG__
+				Serial.printf("EL::replyGetDetail() devId: %x\n", devId);
+#endif
 				pdcedt = devices[devId][*p_rEPC]; // EPCに対応するPDCEDT確保
+#ifdef __EL_DEBUG__
 				// Serial.printf("dev obj: pdcedt: %x %x %x\n", pdcedt[0], pdcedt[1], pdcedt[2]);
+#endif
 				detail[detailSize] = *p_rEPC; // EPCに対して
 				detailSize += 1;
 				// PDCとEDT確保
@@ -743,12 +781,20 @@ void EL::replyGetDetail(const IPAddress toip)
 		else
 		{
 			// ない
-			if (devId == 0xfe)
-			{ // そもそもDEOJが自分のオブジェクトでない場合は無視（@@ 追加）
+			if (devId == EL_DEVID_NOTHING)
+			{
+				// そもそもDEOJが自分のオブジェクトでない場合は無視（@@ 追加）
+#ifdef __EL_DEBUG__
+				Serial.printf("EL::replyGetDetail() No DEOJ\n");
+#endif
 				return;
 			}
 			else
-			{ // DEOJはあるが、EPCがない
+			{
+				// DEOJはあるが、EPCがない
+#ifdef __EL_DEBUG__
+				Serial.printf("EL::replyGetDetail() No EPC\n");
+#endif
 				// Serial.println("nothing");
 				memcpy(&detail[detailSize], pdcedt, pdcedt[0] + 1); // size = pcd + edt
 				detail[detailSize] = *p_rEPC;
@@ -770,15 +816,15 @@ void EL::replyGetDetail(const IPAddress toip)
 /// @brief EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数
 /// @param eoj const byte[]
 /// @param epc const byte
-/// @param devId[out] byte&: -1:profile, x:devId
+/// @param devId[out] int&: -2: EL_DEVID_NOTHING, -1:EL_DEVID_NODEPROFILE, x:devId
 /// @return true:無し、false:あり
 /// @note replyGetDetailのサブルーチン、GetPropertyMapを参照しなくても、基本的に持っているPeopertyはGet可能なのでMapチェックしなくてよい
-boolean EL::replyGetDetail_sub(const byte eoj[], const byte epc, byte &devId)
+boolean EL::replyGetDetail_sub(const byte eoj[], const byte epc, int &devId)
 {
-	devId = 0xfe;											// 0xfe はOJB無しとする（） // @@@ 実際は別の方法でOBJ無しとしないとバグ
+	devId = EL_DEVID_NOTHING;									// -2 はOJB無しとする（実際は別の方法でOBJ無しとしないとバグ発生するかも）
 	if (eoj[0] == 0x0e && eoj[1] == 0xf0 && eoj[2] == 0x01) // profile object
 	{
-		devId = 0xff; // devId = -1 は node profileとする。（この方式は後で変更）
+		devId = EL_DEVID_NODEPROFILE; // devId = -1 は node profileとする。（この方式は後で変更するかも）
 		byte *pdcedt = profile[epc];
 
 		if (pdcedt == nullptr)
@@ -808,10 +854,21 @@ boolean EL::replyGetDetail_sub(const byte eoj[], const byte epc, byte &devId)
 /// @note EPC毎の設定値に関して基本はノーチェックなので注意すべし
 /// EPC毎の設定値チェックや、INF処理に関しては下記の replySetDetail_sub にて実施
 /// SET_RESはEDT入ってない
-void EL::replySetDetail(const IPAddress toip)
+void EL::replySetDetail(const IPAddress toip, const byte _seoj[] = nullptr )
 {
 	byte tid[] = {_rBuffer[EL_TID], _rBuffer[EL_TID + 1]};
-	byte seoj[] = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]}; // DEOJがreplyではSEOJになる
+
+	byte seoj[3]; // DEOJがreplyではSEOJになる
+	if( _seoj == nullptr ) {
+		seoj[0] = _rBuffer[EL_DEOJ];
+		seoj[1] = _rBuffer[EL_DEOJ + 1];
+		seoj[2] = _rBuffer[EL_DEOJ + 2];
+	}else{
+		seoj[0] = _seoj[0];
+		seoj[1] = _seoj[1];
+		seoj[2] = _seoj[2];
+	}
+
 	byte deoj[] = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]}; // SEOJがreplyではDEOJになる
 	byte esv = _rBuffer[EL_ESV];
 	byte opc = _rBuffer[EL_OPC];
@@ -827,13 +884,13 @@ void EL::replySetDetail(const IPAddress toip)
 	byte *p_rPDC = &_rBuffer[EL_EPC + 1]; // 初期PDCポインタ
 
 	// temp
-	byte *pdcedt = nullptr; // pdc edt
-	byte devId;
+	// byte *pdcedt = nullptr; // pdc edt
+	int devId;
 
 	for (byte i = 0; i < opc; i += 1) // OPC個数のEPCに回答する
 	{
 #ifdef __EL_DEBUG__
-		Serial.printf("i:%d EPC:%X\n", i, *p_rEPC);
+		Serial.printf("EL::replySetDetail() i:%d EPC:%X\n", i, *p_rEPC);
 #endif
 		boolean exist = replySetDetail_sub(seoj, *p_rEPC, devId);
 		if (exist)
@@ -841,14 +898,14 @@ void EL::replySetDetail(const IPAddress toip)
 			// ある
 			// Serial.print("devId ");
 			// Serial.print(devId);
-			if (devId == 0xff) // devId = -1 is profile
+			if (devId == EL_DEVID_NODEPROFILE) // devId = -1 is profile
 			{
 				// 成功
 				// pdcedt = profile[*p_rEPC];  // EPC確保
 				detail[detailSize] = *p_rEPC;
 				detailSize += 1;
 #ifdef __EL_DEBUG__
-				Serial.printf("node prof: EPC: %x\n", *p_rEPC);
+				Serial.printf("EL::replySetDetail() node prof: EPC: %x\n", *p_rEPC);
 #endif
 				detail[detailSize] = 0x00; // 成功したら0x00を返却
 				detailSize += 1;
@@ -859,7 +916,7 @@ void EL::replySetDetail(const IPAddress toip)
 				detail[detailSize] = *p_rEPC;
 				detailSize += 1;
 #ifdef __EL_DEBUG__
-				Serial.printf("dev obj: EPC: %x\n", *p_rEPC);
+				Serial.printf("EL::replySetDetail() dev obj: EPC: %x\n", *p_rEPC);
 #endif
 				detail[detailSize] = 0x00; // 成功したら0x00を返却
 				detailSize += 1;
@@ -872,7 +929,7 @@ void EL::replySetDetail(const IPAddress toip)
 			detail[detailSize] = *p_rEPC;
 			detailSize += 1;
 #ifdef __EL_DEBUG__
-			Serial.printf("no epc: pdcedt: %x\n", *p_rEPC);
+			Serial.printf("EL::replySetDetail() no epc: EPC: %x\n", *p_rEPC);
 #endif
 			memcpy(&detail[detailSize], p_rPDC, p_rPDC[0] + 1); // size = pcd + edt
 			detailSize += p_rPDC[0] + 1;
@@ -900,16 +957,16 @@ void EL::replySetDetail(const IPAddress toip)
 /// @brief EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数
 /// @param eoj const byte[]
 /// @param epc const byte
-/// @param devId[out] byte&: -1:profile, x:devId
+/// @param devId[out] int&: -1:profile, x:devId
 /// @return true:無し、false:あり
 /// @note replySetDetail_subのサブルーチン、本来はSetPropertyMap[0x9E]の確認をすべきだが、やってない
-boolean EL::replySetDetail_sub(const byte eoj[], const byte epc, byte &devId)
+boolean EL::replySetDetail_sub(const byte eoj[], const byte epc, int &devId)
 {
 	// profile
 	if (eoj[0] == 0x0e && eoj[1] == 0xf0 && eoj[2] == 0x01) // profile object
 	{
 		byte *pdcedt = profile[epc];
-		devId = 0xff;
+		devId = EL_DEVID_NODEPROFILE; // -1 は nodeprofile
 
 		if (pdcedt == nullptr)
 			return false; // epcがない
@@ -965,6 +1022,8 @@ int EL::read(void)
 	return _readPacketSize;
 }
 
+
+
 ////////////////////////////////////////////////////
 /// @brief 受信データを処理する。EL処理でupdateしたら呼ぶ
 void EL::returner(void)
@@ -997,7 +1056,7 @@ void EL::returner(void)
 				pdcedt = devices[devId][epc];
 				noDevice = false;
 #ifdef __EL_DEBUG__
-				Serial.printf("pdcedt: %p", pdcedt);
+				Serial.printf("EL::returner() pdcedt: %p", pdcedt);
 				Serial.println();
 #endif
 				break;
@@ -1016,22 +1075,22 @@ void EL::returner(void)
 		// SETC, Get, INF_REQ は返信処理がある
 	case EL_SETC:
 #ifdef __EL_DEBUG__
-		Serial.println("### SETC ###");
+		Serial.println("EL::returner() ### SETC ###");
 #endif
-		replySetDetail(remIP);
+		replySetDetail(remIP, deoj);
 		break;
 
 	case EL_GET:
 #ifdef __EL_DEBUG__
-		Serial.println("### GET ###");
+		Serial.println("EL::returner() ### GET ###");
 #endif
-		replyGetDetail(remIP);
+		replyGetDetail(remIP, deoj);
 		break;
 
 		// ユニキャストへの返信ここまで，INFはマルチキャスト
 	case EL_INF_REQ:
 #ifdef __EL_DEBUG__
-		Serial.print("INF_REQ: ");
+		Serial.print("EL::returner() INF_REQ: ");
 		Serial.println(epc, HEX);
 #endif
 		if (pdcedt)
@@ -1059,62 +1118,80 @@ void EL::recvProcess(void)
 	// パケット貰ったらやる
 	int packetSize = 0; // 受信データ量
 
-	// -----------------------------------
-	// ESVがSETとかGETとかで動作をかえる
-	if (0 != (packetSize = read())) // 0!=はなくてもよいが，Warning出るのでつけとく
-	{									 // 受け取った内容読み取り，あったら中へ
-		///////////////////////////////////////////////////////////////////
-		// 受信パケット解析
-		IPAddress remIP = remoteIP();
+	if (0 == (packetSize = read())) { // 0!=はなくてもよいが，Warning出るのでつけとく
+		return;		// 受信データ無しなので終わり
+	}
 
-		// 受信データをまずは意味づけしておくとらくかも
-		byte tid[]    = {_rBuffer[EL_TID],  _rBuffer[EL_TID + 1]};
-		byte seoj[]   = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]};
-		byte deoj[]   = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]};
-		byte esv      = _rBuffer[EL_ESV];
-		byte opc      = _rBuffer[EL_OPC];
-		byte epc      = _rBuffer[EL_EPC]; // details
-		byte pdc      = _rBuffer[EL_PDC];
-		byte *edt     = &_rBuffer[EL_EDT];
-		PDCEDT pdcedt = &_rBuffer[EL_PDC];
-		int devId = 0;
+	///////////////////////////////////////////////////////////////////
+	// 受信パケット解析
 
-		// 要求されたオブジェクトについて調べる
-		if (deoj[0] == 0x0e && deoj[1] == 0xf0)
-		{					// 0e f0 xx ならprofile object
-			deoj[2] = 0x01; // search等，インスタンス番号が0で送信される時があるので
-			pdcedt = profile[epc];
-		}
-		else
-		{
-			boolean noDevice = true;
-			for (int i = 0; i < deviceCount; i++) // deojとマッチするdevIdを調べる
-			{
-				if (deoj[0] == _eojs[i * 3 + 0] && deoj[1] == _eojs[i * 3 + 1])
-				{
-					devId = i;
-					pdcedt = devices[devId][epc];
-					noDevice = false;
+	// 送信元IPの確保
+	IPAddress remIP = remoteIP();
+
 #ifdef __EL_DEBUG__
-					Serial.printf("pdcedt: %p", pdcedt);
-					Serial.println();
+	// 受信データを表示
+	Serial.print("EL::recvProcess() <---- [");
+	for (int i = 0; i < packetSize; i += 1)
+	{
+		Serial.print(_rBuffer[i], HEX);
+		Serial.print(" ");
+	}
+	Serial.println("]");
 #endif
-					break;
-				}
-			}
-			if (noDevice)
-				return;
-		}
+
+	if( packetSize < EL_MINIMUM_FRAME ) {
+#ifdef __EL_DEBUG__
+		Serial.println("EL::recvProcess() failed. size < EL_MINIMUM_FRAME");
+#endif
+		return;
+	}
+
+	// 受信データをまずは意味づけしておく
+	byte tid[]    = {_rBuffer[EL_TID],  _rBuffer[EL_TID + 1]};
+	byte seoj[]   = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]};
+	byte deoj[]   = {_rBuffer[EL_DEOJ], _rBuffer[EL_DEOJ + 1], _rBuffer[EL_DEOJ + 2]};
+	byte esv      = _rBuffer[EL_ESV];
+	byte opc      = _rBuffer[EL_OPC];
+	byte epc      = _rBuffer[EL_EPC]; // details
+	byte pdc      = _rBuffer[EL_PDC];
+	PDCEDT pdcedt = &_rBuffer[EL_PDC];
+	byte *edt     = &_rBuffer[EL_EDT];  // Setでないとここまで来ないかも
 
 
-		// オブジェクトあるみたい
+	// オブジェクトあるみたい
+	// インスタンス0でのマルチオブジェクト指定を考えてループを利用する
+	// devId特定できてればそのままでいい
+	int min = 1, max = 1;
+
+	// multiのときはつぎのfor文で1から探索
+	if( deoj[2] == 0 ) {
+		min = 1;
+		max = deviceCount;
+	}else{
+		// 指定の時は min = maxとしてforは一回のみ動く
+		min = deoj[2];
+		max = deoj[2];
+	}
+
+	for( int i = min; i <= max; i+= 1 ) {  // iはインスタンス番号
+		// 要求されたオブジェクトについて調べる
+		// 内部的に使用しているデバイスIDにかえる
+
+		deoj[2] = i;  // インスタンス番号が0だと探索できないので、具体的にiとする
+
+		int devId = getDevId( deoj );
+		if( devId == EL_DEVID_NOTHING ) { return; }  // 管理していないオブジェクトなら破棄
+
 		// OPCで処理
 		boolean success = true;
 		for (int o = 0; o < opc; o += 1)
 		{
-			if ( !userfunc(tid, seoj, deoj, esv, opc, epc, pdc, edt)) // 失敗
+			if ( !userfunc(tid, seoj, deoj, esv, opc, epc, pdc, edt) ) // 失敗
 			{
 				// どこかで失敗したら、失敗を返却
+#ifdef __EL_DEBUG__
+				Serial.println("EL::recvProcess() userfunc ret=false (or Node Profile)");
+#endif
 				success = false;
 			}
 
@@ -1126,6 +1203,7 @@ void EL::recvProcess(void)
 		}
 
 
+		// ESVがSETとかGETとかで動作をかえる
 		// esvの要求にこたえる
 		switch (esv)
 		{
@@ -1135,24 +1213,30 @@ void EL::recvProcess(void)
 			// SETC, Get, INF_REQ は返信処理がある
 		case EL_SETC:
 #ifdef __EL_DEBUG__
-			Serial.println("### SETC ###");
+			Serial.println("EL::recvProcess() ### SETC ###");
 #endif
-			replySetDetail(remIP);
+			replySetDetail(remIP, deoj);
 			break;
 
 		case EL_GET:
 #ifdef __EL_DEBUG__
-			Serial.println("### GET ###");
+			Serial.println("EL::recvProcess() ### GET ###");
 #endif
-			replyGetDetail(remIP);
+			replyGetDetail(remIP, deoj);
 			break;
 
 			// ユニキャストへの返信ここまで，INFはマルチキャスト
 		case EL_INF_REQ:
 #ifdef __EL_DEBUG__
-			Serial.print("INF_REQ: ");
+			Serial.print("EL::recvProcess() INF_REQ: ");
 			Serial.println(epc, HEX);
 #endif
+			if( devId = EL_DEVID_NODEPROFILE ) {
+				pdcedt = profile[epc];
+			}else{
+				pdcedt = devices[devId][epc];
+			}
+
 			if (pdcedt)
 			{ // そのEPCがある場合、マルチキャスト
 				sendMultiOPC1(tid, deoj, seoj, (esv + 0x10), epc, pdcedt);
@@ -1169,6 +1253,7 @@ void EL::recvProcess(void)
 			break;
 		}
 	}
+
 }
 
 // EL処理ここまで
@@ -1210,6 +1295,42 @@ void EL::printAll(void)
 #ifdef Arduino_h
 	Serial.println("===================");
 #endif
+}
+
+
+////////////////////////////////////////////////////
+/// @brief device idを取得する内部関数
+/// @param obj const byte []
+/// @return int -2:EL_DEVID_NOTHING, -1:EL_DEVID_NODEPROFILE, [0-n]: devid
+int EL::getDevId( const byte obj[] )
+{
+	// 要求されたオブジェクトについて調べる
+	// 内部的に使用しているデバイスIDにかえる
+	if (obj[0] == 0x0e && obj[1] == 0xf0)
+	{
+		// 0e f0 xx ならprofile object
+		return EL_DEVID_NODEPROFILE;  // -1: Node profile object
+	}
+
+	// Nodeprofileではなかったので探す
+	for (int i = 0; i < deviceCount; i++) // deojとマッチするdevIdを調べる
+	{
+		if (obj[0] == _eojs[i * 3 + 0] && obj[1] == _eojs[i * 3 + 1] ) {
+			if( obj[2] == _eojs[i * 3 + 2]) {  // 発見してインスタンスも一致
+				return i; // i = devId
+			}
+			else if( obj[2] == 0 ) {
+				return EL_DEVID_MULTI;  // 少なくとも１つはあって、インスタンス番号が0
+			}
+		}
+	}
+
+	// 見つからなくて探索終わった
+#ifdef __EL_DEBUG__
+	Serial.println("EL::getDevId() noDevice");
+#endif
+
+	return EL_DEVID_NOTHING;  // -2: Nothing
 }
 
 ////////////////////////////////////////////////////
