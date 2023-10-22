@@ -33,16 +33,16 @@ using std::move;
 
 // defined
 #define EL_PORT 3610 ///< ECHONET Lite port
-#define EL_EHD1 0
-#define EL_EHD2 1
-#define EL_TID 2
-#define EL_SEOJ 4
-#define EL_DEOJ 7
-#define EL_ESV 10
-#define EL_OPC 11
-#define EL_EPC 12
-#define EL_PDC 13
-#define EL_EDT 14
+#define EL_EHD1 0	 /// < EHD1
+#define EL_EHD2 1	 /// < EHD2
+#define EL_TID 2	 /// < TID 2 byte
+#define EL_SEOJ 4	 /// < SEOJ 3 byte
+#define EL_DEOJ 7	 /// < DEOJ 3 byte
+#define EL_ESV 10	 /// < ESV
+#define EL_OPC 11	 /// < OPC
+#define EL_EPC 12	 /// < EPC
+#define EL_PDC 13	 /// < PDC
+#define EL_EDT 14	 /// < EDT n byte
 #define EL_SETI_SNA 0x50
 #define EL_SETC_SNA 0x51
 #define EL_GET_SNA 0x52
@@ -162,10 +162,9 @@ using std::move;
 #define EL_Television 0x06, 0x02 ///< テレビ
 
 // 内部利用
-#define EL_DEVID_NODEPROFILE	-1	///< ノードプロファイルのDevID
-#define EL_DEVID_NOTHING		-2	///< DevIDが見つからなかった
-#define EL_DEVID_MULTI			-3	///< インスタンス0なので複数マッチする可能性あり
-
+#define EL_DEVID_NODEPROFILE -1 ///< ノードプロファイルのDevID
+#define EL_DEVID_NOTHING -2		///< DevIDが見つからなかった
+#define EL_DEVID_MULTI -3		///< インスタンス0なので複数マッチする可能性あり
 
 // V.4
 //      bool (*ELCallback) (  tid,   seoj,   deoj,  esv,  opc,  epc, pdc,  edt);
@@ -202,18 +201,18 @@ public:
 	byte _tid[2];				   ///< TID (semi-auto incremented)
 
 	////////////////////////////////////////////////////
-	EL(WiFiUDP &udp, byte classGroupCode, byte classCode, byte instanceNumber);
-	EL(WiFiUDP &udp, byte eojs[][3], int count);
+	EL(WiFiUDP &udp, byte classGroupCode, byte classCode, byte instanceNumber); // for single dev (devid=0)
+	EL(WiFiUDP &udp, byte eojs[][3], int count);								// for multi dev
 	void begin(void);
 	void begin(ELCallback cb); // V.4
 
 	// details change
-	void update(const byte epc, byte pdcedt[]);
-	void update(const byte epc, std::initializer_list<byte> il);
-	byte *at(const byte epc);
-	void update(const int devId, const byte epc, byte pdcedt[]);
-	void update(const int devId, const byte epc, std::initializer_list<byte> il);
-	byte *at(const int devId, const byte epc);
+	void update(const byte epc, byte pdcedt[]);										  // for single dev (devid=0)
+	void update(const byte epc, std::initializer_list<byte> pdcedt);				  // for single dev (devid=0)
+	void update(const int devId, const byte epc, byte pdcedt[]);					  // for multi dev
+	void update(const int devId, const byte epc, std::initializer_list<byte> pdcedt); // for multi dev
+	byte *at(const byte epc);														  // for single dev (devid=0)
+	byte *at(const int devId, const byte epc);										  // for multi dev
 
 	// sender
 	void send(IPAddress toip, byte sBuffer[], int size);
@@ -240,7 +239,7 @@ public:
 	int read();
 	IPAddress remoteIP(void);
 	void returner(void);
-	void recvProcess(void); // 受信処理 V4
+	void recvProcess(void); // 受信処理 V4, begin(callback)と一緒に使う
 
 	// display, debug
 	void printAll(void);
@@ -249,7 +248,7 @@ public:
 	// inline function
 
 	// オブジェクトを持っているかどうか判定して、持っているならdevIdを返す
-	int getDevId( const byte obj[] );
+	int getDevId(const byte obj[]);
 
 	// byte[] を安全にdeleteする
 	void delPtr(byte ptr[]);

@@ -13,7 +13,7 @@
 #include "EL.h"
 #endif
 
-#define __EL_DEBUG__ 1
+// #define __EL_DEBUG__ 1
 
 ////////////////////////////////////////////////////
 /// @brief オブジェクトを一つだけサポートする場合のコンストラクタ
@@ -308,9 +308,9 @@ void EL::update(const byte epc, byte pdcedt[])
 /// @param epc const byte
 /// @param il  std::initializer_list<byte>
 /// @note pdcedtなので、pdcは自分で計算することに注意
-void EL::update(const byte epc,  std::initializer_list<byte> il)
+void EL::update(const byte epc,  std::initializer_list<byte> pdcedt)
 {
-	devices[0].SetPDCEDT(epc, il);
+	devices[0].SetPDCEDT(epc, pdcedt);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -338,10 +338,10 @@ void EL::update(const int devId, const byte epc, byte pdcedt[])
 /// @param devId const int, コンストラクタで渡した順番に相当
 /// @param epc const byte
 /// @param il  std::initializer_list<byte>
-void EL::update(const int devId, const byte epc, std::initializer_list<byte> il)
+void EL::update(const int devId, const byte epc, std::initializer_list<byte> pdcedt)
 {
 	if (devId < deviceCount)
-		devices[devId][epc] = il;
+		devices[devId][epc] = pdcedt;
 }
 
 
@@ -808,7 +808,9 @@ void EL::replyGetDetail(const IPAddress toip, const byte _seoj[] = nullptr)
 				success = false;
 			}
 		}
+#ifdef __EL_DEBUG__
 		Serial.printf("detailSize: %d\n", detailSize);
+#endif
 	}
 
 	esv = success ? EL_GET_RES : EL_GET_SNA; // 一つでも失敗したらGET_SNA、全部OKならGET_RES
@@ -1234,7 +1236,7 @@ void EL::recvProcess(void)
 			Serial.print("EL::recvProcess() INF_REQ: ");
 			Serial.println(epc, HEX);
 #endif
-			if( devId = EL_DEVID_NODEPROFILE ) {
+			if( devId == EL_DEVID_NODEPROFILE ) {
 				pdcedt = profile[epc];
 			}else{
 				pdcedt = devices[devId][epc];
