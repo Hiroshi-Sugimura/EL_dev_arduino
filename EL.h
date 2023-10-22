@@ -32,35 +32,35 @@ using std::move;
 #endif
 
 // defined
-#define EL_PORT 3610 ///< ECHONET Lite port
-#define EL_EHD1 0	 /// < EHD1
-#define EL_EHD2 1	 /// < EHD2
-#define EL_TID 2	 /// < TID 2 byte
-#define EL_SEOJ 4	 /// < SEOJ 3 byte
-#define EL_DEOJ 7	 /// < DEOJ 3 byte
-#define EL_ESV 10	 /// < ESV
-#define EL_OPC 11	 /// < OPC
-#define EL_EPC 12	 /// < EPC
-#define EL_PDC 13	 /// < PDC
-#define EL_EDT 14	 /// < EDT n byte
-#define EL_SETI_SNA 0x50
-#define EL_SETC_SNA 0x51
-#define EL_GET_SNA 0x52
-#define EL_INF_SNA 0x53
-#define EL_SETGET_SNA 0x5e
-#define EL_SETI 0x60
-#define EL_SETC 0x61
-#define EL_GET 0x62
-#define EL_INF_REQ 0x63
-#define EL_SETGET 0x6e
-#define EL_SET_RES 0x71
-#define EL_GET_RES 0x72
-#define EL_INF 0x73
-#define EL_INFC 0x74
-#define EL_INFC_RES 0x7a
-#define EL_SETGET_RES 0x7e
-#define EL_BUFFER_SIZE 1500
-#define EL_MINIMUM_FRAME 13
+#define EL_PORT 3610		///< ECHONET Lite port
+#define EL_EHD1 0			///< EHD1
+#define EL_EHD2 1			///< EHD2
+#define EL_TID 2			///< TID 2 byte
+#define EL_SEOJ 4			///< SEOJ 3 byte
+#define EL_DEOJ 7			///< DEOJ 3 byte
+#define EL_ESV 10			///< ESV
+#define EL_OPC 11			///< OPC
+#define EL_EPC 12			///< EPC
+#define EL_PDC 13			///< PDC
+#define EL_EDT 14			///< EDT n byte
+#define EL_SETI_SNA 0x50	///< SETI_SNA
+#define EL_SETC_SNA 0x51	///< SETC_SNA
+#define EL_GET_SNA 0x52		///< GET_SNA
+#define EL_INF_SNA 0x53		///< INF_SNA
+#define EL_SETGET_SNA 0x5e	///< SETGET_SNA
+#define EL_SETI 0x60		///< SETI
+#define EL_SETC 0x61		///< SETC
+#define EL_GET 0x62			///< GET
+#define EL_INF_REQ 0x63		///< INF_REQ
+#define EL_SETGET 0x6e		///< SETGET
+#define EL_SET_RES 0x71		///< SET_RES
+#define EL_GET_RES 0x72		///< GET_RES
+#define EL_INF 0x73			///< INF
+#define EL_INFC 0x74		///< INFC
+#define EL_INFC_RES 0x7a	///< INFC_RES
+#define EL_SETGET_RES 0x7e	///< SETGET_RES
+#define EL_BUFFER_SIZE 1500 ///< BUFFER_SIZE
+#define EL_MINIMUM_FRAME 13 ///< MINIMUM_FRAME
 
 // Device Object
 // センサ関連機器
@@ -160,6 +160,8 @@ using std::move;
 // AV関連機器
 #define EL_Display 0x06, 0x01	 ///< ディスプレー
 #define EL_Television 0x06, 0x02 ///< テレビ
+// Node profile
+#define EL_NodeProfile 0x0e, 0xf0 ///< ノードプロファイル
 
 // 内部利用
 #define EL_DEVID_NODEPROFILE -1 ///< ノードプロファイルのDevID
@@ -234,6 +236,9 @@ public:
 	boolean replyGetDetail_sub(const byte eoj[], const byte epc, int &devId);
 	void replySetDetail(const IPAddress toip, const byte seoj[]);
 	boolean replySetDetail_sub(const byte eoj[], const byte epc, int &devId);
+	// INFプロパティ
+	void checkInfAndSend(int devId, const byte epc);
+	void checkInfAndSend(const byte eoj[], const byte epc);
 
 	// reseiver
 	int read();

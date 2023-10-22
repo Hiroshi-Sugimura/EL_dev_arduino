@@ -55,15 +55,15 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
             pixels.clear();                                                             // 黒
             pixels.setPixelColor(0, pixels.Color(BRIGHTNESS, BRIGHTNESS, BRIGHTNESS));  // 白
             pixels.show();
-            echo.update(0, epc, { 0x30 });
+            echo.devices[0][epc] = { 0x01, 0x30 };
             ret = true;                 // 処理できたので成功
           } else if (edt[0] == 0x31) {  // OFF
             Serial.println("OFF");
             pixels.clear();                                  // 黒
             pixels.setPixelColor(0, pixels.Color(0, 0, 0));  // 黒
             pixels.show();
-            echo.update(0, epc, { 0x31 });  // 設定した値にする
-            ret = true;                     // 処理できたので成功
+            echo.devices[0][epc] = { 0x01, 0x31 };  // 設定した値にする
+            ret = true;                             // 処理できたので成功
           }
           break;
       }
