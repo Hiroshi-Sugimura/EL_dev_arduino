@@ -11,7 +11,7 @@
 #define DIN_PIN 48      // NeoPixel　の出力ピン番号
 #define LED_COUNT 1     // LEDの連結数
 #define WAIT_MS 1000    // 次の点灯までのウエイト
-#define BRIGHTNESS 128  // 輝度
+#define BRIGHTNESS 100  // 輝度（128まで行けるけど100で止める）
 Adafruit_NeoPixel pixels(LED_COUNT, DIN_PIN, NEO_GRB + NEO_KHZ800);
 
 
@@ -52,19 +52,44 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
         case 0x80:                                                                      // 電源
           if (edt[0] == 0x30) {                                                         // ON
             Serial.println("ON");                                                       // 設定した値にする
-            pixels.clear();                                                             // 黒
+            pixels.clear();                                                             // クリア
             pixels.setPixelColor(0, pixels.Color(BRIGHTNESS, BRIGHTNESS, BRIGHTNESS));  // 白
             pixels.show();
-            echo.devices[0][epc] = { 0x01, 0x30 };
-            ret = true;                 // 処理できたので成功
-          } else if (edt[0] == 0x31) {  // OFF
+            echo.devices[0][epc] = { 0x01, 0x30 };   // ON
+            echo.devices[0][0xB6] = { 0x01, 0x42 };  // カラー灯モード（白）
+            ret = true;                              // 処理できたので成功
+          } else if (edt[0] == 0x31) {               // OFF
             Serial.println("OFF");
-            pixels.clear();                                  // 黒
+            pixels.clear();                                  // クリア
             pixels.setPixelColor(0, pixels.Color(0, 0, 0));  // 黒
             pixels.show();
             echo.devices[0][epc] = { 0x01, 0x31 };  // 設定した値にする
             ret = true;                             // 処理できたので成功
           }
+          break;
+
+        case 0xB0:                                                          // 照度レベル
+          if (0 <= edt[0] && edt[0] <= 100) {                               // [0--100]
+            Serial.printf("B0: %d\n", edt[0]);                              // 設定した値にする
+            pixels.clear();                                                 // クリア
+            pixels.setPixelColor(0, pixels.Color(edt[0], edt[0], edt[0]));  // 照度調整白
+            pixels.show();
+            echo.devices[0][epc] = { 0x01, edt[0] };
+            ret = true;  // 処理できたので成功
+          } else {
+            ret = false;  // 処理で着ない範囲は失敗
+          }
+          break;
+
+        case 0xC0:                                                                                                                 // 色設定
+                                                                                                                                   // 本当はエラーチェックすべき
+          Serial.printf("C0: %d, %d, %d\n", edt[0], edt[1], edt[2]);                                                               // 設定した値にする
+          pixels.clear();                                                                                                          // クリア
+          pixels.setPixelColor(0, pixels.Color(edt[0] * BRIGHTNESS / 255, edt[1] * BRIGHTNESS / 255, edt[2] * BRIGHTNESS / 255));  // 照度調整白
+          pixels.show();
+          echo.devices[0][epc] = { 0x03, edt[0], edt[1], edt[2] };  // 色設定した
+          echo.devices[0][0xB6] = { 0x01, 0x45 };                   // カラー灯モード
+          ret = true;                                               // 処理できたので成功
           break;
       }
       break;  // SETI, SETCここまで
@@ -98,7 +123,10 @@ void setup() {
   echo.begin(callback);  // EL 起動シーケンス
 
   // 初期値設定
-  echo.update(0, 0x80, { 0x01, 0x31 });  // off
+  echo.update(0, 0x80, { 0x01, 0x31 });             // off
+  echo.devices[0][0xB0] = { 0x01, 100 };            // 照度
+  echo.devices[0][0xC0] = { 0x03, 100, 100, 100 };  // 色設定
+  echo.devices[0][0xB6] = { 0x01, 0x42 };           // カラー灯モード（白）
 
   echo.printAll();  // 全設定値の確認
 
