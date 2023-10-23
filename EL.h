@@ -209,10 +209,12 @@ public:
 	void begin(ELCallback cb); // V.4
 
 	// details change
-	void update(const byte epc, byte pdcedt[]);										  // for single dev (devid=0)
-	void update(const byte epc, std::initializer_list<byte> pdcedt);				  // for single dev (devid=0)
-	void update(const int devId, const byte epc, byte pdcedt[]);					  // for multi dev
-	void update(const int devId, const byte epc, std::initializer_list<byte> pdcedt); // for multi dev
+	void update(const byte epc, PDCEDT pdcedt);										  // for single dev (devid=0)
+	void update(const int devId, const byte epc, PDCEDT pdcedt);					  // for multi dev
+	void update(const byte epc, std::initializer_list<byte> edt);				  // for single dev (devid=0)
+	void update(const int devId, const byte epc, std::initializer_list<byte> edt); // for multi dev
+
+	// details
 	byte *at(const byte epc);														  // for single dev (devid=0)
 	byte *at(const int devId, const byte epc);										  // for multi dev
 

@@ -55,16 +55,16 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
             pixels.clear();                                                             // クリア
             pixels.setPixelColor(0, pixels.Color(BRIGHTNESS, BRIGHTNESS, BRIGHTNESS));  // 白
             pixels.show();
-            echo.devices[0][epc] = { 0x01, 0x30 };   // ON
-            echo.devices[0][0xB6] = { 0x01, 0x42 };  // カラー灯モード（白）
-            ret = true;                              // 処理できたので成功
-          } else if (edt[0] == 0x31) {               // OFF
+            echo.update(0, epc, { 0x30 });   // ON
+            echo.update(0, 0xB6, { 0x42 });  // カラー灯モード（白）
+            ret = true;                      // 処理できたので成功
+          } else if (edt[0] == 0x31) {       // OFF
             Serial.println("OFF");
             pixels.clear();                                  // クリア
             pixels.setPixelColor(0, pixels.Color(0, 0, 0));  // 黒
             pixels.show();
-            echo.devices[0][epc] = { 0x01, 0x31 };  // 設定した値にする
-            ret = true;                             // 処理できたので成功
+            echo.update(0, epc, { 0x31 });  // 設定した値にする
+            ret = true;                     // 処理できたので成功
           }
           break;
 
@@ -74,7 +74,7 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
             pixels.clear();                                                 // クリア
             pixels.setPixelColor(0, pixels.Color(edt[0], edt[0], edt[0]));  // 照度調整白
             pixels.show();
-            echo.devices[0][epc] = { 0x01, edt[0] };
+            echo.update(0, epc, { edt[0] });
             ret = true;  // 処理できたので成功
           } else {
             ret = false;  // 処理で着ない範囲は失敗
@@ -87,9 +87,9 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
           pixels.clear();                                                                                                          // クリア
           pixels.setPixelColor(0, pixels.Color(edt[0] * BRIGHTNESS / 255, edt[1] * BRIGHTNESS / 255, edt[2] * BRIGHTNESS / 255));  // 照度調整白
           pixels.show();
-          echo.devices[0][epc] = { 0x03, edt[0], edt[1], edt[2] };  // 色設定した
-          echo.devices[0][0xB6] = { 0x01, 0x45 };                   // カラー灯モード
-          ret = true;                                               // 処理できたので成功
+          echo.update(0, epc, { edt[0], edt[1], edt[2] });  // 色設定した
+          echo.update(0, 0xB6, { 0x45 });                   // カラー灯モード
+          ret = true;                                       // 処理できたので成功
           break;
       }
       break;  // SETI, SETCここまで
@@ -123,10 +123,13 @@ void setup() {
   echo.begin(callback);  // EL 起動シーケンス
 
   // 初期値設定
-  echo.update(0, 0x80, { 0x01, 0x31 });             // off
-  echo.devices[0][0xB0] = { 0x01, 100 };            // 照度
-  echo.devices[0][0xC0] = { 0x03, 100, 100, 100 };  // 色設定
-  echo.devices[0][0xB6] = { 0x01, 0x42 };           // カラー灯モード（白）
+  echo.update(0, 0x80, { 0x31 });                                                                    // off
+  echo.update(0, 0xB0, { BRIGHTNESS });                                                              // 照度
+  echo.update(0, 0xC0, { BRIGHTNESS, BRIGHTNESS, BRIGHTNESS });                                      // 色設定
+  echo.update(0, 0xB6, { 0x42 });                                                                    // カラー灯モード（白）
+  echo.update(0, 0x9D, { 0x80, 0xd6 });                                                              // INFプロパティマップ
+  echo.update(0, 0x9E, { 0x80, 0xB0, 0xB6, 0xC0 });                                                  // Setプロパティマップ
+  echo.update(0, 0x9F, { 0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0xB0, 0xB6, 0xC0, 0x9d, 0x9e, 0x9f });  // Getプロパティマップ
 
   echo.printAll();  // 全設定値の確認
 

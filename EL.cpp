@@ -166,7 +166,7 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 		devices[i][0x8a].setEDT({0x00, 0x00, 0x77}); // maker KAIT
 
 		devices[i].SetMyPropertyMap(0x9d, {0x80, 0xd6});										   // inf property map
-		devices[i].SetMyPropertyMap(0x9e, {0xe0});												   // set property map
+		devices[i].SetMyPropertyMap(0x9e, {0x80});												   // set property map
 		devices[i].SetMyPropertyMap(0x9f, {0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f}); // get property map
 #ifdef __EL_DEBUG__
 		devices[i].printAll();
@@ -296,21 +296,70 @@ void EL::begin(ELCallback cb)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）
 /// @param epc const byte
-/// @param pdcedt byte[]
+/// @param pdcedt PDCEDT
 /// @note pdcedtなので、pdcは自分で計算することに注意
-void EL::update(const byte epc, byte pdcedt[])
+void EL::update(const byte epc, PDCEDT pdcedt)
 {
 	devices[0].SetPDCEDT(epc, pdcedt);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+/// @brief EPCの値を変更する, 複数の場合
+/// @param devId const int, コンストラクタで渡した順番に相当
+/// @param epc const byte
+/// @param pdcedt PDCEDT
+/// @note pdcedtなので、pdcは自分で計算することに注意
+void EL::update(const int devId, const byte epc, PDCEDT pdcedt)
+{
+	if (devId < deviceCount)
+		devices[devId].SetPDCEDT(epc, pdcedt);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）
 /// @param epc const byte
-/// @param il  std::initializer_list<byte>
-/// @note pdcedtなので、pdcは自分で計算することに注意
-void EL::update(const byte epc, std::initializer_list<byte> pdcedt)
+/// @param edt  std::initializer_list<byte>
+/// @note epcが0x9D, 0x9E, 0x9Fのときはプロパティマップになる。
+/// パラメタがedtなので、pdcは自動計算することに注意
+void EL::update(const byte epc, std::initializer_list<byte> edt)
 {
-	devices[0].SetPDCEDT(epc, pdcedt);
+	switch(epc) {
+	case 0x9d:
+	case 0x9e:
+	case 0x9f:
+		devices[0].SetMyPropertyMap( epc, edt );
+		break;
+
+	default:
+		devices[0][epc].setEDT(edt);
+		break;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// @brief EPCの値を変更する, 複数の場合
+/// @param devId const int, コンストラクタで渡した順番に相当
+/// @param epc const byte
+/// @param edt  std::initializer_list<byte>
+/// @note edtなので、pdcは自動計算することに注意
+void EL::update(const int devId, const byte epc, std::initializer_list<byte> edt)
+{
+	switch(epc) {
+	case 0x9d:
+	case 0x9e:
+	case 0x9f:
+		if (devId < deviceCount) {
+			devices[devId].SetMyPropertyMap( epc, edt );
+		}
+		break;
+
+	default:
+		if (devId < deviceCount) {
+			devices[devId][epc].setEDT(edt);
+		}
+		break;
+	}
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -320,28 +369,6 @@ void EL::update(const byte epc, std::initializer_list<byte> pdcedt)
 byte *EL::at(const byte epc)
 {
 	return devices[0].GetPDCEDT(epc);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-/// @brief EPCの値を変更する, 複数の場合
-/// @param devId const int, コンストラクタで渡した順番に相当
-/// @param epc const byte
-/// @param pdcedt byte []
-void EL::update(const int devId, const byte epc, byte pdcedt[])
-{
-	if (devId < deviceCount)
-		devices[devId].SetPDCEDT(epc, pdcedt);
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-/// @brief EPCの値を変更する, 複数の場合
-/// @param devId const int, コンストラクタで渡した順番に相当
-/// @param epc const byte
-/// @param il  std::initializer_list<byte>
-void EL::update(const int devId, const byte epc, std::initializer_list<byte> pdcedt)
-{
-	if (devId < deviceCount)
-		devices[devId][epc] = pdcedt;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -398,7 +425,7 @@ void EL::sendBroad(byte sBuffer[], int size)
 void EL::sendMulti(byte sBuffer[], int size)
 {
 #ifdef __EL_DEBUG__
-	Serial.print("EL::sendMulti ---------> [");
+	Serial.print("EL::sendMulti --------> [");
 	for (int i = 0; i < size; i += 1)
 	{
 		Serial.print(_sBuffer[i], HEX);
