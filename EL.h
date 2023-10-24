@@ -205,6 +205,8 @@ public:
 	////////////////////////////////////////////////////
 	EL(WiFiUDP &udp, byte classGroupCode, byte classCode, byte instanceNumber); // for single dev (devid=0)
 	EL(WiFiUDP &udp, byte eojs[][3], int count);								// for multi dev
+	EL(WiFiUDP &udp, std::initializer_list<std::initializer_list<byte>> eojs);	// for multi dev
+
 	void begin(void);
 	void begin(ELCallback cb); // V.4
 
