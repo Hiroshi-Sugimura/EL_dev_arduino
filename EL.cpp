@@ -323,11 +323,12 @@ void EL::update(const int devId, const byte epc, PDCEDT pdcedt)
 /// パラメタがedtなので、pdcは自動計算することに注意
 void EL::update(const byte epc, std::initializer_list<byte> edt)
 {
-	switch(epc) {
+	switch (epc)
+	{
 	case 0x9d:
 	case 0x9e:
 	case 0x9f:
-		devices[0].SetMyPropertyMap( epc, edt );
+		devices[0].SetMyPropertyMap(epc, edt);
 		break;
 
 	default:
@@ -344,22 +345,24 @@ void EL::update(const byte epc, std::initializer_list<byte> edt)
 /// @note edtなので、pdcは自動計算することに注意
 void EL::update(const int devId, const byte epc, std::initializer_list<byte> edt)
 {
-	switch(epc) {
+	switch (epc)
+	{
 	case 0x9d:
 	case 0x9e:
 	case 0x9f:
-		if (devId < deviceCount) {
-			devices[devId].SetMyPropertyMap( epc, edt );
+		if (devId < deviceCount)
+		{
+			devices[devId].SetMyPropertyMap(epc, edt);
 		}
 		break;
 
 	default:
-		if (devId < deviceCount) {
+		if (devId < deviceCount)
+		{
 			devices[devId][epc].setEDT(edt);
 		}
 		break;
 	}
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1205,10 +1208,10 @@ void EL::recvProcess(void)
 	Serial.println("]");
 #endif
 
-	if (packetSize < EL_MINIMUM_FRAME)
+	if ( verifyPacket(_rBuffer, packetSize) )
 	{
 #ifdef __EL_DEBUG__
-		Serial.println("EL::recvProcess() failed. size < EL_MINIMUM_FRAME");
+		Serial.println("EL::recvProcess() failed packet.");
 #endif
 		return;
 	}
@@ -1413,6 +1416,7 @@ int EL::getDevId(const byte obj[])
 ////////////////////////////////////////////////////
 /// @brief byte[] を安全にdeleteするinline関数
 /// @param ptr byte[]
+/// @note オーバーヘッドをなくすためにinline関数とする
 inline void EL::delPtr(byte ptr[])
 {
 	if (ptr != nullptr)
@@ -1420,6 +1424,71 @@ inline void EL::delPtr(byte ptr[])
 		delete[] ptr;
 		ptr = nullptr;
 	}
+}
+
+////////////////////////////////////////////////////
+/// @brief 受信パケットの正常生チェック
+/// @param buffer byte[]
+/// @param packetSize int
+/// @note 完全チェックではなく、メモリの不正アクセス防止の簡易チェック
+bool EL::verifyPacket(const byte buffer[], int packetSize)
+{
+	if (packetSize < EL_MINIMUM_FRAME) // パケットサイズが最小を満たさないならチェック自体に影響あるので
+	{
+#ifdef __EL_DEBUG__
+		Serial.println("EL::recvProcess() failed. size < EL_MINIMUM_FRAME");
+#endif
+		return false;
+	}
+
+	// EHD check
+	if (buffer[0] != 0x10 || buffer[1] != 0x81) // ELではない
+	{
+		return false;
+	}
+
+	int esv = buffer[EL_ESV]; // SETGETは処理異なる（と思った）
+	int opc = buffer[EL_OPC]; // 処理するOPC
+	int o = 0;				  // 処理したOPC
+	int i = EL_PDC;			  // bufferへのindex、PDCで操作してクリアすればOK
+
+	switch (esv)
+	{
+	case EL_SETI_SNA:  // 基本は同じ処理
+	case EL_SETC_SNA:
+	case EL_GET_SNA:
+	case EL_INF_SNA:
+	case EL_SETI:
+	case EL_SETC:
+	case EL_GET:
+	case EL_INF_REQ:
+	case EL_SET_RES:
+	case EL_GET_RES:
+	case EL_INF:
+	case EL_INFC:
+	case EL_INFC_RES:
+		// ここから慎重にメモリアクセス
+		// OPC
+		while (o < opc)
+		{
+			i += 2 + buffer[i]; // 2 byte 固定(EPC,PDC) + edtでindex更新
+
+			if (i > packetSize) // サイズ超えた
+			{
+				return false; // 異常パケット
+			}
+
+			o += 1;
+		}
+		break;
+
+	case EL_SETGET:		// SETGETはチェック未対応
+	case EL_SETGET_SNA:
+	case EL_SETGET_RES:
+		break;
+	}
+
+	return true; // メモリ関係はOKとする
 }
 
 //////////////////////////////////////////////////////////////////////

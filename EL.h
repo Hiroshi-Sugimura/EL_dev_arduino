@@ -259,6 +259,10 @@ public:
 
 	// byte[] を安全にdeleteする
 	void delPtr(byte ptr[]);
+
+	// 受信パケットの正常生チェック
+	bool verifyPacket(const byte data[], int size);
+
 };
 
 #endif
