@@ -94,182 +94,25 @@ Install</h1>
 API Manual</h1>
 <p><a href="https://hiroshi-sugimura.github.io/EL_dev_arduino/documents/html/index.html">https://hiroshi-sugimura.github.io/EL_dev_arduino/documents/html/index.html</a></p>
 <h1><a class="anchor" id="autotoc_md3"></a>
-Example (General Lighting)</h1>
-<div class="fragment"><div class="line">#include &lt;M5Stack.h&gt;</div>
-<div class="line">#include &lt;WiFi.h&gt;</div>
-<div class="line">#include &quot;EL.h&quot;</div>
-<div class="line"> </div>
-<div class="line">#define WIFI_SSID &quot;change your wifi ssid&quot;</div>
-<div class="line">#define WIFI_PASS &quot;change your wifi password&quot;</div>
-<div class="line"> </div>
-<div class="line">WiFiClient client;</div>
-<div class="line">WiFiUDP elUDP;</div>
-<div class="line">EL echo(elUDP, 0x02, 0x90, 0x01 );</div>
-<div class="line"> </div>
-<div class="line">void printNetData();</div>
-<div class="line"> </div>
-<div class="line">void setup() {</div>
-<div class="line">  // put your setup code here, to run once:</div>
-<div class="line">  Serial.begin(115200);</div>
-<div class="line">  Serial.println(&quot;&quot;);</div>
-<div class="line">  M5.begin();</div>
-<div class="line">  M5.Lcd.setTextSize(2);</div>
-<div class="line">  M5.Lcd.println(&quot;wifi connect start&quot;);</div>
-<div class="line"> </div>
-<div class="line">  WiFi.begin(WIFI_SSID, WIFI_PASS);</div>
-<div class="line">  while (WiFi.status() != WL_CONNECTED) {</div>
-<div class="line">    Serial.println(&quot;wait...&quot;);</div>
-<div class="line">    delay(1000);</div>
-<div class="line">  }</div>
-<div class="line">  M5.Lcd.println(&quot;wifi connect ok&quot;);</div>
-<div class="line">  M5.update();</div>
-<div class="line"> </div>
-<div class="line">  printNetData();</div>
-<div class="line">  echo.begin();            // EL 起動シーケンス</div>
-<div class="line"> </div>
-<div class="line">  // 一般照明の状態，繋がった宣言として立ち上がったことをコントローラに知らせるINFを飛ばす</div>
-<div class="line">  const byte deoj[] = {0x05, 0xff, 0x01};</div>
-<div class="line">  const byte edt[] = {0x01, 0x30};</div>
-<div class="line">  echo.sendMultiOPC1(deoj, EL_INF, 0x80, edt);</div>
-<div class="line"> </div>
-<div class="line">  M5.Lcd.fillScreen(BLACK);</div>
-<div class="line">  M5.Lcd.setTextColor(WHITE);</div>
-<div class="line">  M5.Lcd.setCursor(10, 10);</div>
-<div class="line">  M5.Lcd.setTextSize(3);</div>
-<div class="line">  M5.Lcd.setCursor(10, 10);</div>
-<div class="line">  M5.Lcd.setTextSize(3);</div>
-<div class="line">}</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">int packetSize = 0;     // 受信データ量</div>
-<div class="line">byte *pdcedt = nullptr; // テンポラリ</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">void loop() {</div>
-<div class="line">  M5.update();</div>
-<div class="line">  delay(200);</div>
-<div class="line"> </div>
-<div class="line">  // パケット貰ったらやる</div>
-<div class="line">  packetSize = 0;</div>
-<div class="line">  pdcedt = nullptr;</div>
-<div class="line"> </div>
-<div class="line">  if (0 != (packetSize = echo.read()) ) // 0!=はなくてもよいが，Warning出るのでつけとく</div>
-<div class="line">  { // 受け取った内容読み取り，あったら中へ</div>
-<div class="line"> </div>
-<div class="line">    // -----------------------------------</div>
-<div class="line">    // ESVがSETとかGETとかで動作をかえる</div>
-<div class="line">    switch (echo._rBuffer[EL_ESV])</div>
-<div class="line">    {</div>
-<div class="line"> </div>
-<div class="line">      // -----------------------------------</div>
-<div class="line">      // 動作状態の変更 Set対応</div>
-<div class="line">      case EL_SETI:</div>
-<div class="line">      case EL_SETC:</div>
-<div class="line">        switch (echo._rBuffer[EL_EPC])</div>
-<div class="line">        {</div>
-<div class="line">          case 0x80: // 電源</div>
-<div class="line">            if (echo._rBuffer[EL_EDT] == 0x30)</div>
-<div class="line">            { // ON</div>
-<div class="line">              M5.Lcd.fillCircle(160, 120, 80, WHITE);</div>
-<div class="line">              pdcedt = (byte[]){0x01, 0x30};       // ECHONET Liteの状態を変更（ライブラリに教えておく）</div>
-<div class="line">              echo.update(echo._rBuffer[EL_EPC], pdcedt); // ECHONET Liteの状態を変更</div>
-<div class="line">            }</div>
-<div class="line">            else if (echo._rBuffer[EL_EDT] == 0x31)</div>
-<div class="line">            { // OFF</div>
-<div class="line">              M5.Lcd.fillCircle(160, 120, 80, BLACK);</div>
-<div class="line">              pdcedt = (byte[]){0x01, 0x31};       // ECHONET Liteの状態を変更</div>
-<div class="line">              echo.update(echo._rBuffer[EL_EPC], pdcedt); // ECHONET Liteの状態を変更</div>
-<div class="line">            }</div>
-<div class="line">            break;</div>
-<div class="line"> </div>
-<div class="line">          default: // 不明なEPC</div>
-<div class="line">            M5.Lcd.print(&quot;??? packet esv, epc, edt is : &quot;);</div>
-<div class="line">            // set</div>
-<div class="line">            // ESV, EPC, EDT</div>
-<div class="line">            M5.Lcd.print(echo._rBuffer[EL_ESV], HEX);</div>
-<div class="line">            M5.Lcd.print(&quot; &quot;);</div>
-<div class="line">            M5.Lcd.print(echo._rBuffer[EL_EPC], HEX);</div>
-<div class="line">            M5.Lcd.print(&quot; &quot;);</div>
-<div class="line">            M5.Lcd.println(echo._rBuffer[EL_EDT], HEX);</div>
-<div class="line">            break;</div>
-<div class="line">        }</div>
-<div class="line"> </div>
-<div class="line">        // pdcedtを使ったらクリア</div>
-<div class="line">        if (pdcedt != nullptr)</div>
-<div class="line">        {</div>
-<div class="line">          delete[] pdcedt;</div>
-<div class="line">          pdcedt = nullptr;</div>
-<div class="line">        }</div>
-<div class="line"> </div>
-<div class="line">        if (echo._rBuffer[EL_ESV] == EL_SETC)</div>
-<div class="line">        { // SETCなら返信必要</div>
-<div class="line">          echo.returner();</div>
-<div class="line">        }</div>
-<div class="line">        break; // SETI, SETCここまで</div>
-<div class="line"> </div>
-<div class="line">      // -----------------------------------</div>
-<div class="line">      // Get,INF_REQ対応</div>
-<div class="line">      // SETの時にきちんとupdate関数でECHONET Liteの状態変更をライブラリに教えておけばここは簡素になる</div>
-<div class="line">      case EL_GET:</div>
-<div class="line">      case EL_INF_REQ:</div>
-<div class="line">        // update関数でdetailsに状態が登録されていれば自動で返信する</div>
-<div class="line">        echo.returner();</div>
-<div class="line">        break; // GetとINF_REQここまで</div>
-<div class="line"> </div>
-<div class="line">      case EL_INF:</div>
-<div class="line">        break;</div>
-<div class="line"> </div>
-<div class="line">      default: // 解釈不可能なESV</div>
-<div class="line">        M5.Lcd.print(&quot;error? ESV = &quot;);</div>
-<div class="line">        Serial.println(echo._rBuffer[EL_ESV]);</div>
-<div class="line">        break;</div>
-<div class="line">    }</div>
-<div class="line">  }</div>
-<div class="line">  // EL処理ここまで</div>
-<div class="line">  // -----------------------------------</div>
-<div class="line">  // パケットなかったとき、ふつうは何もしなくてよい</div>
-<div class="line">  // else {</div>
-<div class="line">  //}</div>
-<div class="line"> </div>
-<div class="line">  delay(500);</div>
-<div class="line">}</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">// debug</div>
-<div class="line">void printNetData()</div>
-<div class="line">{</div>
-<div class="line">  Serial.println(&quot;-----------------------------------&quot;);</div>
-<div class="line"> </div>
-<div class="line">  // IP</div>
-<div class="line">  // print your WiFi shield&#39;s IP address:</div>
-<div class="line">  IPAddress ip = WiFi.localIP();</div>
-<div class="line">  Serial.print(&quot;IP  Address: &quot;);</div>
-<div class="line">  Serial.println(ip);</div>
-<div class="line"> </div>
-<div class="line">  IPAddress dgwip = WiFi.gatewayIP();</div>
-<div class="line">  Serial.print(&quot;DGW Address: &quot;);</div>
-<div class="line">  Serial.println(dgwip);</div>
-<div class="line"> </div>
-<div class="line">  IPAddress smip = WiFi.subnetMask();</div>
-<div class="line">  Serial.print(&quot;SM  Address: &quot;);</div>
-<div class="line">  Serial.println(smip);</div>
-<div class="line"> </div>
-<div class="line">  Serial.println(&quot;-----------------------------------&quot;);</div>
-<div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md4"></a>
+Example</h1>
+<ul>
+<li><a href="https://github.com/Hiroshi-Sugimura/EL_dev_arduino/tree/master/examples/GeneralLighting">API Ver. 3 (General Lighting)</a></li>
+<li><a href="https://github.com/Hiroshi-Sugimura/EL_dev_arduino/tree/master/examples/GeneralLightingV4esp">API Ver. 4 (General Lighting)</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Description for the example</h1>
 <h2><a class="anchor" id="autotoc_md5"></a>
 Constractor</h2>
 <p>ELクラスはWiFiのUDP（受信は3610，送信は適当）とECHONET Liteプロトコルをサポートします。ECHONET Liteネットワークにデバイスを参加させるためには専門のオブジェクトコードが必要です。オブジェクトコードはECHONET規格書に書かれているものを参照してください [ECHONET規格書]（https://echonet.jp/spec_g/#standard-01）。 サンプルとして一般照明（0x029001）をM5Stackで実装した例を示しています。</p>
 <p><a class="el" href="class_e_l.html" title="Main class for EL">EL</a> class manages WiFiUDP (recv is 3610 port, sned is any port) and ECHONET Lite protocol. To join ECHONET Lite network, the device needs ECHONET Lite object code. ECHONET Lite object code is defined in the specifications. (see <a href="https://echonet.jp/spec-en/#standard-01">https://echonet.jp/spec-en/#standard-01</a>) In this example, we deals with M5stack as a general lighting (0x029001).</p>
 <ul>
-<li>single object <div class="fragment"><div class="line"> {C++}</div>
-<div class="line">EL echo(elUDP, 0x02, 0x90, 0x01 );</div>
+<li>single object <div class="fragment"><div class="line"><a class="code hl_class" href="class_e_l.html">EL</a> <a class="code hl_variable" href="main_8cpp.html#ac9832d0cef2337732f35ecc4df039197">echo</a>(<a class="code hl_variable" href="main_8cpp.html#acff5de1f75149984fcc9a8373f2fdc85">elUDP</a>, 0x02, 0x90, 0x01 );</div>
+<div class="ttc" id="aclass_e_l_html"><div class="ttname"><a href="class_e_l.html">EL</a></div><div class="ttdoc">Main class for EL</div><div class="ttdef"><b>Definition:</b> EL.h:180</div></div>
+<div class="ttc" id="amain_8cpp_html_ac9832d0cef2337732f35ecc4df039197"><div class="ttname"><a href="main_8cpp.html#ac9832d0cef2337732f35ecc4df039197">echo</a></div><div class="ttdeci">EL echo(elUDP, 0x01, 0x33, 0x01)</div></div>
+<div class="ttc" id="amain_8cpp_html_acff5de1f75149984fcc9a8373f2fdc85"><div class="ttname"><a href="main_8cpp.html#acff5de1f75149984fcc9a8373f2fdc85">elUDP</a></div><div class="ttdeci">WiFiUDP elUDP</div><div class="ttdef"><b>Definition:</b> main.cpp:9</div></div>
 </div><!-- fragment --></li>
-<li>multi object <div class="fragment"><div class="line"> {C++}</div>
-<div class="line">byte devices[][3] = { {0x02, 0x90, 0x01}, {0x02, 0x90, 0x02}};</div>
-<div class="line">EL echo(elUDP, devices, 2 );</div>
+<li>multi object <div class="fragment"><div class="line"><span class="keywordtype">byte</span> devices[][3] = { {0x02, 0x90, 0x01}, {0x02, 0x90, 0x02}};</div>
+<div class="line"><a class="code hl_class" href="class_e_l.html">EL</a> <a class="code hl_variable" href="main_8cpp.html#ac9832d0cef2337732f35ecc4df039197">echo</a>(<a class="code hl_variable" href="main_8cpp.html#acff5de1f75149984fcc9a8373f2fdc85">elUDP</a>, devices, 2 );</div>
 </div><!-- fragment --></li>
 </ul>
 <h3><a class="anchor" id="autotoc_md6"></a>
@@ -279,10 +122,21 @@ Initialize and Start communication（初期化と通信開始）</h3>
 <ul>
 <li>void begin(void);</li>
 </ul>
-<div class="fragment"><div class="line">EL echo(elUDP, 0x02, 0x90, 0x01 );</div>
+<div class="fragment"><div class="line">{cpp:Ver.3} </div>
+<div class="line">EL echo(elUDP, 0x02, 0x90, 0x01 );</div>
 <div class="line"> </div>
 <div class="line">void setup() {</div>
 <div class="line">  echo.begin();</div>
+<div class="line">}</div>
+</div><!-- fragment --><div class="fragment"><div class="line">{cpp:Ver.4} </div>
+<div class="line">EL echo(elUDP, 0x02, 0x90, 0x01 );</div>
+<div class="line"> </div>
+<div class="line">bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc, byte pdc, byte edt[]) {</div>
+<div class="line">  // user received data process</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">void setup() {</div>
+<div class="line">  echo.begin(callback);</div>
 <div class="line">}</div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md7"></a>
 Receiver（受信）</h3>
@@ -302,7 +156,12 @@ Receiver（受信）</h3>
 <li>byte _rBuffer[EL_BUFFER_SIZE]; // receive buffer</li>
 </ul>
 <p>Received data. 受信したデータ</p>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<div class="fragment"><div class="line">{cpp:Ver.4} </div>
+<div class="line">void loop() {</div>
+<div class="line">  echo.recvProcess();</div>
+<div class="line">  delay(300);</div>
+<div class="line">}</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
 Version</h1>
 <ul>
 <li>4.0.0 新API対応、update仕様変更</li>
