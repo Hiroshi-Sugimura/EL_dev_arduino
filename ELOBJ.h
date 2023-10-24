@@ -41,16 +41,16 @@ public:
   PDCEDT();
   PDCEDT(const PDCEDT &val);
   PDCEDT(const byte *val);
-  PDCEDT(std::initializer_list<byte> il);
+  PDCEDT(std::initializer_list<byte> pdcedt);
 
   virtual ~PDCEDT();
 
   // setter
   const PDCEDT operator=(const PDCEDT val);
   const byte *operator=(const byte *val);
-  const byte *operator=(std::initializer_list<byte> il);
+  const byte *operator=(std::initializer_list<byte> pdcedt);
   const byte *setEDT(const byte edt[], int size);
-  const byte *setEDT(std::initializer_list<byte> il);
+  const byte *setEDT(std::initializer_list<byte> edt);
 
   // getter
   const byte getLength() const;
@@ -87,6 +87,7 @@ public:
   const PDCEDT GetPDCEDT(const byte epc) const;
   const PDCEDT SetPDCEDT(const byte epc, const PDCEDT pdcedt);
   const PDCEDT SetPDCEDT(const byte epc, const byte *&&pdcedt);
+  const PDCEDT SetPDCEDT(const byte epc, std::initializer_list<byte> pdcedt);
   const PDCEDT SetMyPropertyMap(const byte epc, std::initializer_list<byte> epcs); // for EPC: 9e,9d,9f
   const byte *GetMyPropertyMap(const byte epc) const;
 

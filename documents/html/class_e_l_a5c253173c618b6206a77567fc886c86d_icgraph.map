@@ -1,0 +1,4 @@
+<map id="EL::verifyPacket" name="EL::verifyPacket">
+<area shape="rect" id="node1" title="受信パケットの正常生チェック" alt="" coords="172,5,290,31"/>
+<area shape="rect" id="node2" href="$class_e_l.html#a633320f052680decb5e7f72fbdf41fb3" title="受信処理" alt="" coords="5,5,124,31"/>
+</map>

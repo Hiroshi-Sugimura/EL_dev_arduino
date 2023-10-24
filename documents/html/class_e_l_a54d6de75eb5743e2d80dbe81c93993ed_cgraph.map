@@ -1,13 +1,18 @@
 <map id="EL::returner" name="EL::returner">
-<area shape="rect" id="node1" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="5,104,95,130"/>
-<area shape="rect" id="node2" href="$class_e_l.html#afb8d61da0fa657758fb4231f061337fc" title="受信データの送信元を取得する" alt="" coords="162,5,261,31"/>
-<area shape="rect" id="node3" href="$class_e_l.html#a7c323a2e5634104f38317521d4c0a239" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="147,55,276,80"/>
-<area shape="rect" id="node7" href="$class_e_l.html#a14175763153b18bcd3efa044e2e303ee" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="148,104,275,130"/>
-<area shape="rect" id="node9" href="$class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="143,153,280,179"/>
-<area shape="rect" id="node11" href="$class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="352,204,461,230"/>
-<area shape="rect" id="node4" href="$class_e_l.html#a1d6a20d4d498936b3afe2bcfad10f268" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="328,7,484,32"/>
-<area shape="rect" id="node5" href="$class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="349,56,463,82"/>
-<area shape="rect" id="node6" href="$class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="532,131,606,156"/>
-<area shape="rect" id="node8" href="$class_e_l.html#a1a090418c3fe0bac57f15a82bc206d69" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="329,105,484,131"/>
-<area shape="rect" id="node10" href="$class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="356,155,457,180"/>
+<area shape="rect" id="node1" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="5,181,95,207"/>
+<area shape="rect" id="node2" href="$class_e_l.html#ad0a4c4be11f3a78a34b8056b756f8d48" title="INFプロパティならマルチキャストで送信" alt="" coords="143,55,291,80"/>
+<area shape="rect" id="node6" href="$class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="567,105,704,131"/>
+<area shape="rect" id="node9" href="$class_e_l.html#afb8d61da0fa657758fb4231f061337fc" title="受信データの送信元を取得する" alt="" coords="168,156,266,182"/>
+<area shape="rect" id="node10" href="$class_e_l.html#a99959add7901949d60e808f42f624461" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="153,205,281,231"/>
+<area shape="rect" id="node14" href="$class_e_l.html#a3ab1ca31bf3a9b8cc4684069951c1270" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="153,255,281,280"/>
+<area shape="rect" id="node16" href="$class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="162,304,272,330"/>
+<area shape="rect" id="node3" href="$class_e_l_o_b_j.html#ad5b66b3e3b3659afec58cbff221a8f41" title="指定のEPCがINF必須かどうか" alt="" coords="339,5,495,31"/>
+<area shape="rect" id="node5" href="$class_e_l.html#a1c2e707d004abf421b57d74ad46beebf" title="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動" alt="" coords="342,55,493,80"/>
+<area shape="rect" id="node4" href="$class_e_l_o_b_j.html#a7303a697a8e593724b3edde5834037db" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）" alt="" coords="543,5,728,31"/>
+<area shape="rect" id="node8" href="$class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="563,55,708,80"/>
+<area shape="rect" id="node7" href="$class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="776,105,877,131"/>
+<area shape="rect" id="node11" href="$class_e_l.html#aa450b4da73ea4cf4a7f85dcdc9692068" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="339,156,495,182"/>
+<area shape="rect" id="node12" href="$class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="360,205,474,231"/>
+<area shape="rect" id="node13" href="$class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="599,255,672,280"/>
+<area shape="rect" id="node15" href="$class_e_l.html#ade7d9b7207a99636128474fc5bdba54a" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="340,255,495,280"/>
 </map>

@@ -1,5 +1,6 @@
 <map id="ELOBJ::SetMyPropertyMap" name="ELOBJ::SetMyPropertyMap">
-<area shape="rect" id="node1" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する" alt="" coords="326,5,509,31"/>
+<area shape="rect" id="node1" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する" alt="" coords="326,31,509,56"/>
 <area shape="rect" id="node2" href="$class_e_l.html#ad38241dcaa4337cf959d85906773242f" title="コンストラクタ共通処理" alt="" coords="115,5,278,31"/>
+<area shape="rect" id="node4" href="$class_e_l.html#a0ce157c418b41fa3d5daaaaddaee0a5d" title="EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）" alt="" coords="154,55,239,80"/>
 <area shape="rect" id="node3" href="$class_e_l.html#aeea65419f3e4e45f6d10af3a01d50cbd" title="オブジェクトを一つだけサポートする場合のコンストラクタ" alt="" coords="5,5,67,31"/>
 </map>

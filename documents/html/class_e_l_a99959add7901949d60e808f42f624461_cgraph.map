@@ -1,0 +1,6 @@
+<map id="EL::replyGetDetail" name="EL::replyGetDetail">
+<area shape="rect" id="node1" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="5,31,134,56"/>
+<area shape="rect" id="node2" href="$class_e_l.html#aa450b4da73ea4cf4a7f85dcdc9692068" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="182,5,338,31"/>
+<area shape="rect" id="node3" href="$class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="203,55,317,80"/>
+<area shape="rect" id="node4" href="$class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="386,55,459,80"/>
+</map>

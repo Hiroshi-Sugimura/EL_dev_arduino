@@ -52,19 +52,19 @@ PDCEDT::PDCEDT(const byte *val)
 
 ////////////////////////////////////////////////////
 /// @brief 初期化コンストラクタ
-/// @param il iterator
-/// @note  PDCEDT p = {0x30, 0x31}; のように実装可能なコンストラクタ
-PDCEDT::PDCEDT(std::initializer_list<byte> il)
+/// @param pdcedt std::initializer_list<byte> pdc edt
+/// @note  PDCEDT p = PDCEDT({0x02, 0x30, 0x31}) のように実装可能なコンストラクタ
+PDCEDT::PDCEDT(std::initializer_list<byte> pdcedt)
 {
 #ifdef __ELOJB_DEBUG__
 	cout << "- PDCEDT::constractor iterator" << endl;
 #endif
-	byte n = (byte)il.size();
+	byte n = (byte)pdcedt.size();
 	length = n;
 	m_pdcedt = new byte[length];
 
 	int i = 0;
-	for (auto it = il.begin(); it != il.end(); it += 1)
+	for (auto it = pdcedt.begin(); it != pdcedt.end(); it += 1)
 	{
 		m_pdcedt[i] = *it;
 		i += 1;
@@ -136,20 +136,20 @@ const byte *PDCEDT::operator=(const byte *val)
 
 ////////////////////////////////////////////////////
 /// @brief operator= (iterator)
-/// @param il list<byte>
+/// @param pdcedt std::initializer_list<byte>
 /// @return const byte*
 /// @note = {0x02, 0x31, 0x32}
-const byte *PDCEDT::operator=(std::initializer_list<byte> il)
+const byte *PDCEDT::operator=(std::initializer_list<byte> pdcedt)
 {
 #ifdef __ELOJB_DEBUG__
 	cout << "- PDCEDT::operator = iterator" << endl;
 #endif
-	byte n = (byte)il.size();
+	byte n = (byte)pdcedt.size();
 	length = n;
 	m_pdcedt = new byte[length];
 
 	int i = 0;
-	for (auto it = il.begin(); it != il.end(); it += 1)
+	for (auto it = pdcedt.begin(); it != pdcedt.end(); it += 1)
 	{
 		m_pdcedt[i] = *it;
 		i += 1;
@@ -170,11 +170,11 @@ PDCEDT::operator byte *() const
 
 ////////////////////////////////////////////////////
 /// @brief EDT setter
-/// @param il list<byte>
+/// @param edt std::initializer_list<byte>
 /// @return EDT byte*
 /// @note 可変長引数のような実装、PDCは自動計算
 /// e.g. pf.setEDT( {0x81, 0x82, 0x83} );
-const byte *PDCEDT::setEDT(std::initializer_list<byte> il)
+const byte *PDCEDT::setEDT(std::initializer_list<byte> edt)
 {
 #ifdef __ELOJB_DEBUG__
 	cout << "- PDCEDT::setEDT()" << endl;
@@ -184,13 +184,13 @@ const byte *PDCEDT::setEDT(std::initializer_list<byte> il)
 		delete[] m_pdcedt;
 		m_pdcedt = nullptr;
 	}
-	byte n = (byte)il.size();
+	byte n = (byte)edt.size();
 	length = n + 1;
 	m_pdcedt = new byte[length];
 	m_pdcedt[0] = length - 1;
 
 	int i = 1;
-	for (auto it = il.begin(); it != il.end(); it += 1)
+	for (auto it = edt.begin(); it != edt.end(); it += 1)
 	{
 		m_pdcedt[i] = *it;
 		i += 1;
@@ -395,6 +395,21 @@ const PDCEDT ELOBJ::SetPDCEDT(const byte epc, const byte *&&pdcedt)
 #endif
 	int key = epc - 0x80;
 	m_pdcedt[key] = pdcedt;
+	return (m_pdcedt[key]);
+}
+
+////////////////////////////////////////////////////
+/// @brief EPCに対して、PDCEDTのを結びつける（セットと更新）
+/// @param epc const byte
+/// @param pdcedt std::initializer_list<byte>
+/// @return m_pdcedt[key]
+const PDCEDT ELOBJ::SetPDCEDT(const byte epc, std::initializer_list<byte> pdcedt)
+{
+#ifdef __ELOJB_DEBUG__
+	cout << "- ELOBJ::SetPDCEDT std::initializer_list<byte>" << endl;
+#endif
+	int key = epc - 0x80;
+	m_pdcedt[key] = PDCEDT(pdcedt);
 	return (m_pdcedt[key]);
 }
 
