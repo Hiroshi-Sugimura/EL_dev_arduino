@@ -124,6 +124,7 @@ void loop() {
 
 # Version
 
+- 4.0.1 新API追加、コンストラクタ追加
 - 4.0.0 新API対応、update仕様変更
 - 3.0.1 スタブ対応と細かいキャスト
 - 3.0.0 change method name! sendOPC1(type devId) to sendOPC1ID, also sendMultiOPC1(type devId) to sendMultiOPC1ID. workaround for overload issue. Set/GetProfile to Set/GetMyPropertyMap. additional Keyword.

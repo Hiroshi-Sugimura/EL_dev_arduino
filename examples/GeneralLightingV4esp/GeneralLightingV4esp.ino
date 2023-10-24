@@ -21,7 +21,7 @@ Adafruit_NeoPixel pixels(LED_COUNT, DIN_PIN, NEO_GRB + NEO_KHZ800);
 
 
 //--------------WIFI
-#define WIFI_SSID "ssid"        // !!!! change
+#define WIFI_SSID "ssid"  // !!!! change
 #define WIFI_PASS "pass"  // !!!! change
 
 WiFiUDP elUDP;
@@ -29,8 +29,13 @@ IPAddress myip;
 
 //--------------EL
 #define OBJ_NUM 1
-byte eojs[OBJ_NUM][3] = { { 0x02, 0x90, 0x01 } };
-EL echo(elUDP, eojs, OBJ_NUM);
+// V3
+// byte eojs[OBJ_NUM][3] = { { 0x02, 0x90, 0x01 } };
+// EL echo(elUDP, eojs, OBJ_NUM);
+
+// V4
+EL echo(elUDP, { { 0x02, 0x90, 0x01 },
+                 { 0x02, 0x90, 0x02 } });
 
 void printNetData();
 

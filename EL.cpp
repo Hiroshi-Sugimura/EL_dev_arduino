@@ -42,6 +42,33 @@ EL::EL(WiFiUDP &udp, byte eojs[][3], int count)
 }
 
 ////////////////////////////////////////////////////
+/// @brief オブジェクトを複数サポートする場合のコンストラクタ
+/// @param udp WiFiUDP&
+/// @param eojs std::initializer_list<std::initializer_list<byte>>
+/// @note 使い方
+/// EL echo(elUDP, { { 0x02, 0x90, 0x01 },
+/// { 0x02, 0x90, 0x02 } });
+EL::EL(WiFiUDP &udp, std::initializer_list<std::initializer_list<byte>> eojs)
+{
+	int instanceNumber = eojs.size();
+	byte _eojs[instanceNumber][3];
+
+	// 初期化リストの要素を配列にコピー
+	int devId = 0;
+	for (auto eoj = eojs.begin(); eoj != eojs.end(); eoj += 1) {
+		byte* p = _eojs[devId];
+		for (auto e = eoj->begin(); e != eoj->end(); e += 1) {
+			*p = *e;
+			p++;
+		}
+		devId += 1;
+	}
+
+	commonConstructor(udp, _eojs, instanceNumber);
+}
+
+
+////////////////////////////////////////////////////
 /// @brief コンストラクタ共通処理
 /// @param udp WiFiUDP&
 /// @param eojs byte[][3]
@@ -1477,7 +1504,7 @@ bool EL::verifyPacket(const byte buffer[], int packetSize)
 			if (i > packetSize) // サイズ超えた
 			{
 #ifdef __EL_DEBUG__
-		Serial.println("EL::verifyPacket() failed. size over");
+				Serial.println("EL::verifyPacket() failed. size over");
 #endif
 				return false; // 異常パケット
 			}
