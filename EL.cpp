@@ -1208,10 +1208,10 @@ void EL::recvProcess(void)
 	Serial.println("]");
 #endif
 
-	if ( verifyPacket(_rBuffer, packetSize) )
+	if ( !verifyPacket(_rBuffer, packetSize) )
 	{
 #ifdef __EL_DEBUG__
-		Serial.println("EL::recvProcess() failed packet.");
+		Serial.println("EL::recvProcess() invalid packet is doroped.");
 #endif
 		return;
 	}
@@ -1436,7 +1436,7 @@ bool EL::verifyPacket(const byte buffer[], int packetSize)
 	if (packetSize < EL_MINIMUM_FRAME) // パケットサイズが最小を満たさないならチェック自体に影響あるので
 	{
 #ifdef __EL_DEBUG__
-		Serial.println("EL::recvProcess() failed. size < EL_MINIMUM_FRAME");
+		Serial.println("EL::verifyPacket() failed. size < EL_MINIMUM_FRAME");
 #endif
 		return false;
 	}
@@ -1444,6 +1444,9 @@ bool EL::verifyPacket(const byte buffer[], int packetSize)
 	// EHD check
 	if (buffer[0] != 0x10 || buffer[1] != 0x81) // ELではない
 	{
+#ifdef __EL_DEBUG__
+		Serial.println("EL::verifyPacket() failed. invalid EHD");
+#endif
 		return false;
 	}
 
@@ -1471,13 +1474,15 @@ bool EL::verifyPacket(const byte buffer[], int packetSize)
 		// OPC
 		while (o < opc)
 		{
-			i += 2 + buffer[i]; // 2 byte 固定(EPC,PDC) + edtでindex更新
-
 			if (i > packetSize) // サイズ超えた
 			{
+#ifdef __EL_DEBUG__
+		Serial.println("EL::verifyPacket() failed. size over");
+#endif
 				return false; // 異常パケット
 			}
 
+			i += 2 + buffer[i]; // 2 byte 固定(EPC,PDC) + edtでindex更新
 			o += 1;
 		}
 		break;

@@ -1,9 +1,14 @@
-// ESP32-S3-DevKitC-1
-// https://akizukidenshi.com/catalog/g/gM-17073/
+//////////////////////////////////////////////////////////////////////
+/// @brief EL_dev_arduinoのサンプルプログラム
+/// @author SUGIMURA Hiroshi
+/// @date 2023.10.24
+/// @details https://github.com/Hiroshi-Sugimura/EL_dev_arduino
+/// ESP32-S3-DevKitC-1 https://akizukidenshi.com/catalog/g/gM-17073/
+//////////////////////////////////////////////////////////////////////
+
 #include <Arduino.h>
 #include <WiFi.h>
 #include "EL.h"
-
 
 #include <Adafruit_NeoPixel.h>
 
@@ -16,7 +21,7 @@ Adafruit_NeoPixel pixels(LED_COUNT, DIN_PIN, NEO_GRB + NEO_KHZ800);
 
 
 //--------------WIFI
-#define WIFI_SSID "ssid"  // !!!! change
+#define WIFI_SSID "ssid"        // !!!! change
 #define WIFI_PASS "pass"  // !!!! change
 
 WiFiUDP elUDP;
@@ -81,11 +86,51 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
           }
           break;
 
+        case 0xB6:                            // 点灯モード設定
+          Serial.printf("B6: %d\n", edt[0]);  // 設定した値にする
+          switch (edt[0]) {
+            case 0x41:                                                                                      // 自動
+              pixels.clear();                                                                               // クリア
+              pixels.setPixelColor(0, pixels.Color(BRIGHTNESS * 0.8, BRIGHTNESS * 0.8, BRIGHTNESS * 0.8));  // 白（ちょっと暗い）
+              pixels.show();
+              echo.update(0, epc, { edt[0] });
+              ret = true;  // 処理できたので成功
+              break;
+
+            case 0x42:                                                                    // 通常灯
+              pixels.clear();                                                             // クリア
+              pixels.setPixelColor(0, pixels.Color(BRIGHTNESS, BRIGHTNESS, BRIGHTNESS));  // 白
+              pixels.show();
+              echo.update(0, epc, { edt[0] });
+              ret = true;  // 処理できたので成功
+              break;
+
+            case 0x43:                                                        // 常夜灯
+              pixels.clear();                                                 // クリア
+              pixels.setPixelColor(0, pixels.Color(BRIGHTNESS * 0.2, 0, 0));  // 暗いオレンジ
+              pixels.show();
+              echo.update(0, epc, { edt[0] });
+              ret = true;  // 処理できたので成功
+              break;
+
+            case 0x45:                                                  // カラー灯
+              pixels.clear();                                           // クリア
+              pixels.setPixelColor(0, pixels.Color(0, 0, BRIGHTNESS));  // 青（カラー灯のデフォルトを青とする）
+              pixels.show();
+              echo.update(0, epc, { edt[0] });
+              ret = true;  // 処理できたので成功
+              break;
+
+            default:
+              ret = false;
+          }
+          break;
+
         case 0xC0:                                                                                                                 // 色設定
                                                                                                                                    // 本当はエラーチェックすべき
           Serial.printf("C0: %d, %d, %d\n", edt[0], edt[1], edt[2]);                                                               // 設定した値にする
           pixels.clear();                                                                                                          // クリア
-          pixels.setPixelColor(0, pixels.Color(edt[0] * BRIGHTNESS / 255, edt[1] * BRIGHTNESS / 255, edt[2] * BRIGHTNESS / 255));  // 照度調整白
+          pixels.setPixelColor(0, pixels.Color(edt[0] * BRIGHTNESS / 255, edt[1] * BRIGHTNESS / 255, edt[2] * BRIGHTNESS / 255));  // BRIGHTNESSを最大として255段階
           pixels.show();
           echo.update(0, epc, { edt[0], edt[1], edt[2] });  // 色設定した
           echo.update(0, 0xB6, { 0x45 });                   // カラー灯モード
@@ -195,3 +240,6 @@ void printNetData() {
 
   Serial.println("-----------------------------------");
 }
+//////////////////////////////////////////////////////////////////////
+// EOF
+//////////////////////////////////////////////////////////////////////

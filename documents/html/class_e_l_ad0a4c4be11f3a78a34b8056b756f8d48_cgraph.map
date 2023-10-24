@@ -1,0 +1,9 @@
+<map id="EL::checkInfAndSend" name="EL::checkInfAndSend">
+<area shape="rect" id="node1" title="INFプロパティならマルチキャストで送信" alt="" coords="5,31,154,56"/>
+<area shape="rect" id="node2" href="$class_e_l_o_b_j.html#ad5b66b3e3b3659afec58cbff221a8f41" title="指定のEPCがINF必須かどうか" alt="" coords="202,5,358,31"/>
+<area shape="rect" id="node4" href="$class_e_l.html#a1c2e707d004abf421b57d74ad46beebf" title="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動" alt="" coords="204,55,356,80"/>
+<area shape="rect" id="node3" href="$class_e_l_o_b_j.html#a7303a697a8e593724b3edde5834037db" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）" alt="" coords="406,5,590,31"/>
+<area shape="rect" id="node5" href="$class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="430,55,567,80"/>
+<area shape="rect" id="node7" href="$class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="426,104,570,130"/>
+<area shape="rect" id="node6" href="$class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="638,55,740,80"/>
+</map>

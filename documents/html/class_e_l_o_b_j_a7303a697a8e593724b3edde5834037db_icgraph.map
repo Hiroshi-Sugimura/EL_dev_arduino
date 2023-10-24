@@ -1,5 +1,10 @@
 <map id="ELOBJ::GetMyPropertyMap" name="ELOBJ::GetMyPropertyMap">
-<area shape="rect" id="node1" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）" alt="" coords="215,31,399,56"/>
-<area shape="rect" id="node2" href="$class_e_l_o_b_j.html#ad5b66b3e3b3659afec58cbff221a8f41" title="指定のEPCがINF必須かどうか" alt="" coords="8,5,164,31"/>
-<area shape="rect" id="node3" href="$class_e_l_o_b_j.html#aa1b06695687ad009d29bc9a0343fb1ad" title="指定のEPCがSet可能かどうか" alt="" coords="5,55,167,80"/>
+<area shape="rect" id="node1" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）" alt="" coords="701,80,885,106"/>
+<area shape="rect" id="node2" href="$class_e_l_o_b_j.html#ad5b66b3e3b3659afec58cbff221a8f41" title="指定のEPCがINF必須かどうか" alt="" coords="494,55,650,80"/>
+<area shape="rect" id="node8" href="$class_e_l_o_b_j.html#aa1b06695687ad009d29bc9a0343fb1ad" title="指定のEPCがSet可能かどうか" alt="" coords="491,104,653,130"/>
+<area shape="rect" id="node3" href="$class_e_l.html#ad0a4c4be11f3a78a34b8056b756f8d48" title="INFプロパティならマルチキャストで送信" alt="" coords="295,55,443,80"/>
+<area shape="rect" id="node4" href="$class_e_l.html#ac6c85e6f6a3c93b86baaa807e522e286" title="INFプロパティならマルチキャストで送信" alt="" coords="99,5,247,31"/>
+<area shape="rect" id="node5" href="$class_e_l.html#a633320f052680decb5e7f72fbdf41fb3" title="受信処理" alt="" coords="114,55,232,80"/>
+<area shape="rect" id="node6" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="128,104,218,130"/>
+<area shape="rect" id="node7" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,104,51,130"/>
 </map>
