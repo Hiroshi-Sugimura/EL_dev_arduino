@@ -34,8 +34,7 @@ IPAddress myip;
 // EL echo(elUDP, eojs, OBJ_NUM);
 
 // V4
-EL echo(elUDP, { { 0x02, 0x90, 0x01 },
-                 { 0x02, 0x90, 0x02 } });
+EL echo(elUDP, { { 0x02, 0x90, 0x01 } });
 
 void printNetData();
 
@@ -80,10 +79,11 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
 
         case 0xB0:                                                          // 照度レベル
           if (0 <= edt[0] && edt[0] <= 100) {                               // [0--100]
-            Serial.printf("B0: %d\n", edt[0]);                              // 設定した値にする
+            Serial.printf("B0: Lighting level: %d\n", edt[0]);              // 設定した値にする
             pixels.clear();                                                 // クリア
             pixels.setPixelColor(0, pixels.Color(edt[0], edt[0], edt[0]));  // 照度調整白
             pixels.show();
+            echo.update(0, 0x80, { 0x30 });  // ON
             echo.update(0, epc, { edt[0] });
             ret = true;  // 処理できたので成功
           } else {
@@ -91,37 +91,45 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
           }
           break;
 
-        case 0xB6:                            // 点灯モード設定
-          Serial.printf("B6: %d\n", edt[0]);  // 設定した値にする
+        case 0xB6:  // 点灯モード設定
+          Serial.printf("B6: Mode:", edt[0]);
           switch (edt[0]) {
-            case 0x41:                                                                                      // 自動
+            case 0x41:  // 自動
+              Serial.printf("auto\n");
               pixels.clear();                                                                               // クリア
               pixels.setPixelColor(0, pixels.Color(BRIGHTNESS * 0.8, BRIGHTNESS * 0.8, BRIGHTNESS * 0.8));  // 白（ちょっと暗い）
               pixels.show();
+              echo.update(0, 0x80, { 0x30 });  // ON
               echo.update(0, epc, { edt[0] });
               ret = true;  // 処理できたので成功
               break;
 
-            case 0x42:                                                                    // 通常灯
+            case 0x42:  // 通常灯
+              Serial.printf("nomal\n");
               pixels.clear();                                                             // クリア
               pixels.setPixelColor(0, pixels.Color(BRIGHTNESS, BRIGHTNESS, BRIGHTNESS));  // 白
               pixels.show();
+              echo.update(0, 0x80, { 0x30 });  // ON
               echo.update(0, epc, { edt[0] });
               ret = true;  // 処理できたので成功
               break;
 
-            case 0x43:                                                        // 常夜灯
+            case 0x43:  // 常夜灯
+              Serial.printf("night\n");
               pixels.clear();                                                 // クリア
               pixels.setPixelColor(0, pixels.Color(BRIGHTNESS * 0.2, 0, 0));  // 暗いオレンジ
               pixels.show();
+              echo.update(0, 0x80, { 0x30 });  // ON
               echo.update(0, epc, { edt[0] });
               ret = true;  // 処理できたので成功
               break;
 
-            case 0x45:                                                  // カラー灯
+            case 0x45:  // カラー灯
+              Serial.printf("color\n");
               pixels.clear();                                           // クリア
               pixels.setPixelColor(0, pixels.Color(0, 0, BRIGHTNESS));  // 青（カラー灯のデフォルトを青とする）
               pixels.show();
+              echo.update(0, 0x80, { 0x30 });  // ON
               echo.update(0, epc, { edt[0] });
               ret = true;  // 処理できたので成功
               break;
@@ -131,12 +139,12 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
           }
           break;
 
-        case 0xC0:                                                                                                                 // 色設定
-                                                                                                                                   // 本当はエラーチェックすべき
-          Serial.printf("C0: %d, %d, %d\n", edt[0], edt[1], edt[2]);                                                               // 設定した値にする
+        case 0xC0:                                                                                                                 // 色設定、本当はエラーチェックすべき
+          Serial.printf("C0: color: %d, %d, %d\n", edt[0], edt[1], edt[2]);                                                        // 設定した値にする
           pixels.clear();                                                                                                          // クリア
           pixels.setPixelColor(0, pixels.Color(edt[0] * BRIGHTNESS / 255, edt[1] * BRIGHTNESS / 255, edt[2] * BRIGHTNESS / 255));  // BRIGHTNESSを最大として255段階
           pixels.show();
+          echo.update(0, 0x80, { 0x30 });                   // ON
           echo.update(0, epc, { edt[0], edt[1], edt[2] });  // 色設定した
           echo.update(0, 0xB6, { 0x45 });                   // カラー灯モード
           ret = true;                                       // 処理できたので成功
@@ -144,8 +152,8 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
       }
       break;  // SETI, SETCここまで
 
-    default:  // 基本はtrueを返却
-      ret = true;
+    default:  // それ以外はfalseを返却
+      ret = false;
       break;
   }
 
