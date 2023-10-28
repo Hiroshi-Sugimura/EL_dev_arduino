@@ -55,9 +55,11 @@ EL::EL(WiFiUDP &udp, std::initializer_list<std::initializer_list<byte>> eojs)
 
 	// 初期化リストの要素を配列にコピー
 	int devId = 0;
-	for (auto eoj = eojs.begin(); eoj != eojs.end(); eoj += 1) {
-		byte* p = _eojs[devId];
-		for (auto e = eoj->begin(); e != eoj->end(); e += 1) {
+	for (auto eoj = eojs.begin(); eoj != eojs.end(); eoj += 1)
+	{
+		byte *p = _eojs[devId];
+		for (auto e = eoj->begin(); e != eoj->end(); e += 1)
+		{
 			*p = *e;
 			p++;
 		}
@@ -66,7 +68,6 @@ EL::EL(WiFiUDP &udp, std::initializer_list<std::initializer_list<byte>> eojs)
 
 	commonConstructor(udp, _eojs, instanceNumber);
 }
-
 
 ////////////////////////////////////////////////////
 /// @brief コンストラクタ共通処理
@@ -328,6 +329,7 @@ void EL::begin(ELCallback cb)
 void EL::update(const byte epc, PDCEDT pdcedt)
 {
 	devices[0].SetPDCEDT(epc, pdcedt);
+	checkInfAndSend(0, epc);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -339,7 +341,10 @@ void EL::update(const byte epc, PDCEDT pdcedt)
 void EL::update(const int devId, const byte epc, PDCEDT pdcedt)
 {
 	if (devId < deviceCount)
+	{
 		devices[devId].SetPDCEDT(epc, pdcedt);
+		checkInfAndSend(devId, epc);
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -362,6 +367,7 @@ void EL::update(const byte epc, std::initializer_list<byte> edt)
 		devices[0][epc].setEDT(edt);
 		break;
 	}
+	checkInfAndSend(0, epc);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -390,6 +396,7 @@ void EL::update(const int devId, const byte epc, std::initializer_list<byte> edt
 		}
 		break;
 	}
+	checkInfAndSend(devId, epc);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1056,6 +1063,7 @@ boolean EL::replySetDetail_sub(const byte eoj[], const byte epc, int &devId)
 /// @brief INFプロパティならマルチキャストで送信
 /// @param devId int
 /// @param epc const byte
+/// @note 内部処理でのINFもあるので、SETIやSETC処理でなくupdate関数に紐づく
 void EL::checkInfAndSend(int devId, const byte epc)
 {
 	byte eoj[3] = {EL_Controller, 0x01};
@@ -1235,7 +1243,7 @@ void EL::recvProcess(void)
 	Serial.println("]");
 #endif
 
-	if ( !verifyPacket(_rBuffer, packetSize) )
+	if (!verifyPacket(_rBuffer, packetSize))
 	{
 #ifdef __EL_DEBUG__
 		Serial.println("EL::recvProcess() invalid packet is doroped.");
@@ -1309,8 +1317,7 @@ void EL::recvProcess(void)
 		// esvの要求にこたえる
 		switch (esv)
 		{
-		case EL_SETI: // SetIは返信しないが、INFプロパティの通知はする
-			checkInfAndSend(devId, epc);
+		case EL_SETI: // SetIは返信しない
 			break;
 
 		case EL_SETC: // SETC, Get, INF_REQ は返信処理がある
@@ -1318,7 +1325,6 @@ void EL::recvProcess(void)
 			Serial.println("EL::recvProcess() ### SETC ###");
 #endif
 			replySetDetail(remIP, deoj);
-			checkInfAndSend(devId, epc);
 			break;
 
 		case EL_GET: // SETC, Get, INF_REQ は返信処理がある
@@ -1484,7 +1490,7 @@ bool EL::verifyPacket(const byte buffer[], int packetSize)
 
 	switch (esv)
 	{
-	case EL_SETI_SNA:  // 基本は同じ処理
+	case EL_SETI_SNA: // 基本は同じ処理
 	case EL_SETC_SNA:
 	case EL_GET_SNA:
 	case EL_INF_SNA:
@@ -1514,7 +1520,7 @@ bool EL::verifyPacket(const byte buffer[], int packetSize)
 		}
 		break;
 
-	case EL_SETGET:		// SETGETはチェック未対応
+	case EL_SETGET: // SETGETはチェック未対応
 	case EL_SETGET_SNA:
 	case EL_SETGET_RES:
 		break;
