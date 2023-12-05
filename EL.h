@@ -211,14 +211,14 @@ public:
 	void begin(ELCallback cb); // V.4
 
 	// details change
-	void update(const byte epc, PDCEDT pdcedt);										  // for single dev (devid=0)
-	void update(const int devId, const byte epc, PDCEDT pdcedt);					  // for multi dev
-	void update(const byte epc, std::initializer_list<byte> edt);				  // for single dev (devid=0)
+	void update(const byte epc, PDCEDT pdcedt);									   // for single dev (devid=0)
+	void update(const int devId, const byte epc, PDCEDT pdcedt);				   // for multi dev
+	void update(const byte epc, std::initializer_list<byte> edt);				   // for single dev (devid=0)
 	void update(const int devId, const byte epc, std::initializer_list<byte> edt); // for multi dev
 
 	// details
-	byte *at(const byte epc);														  // for single dev (devid=0)
-	byte *at(const int devId, const byte epc);										  // for multi dev
+	byte *at(const byte epc);				   // for single dev (devid=0)
+	byte *at(const int devId, const byte epc); // for multi dev
 
 	// sender
 	void send(IPAddress toip, byte sBuffer[], int size);
@@ -264,7 +264,6 @@ public:
 
 	// 受信パケットの正常生チェック
 	bool verifyPacket(const byte data[], int size);
-
 };
 
 #endif
