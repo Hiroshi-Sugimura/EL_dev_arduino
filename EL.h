@@ -14,7 +14,6 @@
 // arduino
 #include <Arduino.h>
 #include <WiFi.h>
-#include <WiFiUDP.h>
 #include <ELOBJ.h>
 
 #else
@@ -22,7 +21,6 @@
 typedef unsigned char byte;
 typedef bool boolean;
 #include <iostream>
-#include "WiFiUDP.h"
 #include "ELOBJ.h"
 using std::cout;
 using std::dec;

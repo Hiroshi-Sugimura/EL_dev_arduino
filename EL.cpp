@@ -110,9 +110,8 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 	_tid[1] = 0;
 
 	// profile object
-	profile[0x80].setEDT({0x30});																								  // power
-	profile[0x82].setEDT({0x01, 0x0a, 0x01, 0x00});																				  // Ver 1.10 (type 1)
-	profile[0x83].setEDT({0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}); // identification number
+	profile[0x80].setEDT({0x30});					// power
+	profile[0x82].setEDT({0x01, 0x0a, 0x01, 0x00}); // Ver 1.10 (type 1)
 #ifdef ESP32
 	String macraw = WiFi.macAddress(); // stringを返すタイプしかない。 M5Stackで WiFi.macAddress(byte) はダメ
 	String mac0str = macraw.substring(0, 2);
@@ -129,7 +128,8 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 	_mac[4] = strtoul(mac4str.c_str(), 0, 16);
 	_mac[5] = strtoul(mac5str.c_str(), 0, 16);
 #endif
-	profile[0x83].setEDT({0xfe, _mac[0], _mac[1], _mac[2], _mac[3], _mac[4], _mac[5], 0x0e, 0xf0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}); // identification number
+	// [0] = 0xfe, [1-3] = メーカコード３バイト が決まり
+	profile[0x83].setEDT({0xfe, 0x00, 0x00, 0x77, _mac[0], _mac[1], _mac[2], _mac[3], _mac[4], _mac[5], 0x0e, 0xf0, 0x01, 0x00, 0x00, 0x00, 0x00}); // identification number
 
 	profile[0x88].setEDT({0x42});			  // error status
 	profile[0x8a].setEDT({0x00, 0x00, 0x77}); // maker KAIT
@@ -188,13 +188,13 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 		devices[i][0x81].setEDT({0x00});				   // position
 		devices[i][0x82].setEDT({0x00, 0x00, 0x4b, 0x00}); // release K
 
-		devices[i][0x83].setEDT({0xfe, _mac[0], _mac[1], _mac[2], _mac[3], _mac[4], _mac[5], _eojs[i * 3], _eojs[i * 3 + 1], _eojs[i * 3 + 2], 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, static_cast<unsigned char>(i + 1)}); // identification number
+		devices[i][0x83].setEDT({0xfe, 0x00, 0x00, 0x77, _mac[0], _mac[1], _mac[2], _mac[3], _mac[4], _mac[5], _eojs[i * 3], _eojs[i * 3 + 1], _eojs[i * 3 + 2], 0x00, 0x00, 0x00, static_cast<unsigned char>(i + 1)}); // identification number
 
 		devices[i][0x88].setEDT({0x42});			 // error status
 		devices[i][0x8a].setEDT({0x00, 0x00, 0x77}); // maker KAIT
 
-		devices[i].SetMyPropertyMap(0x9d, {0x80, 0xd6});										   // inf property map
-		devices[i].SetMyPropertyMap(0x9e, {0x80});												   // set property map
+		devices[i].SetMyPropertyMap(0x9d, {0x80, 0xd6, 0x88});									   // inf property map
+		devices[i].SetMyPropertyMap(0x9e, {0x80, 0x81});										   // set property map
 		devices[i].SetMyPropertyMap(0x9f, {0x80, 0x81, 0x82, 0x83, 0x88, 0x8a, 0x9d, 0x9e, 0x9f}); // get property map
 #ifdef __EL_DEBUG__
 		devices[i].printAll();
@@ -1423,8 +1423,13 @@ int EL::getDevId(const byte obj[])
 	// 内部的に使用しているデバイスIDにかえる
 	if (obj[0] == 0x0e && obj[1] == 0xf0)
 	{
-		// 0e f0 xx ならprofile object
-		return EL_DEVID_NODEPROFILE; // -1: Node profile object
+		if (obj[2] == 0x00 || obj[2] == 0x01)
+		{
+			// 0e f0 00 か 0e f0 01 ならprofile object
+			// 0e f0 02は送信専用ノードだが、このライブラリでは考慮していない
+			return EL_DEVID_NODEPROFILE; // -1: Node profile object
+		}
+		return EL_DEVID_NOTHING;
 	}
 
 	// Nodeprofileではなかったので探す
@@ -1443,7 +1448,7 @@ int EL::getDevId(const byte obj[])
 		}
 	}
 
-	// 見つからなくて探索終わった
+// 見つからなくて探索終わった
 #ifdef __EL_DEBUG__
 	Serial.println("EL::getDevId() noDevice");
 #endif
