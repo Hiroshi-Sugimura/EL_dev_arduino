@@ -10,6 +10,10 @@ This module provides the communication method, **ECHONET Lite protocol**, for Ar
 (ECHONET Lite protocol is a common communication specification for Smart home)
 We are developping and debugging with M5stack Core2 mainly.
 
+## SDK details
+
+- ECHONET Lite version 1.13
+- (based) Release R, Rev.1
 
 ## Install
 
@@ -34,9 +38,12 @@ It can be found to use filter text 'sugimura', author's name.
 
 https://hiroshi-sugimura.github.io/EL_dev_arduino/documents/html/index.html
 
-# Example
+# Examples
 - [API Ver. 3 (General Lighting)](https://github.com/Hiroshi-Sugimura/EL_dev_arduino/tree/master/examples/GeneralLighting)
 - [API Ver. 4 (General Lighting)](https://github.com/Hiroshi-Sugimura/EL_dev_arduino/tree/master/examples/GeneralLightingV4esp)
+
+## Other samples
+- [EL_pj_arduino (GitHub repo)](https://github.com/Hiroshi-Sugimura/EL_pj_arduino)
 
 
 # Description for the example
@@ -71,16 +78,8 @@ To call 'begin()' method begins receiving ECHONET Lite protocol.
 
 - void begin(void);
 
-```cpp:Ver.3
-EL echo(elUDP, 0x02, 0x90, 0x01 );
-
-void setup() {
-  echo.begin();
-}
-```
-
 ```cpp:Ver.4
-EL echo(elUDP, 0x02, 0x90, 0x01 );
+EL echo(elUDP, {{0x02, 0x90, 0x01}});
 
 bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc, byte pdc, byte edt[]) {
   // user received data process
@@ -124,6 +123,7 @@ void loop() {
 
 # Version
 
+- 4.1.1 エラーケースに対応
 - 4.1.0 updateでINFが出るように修正、インスタンスリスト通知
 - 4.0.1 新API追加、コンストラクタ追加
 - 4.0.0 新API対応、update仕様変更

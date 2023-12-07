@@ -2,19 +2,17 @@
   "name": "EL_dev_arduino",
   "keywords": "ECHONET Lite, IoT",
   "description": "Library and Sample of ECHONET Lite for Arduino",
-  "authors":
-  [
+  "authors": [
     {
       "name": "Hiroshi SUGIMURA",
       "email": "hiroshi.sugimura@gmail.com"
     }
   ],
-  "repository":
-  {
+  "repository": {
     "type": "git",
     "url": "https://github.com/Hiroshi-Sugimura/EL_dev_arduino.git"
   },
-  "version": "4.1.0",
+  "version": "4.1.1",
   "frameworks": "arduino",
   "platforms": "espressif"
 }
