@@ -1065,6 +1065,64 @@ boolean EL::replySetDetail_sub(const byte eoj[], const byte epc, int &devId)
 }
 
 ////////////////////////////////////////////////////
+/// @brief INFCに対して複数OPCにも対応して返答する内部関数
+/// @param toip const IPAddress
+/// @param _seoj const byte[]
+void EL::replyInfcDetail(const IPAddress toip, const byte _seoj[] = nullptr)
+{
+	// 返信用データを作る
+	byte tid[] = {_rBuffer[EL_TID], _rBuffer[EL_TID + 1]}; // TID
+
+	byte seoj[3]; // DEOJがreplyではSEOJになる
+	if (_seoj == nullptr)
+	{
+		seoj[0] = _rBuffer[EL_DEOJ];
+		seoj[1] = _rBuffer[EL_DEOJ + 1];
+		seoj[2] = _rBuffer[EL_DEOJ + 2];
+	}
+	else
+	{
+		seoj[0] = _seoj[0];
+		seoj[1] = _seoj[1];
+		seoj[2] = _seoj[2];
+	}
+
+	byte deoj[] = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]}; // SEOJがreplyではDEOJになる
+
+	byte esv = _rBuffer[EL_ESV]; // 受け取ったESV: INFCのはず
+	byte opc = _rBuffer[EL_OPC]; // 受け取ったOPC、走査と返信に使う
+
+	// 送信用
+	byte detail[1500];	 // EPC,PDC,EDT[n]、ただしPDCは常に0、EDTは常に無し
+	byte detailSize = 0; // data size
+
+	// rBuffer走査用
+	byte *p_rEPC = &_rBuffer[EL_EPC]; // 初期EPCポインタ
+	// この関数を呼ばれるのはINFCの場合であるので、 PDCを見ながらEDT分をスキップしていく
+	byte *p_rPDC = &_rBuffer[EL_EPC + 1]; // 初期PDCポインタ
+
+	for (byte i = 0; i < opc; i += 1) // OPC個数のEPCに回答する
+	{
+#ifdef __EL_DEBUG__
+		Serial.printf("EL::replyInfcDetail() i:%d EPC:%X\n", i, *p_rEPC);
+#endif
+		detail[detailSize] = *p_rEPC;
+		detailSize += 1;
+		detail[detailSize] = 0x00; // 成功したら0x00を返却
+		detailSize += 1;
+
+		// EPCとPDCを次のステップへ
+		p_rEPC += p_rPDC[0] + 2; // EPC 1Byte とPDC 1Byteと EDT(PDC) Byte分移動
+		p_rPDC += p_rPDC[0] + 2;
+	}
+
+	// Serial.printf("detailSize: %d\n", detailSize);
+
+	esv = EL_INFC_RES; //
+	sendDetails(toip, tid, seoj, deoj, esv, opc, detail, detailSize);
+}
+
+////////////////////////////////////////////////////
 /// @brief INFプロパティならマルチキャストで送信
 /// @param devId int
 /// @param epc const byte
@@ -1213,6 +1271,13 @@ void EL::returner(void)
 		}
 		break;
 		//  INF_REQここまで
+
+	case EL_INFC: // 送信専用ノードからの通知
+#ifdef __EL_DEBUG__
+		Serial.print("EL::returner() INFC: ");
+		Serial.println(epc, HEX);
+#endif
+		break;
 
 	default: // 解釈不可能なESV
 		break;
@@ -1365,6 +1430,14 @@ void EL::recvProcess(void)
 			}
 			break;
 			//  INF_REQここまで
+
+		case EL_INFC: // 送信専用ノードからの通知を受けた
+#ifdef __EL_DEBUG__
+			Serial.print("EL::recvProcess() INFC: ");
+			Serial.println(epc, HEX);
+#endif
+			replyInfcDetail(remIP, deoj);
+			break;
 
 		default: // 解釈不可能なESV
 			break;
