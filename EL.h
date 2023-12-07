@@ -234,11 +234,12 @@ public:
 	void sendDetails(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte opc, const byte detail[], const byte detailSize);
 	// return
 	// void replyOPC1(const IPAddress toip, const unsigned short tid, const byte *seoj, const byte* deoj, const byte esv, const byte epc, const byte* edt);
-	void replyGetDetail(const IPAddress toip, const byte seoj[]); // GET -> GET_RES
-	boolean replyGetDetail_sub(const byte eoj[], const byte epc, int &devId);
-	void replySetDetail(const IPAddress toip, const byte seoj[]); // SETI, SETC -> SET_RES
-	boolean replySetDetail_sub(const byte eoj[], const byte epc, int &devId);
-	void replyInfcDetail(const IPAddress toip, const byte seoj[]); // INFC -> INFC_RES
+	void replyGetDetail(const IPAddress toip, const byte seoj[]);			  // GET -> GET_RES | GET_SNA
+	boolean replyGetDetail_sub(const byte eoj[], const byte epc, int &devId); // GET用内部関数
+	void replySetDetail(const IPAddress toip, const byte seoj[]);			  // SETI, SETC -> SET_RES | SET_SNA
+	boolean replySetDetail_sub(const byte eoj[], const byte epc, int &devId); // SET用内部関数
+	void replySetgetDetail(const IPAddress toip, const byte seoj[]);		  // SETGET -> SETGET_SNA
+	void replyInfcDetail(const IPAddress toip, const byte seoj[]);			  // INFC -> INFC_RES
 	// INFプロパティ
 	void checkInfAndSend(int devId, const byte epc);
 	void checkInfAndSend(const byte eoj[], const byte epc);

@@ -1065,6 +1065,58 @@ boolean EL::replySetDetail_sub(const byte eoj[], const byte epc, int &devId)
 }
 
 ////////////////////////////////////////////////////
+/// @brief SETGETに対して返答する内部関数（現在は一律で不可応答する）
+/// @param toip const IPAddress
+/// @param _seoj const byte[]
+void EL::replySetgetDetail(const IPAddress toip, const byte _seoj[] = nullptr)
+{
+	// 返信用データを作る
+	byte tid[] = {_rBuffer[EL_TID], _rBuffer[EL_TID + 1]}; // TID
+
+	byte seoj[3]; // DEOJがreplyではSEOJになる
+	if (_seoj == nullptr)
+	{
+		seoj[0] = _rBuffer[EL_DEOJ];
+		seoj[1] = _rBuffer[EL_DEOJ + 1];
+		seoj[2] = _rBuffer[EL_DEOJ + 2];
+	}
+	else
+	{
+		seoj[0] = _seoj[0];
+		seoj[1] = _seoj[1];
+		seoj[2] = _seoj[2];
+	}
+
+	byte deoj[] = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]}; // SEOJがreplyではDEOJになる
+
+	byte esv = _rBuffer[EL_ESV]; // 受け取ったESV: INFCのはず
+	byte opc = _rBuffer[EL_OPC]; // 受け取ったOPC、走査と返信に使う
+
+	// 送信用
+	byte detail[1500];	 // EPC,PDC,EDT[n]、ただしPDCは常に0、EDTは常に無し
+	byte detailSize = 0; // data size
+
+	// rBuffer走査用
+	byte *p_rEPC = &_rBuffer[EL_EPC]; // 初期EPCポインタ
+	// この関数を呼ばれるのはINFCの場合であるので、 PDCを見ながらEDT分をスキップしていく
+	byte *p_rPDC = &_rBuffer[EL_EPC + 1]; // 初期PDCポインタ
+
+	opc = 0x00;				   // 返信OPCSet部分
+	detail[detailSize] = 0x00; // 返信OPCGet部分
+	detailSize += 1;
+
+	/*
+		detail[detailSize] = 0x00; // OPCSet
+		detailSize += 1;
+		detail[detailSize] = 0x00; // OPCGet
+		detailSize += 1;
+	*/
+
+	esv = EL_SETGET_SNA; // 現在は不可応答で固定
+	sendDetails(toip, tid, seoj, deoj, esv, opc, detail, detailSize);
+}
+
+////////////////////////////////////////////////////
 /// @brief INFCに対して複数OPCにも対応して返答する内部関数
 /// @param toip const IPAddress
 /// @param _seoj const byte[]
@@ -1387,17 +1439,17 @@ void EL::recvProcess(void)
 		// esvの要求にこたえる
 		switch (esv)
 		{
-		case EL_SETI: // SetIは返信しない
+		case EL_SETI: // SetIは返信しない: 0x60
 			break;
 
-		case EL_SETC: // SETC, Get, INF_REQ は返信処理がある
+		case EL_SETC: // SETC, Get, INF_REQ は返信処理がある: 0x61
 #ifdef __EL_DEBUG__
 			Serial.println("EL::recvProcess() ### SETC ###");
 #endif
 			replySetDetail(remIP, deoj);
 			break;
 
-		case EL_GET: // SETC, Get, INF_REQ は返信処理がある
+		case EL_GET: // SETC, Get, INF_REQ は返信処理がある: 0x62
 #ifdef __EL_DEBUG__
 			Serial.println("EL::recvProcess() ### GET ###");
 #endif
@@ -1405,7 +1457,7 @@ void EL::recvProcess(void)
 			break;
 
 			// ユニキャストへの返信ここまで，INFはマルチキャスト
-		case EL_INF_REQ: // SETC, Get, INF_REQ は返信処理がある
+		case EL_INF_REQ: // SETC, Get, INF_REQ は返信処理がある: 0x63
 #ifdef __EL_DEBUG__
 			Serial.print("EL::recvProcess() INF_REQ: ");
 			Serial.println(epc, HEX);
@@ -1431,7 +1483,15 @@ void EL::recvProcess(void)
 			break;
 			//  INF_REQここまで
 
-		case EL_INFC: // 送信専用ノードからの通知を受けた
+		case EL_SETGET: // SETGETにはまだ対応していない: 0x6e
+#ifdef __EL_DEBUG__
+			Serial.print("EL::recvProcess() SETGET: ");
+			Serial.println(epc, HEX);
+#endif
+			replySetgetDetail(remIP, deoj);
+			break;
+
+		case EL_INFC: // 送信専用ノードからの通知を受けた: 0x74
 #ifdef __EL_DEBUG__
 			Serial.print("EL::recvProcess() INFC: ");
 			Serial.println(epc, HEX);
