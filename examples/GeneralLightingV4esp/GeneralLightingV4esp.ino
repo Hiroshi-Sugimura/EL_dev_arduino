@@ -3,8 +3,7 @@
 /// @author SUGIMURA Hiroshi
 /// @date 2023.10.24
 /// @details https://github.com/Hiroshi-Sugimura/EL_dev_arduino
-/// このサンプルは ESP32-S3-DevKitC-1 で確認しています。
-/// その他、サンプルは「https://github.com/Hiroshi-Sugimura/EL_pj_arduino」にもあります
+/// ESP32-S3-DevKitC-1 https://akizukidenshi.com/catalog/g/gM-17073/
 //////////////////////////////////////////////////////////////////////
 
 #include <Arduino.h>
@@ -86,6 +85,14 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
         echo.update(0, epc, {0x31}); // 設定した値にする
         ret = true;                  // 処理できたので成功
       }
+      break;
+
+    case 0x81:                       // 位置情報
+      echo.update(0, epc, {edt[0]}); // ON
+      break;
+
+    case 0x88:                       // エラー情報
+      echo.update(0, epc, {edt[0]}); // ON
       break;
 
     case 0xB0: // 照度レベル

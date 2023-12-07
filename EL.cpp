@@ -186,7 +186,7 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 	{
 		devices[i][0x80].setEDT({0x30});				   // power
 		devices[i][0x81].setEDT({0x00});				   // position
-		devices[i][0x82].setEDT({0x00, 0x00, 0x50, 0x01}); // release R, rev.1
+		devices[i][0x82].setEDT({0x00, 0x00, 0x52, 0x01}); // release R, rev.1
 
 		devices[i][0x83].setEDT({0xfe, 0x00, 0x00, 0x77, _mac[0], _mac[1], _mac[2], _mac[3], _mac[4], _mac[5], _eojs[i * 3], _eojs[i * 3 + 1], _eojs[i * 3 + 2], 0x00, 0x00, 0x00, static_cast<unsigned char>(i + 1)}); // identification number
 
