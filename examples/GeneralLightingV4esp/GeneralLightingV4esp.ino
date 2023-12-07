@@ -3,7 +3,8 @@
 /// @author SUGIMURA Hiroshi
 /// @date 2023.10.24
 /// @details https://github.com/Hiroshi-Sugimura/EL_dev_arduino
-/// ESP32-S3-DevKitC-1 https://akizukidenshi.com/catalog/g/gM-17073/
+/// このサンプルは ESP32-S3-DevKitC-1 で確認しています。
+/// その他、サンプルは「https://github.com/Hiroshi-Sugimura/EL_pj_arduino」にもあります
 //////////////////////////////////////////////////////////////////////
 
 #include <Arduino.h>
