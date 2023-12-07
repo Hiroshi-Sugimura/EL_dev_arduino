@@ -111,7 +111,7 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 
 	// profile object
 	profile[0x80].setEDT({0x30});					// power
-	profile[0x82].setEDT({0x01, 0x0a, 0x01, 0x00}); // Ver 1.10 (type 1)
+	profile[0x82].setEDT({0x01, 0x0d, 0x01, 0x00}); // Ver 1.13 (type 1)
 #ifdef ESP32
 	String macraw = WiFi.macAddress(); // stringを返すタイプしかない。 M5Stackで WiFi.macAddress(byte) はダメ
 	String mac0str = macraw.substring(0, 2);
@@ -186,7 +186,7 @@ void EL::commonConstructor(WiFiUDP &udp, byte eojs[][3], int count)
 	{
 		devices[i][0x80].setEDT({0x30});				   // power
 		devices[i][0x81].setEDT({0x00});				   // position
-		devices[i][0x82].setEDT({0x00, 0x00, 0x4b, 0x00}); // release K
+		devices[i][0x82].setEDT({0x00, 0x00, 0x50, 0x01}); // release R, rev.1
 
 		devices[i][0x83].setEDT({0xfe, 0x00, 0x00, 0x77, _mac[0], _mac[1], _mac[2], _mac[3], _mac[4], _mac[5], _eojs[i * 3], _eojs[i * 3 + 1], _eojs[i * 3 + 2], 0x00, 0x00, 0x00, static_cast<unsigned char>(i + 1)}); // identification number
 
