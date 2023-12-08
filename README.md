@@ -123,6 +123,7 @@ void loop() {
 
 # Version
 
+- 4.2.2 debug log削除
 - 4.2.1 ONの通知
 - 4.2.0 バージョンバグ取り、サンプルの位置情報とエラー情報update、SETI_SNA対応、INF_REQ対応
 - 4.1.3 SETGETに返信するようにした（現在はSNA固定）
