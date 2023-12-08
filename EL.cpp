@@ -1079,6 +1079,168 @@ boolean EL::replySetDetail_sub(const byte eoj[], const byte epc, int &devId)
 }
 
 ////////////////////////////////////////////////////
+/// @brief INF_REQに対して複数OPCにも対応して返答する内部関数
+/// @param toip const IPAddress
+/// @param _seoj const byte[]
+void EL::replyInfreqDetail(const IPAddress toip, const byte _seoj[] = nullptr)
+{
+	// 返信用データを作る
+	byte tid[] = {_rBuffer[EL_TID], _rBuffer[EL_TID + 1]};
+
+	byte seoj[3]; // DEOJがreplyではSEOJになる
+	if (_seoj == nullptr)
+	{
+		seoj[0] = _rBuffer[EL_DEOJ];
+		seoj[1] = _rBuffer[EL_DEOJ + 1];
+		seoj[2] = _rBuffer[EL_DEOJ + 2];
+	}
+	else
+	{
+		seoj[0] = _seoj[0];
+		seoj[1] = _seoj[1];
+		seoj[2] = _seoj[2];
+	}
+
+	byte deoj[] = {_rBuffer[EL_SEOJ], _rBuffer[EL_SEOJ + 1], _rBuffer[EL_SEOJ + 2]}; // SEOJがreplyではDEOJになる
+	byte esv = _rBuffer[EL_ESV];
+	byte opc = _rBuffer[EL_OPC];
+
+	// 送信用
+	boolean success = true;
+	byte detail[1500];	 // EPC,PDC,EDT[n]
+	byte detailSize = 0; // data size
+
+	// rBuffer走査用
+	byte *p_rEPC = &_rBuffer[EL_EPC]; // 初期EPCポインタ
+	// この関数を呼ばれるのはGETの場合なので、 PDC:0x00, EDTなしに決まっている。
+	// 従って、EPCだけを焦点とする
+
+	// temp
+	PDCEDT pdcedt; // pdc edt
+	int devId;
+
+	for (byte i = 0; i < opc; i += 1, p_rEPC += 2) // OPC個数のEPCに回答する
+	{
+#ifdef __EL_DEBUG__
+		Serial.printf("EL::replyInfreqDetail() i:%d / opc:%d, EPC:%X\n", i, opc, *p_rEPC);
+#endif
+		boolean exist = replyInfreqDetail_sub(seoj, *p_rEPC, devId);
+		if (exist)
+		{
+			// ある
+			if (devId == EL_DEVID_NODEPROFILE) // devId, EL_DEVID_NODEPROFILE = -1 is profile
+			{
+#ifdef __EL_DEBUG__
+				Serial.printf("EL::replyInfreqDetail() Node profile\n");
+#endif
+
+				detail[detailSize] = *p_rEPC; // EPCに対して
+				detailSize += 1;
+
+				// PDCとEDTを設定
+				pdcedt = profile[*p_rEPC]; // EPCに対応するPDCEDT確保
+#ifdef __EL_DEBUG__
+				Serial.printf("node prof: pdcedt: ");
+				pdcedt.print();
+#endif
+				memcpy(&detail[detailSize], pdcedt, pdcedt.getPDC() + 1); // size = pdc + edt
+				detailSize += pdcedt.getPDC() + 1;
+			}
+			else
+			{
+#ifdef __EL_DEBUG__
+				Serial.printf("EL::replyInfreqDetail() devId: %x\n", devId);
+#endif
+				detail[detailSize] = *p_rEPC; // EPCに対して
+				detailSize += 1;
+
+				pdcedt = devices[devId][*p_rEPC]; // EPCに対応するPDCEDT確保
+#ifdef __EL_DEBUG__
+				Serial.printf("dev obj: pdcedt:");
+				pdcedt.print();
+				Serial.printf("dev prof: pdcedt: %d\n", pdcedt.getLength());
+#endif
+				// PDCとEDT確保
+				memcpy(&detail[detailSize], pdcedt, pdcedt.getLength() + 1); // size = pdc + edt
+				detailSize += pdcedt.getPDC() + 1;
+			}
+		}
+		else
+		{
+			// ない
+			if (devId == EL_DEVID_NOTHING)
+			{
+				// そもそもDEOJが自分のオブジェクトでない場合は無視（@@ 追加）
+#ifdef __EL_DEBUG__
+				Serial.printf("EL::replyInfreqDetail() No DEOJ\n");
+#endif
+				return;
+			}
+			else
+			{
+				// DEOJはあるが、EPCがない
+#ifdef __EL_DEBUG__
+				Serial.printf("EL::replyInfreqDetail() No EPC\n");
+#endif
+				detail[detailSize] = *p_rEPC;
+				detailSize += 1;
+				detail[detailSize] = 0x00;
+				detailSize += 1;
+				success = false;
+			}
+		}
+#ifdef __EL_DEBUG__
+		Serial.printf("detailSize: %d\n", detailSize);
+#endif
+	}
+
+	if (success)
+	{ // 成功の場合、マルチキャスト
+		sendDetails(_multi, tid, seoj, deoj, EL_INF, opc, detail, detailSize);
+	}
+	else
+	{ // 失敗の場合はユニキャストでSNA返信
+		sendDetails(toip, tid, seoj, deoj, EL_INF_SNA, opc, detail, detailSize);
+	}
+}
+
+////////////////////////////////////////////////////
+/// @brief EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数
+/// @param eoj const byte[]
+/// @param epc const byte
+/// @param devId[out] int&: -2: EL_DEVID_NOTHING, -1:EL_DEVID_NODEPROFILE, x:devId
+/// @return true:無し、false:あり
+/// @note replyInfreqDetailのサブルーチン、GetPropertyMapを参照しなくても、基本的に持っているPeopertyはGet可能なのでMapチェックしなくてよい
+boolean EL::replyInfreqDetail_sub(const byte eoj[], const byte epc, int &devId)
+{
+	devId = EL_DEVID_NOTHING;								// -2 はOJB無しとする（実際は別の方法でOBJ無しとしないとバグ発生するかも）
+	if (eoj[0] == 0x0e && eoj[1] == 0xf0 && eoj[2] == 0x01) // profile object
+	{
+		devId = EL_DEVID_NODEPROFILE; // devId = -1 は node profileとする。（この方式は後で変更するかも）
+		byte *pdcedt = profile[epc];
+
+		if (pdcedt == nullptr)
+			return false; // epcがない
+		return true;
+	}
+
+	// device object
+	for (int i = 0; i < deviceCount; i++) // deojとマッチするdevIdを調べる
+	{
+		if (eoj[0] == _eojs[i * 3 + 0] && eoj[1] == _eojs[i * 3 + 1])
+		{
+			devId = i;
+			byte *pdcedt = devices[devId][epc];
+
+			if (pdcedt == nullptr)
+				return false; // epcがない
+			return true;
+		}
+	}
+	return false; // no eoj, no epc
+}
+
+////////////////////////////////////////////////////
 /// @brief SETGETに対して返答する内部関数（現在は一律で不可応答する）
 /// @param toip const IPAddress
 /// @param _seoj const byte[]
@@ -1258,6 +1420,7 @@ int EL::read(void)
 
 ////////////////////////////////////////////////////
 /// @brief 受信データを処理する。EL処理でupdateしたら呼ぶ, Ver.3
+/// @note will be deprecated
 void EL::returner(void)
 {
 	///////////////////////////////////////////////////////////////////
@@ -1320,29 +1483,30 @@ void EL::returner(void)
 		replyGetDetail(remIP, deoj);
 		break;
 
+	case EL_SETGET: // SETGETにはまだ対応していない: 0x6e
+#ifdef __EL_DEBUG__
+		Serial.print("EL::recvProcess() ### SETGET ###");
+		Serial.println(epc, HEX);
+#endif
+		replySetgetDetail(remIP, deoj);
+		break;
+
 		// ユニキャストへの返信ここまで，INFはマルチキャスト
 	case EL_INF_REQ: // SETC, Get, INF_REQ は返信処理がある
 #ifdef __EL_DEBUG__
-		Serial.print("EL::returner() INF_REQ: ");
+		Serial.print("EL::returner() ### INF_REQ ###");
 		Serial.println(epc, HEX);
 #endif
-		if (pdcedt)
-		{ // そのEPCがある場合、マルチキャスト
-			sendMultiOPC1(tid, deoj, seoj, (esv + 0x10), epc, pdcedt);
-		}
-		else
-		{ // ない場合はエラーなのでユニキャストで返信
-			pdcedt[0] = 0x00;
-			sendOPC1(remIP, tid, deoj, seoj, (esv - 0x10), epc, nullptr);
-		}
+		replyInfreqDetail(remIP, deoj);
 		break;
 		//  INF_REQここまで
 
 	case EL_INFC: // 送信専用ノードからの通知
 #ifdef __EL_DEBUG__
-		Serial.print("EL::returner() INFC: ");
+		Serial.print("EL::returner() ### INFC ###");
 		Serial.println(epc, HEX);
 #endif
+		replyInfcDetail(remIP, deoj);
 		break;
 
 	default: // 解釈不可能なESV
@@ -1474,36 +1638,19 @@ void EL::recvProcess(void)
 			replyGetDetail(remIP, deoj);
 			break;
 
-			// ユニキャストへの返信ここまで，INFはマルチキャスト
+			// ユニキャスト返信ここまで，INFはマルチキャスト
 		case EL_INF_REQ: // SETC, Get, INF_REQ は返信処理がある: 0x63
 #ifdef __EL_DEBUG__
-			Serial.print("EL::recvProcess() INF_REQ: ");
+			Serial.print("EL::recvProcess() ### INF_REQ ###");
 			Serial.println(epc, HEX);
 #endif
-			if (devId == EL_DEVID_NODEPROFILE)
-			{
-				pdcedt = profile[epc];
-			}
-			else
-			{
-				pdcedt = devices[devId][epc];
-			}
-
-			if (pdcedt)
-			{ // そのEPCがある場合、マルチキャスト
-				sendMultiOPC1(tid, deoj, seoj, (esv + 0x10), epc, pdcedt);
-			}
-			else
-			{ // ない場合はエラーなのでユニキャストで返信
-				pdcedt[0] = 0x00;
-				sendOPC1(remIP, tid, deoj, seoj, (esv - 0x10), epc, nullptr);
-			}
+			replyInfreqDetail(remIP, deoj);
 			break;
 			//  INF_REQここまで
 
 		case EL_SETGET: // SETGETにはまだ対応していない: 0x6e
 #ifdef __EL_DEBUG__
-			Serial.print("EL::recvProcess() SETGET: ");
+			Serial.print("EL::recvProcess() ### SETGET ###");
 			Serial.println(epc, HEX);
 #endif
 			replySetgetDetail(remIP, deoj);
@@ -1511,7 +1658,7 @@ void EL::recvProcess(void)
 
 		case EL_INFC: // 送信専用ノードからの通知を受けた: 0x74
 #ifdef __EL_DEBUG__
-			Serial.print("EL::recvProcess() INFC: ");
+			Serial.print("EL::recvProcess() ### INFC ###");
 			Serial.println(epc, HEX);
 #endif
 			replyInfcDetail(remIP, deoj);
