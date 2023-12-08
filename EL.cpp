@@ -13,7 +13,7 @@
 #include "EL.h"
 #endif
 
-// #define __EL_DEBUG__ 1
+#define __EL_DEBUG__ 1
 
 ////////////////////////////////////////////////////
 /// @brief オブジェクトを一つだけサポートする場合のコンストラクタ
@@ -1018,13 +1018,27 @@ void EL::replySetDetail(const IPAddress toip, const byte _seoj[] = nullptr)
 
 	// Serial.printf("detailSize: %d\n", detailSize);
 
-	if (esv == EL_SETI)
+	// 一つでも失敗したらSETC_SNA、全部OKならSET_RES
+	if (esv == EL_SETI && success) // SetIの成功なら返却なし、SetIでも失敗ならSNAを返却
 	{
+#ifdef __EL_DEBUG__
+		Serial.printf("EL::replySetDetail() EL_SETI success");
+#endif
 		return;
-	} // SetIなら返却なし
-	// DEOJが自分のオブジェクトでない場合は破棄（@@ 追加）
+	}
+	else if (esv == EL_SETI && !success)
+	{
+		esv = EL_SETI_SNA;
+	}
+	else if (esv == EL_SETC && success)
+	{
+		esv = EL_SET_RES;
+	}
+	else if (esv == EL_SETC && !success)
+	{
+		esv = EL_SETC_SNA;
+	}
 
-	esv = success ? EL_SET_RES : EL_SETC_SNA; // 一つでも失敗したらSETC_SNA、全部OKならSET_RES
 	sendDetails(toip, tid, seoj, deoj, esv, opc, detail, detailSize);
 }
 
@@ -1243,7 +1257,7 @@ int EL::read(void)
 }
 
 ////////////////////////////////////////////////////
-/// @brief 受信データを処理する。EL処理でupdateしたら呼ぶ
+/// @brief 受信データを処理する。EL処理でupdateしたら呼ぶ, Ver.3
 void EL::returner(void)
 {
 	///////////////////////////////////////////////////////////////////
@@ -1337,7 +1351,7 @@ void EL::returner(void)
 }
 
 ////////////////////////////////////////////////////
-/// @brief 受信処理
+/// @brief 受信処理 Ver.4
 void EL::recvProcess(void)
 {
 	// パケット貰ったらやる
@@ -1439,7 +1453,11 @@ void EL::recvProcess(void)
 		// esvの要求にこたえる
 		switch (esv)
 		{
-		case EL_SETI: // SetIは返信しない: 0x60
+		case EL_SETI: // SetIは成功で返信しないが失敗はSETI_SNAを返却: 0x60
+#ifdef __EL_DEBUG__
+			Serial.println("EL::recvProcess() ### SETI ###");
+#endif
+			replySetDetail(remIP, deoj);
 			break;
 
 		case EL_SETC: // SETC, Get, INF_REQ は返信処理がある: 0x61
