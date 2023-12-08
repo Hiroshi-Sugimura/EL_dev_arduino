@@ -323,7 +323,8 @@ void EL::begin(ELCallback cb)
 	// インスタンスリスト通知 D5
 	const byte seoj[] = {0x0e, 0xf0, 0x01};
 	const byte deoj[] = {0x05, 0xff, 0x01};
-	sendMultiOPC1(seoj, deoj, EL_INF, 0xd5, profile[0xd5]);
+	sendMultiOPC1(seoj, deoj, EL_INF, 0x80, profile[0x80]); // ON通知
+	sendMultiOPC1(seoj, deoj, EL_INF, 0xd5, profile[0xd5]); // オブジェクトリスト通知
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
