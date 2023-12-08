@@ -1,8 +1,5 @@
 <map id="EL::sendOPC1" name="EL::sendOPC1">
-<area shape="rect" id="node1" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="270,80,379,106"/>
-<area shape="rect" id="node2" href="$class_e_l.html#a633320f052680decb5e7f72fbdf41fb3" title="受信処理" alt="" coords="101,5,220,31"/>
-<area shape="rect" id="node3" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="116,55,205,80"/>
-<area shape="rect" id="node5" href="$class_e_l.html#a86aa96de6dfaac6322e78c02a63eafd5" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="106,104,215,130"/>
-<area shape="rect" id="node6" href="$class_e_l.html#af4248443d7f4c60f5e06325738713c9e" title=" " alt="" coords="99,153,222,179"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,55,51,80"/>
+<area shape="rect" id="node1" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="177,31,286,56"/>
+<area shape="rect" id="node2" href="$class_e_l.html#a86aa96de6dfaac6322e78c02a63eafd5" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="12,5,122,31"/>
+<area shape="rect" id="node3" href="$class_e_l.html#af4248443d7f4c60f5e06325738713c9e" title=" " alt="" coords="5,55,129,80"/>
 </map>

@@ -1,0 +1,5 @@
+<map id="EL::replyInfcDetail" name="EL::replyInfcDetail">
+<area shape="rect" id="node1" title="INFCに対して複数OPCにも対応して返答する内部関数" alt="" coords="5,5,135,31"/>
+<area shape="rect" id="node2" href="$class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="183,5,297,31"/>
+<area shape="rect" id="node3" href="$class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="345,5,418,31"/>
+</map>

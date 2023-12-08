@@ -1,10 +1,11 @@
 <map id="EL::sendMultiOPC1" name="EL::sendMultiOPC1">
-<area shape="rect" id="node1" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="691,80,828,106"/>
-<area shape="rect" id="node2" href="$class_e_l.html#a633320f052680decb5e7f72fbdf41fb3" title="受信処理" alt="" coords="114,5,232,31"/>
-<area shape="rect" id="node3" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="128,129,218,155"/>
-<area shape="rect" id="node5" href="$class_e_l.html#ad4f9ad8d9d65fdc65a7914a42e58cdf5" title="OPC一個用のマルチキャスト送信、TID自動" alt="" coords="498,104,636,130"/>
-<area shape="rect" id="node6" href="$class_e_l.html#a1c2e707d004abf421b57d74ad46beebf" title="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動" alt="" coords="491,55,643,80"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,129,51,155"/>
-<area shape="rect" id="node7" href="$class_e_l.html#ad0a4c4be11f3a78a34b8056b756f8d48" title="INFプロパティならマルチキャストで送信" alt="" coords="295,55,443,80"/>
-<area shape="rect" id="node8" href="$class_e_l.html#ac6c85e6f6a3c93b86baaa807e522e286" title="INFプロパティならマルチキャストで送信" alt="" coords="99,55,247,80"/>
+<area shape="rect" id="node1" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="691,55,828,80"/>
+<area shape="rect" id="node2" href="$class_e_l.html#a12bbbd06eb2efb56e4183d8616c748ef" title="通信の開始、受信開始、ユーザ関数受付" alt="" coords="529,5,605,31"/>
+<area shape="rect" id="node3" href="$class_e_l.html#ad4f9ad8d9d65fdc65a7914a42e58cdf5" title="OPC一個用のマルチキャスト送信、TID自動" alt="" coords="498,55,636,80"/>
+<area shape="rect" id="node4" href="$class_e_l.html#a1c2e707d004abf421b57d74ad46beebf" title="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動" alt="" coords="491,104,643,130"/>
+<area shape="rect" id="node5" href="$class_e_l.html#ad0a4c4be11f3a78a34b8056b756f8d48" title="INFプロパティならマルチキャストで送信" alt="" coords="295,104,443,130"/>
+<area shape="rect" id="node6" href="$class_e_l.html#ac6c85e6f6a3c93b86baaa807e522e286" title="INFプロパティならマルチキャストで送信" alt="" coords="99,55,247,80"/>
+<area shape="rect" id="node7" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ, Ver.3" alt="" coords="128,104,218,130"/>
+<area shape="rect" id="node9" href="$class_e_l.html#aa34433a5cfe19297aede0723082a4f76" title="EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）" alt="" coords="131,153,215,179"/>
+<area shape="rect" id="node8" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,129,51,155"/>
 </map>

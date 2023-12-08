@@ -1,7 +1,7 @@
 var searchData=
 [
   ['echo_0',['echo',['../main_8cpp.html#ac9832d0cef2337732f35ecc4df039197',1,'main.cpp']]],
-  ['el_1',['EL',['../class_e_l.html',1,'EL'],['../class_e_l.html#aeea65419f3e4e45f6d10af3a01d50cbd',1,'EL::EL(WiFiUDP &amp;udp, byte classGroupCode, byte classCode, byte instanceNumber)'],['../class_e_l.html#a2a54d80256fe75d16e04f33eed327fdd',1,'EL::EL(WiFiUDP &amp;udp, byte eojs[][3], int count)']]],
+  ['el_1',['EL',['../class_e_l.html',1,'EL'],['../class_e_l.html#aeea65419f3e4e45f6d10af3a01d50cbd',1,'EL::EL(WiFiUDP &amp;udp, byte classGroupCode, byte classCode, byte instanceNumber)'],['../class_e_l.html#a2a54d80256fe75d16e04f33eed327fdd',1,'EL::EL(WiFiUDP &amp;udp, byte eojs[][3], int count)'],['../class_e_l.html#aa78a752aa0f541160fb6f83f94da08a5',1,'EL::EL(WiFiUDP &amp;udp, std::initializer_list&lt; std::initializer_list&lt; byte &gt; &gt; eojs)']]],
   ['el_2ecpp_2',['EL.cpp',['../_e_l_8cpp.html',1,'']]],
   ['el_2eh_3',['EL.h',['../_e_l_8h.html',1,'']]],
   ['el_5factivityamountsensor_4',['EL_ActivityAmountSensor',['../_e_l_8h.html#a166fbc0e4e3d86c35e0cbc07bce52bf7',1,'EL.h']]],

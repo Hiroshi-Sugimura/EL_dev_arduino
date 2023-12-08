@@ -1,8 +1,11 @@
 <map id="EL::sendDetails" name="EL::sendDetails">
-<area shape="rect" id="node1" title="複数のEPCで送信する場合はこれを使う" alt="" coords="441,31,556,56"/>
-<area shape="rect" id="node2" href="$class_e_l.html#a99959add7901949d60e808f42f624461" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="265,5,393,31"/>
-<area shape="rect" id="node6" href="$class_e_l.html#a3ab1ca31bf3a9b8cc4684069951c1270" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="266,55,393,80"/>
-<area shape="rect" id="node3" href="$class_e_l.html#a633320f052680decb5e7f72fbdf41fb3" title="受信処理" alt="" coords="99,5,217,31"/>
-<area shape="rect" id="node4" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ" alt="" coords="113,55,203,80"/>
-<area shape="rect" id="node5" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,55,51,80"/>
+<area shape="rect" id="node1" title="複数のEPCで送信する場合はこれを使う" alt="" coords="458,104,573,130"/>
+<area shape="rect" id="node2" href="$class_e_l.html#a99959add7901949d60e808f42f624461" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="274,55,402,80"/>
+<area shape="rect" id="node6" href="$class_e_l.html#a8e808ee235af480044c8c1a9c573da8e" title="INFCに対して複数OPCにも対応して返答する内部関数" alt="" coords="273,104,402,130"/>
+<area shape="rect" id="node7" href="$class_e_l.html#a71b2ff463c676496b444fea1ded085fb" title="INF_REQに対して複数OPCにも対応して返答する内部関数" alt="" coords="268,153,408,179"/>
+<area shape="rect" id="node8" href="$class_e_l.html#a3ab1ca31bf3a9b8cc4684069951c1270" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="274,203,401,228"/>
+<area shape="rect" id="node9" href="$class_e_l.html#aff36df4f0da8f48891de0ceefdfc8968" title="SETGETに対して返答する内部関数（現在は一律で不可応答する）" alt="" coords="265,5,410,31"/>
+<area shape="rect" id="node3" href="$class_e_l.html#a633320f052680decb5e7f72fbdf41fb3" title="受信処理 Ver.4" alt="" coords="99,80,217,106"/>
+<area shape="rect" id="node4" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ, Ver.3" alt="" coords="113,129,203,155"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,129,51,155"/>
 </map>
