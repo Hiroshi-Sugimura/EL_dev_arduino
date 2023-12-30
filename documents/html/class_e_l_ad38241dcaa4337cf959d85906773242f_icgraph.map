@@ -1,4 +1,9 @@
 <map id="EL::commonConstructor" name="EL::commonConstructor">
-<area shape="rect" id="node1" title="コンストラクタ共通処理" alt="" coords="116,5,280,31"/>
-<area shape="rect" id="node2" href="$class_e_l.html#aeea65419f3e4e45f6d10af3a01d50cbd" title="オブジェクトを一つだけサポートする場合のコンストラクタ" alt="" coords="5,5,68,31"/>
+<area shape="rect" id="Node000001" title="コンストラクタ共通処理" alt="" coords="115,56,277,83"/>
+<area shape="rect" id="Node000002" href="$class_e_l.html#aeea65419f3e4e45f6d10af3a01d50cbd" title="オブジェクトを一つだけサポートする場合のコンストラクタ" alt="" coords="5,5,67,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,53,66,31,68,26,138,48"/>
+<area shape="rect" id="Node000003" href="$class_e_l.html#a2a54d80256fe75d16e04f33eed327fdd" title="オブジェクトを複数サポートする場合のコンストラクタ" alt="" coords="5,56,67,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="99,72,67,72,67,67,99,67"/>
+<area shape="rect" id="Node000004" href="$class_e_l.html#aa78a752aa0f541160fb6f83f94da08a5" title="オブジェクトを複数サポートする場合のコンストラクタ" alt="" coords="5,107,67,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="138,90,68,113,66,108,136,85"/>
 </map>

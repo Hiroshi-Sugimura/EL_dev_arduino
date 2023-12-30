@@ -1,15 +1,37 @@
 <map id="EL::send" name="EL::send">
-<area shape="rect" id="node1" title="IP指定による送信" alt="" coords="621,203,694,228"/>
-<area shape="rect" id="node2" href="$class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="458,129,573,155"/>
-<area shape="rect" id="node11" href="$class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="461,252,570,278"/>
-<area shape="rect" id="node3" href="$class_e_l.html#a99959add7901949d60e808f42f624461" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="274,153,402,179"/>
-<area shape="rect" id="node7" href="$class_e_l.html#a8e808ee235af480044c8c1a9c573da8e" title="INFCに対して複数OPCにも対応して返答する内部関数" alt="" coords="273,203,402,228"/>
-<area shape="rect" id="node8" href="$class_e_l.html#a71b2ff463c676496b444fea1ded085fb" title="INF_REQに対して複数OPCにも対応して返答する内部関数" alt="" coords="268,5,408,31"/>
-<area shape="rect" id="node9" href="$class_e_l.html#a3ab1ca31bf3a9b8cc4684069951c1270" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="274,55,401,80"/>
-<area shape="rect" id="node10" href="$class_e_l.html#aff36df4f0da8f48891de0ceefdfc8968" title="SETGETに対して返答する内部関数（現在は一律で不可応答する）" alt="" coords="265,104,410,130"/>
-<area shape="rect" id="node4" href="$class_e_l.html#a633320f052680decb5e7f72fbdf41fb3" title="受信処理 Ver.4" alt="" coords="99,80,217,106"/>
-<area shape="rect" id="node5" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ, Ver.3" alt="" coords="113,129,203,155"/>
-<area shape="rect" id="node6" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,129,51,155"/>
-<area shape="rect" id="node12" href="$class_e_l.html#a86aa96de6dfaac6322e78c02a63eafd5" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="283,301,392,327"/>
-<area shape="rect" id="node13" href="$class_e_l.html#af4248443d7f4c60f5e06325738713c9e" title=" " alt="" coords="276,252,399,278"/>
+<area shape="rect" id="Node000001" title="IP指定による送信" alt="" coords="617,233,690,260"/>
+<area shape="rect" id="Node000002" href="$class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="455,132,569,159"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="619,226,531,161,534,157,623,222"/>
+<area shape="rect" id="Node000011" href="$class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="458,284,566,311"/>
+<area shape="poly" id="edge18_Node000001_Node000011" title=" " alt="" coords="603,267,552,286,550,281,601,262"/>
+<area shape="rect" id="Node000003" href="$class_e_l.html#a99959add7901949d60e808f42f624461" title="Getに対して複数OPCにも対応して返答する内部関数" alt="" coords="272,208,399,235"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="472,169,408,198,379,210,377,205,406,194,470,164"/>
+<area shape="rect" id="Node000007" href="$class_e_l.html#a8e808ee235af480044c8c1a9c573da8e" title="INFCに対して複数OPCにも対応して返答する内部関数" alt="" coords="272,5,398,32"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="489,122,452,83,406,46,383,35,385,30,409,42,456,79,493,118"/>
+<area shape="rect" id="Node000008" href="$class_e_l.html#a71b2ff463c676496b444fea1ded085fb" title="INF_REQに対して複数OPCにも対応して返答する内部関数" alt="" coords="267,56,404,83"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="470,127,406,97,377,86,379,81,408,92,472,122"/>
+<area shape="rect" id="Node000009" href="$class_e_l.html#a3ab1ca31bf3a9b8cc4684069951c1270" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="272,107,398,133"/>
+<area shape="poly" id="edge12_Node000002_Node000009" title=" " alt="" coords="440,138,398,132,399,126,440,132"/>
+<area shape="rect" id="Node000010" href="$class_e_l.html#aff36df4f0da8f48891de0ceefdfc8968" title="SETGETに対して返答する内部関数（現在は一律で不可応答する）" alt="" coords="263,157,407,184"/>
+<area shape="poly" id="edge15_Node000002_Node000010" title=" " alt="" coords="441,158,408,163,407,158,440,153"/>
+<area shape="rect" id="Node000004" href="$class_e_l.html#a633320f052680decb5e7f72fbdf41fb3" title="受信処理 Ver.4" alt="" coords="99,81,215,108"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="268,203,261,198,244,179,236,159,229,141,213,122,196,111,199,106,217,118,233,138,241,157,249,176,265,194,271,198"/>
+<area shape="rect" id="Node000005" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ, Ver.3" alt="" coords="112,132,202,159"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="278,205,262,198,184,162,186,157,264,194,280,200"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,132,51,159"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="96,148,51,148,51,143,96,143"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="280,40,264,46,186,83,184,78,262,42,278,35"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="271,42,265,46,249,64,241,83,233,102,217,122,199,134,196,129,213,118,229,99,236,81,244,61,261,42,268,37"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="251,84,216,89,215,84,251,79"/>
+<area shape="poly" id="edge11_Node000008_Node000005" title=" " alt="" coords="279,91,264,97,216,122,191,134,189,129,214,118,262,92,277,86"/>
+<area shape="poly" id="edge13_Node000009_Node000004" title=" " alt="" coords="256,111,215,106,216,100,257,106"/>
+<area shape="poly" id="edge14_Node000009_Node000005" title=" " alt="" coords="257,134,202,142,201,136,256,129"/>
+<area shape="poly" id="edge16_Node000010_Node000004" title=" " alt="" coords="277,154,262,148,214,122,189,111,191,106,216,118,264,143,279,149"/>
+<area shape="poly" id="edge17_Node000010_Node000005" title=" " alt="" coords="247,161,201,154,202,149,248,156"/>
+<area shape="rect" id="Node000012" href="$class_e_l.html#aad72059417fc988bc260e92a8619475a" title="OPC1指定による送信(SEOJは初期化時に指定したものを使う)" alt="" coords="281,259,389,285"/>
+<area shape="poly" id="edge19_Node000011_Node000012" title=" " alt="" coords="442,290,390,282,390,277,443,285"/>
+<area shape="rect" id="Node000013" href="$class_e_l.html#a86aa96de6dfaac6322e78c02a63eafd5" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="281,309,389,336"/>
+<area shape="poly" id="edge20_Node000011_Node000013" title=" " alt="" coords="443,310,390,318,390,312,442,305"/>
+<area shape="rect" id="Node000014" href="$class_e_l.html#af4248443d7f4c60f5e06325738713c9e" title=" " alt="" coords="275,360,395,387"/>
+<area shape="poly" id="edge21_Node000011_Node000014" title=" " alt="" coords="472,321,408,350,379,362,377,357,406,346,470,316"/>
 </map>

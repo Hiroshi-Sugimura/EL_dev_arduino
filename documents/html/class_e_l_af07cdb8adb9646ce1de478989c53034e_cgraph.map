@@ -1,4 +1,5 @@
 <map id="EL::sendMultiOPC1" name="EL::sendMultiOPC1">
-<area shape="rect" id="node1" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="5,5,143,31"/>
-<area shape="rect" id="node2" href="$class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="191,5,292,31"/>
+<area shape="rect" id="Node000001" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="5,5,142,32"/>
+<area shape="rect" id="Node000002" href="$class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="190,5,291,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,16,174,16,174,21,142,21"/>
 </map>

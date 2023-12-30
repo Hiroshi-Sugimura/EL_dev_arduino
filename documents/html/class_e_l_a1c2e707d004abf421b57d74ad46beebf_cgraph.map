@@ -1,6 +1,9 @@
 <map id="EL::sendMultiOPC1ID" name="EL::sendMultiOPC1ID">
-<area shape="rect" id="node1" title="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動" alt="" coords="5,31,157,56"/>
-<area shape="rect" id="node2" href="$class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="208,5,346,31"/>
-<area shape="rect" id="node4" href="$class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="205,55,349,80"/>
-<area shape="rect" id="node3" href="$class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="397,5,498,31"/>
+<area shape="rect" id="Node000001" title="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動" alt="" coords="5,31,154,57"/>
+<area shape="rect" id="Node000002" href="$class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="205,5,342,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,32,190,27,190,32,155,37"/>
+<area shape="rect" id="Node000004" href="$class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="202,56,345,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="155,51,186,55,186,61,154,56"/>
+<area shape="rect" id="Node000003" href="$class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="393,5,494,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="342,16,378,16,378,21,342,21"/>
 </map>

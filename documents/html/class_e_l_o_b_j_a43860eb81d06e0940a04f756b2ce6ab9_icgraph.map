@@ -1,6 +1,15 @@
 <map id="ELOBJ::SetMyPropertyMap" name="ELOBJ::SetMyPropertyMap">
-<area shape="rect" id="node1" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する" alt="" coords="326,31,509,56"/>
-<area shape="rect" id="node2" href="$class_e_l.html#ad38241dcaa4337cf959d85906773242f" title="コンストラクタ共通処理" alt="" coords="115,5,278,31"/>
-<area shape="rect" id="node4" href="$class_e_l.html#a0ce157c418b41fa3d5daaaaddaee0a5d" title="EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）" alt="" coords="154,55,239,80"/>
-<area shape="rect" id="node3" href="$class_e_l.html#aeea65419f3e4e45f6d10af3a01d50cbd" title="オブジェクトを一つだけサポートする場合のコンストラクタ" alt="" coords="5,5,67,31"/>
+<area shape="rect" id="Node000001" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算してPDCとEDTを設定する" alt="" coords="325,107,507,133"/>
+<area shape="rect" id="Node000002" href="$class_e_l.html#ad38241dcaa4337cf959d85906773242f" title="コンストラクタ共通処理" alt="" coords="115,56,277,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="339,105,256,86,258,81,341,100"/>
+<area shape="rect" id="Node000006" href="$class_e_l.html#a0ce157c418b41fa3d5daaaaddaee0a5d" title="EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）" alt="" coords="154,107,238,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="309,123,238,123,238,117,309,117"/>
+<area shape="rect" id="Node000007" href="$class_e_l.html#a87fe45764faacc447b4ec3292a76c814" title="EPCの値を変更する, 複数の場合" alt="" coords="154,157,238,184"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="341,140,239,164,238,158,339,135"/>
+<area shape="rect" id="Node000003" href="$class_e_l.html#aeea65419f3e4e45f6d10af3a01d50cbd" title="オブジェクトを一つだけサポートする場合のコンストラクタ" alt="" coords="5,5,67,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="136,53,66,31,68,26,138,48"/>
+<area shape="rect" id="Node000004" href="$class_e_l.html#a2a54d80256fe75d16e04f33eed327fdd" title="オブジェクトを複数サポートする場合のコンストラクタ" alt="" coords="5,56,67,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="99,72,67,72,67,67,99,67"/>
+<area shape="rect" id="Node000005" href="$class_e_l.html#aa78a752aa0f541160fb6f83f94da08a5" title="オブジェクトを複数サポートする場合のコンストラクタ" alt="" coords="5,107,67,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="137,90,115,97,68,113,66,108,114,92,135,85"/>
 </map>

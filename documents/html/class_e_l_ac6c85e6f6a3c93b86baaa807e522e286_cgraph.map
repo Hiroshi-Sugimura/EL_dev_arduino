@@ -1,11 +1,19 @@
 <map id="EL::checkInfAndSend" name="EL::checkInfAndSend">
-<area shape="rect" id="node1" title="INFプロパティならマルチキャストで送信" alt="" coords="5,55,154,80"/>
-<area shape="rect" id="node2" href="$class_e_l.html#ad0a4c4be11f3a78a34b8056b756f8d48" title="INFプロパティならマルチキャストで送信" alt="" coords="202,29,350,55"/>
-<area shape="rect" id="node9" href="$class_e_l.html#aa261c0f9454aad5d04b5a71c632320fe" title="device idを取得する内部関数" alt="" coords="227,79,325,104"/>
-<area shape="rect" id="node3" href="$class_e_l_o_b_j.html#ad5b66b3e3b3659afec58cbff221a8f41" title="指定のEPCがINF必須かどうか" alt="" coords="398,5,554,31"/>
-<area shape="rect" id="node5" href="$class_e_l.html#a1c2e707d004abf421b57d74ad46beebf" title="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動" alt="" coords="401,55,552,80"/>
-<area shape="rect" id="node4" href="$class_e_l_o_b_j.html#a7303a697a8e593724b3edde5834037db" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）" alt="" coords="602,5,787,31"/>
-<area shape="rect" id="node6" href="$class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="626,55,763,80"/>
-<area shape="rect" id="node8" href="$class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="622,104,767,130"/>
-<area shape="rect" id="node7" href="$class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="835,55,936,80"/>
+<area shape="rect" id="Node000001" title="INFプロパティならマルチキャストで送信" alt="" coords="5,56,152,83"/>
+<area shape="rect" id="Node000002" href="$class_e_l.html#ad0a4c4be11f3a78a34b8056b756f8d48" title="INFプロパティならマルチキャストで送信" alt="" coords="200,31,346,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,57,184,53,185,58,153,62"/>
+<area shape="rect" id="Node000009" href="$class_e_l.html#aa261c0f9454aad5d04b5a71c632320fe" title="device idを取得する内部関数" alt="" coords="226,81,320,108"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="153,76,210,84,210,89,152,82"/>
+<area shape="rect" id="Node000003" href="$class_e_l_o_b_j.html#ad5b66b3e3b3659afec58cbff221a8f41" title="指定のEPCがINF必須かどうか" alt="" coords="394,5,547,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="346,32,378,28,379,33,347,37"/>
+<area shape="rect" id="Node000005" href="$class_e_l.html#a1c2e707d004abf421b57d74ad46beebf" title="OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動" alt="" coords="397,56,545,83"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="347,51,381,55,381,61,346,56"/>
+<area shape="rect" id="Node000004" href="$class_e_l_o_b_j.html#a7303a697a8e593724b3edde5834037db" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）" alt="" coords="595,5,779,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="548,16,580,16,580,21,548,21"/>
+<area shape="rect" id="Node000006" href="$class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="619,56,755,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="545,67,603,67,603,72,545,72"/>
+<area shape="rect" id="Node000008" href="$class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="615,107,759,133"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="532,81,613,100,612,105,530,86"/>
+<area shape="rect" id="Node000007" href="$class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="827,56,928,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="756,67,811,67,811,72,756,72"/>
 </map>

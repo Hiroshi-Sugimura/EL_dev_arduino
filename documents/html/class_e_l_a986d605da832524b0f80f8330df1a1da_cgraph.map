@@ -1,4 +1,5 @@
 <map id="EL::at" name="EL::at">
-<area shape="rect" id="node1" title="EPCの値を取得する, eojが1個の場合（複数の場合は0番に相当）" alt="" coords="5,5,63,31"/>
-<area shape="rect" id="node2" href="$class_e_l_o_b_j.html#af550cffbae7818d5eb873e0446b96aff" title="キー文字列からデータ取得" alt="" coords="111,5,260,31"/>
+<area shape="rect" id="Node000001" title="EPCの値を取得する, eojが1個の場合（複数の場合は0番に相当）" alt="" coords="5,5,62,32"/>
+<area shape="rect" id="Node000002" href="$class_e_l_o_b_j.html#af550cffbae7818d5eb873e0446b96aff" title="キー文字列からデータ取得" alt="" coords="110,5,253,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,16,94,16,94,21,62,21"/>
 </map>

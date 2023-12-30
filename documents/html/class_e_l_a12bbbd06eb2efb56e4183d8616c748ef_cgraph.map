@@ -1,5 +1,7 @@
 <map id="EL::begin" name="EL::begin">
-<area shape="rect" id="node1" title="通信の開始、受信開始、ユーザ関数受付" alt="" coords="5,5,82,31"/>
-<area shape="rect" id="node2" href="$class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="130,5,267,31"/>
-<area shape="rect" id="node3" href="$class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="315,5,416,31"/>
+<area shape="rect" id="Node000001" title="通信の開始、受信開始、ユーザ関数受付" alt="" coords="5,5,82,32"/>
+<area shape="rect" id="Node000002" href="$class_e_l.html#af07cdb8adb9646ce1de478989c53034e" title="OPC一個用のマルチキャスト送信、TID指定有り" alt="" coords="130,5,266,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,16,114,16,114,21,82,21"/>
+<area shape="rect" id="Node000003" href="$class_e_l.html#a401f22b7f82d6dbb832bd1589a276720" title="マルチキャストによる送信(default: 192.168.1.255)" alt="" coords="314,5,415,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="266,16,298,16,298,21,266,21"/>
 </map>

@@ -1,4 +1,5 @@
 <map id="PDCEDT::PDCEDT" name="PDCEDT::PDCEDT">
-<area shape="rect" id="node1" title="コピーコンストラクタ" alt="" coords="5,5,145,31"/>
-<area shape="rect" id="node2" href="$class_p_d_c_e_d_t.html#af0d611854df60915f606b3fb451a9c1f" title="PDCEDT Length getter" alt="" coords="193,5,333,31"/>
+<area shape="rect" id="Node000001" title="コピーコンストラクタ" alt="" coords="5,5,139,32"/>
+<area shape="rect" id="Node000002" href="$class_p_d_c_e_d_t.html#af0d611854df60915f606b3fb451a9c1f" title="PDCEDT Length getter" alt="" coords="187,5,325,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,16,171,16,171,21,139,21"/>
 </map>

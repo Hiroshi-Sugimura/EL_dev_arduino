@@ -3,12 +3,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.9.6"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>EL_dev_arduino: /Users/sugimura/EL_dev_arduino/EL.h ソースファイル</title>
+<title>EL_dev_arduino: C:/Users/sugimura/Documents/EL_dev_arduino/EL.h ソースファイル</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -21,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">EL_dev_arduino<span id="projectnumber">&#160;4.2.0</span>
+   <div id="projectname">EL_dev_arduino<span id="projectnumber">&#160;4.2.2</span>
    </div>
   </td>
  </tr>
@@ -29,7 +33,7 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- 構築: Doxygen 1.9.6 -->
+<!-- 構築: Doxygen 1.9.8 -->
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "search/",'.html');
@@ -46,7 +50,28 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('_e_l_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,7 +94,7 @@ $(function() {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">/Users/sugimura/EL_dev_arduino/EL.h</div></div>
+  <div class="headertitle"><div class="title">C:/Users/sugimura/Documents/EL_dev_arduino/EL.h</div></div>
 </div><!--header-->
 <div class="contents">
 <a href="_e_l_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
@@ -238,6 +263,7 @@ $(function() {
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="comment">//      bool (*ELCallback) (  tid,   seoj,   deoj,  esv,  opc,  epc, pdc,  edt);</span></div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="_e_l_8h.html#a25e05b5c24b3b48f6ba6e6ccb3460bca">  171</a></span><span class="keyword">typedef</span> bool (*<a class="code hl_typedef" href="_e_l_8h.html#a25e05b5c24b3b48f6ba6e6ccb3460bca">ELCallback</a>)(<span class="keywordtype">byte</span>[], <span class="keywordtype">byte</span>[], <span class="keywordtype">byte</span>[], byte, byte, byte, byte, <span class="keywordtype">byte</span>[]);</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="foldopen" id="foldopen00177" data-start="{" data-end="};">
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="class_e_l.html">  177</a></span><span class="keyword">class </span><a class="code hl_class" href="class_e_l.html">EL</a></div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>{</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="keyword">private</span>:</div>
@@ -329,55 +355,60 @@ $(function() {
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    <span class="comment">// 受信パケットの正常生チェック</span></div>
 <div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_e_l.html#a5c253173c618b6206a77567fc886c86d">verifyPacket</a>(<span class="keyword">const</span> <span class="keywordtype">byte</span> data[], <span class="keywordtype">int</span> size);</div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>};</div>
+</div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="comment">// EOF</span></div>
-<div class="ttc" id="a_e_l_8h_html_a01f8b3aac63d16c12240173b35a354d1"><div class="ttname"><a href="_e_l_8h.html#a01f8b3aac63d16c12240173b35a354d1">EL_BUFFER_SIZE</a></div><div class="ttdeci">#define EL_BUFFER_SIZE</div><div class="ttdoc">BUFFER_SIZE</div><div class="ttdef"><b>Definition:</b> EL.h:60</div></div>
-<div class="ttc" id="a_e_l_8h_html_a25e05b5c24b3b48f6ba6e6ccb3460bca"><div class="ttname"><a href="_e_l_8h.html#a25e05b5c24b3b48f6ba6e6ccb3460bca">ELCallback</a></div><div class="ttdeci">bool(* ELCallback)(byte[], byte[], byte[], byte, byte, byte, byte, byte[])</div><div class="ttdef"><b>Definition:</b> EL.h:171</div></div>
+<div class="ttc" id="a_e_l_8h_html_a01f8b3aac63d16c12240173b35a354d1"><div class="ttname"><a href="_e_l_8h.html#a01f8b3aac63d16c12240173b35a354d1">EL_BUFFER_SIZE</a></div><div class="ttdeci">#define EL_BUFFER_SIZE</div><div class="ttdoc">BUFFER_SIZE</div><div class="ttdef"><b>Definition</b> EL.h:60</div></div>
+<div class="ttc" id="a_e_l_8h_html_a25e05b5c24b3b48f6ba6e6ccb3460bca"><div class="ttname"><a href="_e_l_8h.html#a25e05b5c24b3b48f6ba6e6ccb3460bca">ELCallback</a></div><div class="ttdeci">bool(* ELCallback)(byte[], byte[], byte[], byte, byte, byte, byte, byte[])</div><div class="ttdef"><b>Definition</b> EL.h:171</div></div>
 <div class="ttc" id="a_e_l_o_b_j_8h_html"><div class="ttname"><a href="_e_l_o_b_j_8h.html">ELOBJ.h</a></div><div class="ttdoc">Subclasses for ECHONET Lite protocol</div></div>
-<div class="ttc" id="aclass_e_l_html"><div class="ttname"><a href="class_e_l.html">EL</a></div><div class="ttdoc">Main class for EL</div><div class="ttdef"><b>Definition:</b> EL.h:178</div></div>
-<div class="ttc" id="aclass_e_l_html_a1c2e707d004abf421b57d74ad46beebf"><div class="ttname"><a href="class_e_l.html#a1c2e707d004abf421b57d74ad46beebf">EL::sendMultiOPC1ID</a></div><div class="ttdeci">void sendMultiOPC1ID(const int devId, const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])</div><div class="ttdoc">OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動</div><div class="ttdef"><b>Definition:</b> EL.cpp:572</div></div>
-<div class="ttc" id="aclass_e_l_html_a200545322f36c5ac01ec517269c93014"><div class="ttname"><a href="class_e_l.html#a200545322f36c5ac01ec517269c93014">EL::begin</a></div><div class="ttdeci">void begin(void)</div><div class="ttdoc">通信の開始、受信開始</div><div class="ttdef"><b>Definition:</b> EL.cpp:227</div></div>
-<div class="ttc" id="aclass_e_l_html_a2342db051e8e9c88586e8111ccf367cf"><div class="ttname"><a href="class_e_l.html#a2342db051e8e9c88586e8111ccf367cf">EL::replyInfreqDetail_sub</a></div><div class="ttdeci">boolean replyInfreqDetail_sub(const byte eoj[], const byte epc, int &amp;devId)</div><div class="ttdoc">EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数</div><div class="ttdef"><b>Definition:</b> EL.cpp:1214</div></div>
-<div class="ttc" id="aclass_e_l_html_a32fec56a37593e47544d0ec554fcc23f"><div class="ttname"><a href="class_e_l.html#a32fec56a37593e47544d0ec554fcc23f">EL::delPtr</a></div><div class="ttdeci">void delPtr(byte ptr[])</div><div class="ttdoc">byte[] を安全にdeleteするinline関数</div><div class="ttdef"><b>Definition:</b> EL.cpp:1761</div></div>
-<div class="ttc" id="aclass_e_l_html_a3ab1ca31bf3a9b8cc4684069951c1270"><div class="ttname"><a href="class_e_l.html#a3ab1ca31bf3a9b8cc4684069951c1270">EL::replySetDetail</a></div><div class="ttdeci">void replySetDetail(const IPAddress toip, const byte seoj[])</div><div class="ttdoc">Setに対して複数OPCにも対応して返答する内部関数</div><div class="ttdef"><b>Definition:</b> EL.cpp:929</div></div>
-<div class="ttc" id="aclass_e_l_html_a401f22b7f82d6dbb832bd1589a276720"><div class="ttname"><a href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720">EL::sendMulti</a></div><div class="ttdeci">void sendMulti(byte sBuffer[], int size)</div><div class="ttdoc">マルチキャストによる送信(default: 192.168.1.255)</div><div class="ttdef"><b>Definition:</b> EL.cpp:467</div></div>
-<div class="ttc" id="aclass_e_l_html_a4706069c6c704f074a811b49d9bfd337"><div class="ttname"><a href="class_e_l.html#a4706069c6c704f074a811b49d9bfd337">EL::parsePacket</a></div><div class="ttdeci">int parsePacket(void)</div><div class="ttdoc">受信データを読む</div><div class="ttdef"><b>Definition:</b> EL.cpp:1394</div></div>
-<div class="ttc" id="aclass_e_l_html_a54d6de75eb5743e2d80dbe81c93993ed"><div class="ttname"><a href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed">EL::returner</a></div><div class="ttdeci">void returner(void)</div><div class="ttdoc">受信データを処理する。EL処理でupdateしたら呼ぶ, Ver.3</div><div class="ttdef"><b>Definition:</b> EL.cpp:1424</div></div>
-<div class="ttc" id="aclass_e_l_html_a558f0e1b780b266d05ad73a57f991029"><div class="ttname"><a href="class_e_l.html#a558f0e1b780b266d05ad73a57f991029">EL::sendDetails</a></div><div class="ttdeci">void sendDetails(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte opc, const byte detail[], const byte detailSize)</div><div class="ttdoc">複数のEPCで送信する場合はこれを使う</div><div class="ttdef"><b>Definition:</b> EL.cpp:735</div></div>
-<div class="ttc" id="aclass_e_l_html_a58b950847b38135814429193175b9b72"><div class="ttname"><a href="class_e_l.html#a58b950847b38135814429193175b9b72">EL::send</a></div><div class="ttdeci">void send(IPAddress toip, byte sBuffer[], int size)</div><div class="ttdoc">IP指定による送信</div><div class="ttdef"><b>Definition:</b> EL.cpp:593</div></div>
-<div class="ttc" id="aclass_e_l_html_a5c253173c618b6206a77567fc886c86d"><div class="ttname"><a href="class_e_l.html#a5c253173c618b6206a77567fc886c86d">EL::verifyPacket</a></div><div class="ttdeci">bool verifyPacket(const byte data[], int size)</div><div class="ttdoc">受信パケットの正常生チェック</div><div class="ttdef"><b>Definition:</b> EL.cpp:1775</div></div>
-<div class="ttc" id="aclass_e_l_html_a633320f052680decb5e7f72fbdf41fb3"><div class="ttname"><a href="class_e_l.html#a633320f052680decb5e7f72fbdf41fb3">EL::recvProcess</a></div><div class="ttdeci">void recvProcess(void)</div><div class="ttdoc">受信処理 Ver.4</div><div class="ttdef"><b>Definition:</b> EL.cpp:1519</div></div>
-<div class="ttc" id="aclass_e_l_html_a71b2ff463c676496b444fea1ded085fb"><div class="ttname"><a href="class_e_l.html#a71b2ff463c676496b444fea1ded085fb">EL::replyInfreqDetail</a></div><div class="ttdeci">void replyInfreqDetail(const IPAddress toip, const byte seoj[])</div><div class="ttdoc">INF_REQに対して複数OPCにも対応して返答する内部関数</div><div class="ttdef"><b>Definition:</b> EL.cpp:1085</div></div>
-<div class="ttc" id="aclass_e_l_html_a7416d9b7c5b7cede6626287126a00921"><div class="ttname"><a href="class_e_l.html#a7416d9b7c5b7cede6626287126a00921">EL::profile</a></div><div class="ttdeci">ELOBJ profile</div><div class="ttdoc">profile object (for specialist)</div><div class="ttdef"><b>Definition:</b> EL.h:198</div></div>
-<div class="ttc" id="aclass_e_l_html_a8e808ee235af480044c8c1a9c573da8e"><div class="ttname"><a href="class_e_l.html#a8e808ee235af480044c8c1a9c573da8e">EL::replyInfcDetail</a></div><div class="ttdeci">void replyInfcDetail(const IPAddress toip, const byte seoj[])</div><div class="ttdoc">INFCに対して複数OPCにも対応して返答する内部関数</div><div class="ttdef"><b>Definition:</b> EL.cpp:1299</div></div>
-<div class="ttc" id="aclass_e_l_html_a8ee13278563e4abf7d6b1bf0d2ec9fd0"><div class="ttname"><a href="class_e_l.html#a8ee13278563e4abf7d6b1bf0d2ec9fd0">EL::_rBuffer</a></div><div class="ttdeci">byte _rBuffer[EL_BUFFER_SIZE]</div><div class="ttdoc">receive buffer</div><div class="ttdef"><b>Definition:</b> EL.h:200</div></div>
-<div class="ttc" id="aclass_e_l_html_a986d605da832524b0f80f8330df1a1da"><div class="ttname"><a href="class_e_l.html#a986d605da832524b0f80f8330df1a1da">EL::at</a></div><div class="ttdeci">byte * at(const byte epc)</div><div class="ttdoc">EPCの値を取得する, eojが1個の場合（複数の場合は0番に相当）</div><div class="ttdef"><b>Definition:</b> EL.cpp:411</div></div>
-<div class="ttc" id="aclass_e_l_html_a99959add7901949d60e808f42f624461"><div class="ttname"><a href="class_e_l.html#a99959add7901949d60e808f42f624461">EL::replyGetDetail</a></div><div class="ttdeci">void replyGetDetail(const IPAddress toip, const byte seoj[])</div><div class="ttdoc">Getに対して複数OPCにも対応して返答する内部関数</div><div class="ttdef"><b>Definition:</b> EL.cpp:771</div></div>
-<div class="ttc" id="aclass_e_l_html_aa261c0f9454aad5d04b5a71c632320fe"><div class="ttname"><a href="class_e_l.html#aa261c0f9454aad5d04b5a71c632320fe">EL::getDevId</a></div><div class="ttdeci">int getDevId(const byte obj[])</div><div class="ttdoc">device idを取得する内部関数</div><div class="ttdef"><b>Definition:</b> EL.cpp:1718</div></div>
-<div class="ttc" id="aclass_e_l_html_aa34433a5cfe19297aede0723082a4f76"><div class="ttname"><a href="class_e_l.html#aa34433a5cfe19297aede0723082a4f76">EL::update</a></div><div class="ttdeci">void update(const byte epc, PDCEDT pdcedt)</div><div class="ttdoc">EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）</div><div class="ttdef"><b>Definition:</b> EL.cpp:334</div></div>
-<div class="ttc" id="aclass_e_l_html_aa450b4da73ea4cf4a7f85dcdc9692068"><div class="ttname"><a href="class_e_l.html#aa450b4da73ea4cf4a7f85dcdc9692068">EL::replyGetDetail_sub</a></div><div class="ttdeci">boolean replyGetDetail_sub(const byte eoj[], const byte epc, int &amp;devId)</div><div class="ttdoc">EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数</div><div class="ttdef"><b>Definition:</b> EL.cpp:894</div></div>
-<div class="ttc" id="aclass_e_l_html_aae50a51ece45a6a803341159f68a1285"><div class="ttname"><a href="class_e_l.html#aae50a51ece45a6a803341159f68a1285">EL::devices</a></div><div class="ttdeci">ELOBJ * devices</div><div class="ttdoc">device objects (for multi eoj)</div><div class="ttdef"><b>Definition:</b> EL.h:199</div></div>
-<div class="ttc" id="aclass_e_l_html_ab91f0e1d94556d7a34d93c938ca4939e"><div class="ttname"><a href="class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e">EL::tidAutoIncrement</a></div><div class="ttdeci">void tidAutoIncrement(void)</div><div class="ttdoc">TIDの自動インクリメント、オーバーフロー対策</div><div class="ttdef"><b>Definition:</b> EL.cpp:207</div></div>
-<div class="ttc" id="aclass_e_l_html_ac5d0960aa0bd6a33c36a461e34e9bf9f"><div class="ttname"><a href="class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f">EL::sendOPC1</a></div><div class="ttdeci">void sendOPC1(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])</div><div class="ttdoc">OPC1指定による送信(SEOJも指定する，ほぼ内部関数)</div><div class="ttdef"><b>Definition:</b> EL.cpp:642</div></div>
-<div class="ttc" id="aclass_e_l_html_ad0a4c4be11f3a78a34b8056b756f8d48"><div class="ttname"><a href="class_e_l.html#ad0a4c4be11f3a78a34b8056b756f8d48">EL::checkInfAndSend</a></div><div class="ttdeci">void checkInfAndSend(int devId, const byte epc)</div><div class="ttdoc">INFプロパティならマルチキャストで送信</div><div class="ttdef"><b>Definition:</b> EL.cpp:1358</div></div>
-<div class="ttc" id="aclass_e_l_html_ad38241dcaa4337cf959d85906773242f"><div class="ttname"><a href="class_e_l.html#ad38241dcaa4337cf959d85906773242f">EL::commonConstructor</a></div><div class="ttdeci">void commonConstructor(WiFiUDP &amp;udp, byte eojs[][3], int count)</div><div class="ttdoc">コンストラクタ共通処理</div><div class="ttdef"><b>Definition:</b> EL.cpp:77</div></div>
-<div class="ttc" id="aclass_e_l_html_adb5539d23d71d5dc1b708868c241875a"><div class="ttname"><a href="class_e_l.html#adb5539d23d71d5dc1b708868c241875a">EL::read</a></div><div class="ttdeci">int read()</div><div class="ttdoc">受信データを受け取る</div><div class="ttdef"><b>Definition:</b> EL.cpp:1410</div></div>
-<div class="ttc" id="aclass_e_l_html_ade7d9b7207a99636128474fc5bdba54a"><div class="ttname"><a href="class_e_l.html#ade7d9b7207a99636128474fc5bdba54a">EL::replySetDetail_sub</a></div><div class="ttdeci">boolean replySetDetail_sub(const byte eoj[], const byte epc, int &amp;devId)</div><div class="ttdoc">EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数</div><div class="ttdef"><b>Definition:</b> EL.cpp:1052</div></div>
-<div class="ttc" id="aclass_e_l_html_ae3b966c9c7051ce237bf09c2b141223d"><div class="ttname"><a href="class_e_l.html#ae3b966c9c7051ce237bf09c2b141223d">EL::_tid</a></div><div class="ttdeci">byte _tid[2]</div><div class="ttdoc">TID (semi-auto incremented)</div><div class="ttdef"><b>Definition:</b> EL.h:201</div></div>
-<div class="ttc" id="aclass_e_l_html_aeabba38117ff155c9bee8ee963bf0eeb"><div class="ttname"><a href="class_e_l.html#aeabba38117ff155c9bee8ee963bf0eeb">EL::printAll</a></div><div class="ttdeci">void printAll(void)</div><div class="ttdoc">インスタンスの情報を表示</div><div class="ttdef"><b>Definition:</b> EL.cpp:1678</div></div>
-<div class="ttc" id="aclass_e_l_html_af07cdb8adb9646ce1de478989c53034e"><div class="ttname"><a href="class_e_l.html#af07cdb8adb9646ce1de478989c53034e">EL::sendMultiOPC1</a></div><div class="ttdeci">void sendMultiOPC1(const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])</div><div class="ttdoc">OPC一個用のマルチキャスト送信、TID指定有り</div><div class="ttdef"><b>Definition:</b> EL.cpp:509</div></div>
-<div class="ttc" id="aclass_e_l_html_af296f88ac8aa0c0a1f233f4884d294f5"><div class="ttname"><a href="class_e_l.html#af296f88ac8aa0c0a1f233f4884d294f5">EL::sendBroad</a></div><div class="ttdeci">void sendBroad(byte sBuffer[], int size)</div><div class="ttdoc">ブロードキャストによる送信(default: 192.168.1.255)</div><div class="ttdef"><b>Definition:</b> EL.cpp:438</div></div>
-<div class="ttc" id="aclass_e_l_html_af4248443d7f4c60f5e06325738713c9e"><div class="ttname"><a href="class_e_l.html#af4248443d7f4c60f5e06325738713c9e">EL::sendOPC1ID</a></div><div class="ttdeci">void sendOPC1ID(const IPAddress toip, const int devId, const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])</div><div class="ttdef"><b>Definition:</b> EL.cpp:718</div></div>
-<div class="ttc" id="aclass_e_l_html_afb8d61da0fa657758fb4231f061337fc"><div class="ttname"><a href="class_e_l.html#afb8d61da0fa657758fb4231f061337fc">EL::remoteIP</a></div><div class="ttdeci">IPAddress remoteIP(void)</div><div class="ttdoc">受信データの送信元を取得する</div><div class="ttdef"><b>Definition:</b> EL.cpp:1402</div></div>
-<div class="ttc" id="aclass_e_l_html_aff36df4f0da8f48891de0ceefdfc8968"><div class="ttname"><a href="class_e_l.html#aff36df4f0da8f48891de0ceefdfc8968">EL::replySetgetDetail</a></div><div class="ttdeci">void replySetgetDetail(const IPAddress toip, const byte seoj[])</div><div class="ttdoc">SETGETに対して返答する内部関数（現在は一律で不可応答する）</div><div class="ttdef"><b>Definition:</b> EL.cpp:1247</div></div>
-<div class="ttc" id="aclass_e_l_o_b_j_html"><div class="ttname"><a href="class_e_l_o_b_j.html">ELOBJ</a></div><div class="ttdoc">EL Object</div><div class="ttdef"><b>Definition:</b> ELOBJ.h:75</div></div>
-<div class="ttc" id="aclass_p_d_c_e_d_t_html"><div class="ttname"><a href="class_p_d_c_e_d_t.html">PDCEDT</a></div><div class="ttdoc">PDC and EDT in ELOBJ</div><div class="ttdef"><b>Definition:</b> ELOBJ.h:35</div></div>
-<div class="ttc" id="amain_8cpp_html_a2e455e89ae2e545c32f8a4594dec003c"><div class="ttname"><a href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a></div><div class="ttdeci">byte * pdcedt</div><div class="ttdef"><b>Definition:</b> main.cpp:56</div></div>
+<div class="ttc" id="aclass_e_l_html"><div class="ttname"><a href="class_e_l.html">EL</a></div><div class="ttdoc">Main class for EL</div><div class="ttdef"><b>Definition</b> EL.h:178</div></div>
+<div class="ttc" id="aclass_e_l_html_a1c2e707d004abf421b57d74ad46beebf"><div class="ttname"><a href="class_e_l.html#a1c2e707d004abf421b57d74ad46beebf">EL::sendMultiOPC1ID</a></div><div class="ttdeci">void sendMultiOPC1ID(const int devId, const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])</div><div class="ttdoc">OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動</div><div class="ttdef"><b>Definition</b> EL.cpp:573</div></div>
+<div class="ttc" id="aclass_e_l_html_a200545322f36c5ac01ec517269c93014"><div class="ttname"><a href="class_e_l.html#a200545322f36c5ac01ec517269c93014">EL::begin</a></div><div class="ttdeci">void begin(void)</div><div class="ttdoc">通信の開始、受信開始</div><div class="ttdef"><b>Definition</b> EL.cpp:227</div></div>
+<div class="ttc" id="aclass_e_l_html_a2342db051e8e9c88586e8111ccf367cf"><div class="ttname"><a href="class_e_l.html#a2342db051e8e9c88586e8111ccf367cf">EL::replyInfreqDetail_sub</a></div><div class="ttdeci">boolean replyInfreqDetail_sub(const byte eoj[], const byte epc, int &amp;devId)</div><div class="ttdoc">EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数</div><div class="ttdef"><b>Definition</b> EL.cpp:1215</div></div>
+<div class="ttc" id="aclass_e_l_html_a32fec56a37593e47544d0ec554fcc23f"><div class="ttname"><a href="class_e_l.html#a32fec56a37593e47544d0ec554fcc23f">EL::delPtr</a></div><div class="ttdeci">void delPtr(byte ptr[])</div><div class="ttdoc">byte[] を安全にdeleteするinline関数</div><div class="ttdef"><b>Definition</b> EL.cpp:1762</div></div>
+<div class="ttc" id="aclass_e_l_html_a3ab1ca31bf3a9b8cc4684069951c1270"><div class="ttname"><a href="class_e_l.html#a3ab1ca31bf3a9b8cc4684069951c1270">EL::replySetDetail</a></div><div class="ttdeci">void replySetDetail(const IPAddress toip, const byte seoj[])</div><div class="ttdoc">Setに対して複数OPCにも対応して返答する内部関数</div><div class="ttdef"><b>Definition</b> EL.cpp:930</div></div>
+<div class="ttc" id="aclass_e_l_html_a401f22b7f82d6dbb832bd1589a276720"><div class="ttname"><a href="class_e_l.html#a401f22b7f82d6dbb832bd1589a276720">EL::sendMulti</a></div><div class="ttdeci">void sendMulti(byte sBuffer[], int size)</div><div class="ttdoc">マルチキャストによる送信(default: 192.168.1.255)</div><div class="ttdef"><b>Definition</b> EL.cpp:468</div></div>
+<div class="ttc" id="aclass_e_l_html_a4706069c6c704f074a811b49d9bfd337"><div class="ttname"><a href="class_e_l.html#a4706069c6c704f074a811b49d9bfd337">EL::parsePacket</a></div><div class="ttdeci">int parsePacket(void)</div><div class="ttdoc">受信データを読む</div><div class="ttdef"><b>Definition</b> EL.cpp:1395</div></div>
+<div class="ttc" id="aclass_e_l_html_a54d6de75eb5743e2d80dbe81c93993ed"><div class="ttname"><a href="class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed">EL::returner</a></div><div class="ttdeci">void returner(void)</div><div class="ttdoc">受信データを処理する。EL処理でupdateしたら呼ぶ, Ver.3</div><div class="ttdef"><b>Definition</b> EL.cpp:1425</div></div>
+<div class="ttc" id="aclass_e_l_html_a558f0e1b780b266d05ad73a57f991029"><div class="ttname"><a href="class_e_l.html#a558f0e1b780b266d05ad73a57f991029">EL::sendDetails</a></div><div class="ttdeci">void sendDetails(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte opc, const byte detail[], const byte detailSize)</div><div class="ttdoc">複数のEPCで送信する場合はこれを使う</div><div class="ttdef"><b>Definition</b> EL.cpp:736</div></div>
+<div class="ttc" id="aclass_e_l_html_a58b950847b38135814429193175b9b72"><div class="ttname"><a href="class_e_l.html#a58b950847b38135814429193175b9b72">EL::send</a></div><div class="ttdeci">void send(IPAddress toip, byte sBuffer[], int size)</div><div class="ttdoc">IP指定による送信</div><div class="ttdef"><b>Definition</b> EL.cpp:594</div></div>
+<div class="ttc" id="aclass_e_l_html_a5c253173c618b6206a77567fc886c86d"><div class="ttname"><a href="class_e_l.html#a5c253173c618b6206a77567fc886c86d">EL::verifyPacket</a></div><div class="ttdeci">bool verifyPacket(const byte data[], int size)</div><div class="ttdoc">受信パケットの正常生チェック</div><div class="ttdef"><b>Definition</b> EL.cpp:1776</div></div>
+<div class="ttc" id="aclass_e_l_html_a633320f052680decb5e7f72fbdf41fb3"><div class="ttname"><a href="class_e_l.html#a633320f052680decb5e7f72fbdf41fb3">EL::recvProcess</a></div><div class="ttdeci">void recvProcess(void)</div><div class="ttdoc">受信処理 Ver.4</div><div class="ttdef"><b>Definition</b> EL.cpp:1520</div></div>
+<div class="ttc" id="aclass_e_l_html_a71b2ff463c676496b444fea1ded085fb"><div class="ttname"><a href="class_e_l.html#a71b2ff463c676496b444fea1ded085fb">EL::replyInfreqDetail</a></div><div class="ttdeci">void replyInfreqDetail(const IPAddress toip, const byte seoj[])</div><div class="ttdoc">INF_REQに対して複数OPCにも対応して返答する内部関数</div><div class="ttdef"><b>Definition</b> EL.cpp:1086</div></div>
+<div class="ttc" id="aclass_e_l_html_a7416d9b7c5b7cede6626287126a00921"><div class="ttname"><a href="class_e_l.html#a7416d9b7c5b7cede6626287126a00921">EL::profile</a></div><div class="ttdeci">ELOBJ profile</div><div class="ttdoc">profile object (for specialist)</div><div class="ttdef"><b>Definition</b> EL.h:198</div></div>
+<div class="ttc" id="aclass_e_l_html_a8e808ee235af480044c8c1a9c573da8e"><div class="ttname"><a href="class_e_l.html#a8e808ee235af480044c8c1a9c573da8e">EL::replyInfcDetail</a></div><div class="ttdeci">void replyInfcDetail(const IPAddress toip, const byte seoj[])</div><div class="ttdoc">INFCに対して複数OPCにも対応して返答する内部関数</div><div class="ttdef"><b>Definition</b> EL.cpp:1300</div></div>
+<div class="ttc" id="aclass_e_l_html_a8ee13278563e4abf7d6b1bf0d2ec9fd0"><div class="ttname"><a href="class_e_l.html#a8ee13278563e4abf7d6b1bf0d2ec9fd0">EL::_rBuffer</a></div><div class="ttdeci">byte _rBuffer[EL_BUFFER_SIZE]</div><div class="ttdoc">receive buffer</div><div class="ttdef"><b>Definition</b> EL.h:200</div></div>
+<div class="ttc" id="aclass_e_l_html_a986d605da832524b0f80f8330df1a1da"><div class="ttname"><a href="class_e_l.html#a986d605da832524b0f80f8330df1a1da">EL::at</a></div><div class="ttdeci">byte * at(const byte epc)</div><div class="ttdoc">EPCの値を取得する, eojが1個の場合（複数の場合は0番に相当）</div><div class="ttdef"><b>Definition</b> EL.cpp:412</div></div>
+<div class="ttc" id="aclass_e_l_html_a99959add7901949d60e808f42f624461"><div class="ttname"><a href="class_e_l.html#a99959add7901949d60e808f42f624461">EL::replyGetDetail</a></div><div class="ttdeci">void replyGetDetail(const IPAddress toip, const byte seoj[])</div><div class="ttdoc">Getに対して複数OPCにも対応して返答する内部関数</div><div class="ttdef"><b>Definition</b> EL.cpp:772</div></div>
+<div class="ttc" id="aclass_e_l_html_aa261c0f9454aad5d04b5a71c632320fe"><div class="ttname"><a href="class_e_l.html#aa261c0f9454aad5d04b5a71c632320fe">EL::getDevId</a></div><div class="ttdeci">int getDevId(const byte obj[])</div><div class="ttdoc">device idを取得する内部関数</div><div class="ttdef"><b>Definition</b> EL.cpp:1719</div></div>
+<div class="ttc" id="aclass_e_l_html_aa34433a5cfe19297aede0723082a4f76"><div class="ttname"><a href="class_e_l.html#aa34433a5cfe19297aede0723082a4f76">EL::update</a></div><div class="ttdeci">void update(const byte epc, PDCEDT pdcedt)</div><div class="ttdoc">EPCの値を変更する, eojが1個の場合（複数の場合は0番に相当）</div><div class="ttdef"><b>Definition</b> EL.cpp:335</div></div>
+<div class="ttc" id="aclass_e_l_html_aa450b4da73ea4cf4a7f85dcdc9692068"><div class="ttname"><a href="class_e_l.html#aa450b4da73ea4cf4a7f85dcdc9692068">EL::replyGetDetail_sub</a></div><div class="ttdeci">boolean replyGetDetail_sub(const byte eoj[], const byte epc, int &amp;devId)</div><div class="ttdoc">EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数</div><div class="ttdef"><b>Definition</b> EL.cpp:895</div></div>
+<div class="ttc" id="aclass_e_l_html_aae50a51ece45a6a803341159f68a1285"><div class="ttname"><a href="class_e_l.html#aae50a51ece45a6a803341159f68a1285">EL::devices</a></div><div class="ttdeci">ELOBJ * devices</div><div class="ttdoc">device objects (for multi eoj)</div><div class="ttdef"><b>Definition</b> EL.h:199</div></div>
+<div class="ttc" id="aclass_e_l_html_ab91f0e1d94556d7a34d93c938ca4939e"><div class="ttname"><a href="class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e">EL::tidAutoIncrement</a></div><div class="ttdeci">void tidAutoIncrement(void)</div><div class="ttdoc">TIDの自動インクリメント、オーバーフロー対策</div><div class="ttdef"><b>Definition</b> EL.cpp:207</div></div>
+<div class="ttc" id="aclass_e_l_html_ac5d0960aa0bd6a33c36a461e34e9bf9f"><div class="ttname"><a href="class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f">EL::sendOPC1</a></div><div class="ttdeci">void sendOPC1(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])</div><div class="ttdoc">OPC1指定による送信(SEOJも指定する，ほぼ内部関数)</div><div class="ttdef"><b>Definition</b> EL.cpp:643</div></div>
+<div class="ttc" id="aclass_e_l_html_ad0a4c4be11f3a78a34b8056b756f8d48"><div class="ttname"><a href="class_e_l.html#ad0a4c4be11f3a78a34b8056b756f8d48">EL::checkInfAndSend</a></div><div class="ttdeci">void checkInfAndSend(int devId, const byte epc)</div><div class="ttdoc">INFプロパティならマルチキャストで送信</div><div class="ttdef"><b>Definition</b> EL.cpp:1359</div></div>
+<div class="ttc" id="aclass_e_l_html_ad38241dcaa4337cf959d85906773242f"><div class="ttname"><a href="class_e_l.html#ad38241dcaa4337cf959d85906773242f">EL::commonConstructor</a></div><div class="ttdeci">void commonConstructor(WiFiUDP &amp;udp, byte eojs[][3], int count)</div><div class="ttdoc">コンストラクタ共通処理</div><div class="ttdef"><b>Definition</b> EL.cpp:77</div></div>
+<div class="ttc" id="aclass_e_l_html_adb5539d23d71d5dc1b708868c241875a"><div class="ttname"><a href="class_e_l.html#adb5539d23d71d5dc1b708868c241875a">EL::read</a></div><div class="ttdeci">int read()</div><div class="ttdoc">受信データを受け取る</div><div class="ttdef"><b>Definition</b> EL.cpp:1411</div></div>
+<div class="ttc" id="aclass_e_l_html_ade7d9b7207a99636128474fc5bdba54a"><div class="ttname"><a href="class_e_l.html#ade7d9b7207a99636128474fc5bdba54a">EL::replySetDetail_sub</a></div><div class="ttdeci">boolean replySetDetail_sub(const byte eoj[], const byte epc, int &amp;devId)</div><div class="ttdoc">EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数</div><div class="ttdef"><b>Definition</b> EL.cpp:1053</div></div>
+<div class="ttc" id="aclass_e_l_html_ae3b966c9c7051ce237bf09c2b141223d"><div class="ttname"><a href="class_e_l.html#ae3b966c9c7051ce237bf09c2b141223d">EL::_tid</a></div><div class="ttdeci">byte _tid[2]</div><div class="ttdoc">TID (semi-auto incremented)</div><div class="ttdef"><b>Definition</b> EL.h:201</div></div>
+<div class="ttc" id="aclass_e_l_html_aeabba38117ff155c9bee8ee963bf0eeb"><div class="ttname"><a href="class_e_l.html#aeabba38117ff155c9bee8ee963bf0eeb">EL::printAll</a></div><div class="ttdeci">void printAll(void)</div><div class="ttdoc">インスタンスの情報を表示</div><div class="ttdef"><b>Definition</b> EL.cpp:1679</div></div>
+<div class="ttc" id="aclass_e_l_html_af07cdb8adb9646ce1de478989c53034e"><div class="ttname"><a href="class_e_l.html#af07cdb8adb9646ce1de478989c53034e">EL::sendMultiOPC1</a></div><div class="ttdeci">void sendMultiOPC1(const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])</div><div class="ttdoc">OPC一個用のマルチキャスト送信、TID指定有り</div><div class="ttdef"><b>Definition</b> EL.cpp:510</div></div>
+<div class="ttc" id="aclass_e_l_html_af296f88ac8aa0c0a1f233f4884d294f5"><div class="ttname"><a href="class_e_l.html#af296f88ac8aa0c0a1f233f4884d294f5">EL::sendBroad</a></div><div class="ttdeci">void sendBroad(byte sBuffer[], int size)</div><div class="ttdoc">ブロードキャストによる送信(default: 192.168.1.255)</div><div class="ttdef"><b>Definition</b> EL.cpp:439</div></div>
+<div class="ttc" id="aclass_e_l_html_af4248443d7f4c60f5e06325738713c9e"><div class="ttname"><a href="class_e_l.html#af4248443d7f4c60f5e06325738713c9e">EL::sendOPC1ID</a></div><div class="ttdeci">void sendOPC1ID(const IPAddress toip, const int devId, const byte deoj[], const byte esv, const byte epc, const byte pdcedt[])</div><div class="ttdef"><b>Definition</b> EL.cpp:719</div></div>
+<div class="ttc" id="aclass_e_l_html_afb8d61da0fa657758fb4231f061337fc"><div class="ttname"><a href="class_e_l.html#afb8d61da0fa657758fb4231f061337fc">EL::remoteIP</a></div><div class="ttdeci">IPAddress remoteIP(void)</div><div class="ttdoc">受信データの送信元を取得する</div><div class="ttdef"><b>Definition</b> EL.cpp:1403</div></div>
+<div class="ttc" id="aclass_e_l_html_aff36df4f0da8f48891de0ceefdfc8968"><div class="ttname"><a href="class_e_l.html#aff36df4f0da8f48891de0ceefdfc8968">EL::replySetgetDetail</a></div><div class="ttdeci">void replySetgetDetail(const IPAddress toip, const byte seoj[])</div><div class="ttdoc">SETGETに対して返答する内部関数（現在は一律で不可応答する）</div><div class="ttdef"><b>Definition</b> EL.cpp:1248</div></div>
+<div class="ttc" id="aclass_e_l_o_b_j_html"><div class="ttname"><a href="class_e_l_o_b_j.html">ELOBJ</a></div><div class="ttdoc">EL Object</div><div class="ttdef"><b>Definition</b> ELOBJ.h:75</div></div>
+<div class="ttc" id="aclass_p_d_c_e_d_t_html"><div class="ttname"><a href="class_p_d_c_e_d_t.html">PDCEDT</a></div><div class="ttdoc">PDC and EDT in ELOBJ</div><div class="ttdef"><b>Definition</b> ELOBJ.h:35</div></div>
+<div class="ttc" id="amain_8cpp_html_a2e455e89ae2e545c32f8a4594dec003c"><div class="ttname"><a href="main_8cpp.html#a2e455e89ae2e545c32f8a4594dec003c">pdcedt</a></div><div class="ttdeci">byte * pdcedt</div><div class="ttdef"><b>Definition</b> main.cpp:56</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="_e_l_8h.html">EL.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

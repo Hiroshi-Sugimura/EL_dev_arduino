@@ -1,6 +1,9 @@
 <map id="EL::replyInfreqDetail" name="EL::replyInfreqDetail">
-<area shape="rect" id="node1" title="INF_REQに対して複数OPCにも対応して返答する内部関数" alt="" coords="5,31,146,56"/>
-<area shape="rect" id="node2" href="$class_e_l.html#a2342db051e8e9c88586e8111ccf367cf" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="194,5,362,31"/>
-<area shape="rect" id="node3" href="$class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="221,55,335,80"/>
-<area shape="rect" id="node4" href="$class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="410,55,483,80"/>
+<area shape="rect" id="Node000001" title="INF_REQに対して複数OPCにも対応して返答する内部関数" alt="" coords="5,31,143,57"/>
+<area shape="rect" id="Node000002" href="$class_e_l.html#a2342db051e8e9c88586e8111ccf367cf" title="EOJとEPCを指定したとき、そのプロパティ（EDT）があるかチェックする内部関数" alt="" coords="191,5,356,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,33,175,28,176,34,143,38"/>
+<area shape="rect" id="Node000003" href="$class_e_l.html#a558f0e1b780b266d05ad73a57f991029" title="複数のEPCで送信する場合はこれを使う" alt="" coords="217,56,330,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="143,50,202,58,201,63,143,55"/>
+<area shape="rect" id="Node000004" href="$class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="404,56,477,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="330,67,389,67,389,72,330,72"/>
 </map>

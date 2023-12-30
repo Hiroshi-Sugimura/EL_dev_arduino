@@ -1,4 +1,5 @@
 <map id="ELOBJ::hasInfProperty" name="ELOBJ::hasInfProperty">
-<area shape="rect" id="node1" title="指定のEPCがINF必須かどうか" alt="" coords="5,5,162,31"/>
-<area shape="rect" id="node2" href="$class_e_l_o_b_j.html#a7303a697a8e593724b3edde5834037db" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）" alt="" coords="210,5,394,31"/>
+<area shape="rect" id="Node000001" title="指定のEPCがINF必須かどうか" alt="" coords="5,5,159,32"/>
+<area shape="rect" id="Node000002" href="$class_e_l_o_b_j.html#a7303a697a8e593724b3edde5834037db" title="PropertyMap(0x9d, 0x9e, 0x9f)を計算して 個数 + EPCsの形で返す（個数はPDCではないことに注意）" alt="" coords="207,5,390,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,16,191,16,191,21,159,21"/>
 </map>

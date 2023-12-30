@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>EL_dev_arduino: Overview (EL_dev_arduino)</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">EL_dev_arduino<span id="projectnumber">&#160;4.2.2</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('md__c_1_2_users_2sugimura_2_documents_2_e_l__dev__arduino_2_r_e_a_d_m_e.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Overview (EL_dev_arduino)</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md3"></a> このモジュールはArduinoの**ECHONET Liteプロトコル**通信をサポートします． (ECHONET Liteプロトコルはスマートハウス機器の通信プロトコルです．) M5Stack Core2を中心にテストしています。 <b>本モジュールはECHONET Lite認証を受けたものではありませんので、商品化する際には開発者自らが認証を受ける必要があります。</b></p>
+<p>This module provides the communication method, <b>ECHONET Lite protocol</b>, for Arduino. (ECHONET Lite protocol is a common communication specification for Smart home) We are developping and debugging with M5stack Core2 mainly.</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+SDK details</h1>
+<ul>
+<li>ECHONET Lite version 1.13</li>
+<li>(based) Release R, Rev.1</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Install</h1>
+<p>Arduino IDEのライブラリマネージャからモジュールをインストールできます． sugimuraでフィルタするとすぐ出ます。</p>
+<ol type="1">
+<li>Arduino IDEを起動する</li>
+<li>メニュー &gt; スケッチ &gt; ライブラリをインクルード &gt; ライブラリを管理</li>
+<li>sugimuraでフィルタ</li>
+<li>EL_dev_arduinoをインストール</li>
+</ol>
+<p>You can install the module by using Library Manager of ArduinoIDE as following. It can be found to use filter text 'sugimura', author's name.</p>
+<ol type="1">
+<li>Start ArduinoIDE</li>
+<li>Menu &gt; Sketch &gt; Include Library &gt; Library Manager</li>
+<li>Filter [sugimura]</li>
+<li>Install EL_dev_arduino</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md6"></a>
+API Manual</h1>
+<p><a href="https://hiroshi-sugimura.github.io/EL_dev_arduino/documents/html/index.html">https://hiroshi-sugimura.github.io/EL_dev_arduino/documents/html/index.html</a></p>
+<h1><a class="anchor" id="autotoc_md7"></a>
+Examples</h1>
+<ul>
+<li><a href="https://github.com/Hiroshi-Sugimura/EL_dev_arduino/tree/master/examples/GeneralLighting">API Ver. 3 (General Lighting)</a></li>
+<li><a href="https://github.com/Hiroshi-Sugimura/EL_dev_arduino/tree/master/examples/GeneralLightingV4esp">API Ver. 4 (General Lighting)</a></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md8"></a>
+Other samples</h2>
+<ul>
+<li><a href="https://github.com/Hiroshi-Sugimura/EL_pj_arduino">EL_pj_arduino (GitHub repo)</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md9"></a>
+Description for the example</h1>
+<h2><a class="anchor" id="autotoc_md10"></a>
+Constractor</h2>
+<p>ELクラスはWiFiのUDP（受信は3610，送信は適当）とECHONET Liteプロトコルをサポートします。ECHONET Liteネットワークにデバイスを参加させるためには専門のオブジェクトコードが必要です。オブジェクトコードはECHONET規格書に書かれているものを参照してください [ECHONET規格書]（https://echonet.jp/spec_g/#standard-01）。 サンプルとして一般照明（0x029001）をM5Stackで実装した例を示しています。</p>
+<p><a class="el" href="class_e_l.html" title="Main class for EL">EL</a> class manages WiFiUDP (recv is 3610 port, sned is any port) and ECHONET Lite protocol. To join ECHONET Lite network, the device needs ECHONET Lite object code. ECHONET Lite object code is defined in the specifications. (see <a href="https://echonet.jp/spec-en/#standard-01">https://echonet.jp/spec-en/#standard-01</a>) In this example, we deals with M5stack as a general lighting (0x029001).</p>
+<ul>
+<li>single object <div class="fragment"><div class="line"><a class="code hl_class" href="class_e_l.html">EL</a> <a class="code hl_variable" href="main_8cpp.html#ac9832d0cef2337732f35ecc4df039197">echo</a>(<a class="code hl_variable" href="main_8cpp.html#acff5de1f75149984fcc9a8373f2fdc85">elUDP</a>, 0x02, 0x90, 0x01 );</div>
+<div class="ttc" id="aclass_e_l_html"><div class="ttname"><a href="class_e_l.html">EL</a></div><div class="ttdoc">Main class for EL</div><div class="ttdef"><b>Definition</b> EL.h:178</div></div>
+<div class="ttc" id="amain_8cpp_html_ac9832d0cef2337732f35ecc4df039197"><div class="ttname"><a href="main_8cpp.html#ac9832d0cef2337732f35ecc4df039197">echo</a></div><div class="ttdeci">EL echo(elUDP, 0x01, 0x33, 0x01)</div></div>
+<div class="ttc" id="amain_8cpp_html_acff5de1f75149984fcc9a8373f2fdc85"><div class="ttname"><a href="main_8cpp.html#acff5de1f75149984fcc9a8373f2fdc85">elUDP</a></div><div class="ttdeci">WiFiUDP elUDP</div><div class="ttdef"><b>Definition</b> main.cpp:9</div></div>
+</div><!-- fragment --></li>
+<li>multi object <div class="fragment"><div class="line"><span class="keywordtype">byte</span> devices[][3] = { {0x02, 0x90, 0x01}, {0x02, 0x90, 0x02}};</div>
+<div class="line"><a class="code hl_class" href="class_e_l.html">EL</a> <a class="code hl_variable" href="main_8cpp.html#ac9832d0cef2337732f35ecc4df039197">echo</a>(<a class="code hl_variable" href="main_8cpp.html#acff5de1f75149984fcc9a8373f2fdc85">elUDP</a>, devices, 2 );</div>
+</div><!-- fragment --></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md11"></a>
+Initialize and Start communication（初期化と通信開始）</h3>
+<p>begin()メソドを呼ぶと受信開始します。</p>
+<p>To call 'begin()' method begins receiving ECHONET Lite protocol.</p>
+<ul>
+<li>void begin(void);</li>
+</ul>
+<div class="fragment"><div class="line"> :Ver.4</div>
+<div class="line"><a class="code hl_class" href="class_e_l.html">EL</a> <a class="code hl_variable" href="main_8cpp.html#ac9832d0cef2337732f35ecc4df039197">echo</a>(<a class="code hl_variable" href="main_8cpp.html#acff5de1f75149984fcc9a8373f2fdc85">elUDP</a>, {{0x02, 0x90, 0x01}});</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">bool</span> callback(<span class="keywordtype">byte</span> tid[], <span class="keywordtype">byte</span> seoj[], <span class="keywordtype">byte</span> deoj[], <span class="keywordtype">byte</span> esv, <span class="keywordtype">byte</span> opc, <span class="keywordtype">byte</span> epc, <span class="keywordtype">byte</span> pdc, <span class="keywordtype">byte</span> edt[]) {</div>
+<div class="line">  <span class="comment">// user received data process</span></div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup</a>() {</div>
+<div class="line">  <a class="code hl_variable" href="main_8cpp.html#ac9832d0cef2337732f35ecc4df039197">echo</a>.<a class="code hl_function" href="class_e_l.html#a200545322f36c5ac01ec517269c93014">begin</a>(callback);</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_e_l_html_a200545322f36c5ac01ec517269c93014"><div class="ttname"><a href="class_e_l.html#a200545322f36c5ac01ec517269c93014">EL::begin</a></div><div class="ttdeci">void begin(void)</div><div class="ttdoc">通信の開始、受信開始</div><div class="ttdef"><b>Definition</b> EL.cpp:227</div></div>
+<div class="ttc" id="amain_8cpp_html_a4fc01d736fe50cf5b977f755b675f11d"><div class="ttname"><a href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup</a></div><div class="ttdeci">void setup()</div><div class="ttdef"><b>Definition</b> main.cpp:18</div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md12"></a>
+Receiver（受信）</h3>
+<ul>
+<li>int read();</li>
+</ul>
+<p>受信データを読む。割り込みやコールバックではなくポーリングで実装してください。</p>
+<ul>
+<li>IPAddress remoteIP(void);</li>
+</ul>
+<p>受信データの送信元のIPアドレスを取得する。</p>
+<ul>
+<li>void returner(void);</li>
+</ul>
+<p>update関数でdetailsに状態が登録されていれば自動で返信する。</p>
+<ul>
+<li>byte _rBuffer[EL_BUFFER_SIZE]; // receive buffer</li>
+</ul>
+<p>Received data. 受信したデータ</p>
+<div class="fragment"><div class="line"> :Ver.4</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop</a>() {</div>
+<div class="line">  <a class="code hl_variable" href="main_8cpp.html#ac9832d0cef2337732f35ecc4df039197">echo</a>.<a class="code hl_function" href="class_e_l.html#a633320f052680decb5e7f72fbdf41fb3">recvProcess</a>();</div>
+<div class="line">  delay(300);</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_e_l_html_a633320f052680decb5e7f72fbdf41fb3"><div class="ttname"><a href="class_e_l.html#a633320f052680decb5e7f72fbdf41fb3">EL::recvProcess</a></div><div class="ttdeci">void recvProcess(void)</div><div class="ttdoc">受信処理 Ver.4</div><div class="ttdef"><b>Definition</b> EL.cpp:1520</div></div>
+<div class="ttc" id="amain_8cpp_html_afe461d27b9c48d5921c00d521181f12f"><div class="ttname"><a href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">loop</a></div><div class="ttdeci">void loop()</div><div class="ttdef"><b>Definition</b> main.cpp:60</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md13"></a>
+Version</h1>
+<ul>
+<li>4.2.2 debug log削除</li>
+<li>4.2.1 ONの通知</li>
+<li>4.2.0 バージョンバグ取り、サンプルの位置情報とエラー情報update、SETI_SNA対応、INF_REQ対応</li>
+<li>4.1.3 SETGETに返信するようにした（現在はSNA固定）</li>
+<li>4.1.2 INFCに返信するようにした</li>
+<li>4.1.1 エラーケースに対応、内部バージョン1.13, Rel.R, Rev.1とした</li>
+<li>4.1.0 updateでINFが出るように修正、インスタンスリスト通知</li>
+<li>4.0.1 新API追加、コンストラクタ追加</li>
+<li>4.0.0 新API対応、update仕様変更</li>
+<li>3.0.1 スタブ対応と細かいキャスト</li>
+<li>3.0.0 change method name! sendOPC1(type devId) to sendOPC1ID, also sendMultiOPC1(type devId) to sendMultiOPC1ID. workaround for overload issue. Set/GetProfile to Set/GetMyPropertyMap. additional Keyword.</li>
+<li>2.9.1 calc and set automatically the identification number(0x83) (devices)</li>
+<li>2.9.0 calc and set automatically the identification number(0x83) (profile)</li>
+<li>2.8.2 bugfix SetProfile, GetProfile</li>
+<li>2.8.0 bugfix and, Add methods of class <a class="el" href="class_p_d_c_e_d_t.html" title="PDC and EDT in ELOBJ">PDCEDT</a></li>
+<li>2.7.0 Add methods of class <a class="el" href="class_e_l_o_b_j.html" title="EL Object">ELOBJ</a></li>
+<li>2.6.0 Add methods of class <a class="el" href="class_p_d_c_e_d_t.html" title="PDC and EDT in ELOBJ">PDCEDT</a>, <a class="el" href="class_e_l_o_b_j.html" title="EL Object">ELOBJ</a></li>
+<li>2.5.0 Add methods of class <a class="el" href="class_p_d_c_e_d_t.html" title="PDC and EDT in ELOBJ">PDCEDT</a>, <a class="el" href="class_e_l_o_b_j.html" title="EL Object">ELOBJ</a></li>
+<li>2.4.0 multi set epc</li>
+<li>2.3.1 bug fix</li>
+<li>2.3.0 bug fix, and multi get epc</li>
+<li>2.2.1 bug fix</li>
+<li>2.2.0 bug fix, support multi device</li>
+<li>2.1.0 considering TID</li>
+<li>2.0.0 change memory management, cope with memory leak.</li>
+<li>1.3.0 deal with Node profile object, error case EPC, be searched and debug mode define.</li>
+<li>1.2.2 details bug fix</li>
+<li>1.2.1 <a class="el" href="class_e_l.html" title="Main class for EL">EL</a> Object code defines</li>
+<li>1.2.0 Readme, keywords, library.json, library.properties</li>
+<li>1.1.0 organized for m5stack</li>
+<li>1.0.0 M5Stack</li>
+<li>0.10.0 commit and publish</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md14"></a>
+License</h1>
+<p>MIT</p>
+<h2><a class="anchor" id="autotoc_md15"></a>
+Author</h2>
+<p>神奈川工科大学 創造工学部 ホームエレクトロニクス開発学科</p>
+<p>Dept. of Home Electronics, Faculty of Creative Engineering, Kanagawa Institute of Technology.</p>
+<p>杉村　博</p>
+<p>SUGIMURA Hiroshi </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

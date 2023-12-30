@@ -1,6 +1,9 @@
 <map id="EL::replySetDetail" name="EL::replySetDetail">
-<area shape="rect" id="node1" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="265,31,392,56"/>
-<area shape="rect" id="node2" href="$class_e_l.html#a633320f052680decb5e7f72fbdf41fb3" title="受信処理 Ver.4" alt="" coords="99,5,217,31"/>
-<area shape="rect" id="node3" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ, Ver.3" alt="" coords="113,55,203,80"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,55,51,80"/>
+<area shape="rect" id="Node000001" title="Setに対して複数OPCにも対応して返答する内部関数" alt="" coords="263,31,389,57"/>
+<area shape="rect" id="Node000002" href="$class_e_l.html#a633320f052680decb5e7f72fbdf41fb3" title="受信処理 Ver.4" alt="" coords="99,5,215,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,35,215,30,216,25,248,30"/>
+<area shape="rect" id="Node000003" href="$class_e_l.html#a54d6de75eb5743e2d80dbe81c93993ed" title="受信データを処理する。EL処理でupdateしたら呼ぶ, Ver.3" alt="" coords="112,56,202,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="248,58,202,65,202,60,247,53"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,56,51,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="96,72,51,72,51,67,96,67"/>
 </map>

@@ -1,6 +1,9 @@
 <map id="EL::sendOPC1ID" name="EL::sendOPC1ID">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,129,56"/>
-<area shape="rect" id="node2" href="$class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="194,5,304,31"/>
-<area shape="rect" id="node4" href="$class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="177,55,321,80"/>
-<area shape="rect" id="node3" href="$class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="369,5,442,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,126,57"/>
+<area shape="rect" id="Node000002" href="$class_e_l.html#ac5d0960aa0bd6a33c36a461e34e9bf9f" title="OPC1指定による送信(SEOJも指定する，ほぼ内部関数)" alt="" coords="191,5,300,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,33,176,26,177,31,127,38"/>
+<area shape="rect" id="Node000004" href="$class_e_l.html#ab91f0e1d94556d7a34d93c938ca4939e" title="TIDの自動インクリメント、オーバーフロー対策" alt="" coords="174,56,317,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="127,50,159,54,158,60,126,55"/>
+<area shape="rect" id="Node000003" href="$class_e_l.html#a58b950847b38135814429193175b9b72" title="IP指定による送信" alt="" coords="365,5,438,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="300,16,349,16,349,21,300,21"/>
 </map>

@@ -1,4 +1,7 @@
 <map id="ELOBJ::GetPDCEDT" name="ELOBJ::GetPDCEDT">
-<area shape="rect" id="node1" title="キー文字列からデータ取得" alt="" coords="111,5,260,31"/>
-<area shape="rect" id="node2" href="$class_e_l.html#a986d605da832524b0f80f8330df1a1da" title="EPCの値を取得する, eojが1個の場合（複数の場合は0番に相当）" alt="" coords="5,5,63,31"/>
+<area shape="rect" id="Node000001" title="キー文字列からデータ取得" alt="" coords="110,31,253,57"/>
+<area shape="rect" id="Node000002" href="$class_e_l.html#a986d605da832524b0f80f8330df1a1da" title="EPCの値を取得する, eojが1個の場合（複数の場合は0番に相当）" alt="" coords="5,5,62,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,32,62,26,63,21,95,26"/>
+<area shape="rect" id="Node000003" href="$class_e_l.html#a05a173c299c1feb5c03fa0771a9eff9a" title="EPCの値を取得する, 複数の場合" alt="" coords="5,56,62,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="95,62,63,67,62,62,94,56"/>
 </map>
