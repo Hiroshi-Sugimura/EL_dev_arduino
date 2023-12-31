@@ -123,6 +123,7 @@ void loop() {
 
 # Version
 
+- 4.3.0 sendOPC1, sendMultiOPC1 の新API追加
 - 4.2.2 debug log削除
 - 4.2.1 ONの通知
 - 4.2.0 バージョンバグ取り、サンプルの位置情報とエラー情報update、SETI_SNA対応、INF_REQ対応

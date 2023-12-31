@@ -223,12 +223,14 @@ public:
 	void sendOPC1(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[]);
 	void sendOPC1(const IPAddress toip, const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[]);
 	void sendOPC1(const IPAddress toip, const byte deoj[], const byte esv, const byte epc, const byte pdcedt[]);
+	void sendOPC1(const IPAddress toip, const byte seoj[], const byte deoj[], const byte esv, const byte epc, std::initializer_list<byte> edt);
 	void sendOPC1ID(const IPAddress toip, const int devId, const byte deoj[], const byte esv, const byte epc, const byte pdcedt[]);
 	void sendBroad(byte sBuffer[], int size);
 	void sendMulti(byte sBuffer[], int size);
 	void sendMultiOPC1(const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[]);
 	void sendMultiOPC1(const byte seoj[], const byte deoj[], const byte esv, const byte epc, const byte pdcedt[]);
 	void sendMultiOPC1(const byte deoj[], const byte esv, const byte epc, const byte pdcedt[]);
+	void sendMultiOPC1(const byte seoj[], const byte deoj[], const byte esv, const byte epc, std::initializer_list<byte> edt);
 	void sendMultiOPC1ID(const int devId, const byte deoj[], const byte esv, const byte epc, const byte pdcedt[]);
 	// multi opc
 	void sendDetails(const IPAddress toip, const byte tid[], const byte seoj[], const byte deoj[], const byte esv, const byte opc, const byte detail[], const byte detailSize);

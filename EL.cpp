@@ -562,6 +562,31 @@ void EL::sendMultiOPC1(const byte deoj[], const byte esv, const byte epc, const 
 	tidAutoIncrement();
 }
 
+////////////////////////////////////////////////////
+/// @brief OPC1指定による送信(SEOJは初期化時に指定したものを使う)
+/// @param seoj const byte[]
+/// @param deoj const byte[]
+/// @param esv const byte
+/// @param epc const byte
+/// @param edt std::initializer_list<byte>
+/// @note PDCは自動なのでEDTしか指定しないということに注意
+void EL::sendMultiOPC1(const byte seoj[], const byte deoj[], const byte esv, const byte epc, std::initializer_list<byte> edt)
+{
+	int pdc = edt.size(); // edtのバイトサイズがPDC
+	byte pdcedt[pdc];
+	pdcedt[0] = pdc;
+
+	int i = 1;
+	// 初期化リストの要素を配列にコピー
+	for (auto e = edt.begin(); e != edt.end(); e += 1, i += 1)
+	{
+		pdcedt[i] = *e;
+	}
+
+	sendMultiOPC1(_tid, seoj, deoj, esv, epc, pdcedt);
+	tidAutoIncrement();
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief OPC一個用のマルチキャスト送信、seojの代わりにIDで指定、TID自動
 /// @param devId const int
@@ -704,6 +729,32 @@ void EL::sendOPC1(const IPAddress toip, const byte deoj[], const byte esv, const
 {
 	byte eoj[3] = {_eojs[0], _eojs[1], _eojs[2]};
 	sendOPC1(toip, _tid, eoj, deoj, esv, epc, pdcedt);
+	tidAutoIncrement();
+}
+
+////////////////////////////////////////////////////
+/// @brief OPC1指定による送信(SEOJは初期化時に指定したものを使う)
+/// @param toip const IPAddress
+/// @param seoj const byte[]
+/// @param deoj const byte[]
+/// @param esv const byte
+/// @param epc const byte
+/// @param edt std::initializer_list<byte>
+/// @note PDCは自動なのでEDTしか指定しないということに注意
+void EL::sendOPC1(const IPAddress toip, const byte seoj[], const byte deoj[], const byte esv, const byte epc, std::initializer_list<byte> edt)
+{
+	int pdc = edt.size(); // edtのバイトサイズがPDC
+	byte pdcedt[pdc];
+	pdcedt[0] = pdc;
+
+	int i = 1;
+	// 初期化リストの要素を配列にコピー
+	for (auto e = edt.begin(); e != edt.end(); e += 1, i += 1)
+	{
+		pdcedt[i] = *e;
+	}
+
+	sendOPC1(toip, _tid, seoj, deoj, esv, epc, pdcedt);
 	tidAutoIncrement();
 }
 

@@ -183,7 +183,7 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
 }
 
 //====================================================================
-// main loop
+// setup
 void setup()
 {
   // put your setup code here, to run once:
