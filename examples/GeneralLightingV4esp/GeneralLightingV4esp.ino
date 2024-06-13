@@ -12,6 +12,9 @@
 
 #include <Adafruit_NeoPixel.h>
 
+// debug flag
+// #define ___DEBUG___ 1
+
 //--------------LED
 #define DIN_PIN 48     // NeoPixel　の出力ピン番号
 #define LED_COUNT 1    // LEDの連結数
@@ -28,9 +31,6 @@ IPAddress myip;
 
 //--------------EL
 #define OBJ_NUM 1
-// V3
-// byte eojs[OBJ_NUM][3] = { { 0x02, 0x90, 0x01 } };
-// EL echo(elUDP, eojs, OBJ_NUM);
 
 // V4
 EL echo(elUDP, {{0x02, 0x90, 0x01}});
@@ -67,8 +67,10 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
     {
     case 0x80: // 電源
       if (edt[0] == 0x30)
-      {                                                                            // ON
-        Serial.println("ON");                                                      // 設定した値にする
+      { // ON
+#if ___DEBUG___
+        Serial.println("ON"); // 設定した値にする
+#endif
         pixels.clear();                                                            // クリア
         pixels.setPixelColor(0, pixels.Color(BRIGHTNESS, BRIGHTNESS, BRIGHTNESS)); // 白
         pixels.show();
@@ -78,7 +80,9 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
       }
       else if (edt[0] == 0x31)
       { // OFF
+#if ___DEBUG___
         Serial.println("OFF");
+#endif
         pixels.clear();                                 // クリア
         pixels.setPixelColor(0, pixels.Color(0, 0, 0)); // 黒
         pixels.show();
@@ -97,8 +101,10 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
 
     case 0xB0: // 照度レベル
       if (0 <= edt[0] && edt[0] <= 100)
-      {                                                                // [0--100]
-        Serial.printf("B0: Lighting level: %d\n", edt[0]);             // 設定した値にする
+      { // [0--100]
+#if ___DEBUG___
+        Serial.printf("B0: Lighting level: %d\n", edt[0]); // 設定した値にする
+#endif
         pixels.clear();                                                // クリア
         pixels.setPixelColor(0, pixels.Color(edt[0], edt[0], edt[0])); // 照度調整白
         pixels.show();
@@ -113,11 +119,15 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
       break;
 
     case 0xB6: // 点灯モード設定
+#if ___DEBUG___
       Serial.printf("B6: Mode:", edt[0]);
+#endif
       switch (edt[0])
       {
       case 0x41: // 自動
+#if ___DEBUG___
         Serial.printf("auto\n");
+#endif
         pixels.clear();                                                                              // クリア
         pixels.setPixelColor(0, pixels.Color(BRIGHTNESS * 0.8, BRIGHTNESS * 0.8, BRIGHTNESS * 0.8)); // 白（ちょっと暗い）
         pixels.show();
@@ -127,7 +137,9 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
         break;
 
       case 0x42: // 通常灯
+#if ___DEBUG___
         Serial.printf("nomal\n");
+#endif
         pixels.clear();                                                            // クリア
         pixels.setPixelColor(0, pixels.Color(BRIGHTNESS, BRIGHTNESS, BRIGHTNESS)); // 白
         pixels.show();
@@ -137,7 +149,9 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
         break;
 
       case 0x43: // 常夜灯
+#if ___DEBUG___
         Serial.printf("night\n");
+#endif
         pixels.clear();                                                // クリア
         pixels.setPixelColor(0, pixels.Color(BRIGHTNESS * 0.2, 0, 0)); // 暗いオレンジ
         pixels.show();
@@ -147,7 +161,9 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
         break;
 
       case 0x45: // カラー灯
+#if ___DEBUG___
         Serial.printf("color\n");
+#endif
         pixels.clear();                                          // クリア
         pixels.setPixelColor(0, pixels.Color(0, 0, BRIGHTNESS)); // 青（カラー灯のデフォルトを青とする）
         pixels.show();
@@ -161,8 +177,10 @@ bool callback(byte tid[], byte seoj[], byte deoj[], byte esv, byte opc, byte epc
       }
       break;
 
-    case 0xC0:                                                                                                                // 色設定、本当はエラーチェックすべき
-      Serial.printf("C0: color: %d, %d, %d\n", edt[0], edt[1], edt[2]);                                                       // 設定した値にする
+    case 0xC0: // 色設定、本当はエラーチェックすべき
+#if ___DEBUG___
+      Serial.printf("C0: color: %d, %d, %d\n", edt[0], edt[1], edt[2]); // 設定した値にする
+#endif
       pixels.clear();                                                                                                         // クリア
       pixels.setPixelColor(0, pixels.Color(edt[0] * BRIGHTNESS / 255, edt[1] * BRIGHTNESS / 255, edt[2] * BRIGHTNESS / 255)); // BRIGHTNESSを最大として255段階
       pixels.show();
@@ -224,7 +242,7 @@ void setup()
 // main loop
 void loop()
 {
-
+  // ECHONET Lite通信の受信処理
   echo.recvProcess();
 
   delay(300);
